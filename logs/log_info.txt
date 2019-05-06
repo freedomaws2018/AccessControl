@@ -662,3 +662,158 @@ org.postgresql.util.PSQLException: ERROR: large object 32842 does not exist
 2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
 2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
 2019-05-06 12:26:26.865  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
+2019-05-06 14:01:10.585  INFO 9213 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on zhanghanhaode-MacBook-Pro.local with PID 9213 (/Users/sheji/Documents/GitHub/AccessControl/target/classes started by sheji in /Users/sheji/Documents/GitHub/AccessControl)
+2019-05-06 14:01:10.587 DEBUG 9213 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-06 14:01:10.587  INFO 9213 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-06 14:01:11.813 DEBUG 9213 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
+2019-05-06 14:01:11.814 DEBUG 9213 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
+2019-05-06 14:01:11.814 DEBUG 9213 --- [main] c.e.demo.AccessControlApplication$1      : Document root: /Users/sheji/Documents/GitHub/AccessControl/public
+2019-05-06 14:01:12.981  WARN 9213 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
+2019-05-06 14:01:12.982  WARN 9213 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
+2019-05-06 14:01:16.397  WARN 9213 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+2019-05-06 14:01:16.435 ERROR 9213 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1287) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1181) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at com.example.demo.AccessControlApplication.main(AccessControlApplication.java:18) [classes/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:184) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1279) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 17 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+	at com.example.demo.Controller.LineLogController.<init>(LineLogController.java:46) ~[classes/:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_201]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_201]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:172) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 19 common frames omitted
+
+2019-05-06 14:53:14.074  INFO 10110 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on zhanghanhaode-MacBook-Pro.local with PID 10110 (/Users/sheji/Documents/GitHub/AccessControl/target/classes started by sheji in /Users/sheji/Documents/GitHub/AccessControl)
+2019-05-06 14:53:14.076 DEBUG 10110 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-06 14:53:14.076  INFO 10110 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-06 14:53:15.362 DEBUG 10110 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
+2019-05-06 14:53:15.362 DEBUG 10110 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
+2019-05-06 14:53:15.363 DEBUG 10110 --- [main] c.e.demo.AccessControlApplication$1      : Document root: /Users/sheji/Documents/GitHub/AccessControl/public
+2019-05-06 14:53:16.593  WARN 10110 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
+2019-05-06 14:53:16.594  WARN 10110 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
+2019-05-06 14:53:19.477  WARN 10110 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+2019-05-06 14:53:19.506 ERROR 10110 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1287) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1181) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at com.example.demo.AccessControlApplication.main(AccessControlApplication.java:18) [classes/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:184) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1279) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 17 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
+	The type LineUser does not define getUserId(T) that is applicable here
+	The type LineUser does not define getUserName(T) that is applicable here
+	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
+	The method getTriggerText() is undefined for the type T
+	The type Wf8266Detail does not define getName(T) that is applicable here
+
+	at com.example.demo.Controller.LineLogController.<init>(LineLogController.java:46) ~[classes/:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_201]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_201]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:172) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 19 common frames omitted
+
+2019-05-06 15:21:01.650  INFO 937 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on zhanghanhaode-MacBook-Pro.local with PID 937 (/Users/sheji/Documents/GitHub/AccessControl/target/classes started by sheji in /Users/sheji/Documents/GitHub/AccessControl)
+2019-05-06 15:21:01.654 DEBUG 937 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-06 15:21:01.654  INFO 937 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-06 15:21:03.184 DEBUG 937 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
+2019-05-06 15:21:03.185 DEBUG 937 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
+2019-05-06 15:21:03.185 DEBUG 937 --- [main] c.e.demo.AccessControlApplication$1      : Document root: /Users/sheji/Documents/GitHub/AccessControl/public
+2019-05-06 15:21:09.371  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
+2019-05-06 15:21:09.373  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
+2019-05-06 15:21:09.373  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
+2019-05-06 15:21:09.373  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
+2019-05-06 15:21:09.426  INFO 937 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 8.209 seconds (JVM running for 8.936)
