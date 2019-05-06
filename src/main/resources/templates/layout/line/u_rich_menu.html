@@ -52,7 +52,7 @@
 			  case 'change_view':
 					var change_view_str = `<p>`;
 					change_view_str += `至 `;
-					change_view_str += `<input type="text" id="action_${index}" name="actions[${index}].data" />`;
+					change_view_str += `<input type="text" id="action_${index}" name="actions[${index}].data" required />`;
           change_view_str += `</p>`;
 				  detail.html(change_view_str);
 				  
@@ -84,7 +84,7 @@
 			  case 'trigger_iot':
           var trigger_iot_str = '執行 ';
           $.get('/wf8266/ajax/getAllWf8266Detail',function(result){
-            trigger_iot_str += `<select name="actions[${index}].data">`;
+            trigger_iot_str += `<select name="actions[${index}].data" required>`;
             trigger_iot_str += `<option value="">請選擇</option>`;
             result.forEach(wd => {
               trigger_iot_str += `<option value="${wd.triggerText}">${wd.name}</option>`;
@@ -111,23 +111,23 @@
 	  <table class="table table-bordered">
       <tbody>
         <tr>
-          <th>選單名稱：</td>
-          <td th:if="${funcType eq 'add'}"><input name="name" /></td>
-          <td th:if="${funcType eq 'edit'}"><input type="hidden" name="name" th:value="${richMenu.name}" /><span th:text="${richMenu.name}"/></td>
+          <th><span>*</span>選單名稱：</th>
+          <td th:if="${funcType eq 'add'}"><input name="name" required /></td>
+          <td th:if="${funcType eq 'edit'}"><input type="hidden" name="name" th:value="${richMenu.name}" /><span th:text="${richMenu.name}"></span></td>
         </tr>
 	      <tr>
-	        <th>選單版型：</td>
+	        <th><span>*</span>選單版型：</th>
 	        <td>
-	          <select name="templateId" >
+	          <select name="templateId" required >
 	            <option value="" size="0">請選擇</option>
 	            <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{getBase64Image()}"/>
 	          </select>
 	        </td>
 	      </tr>
 	      <tr>
-	        <th>選單圖片：</td>
+	        <th><span>*</span>選單圖片：</th>
 	        <td>
-	          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')">
+	          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" required>
 	        </td>
 	      </tr>
 	      <tr>

@@ -5,80 +5,84 @@
 </head>
 <body layout:fragment="content">
   
-  <script th:inline="javascript">
-    $().ready(()=>{
-      /** 刪除單筆 RichMenu **/
-      $(".rich_menu_delete").click(function(event){
-        var richMenuId = $(event.currentTarget).attr("richMenuId")
-        $.ajax({
-          type: 'DELETE',
-          url: `/line/rich_menu/delete/${richMenuId}`,
-          dataType: 'json',
-          success: (result) =>{
-            
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-            
-          }
-        });
-      });
-      
-      /** 同步 Line Server 資料庫 **/ // /line/rich_menu/ajaxGetRichMenuDataOnLineServer
-      $("#rich_menu_synchronize").click(function(){
-        $.ajax({
-          type: 'POST',
-          url: '/line/rich_menu/ajax/getRichMenuDataOnLineServer',
-          dataType: 'json',
-          success: (result) =>{
-            console.log(result);
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-            
-          }
-        });
-      });
-      
+<script th:inline="javascript">
+"use strict";
+$().ready(()=>{
+	
+  /** 刪除單筆 RichMenu **/
+  $(".rich_menu_delete").click(function(event){
+    var richMenuId = $(event.currentTarget).attr("richMenuId")
+    $.ajax({
+      type: 'DELETE',
+      url: `/line/rich_menu/delete/${richMenuId}`,
+      dataType: 'json',
+      success: (result) =>{
+        
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        
+      }
     });
-    
-  </script>
+  });
+  
+  /** 同步 Line Server 資料庫 **/ // /line/rich_menu/ajaxGetRichMenuDataOnLineServer
+  $("#rich_menu_synchronize").click(function(){
+    $.ajax({
+      type: 'POST',
+      url: '/line/rich_menu/ajax/getRichMenuDataOnLineServer',
+      dataType: 'json',
+      success: (result) =>{
+        console.log(result);
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        
+      }
+    });
+  });
+  
+});
 
-	<h1>LineRichMenu - 列表</h1>
+</script>
 
+  <h1>LineRichMenu - 列表</h1>
+  
   <a th:href="@{/line/rich_menu/add}">新增</a>
   <a href="javascript:;" id="rich_menu_synchronize">更新資料</a>
-
-	<table id="richMenuTable"  class="table table-bordered">
+  
+  <table id="richMenuTable"  class="table table-bordered">
     <thead class="thead-light">
-			<tr>
-				<th>操作</th>
-<!-- 				<th>UUID</th> -->
+      <tr>
+        <th>操作</th>
         <th>名稱</th>
-<!--         <th>顯示名稱</th> -->
-				<th>大小</th>
-				<th>圖片</th>
-				<th>建立時間</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
+        <th>大小</th>
+        <th>圖片</th>
+        <th>建立時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
         <th th:richMenu="*{richMenuId}">
+          <span style="display: none;"  th:text="*{richMenuId}">richMenuId</span>
           <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" >修改</a>
           <a class="rich_menu_delete" href="javascript:;" th:richMenuId="*{richMenuId}">刪除</a>
         </th>
-<!-- 				<td th:text="*{richMenuId}">richMenuId</td> -->
         <td th:text="*{name}">name</td>
-<!--         <td th:text="*{chatBarText}">name</td> -->
-				<td th:object="${richMenu.size}">
+        <td th:object="${richMenu.size}">
           <span th:if="*{height} <= 843">小版</span>
           <span th:if="*{height} >= 1686">大版</span>
         </td>
-				<td><img th:if="|*{imageBase64 ne null }|" width="300px" th:src="@{|data:image/png;base64,*{imageBase64}|}" /></td>
-        <td th:text="*{#temporals.format(createDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
         <td>
+          <img th:if="|*{imageBase64 ne null }|" width="300px" th:src="@{|data:image/png;base64,*{imageBase64}|}" />
+        </td>
+        <td>
+          <span th:text="*{#temporals.format(createDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+        </td>
+        <td style="display: none;">
           <span th:each="area:*{areas}" th:object="${area.action}" th:utext="|*{data}<BR>|"></span>
         </td>
-			</tr>
-		</tbody>
-	</table>
+      </tr>
+    </tbody>
+  </table>
+  
 </body>
 </html>

@@ -1,117 +1,115 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-</head>
-<div th:fragment="sidebar">
-		
-	<script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-			$('#sidebarCollapse').toggleClass('active');
-			$('.container').toggleClass('active');
-			$('.navbar').toggleClass('active');
-			$('.navbar_sub').toggleClass('active');
-			$('#navbar_title').toggleClass('active');
-        });
+<head><meta charset="UTF-8"></head>
+<body th:fragment="sidebar">
+
+  <script type="text/javascript">
+  $().ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      $('#sidebarCollapse').toggleClass('active');
+      $('.container').toggleClass('active');
+      $('.navbar').toggleClass('active');
+      $('.navbar_sub').toggleClass('active');
+      $('#navbar_title').toggleClass('active');
     });
+  });
   </script>
-	<div class="wrapper">
+
+  <div class="wrapper">
     <nav id="sidebar">
       <!-- sidebar list -->
-			<ul class="list-unstyled components">
-				<p>測試區</p>
-				<li class="active">
-					<div class="row">
-						<div id="list_icon">
-							<img th:src="@{/images/line.png}" src="../static/images/line.png">
-						</div>
-						<div id="list">
-							<a href="#LineManage" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">1. Line應用管理</a>
-						</div>
-					</div>
-					<ul class="collapse list-unstyled" id="LineManage">
-					  <li>
-						<div class="row">
-							<div id="list_icon">
-								<img th:src="@{/images/line.png}" src="../static/images/line.png">
-							</div>
-							<div id="list">
-								<a th:href="@{/line/user/list}">1-1. LineUser管理</a>
-							</div>
-						</div> 
-					  </li>
-						<li>
-							<div class="row">
-								<div id="list_icon">
-									<img th:src="@{/images/line.png}" src="../static/images/line.png">
-								</div>
-								<div id="list">
-									<a href="#LineManage_A" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">1-2. LineRichMenu管理</a>
-								</div>
-							</div> 
-							<ul class="collapse list-unstyled" id="LineManage_A">
-							  <li>
-								<div class="row">
-									<div id="list_icon">
-										<img th:src="@{/images/line.png}" src="../static/images/line.png">
-									</div>
-									<div id="list">
-										<a id="multi" th:href="@{/line/rich_menu/list}">1-2-1. LineRIchMenu列表</a>
-									</div>
-								</div>
-							  </li>
-                			  <li>
-                			  	<div class="row">
-									<div id="list_icon">
-										<img th:src="@{/images/line.png}" src="../static/images/line.png">
-									</div>
-									<div id="list">
-										<a id="multi" th:href="@{/line/rich_menu/template/list}">1-2-1. RIchMenu樣式列表</a>
-									</div>
-								</div>
-                			  </li>
-							</ul>
-						</li>
+      <ul class="list-unstyled components">
+        <p>選單</p>
+        <li class="active">
+          <div class="row">
+<!--             <div id="list_icon"> -->
+<!--               <img th:src="@{/images/line.png}" src="../static/images/line.png"> -->
+<!--             </div> -->
+            <div id="list">
+              <a href="#LineManage" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">1. Line應用管理</a>
+            </div>
+          </div>
+          <ul class="collapse list-unstyled" id="LineManage">
             <li>
+              <div class="row">
+<!--                 <div id="list_icon"> -->
+<!--                   <img th:src="@{/images/line.png}" src="../static/images/line.png"> -->
+<!--                 </div> -->
+                <div id="list">
+                  <a th:href="@{/line/user/list}">1-1. LineUser管理</a>
+                </div>
+              </div> 
             </li>
             <li>
-				<div class="row">
-					<div id="list_icon">
-						<img th:src="@{/images/line.png}" src="../static/images/line.png">
-					</div>
-					<div id="list">
-						<a th:href="@{/line/log/list}">1-3. LineLog管理</a>
-					</div>
-				</div>
+              <div class="row">
+<!--                 <div id="list_icon"> -->
+<!--                   <img th:src="@{/images/line.png}" src="../static/images/line.png"> -->
+<!--                 </div> -->
+                <div id="list">
+                  <a href="#LineManage_A" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">1-2. LineRichMenu管理</a>
+                </div>
+              </div> 
+              <ul class="collapse list-unstyled" id="LineManage_A">
+                <li>
+                  <div class="row">
+<!--                     <div id="list_icon"> -->
+<!--                       <img th:src="@{/images/line.png}" src="../static/images/line.png"> -->
+<!--                     </div> -->
+                    <div id="list">
+                      <a id="multi" th:href="@{/line/rich_menu/list}">1-2-1. LineRIchMenu列表</a>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+<!--                     <div id="list_icon"> -->
+<!--                       <img th:src="@{/images/line.png}" src="../static/images/line.png"> -->
+<!--                     </div> -->
+                    <div id="list">
+                      <a id="multi" th:href="@{/line/rich_menu/template/list}">1-2-1. RIchMenu樣式列表</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </li>
-			</ul>
-		</li>
-		
-		<li>
-			<div class="row">
-				<div id="list_icon">
-					<img th:src="@{/images/settings.png}" src="../static/images/settings.png">
-				</div>
-				<div id="list">
-					<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">2. Iot應用管理</a>
-				</div>
-			</div>
-			<ul class="collapse list-unstyled" id="pageSubmenu">
-				<li>
-					<div class="row">
-						<div id="list_icon">
-							<img th:src="@{/images/settings.png}" src="../static/images/settings.png">
-						</div>
-						<div id="list">
-							<a th:href="@{/wf8266/list}">2-1. WF8266管理</a>
-					</div>
-				</li>
-			</ul>
-		</li>
-		
-	</ul>
+            
+            <li>
+              <div class="row">
+<!--                 <div id="list_icon"> -->
+<!--                   <img th:src="@{/images/line.png}" src="../static/images/line.png"> -->
+<!--                 </div> -->
+                <div id="list">
+                  <a th:href="@{/line/log/list}">1-3. LineLog管理</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+        
+        <li>
+          <div class="row">
+<!--             <div id="list_icon"> -->
+<!--               <img th:src="@{/images/settings.png}" src="../static/images/settings.png"> -->
+<!--             </div> -->
+            <div id="list">
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">2. Iot應用管理</a>
+            </div>
+          </div>
+          <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li>
+              <div class="row">
+<!--                 <div id="list_icon"> -->
+<!--                   <img th:src="@{/images/settings.png}" src="../static/images/settings.png"> -->
+<!--                 </div> -->
+                <div id="list">
+                  <a th:href="@{/wf8266/list}">2-1. WF8266管理</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </nav>
   </div>
-</div>
+</body>
 </html>
