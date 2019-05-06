@@ -52,7 +52,14 @@
 
 #navbar_logo {
 	position: absolute;
-	left: 70px;
+	left: 55px;
+	top: 8px;
+
+}
+
+#navbar_user {
+	position: absolute;
+	right: 10px;
 	top: 8px;
 
 }
@@ -60,7 +67,7 @@
 #navbar_title {
 	position: absolute;
 	left: 265px;
-	top: 8px;
+	top: 12px;
 
 }
 

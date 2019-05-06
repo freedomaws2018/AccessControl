@@ -10,11 +10,11 @@
 	<div id="navbar_logo">
 		<img style="width:110px;" th:src="@{/images/logo.png}" />
 	</div>
-	<div id="navbar_title">
-		<h2>首頁</h2>
-		<div th:if="${#ctx.containsVariable('headerInfo')}" th:object="${headerInfo}">
-			  <span th:text="*{name}"></span>:<span th:text="*{data}"></span>
-		</div>
+	<div id="navbar_title" th:if="${#ctx.containsVariable('headerInfo')}" th:object="${headerInfo}">
+			<h3><span th:text="*{name}"></span>:<span th:text="*{data}"></span></h3>
+	</div>
+	<div id="navbar_user">
+		<img style="width:40px;" th:src="@{/images/user.png}" />
 	</div>
   </nav>
   

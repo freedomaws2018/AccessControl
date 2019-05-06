@@ -146,7 +146,7 @@ a:focus {
     transition: all 0.3s;
 }
 
-#list_icon {
+#sidebar img {
 	position: relative;
 	left:30px;
 	top:9px;
@@ -157,7 +157,7 @@ a:focus {
 	
 }
 
-#list {
+#sidebar a {
 	position: relative;
 	z-index:1;
 	top:0px;
