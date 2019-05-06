@@ -1,0 +1,47 @@
+	body {
+	  background-color: #eee;
+	}
+	img {
+	  display:block;
+	  margin:auto;
+	}
+	.container {
+	  font-family:Microsoft JhengHei;	
+	}
+	.form-signin {
+	  padding-top:50px;
+	}
+	
+	.form-signin .checkbox {
+	  font-weight: normal;
+	  font-size: 15px;
+	}
+	.form-signin .form-control {
+	  height: auto;
+	  padding: 10px;
+	}
+
+	.btn-primary {
+	  background-color: #3179B5;
+	  border-color: #3179B5;
+	  border-radius: 50px;
+	  width:100%;
+	}
+	.btn-primary:hover {
+	  background-color: #5AC3DE;
+	  border-color: #5AC3DE;
+	}
+	#box {
+	  /*background: white;*/ /*背景文字都透明*/
+	  background-color:rgba(255,255,255,0);/*背景透明文字不透明*/
+	  padding:55px;
+	  width:400px;
+	  height:50%;
+	  margin:150px auto;
+	  border-radius: 25px;
+	}
+	.form-signin-heading, .checkbox {
+	  text-align: center;
+	  padding-top: 15px;
+	  padding-bottom: 10px;
+	}

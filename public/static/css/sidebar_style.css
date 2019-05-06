@@ -1,0 +1,170 @@
+.wrapper {
+    display: flex;	/*預設為flex*/
+    width: 100%;
+    align-items: stretch;  /*stretch在高度被限制的情況下不會正常伸展*/
+}
+/*	overflow-y:auto;*/
+
+#sidebar {
+	position: fixed;
+	top:55px;
+    min-width: 250px;	/*設定選單寬度最小值*/
+    max-width: 250px;	/*設定選單寬度最大值*/
+	min-height: 100%;	/*設定選單高度最小值*/
+	max-height: auto;	/*設定選單高度最大值*/
+    background: #2F353A;/*設定選單高度顏色*/
+    color: #fff;
+	/*background:rgba(115,134,213,0.9); 背景透明文字不透明*/
+    transition: all 0.3s;	/*設定開啟/關閉選單秒數*/
+	/*box-shadow: 4px 0px #DCDCDC;	選單陰影設定*/
+}
+
+#sidebar.active {
+    margin-left: -250px; 	/*點擊選單開啟/關閉選單->*/
+							/*選單寬度多寬就設定負值多寬*/
+}
+
+#sidebar .sidebar-header {
+	padding-top: 0px;
+    padding-left: 30px;	/*LOGO 縮排*/
+    background: #2F353A; /*LOGO 背景色*/
+}
+
+#sidebar ul.components {
+    padding: 0px; /*padding: 20px 0; ->只修改20px只會影響到功能選單top的距離*/
+					 /*padding: 20px 20px; ->後方修改會影響到所有ul的左右距離*/
+    border-bottom: 0px solid #2F353A; /*Contact下方的線(表格底部線條)*/
+}
+
+#sidebar ul p {
+	margin-top:5px;
+    padding: 10px 0px 0px 10px; /*ui 縮排*/
+    font-size: 1.1em; /*ui 字體大小*/
+    color: #fff; /*功能選單 字體色*/
+	background: #2F353A;
+}
+
+#sidebar ul li a {
+    padding: 10px 10px 10px 55px; /*ui 縮排*/
+    font-size: 0.9em; /*ui 字體大小*/
+    display: block; /*改成none的話ui就會隱藏*/
+}
+
+#sidebar ul li a:hover { /*滑鼠移動經過的ui或是li都能改變底色跟文字色*/
+    color: #FFF;
+    background: #20A8D8;
+}
+
+#sidebar ul li.active>a,  /*預設第一個ui->Line應用管理的底色跟文字色*/
+	a[aria-expanded="false"] { /*如果改成false，每個ui的底色跟文字色都一樣*/
+		color: #FFF;
+		background: #2F353A;
+	}
+
+	a[data-toggle="collapse"] {
+		position: relative;	/*relative->ui有下拉式箭頭*/
+							/*static->ui沒有下拉式箭頭*/
+							/*fixed->固定位置->會出現整排ui、中間如果有其他li會被擋住*/
+							/*absolute->相對位置*/
+	}
+
+.dropdown-toggle::after {
+    display: block;	/*block->ui有下拉式箭頭*/	/*none->ui沒有下拉式箭頭*/
+    position: absolute;
+    top: 50%;	/*ui下拉式箭頭位置調整*/
+    right: 20px;/*ui下拉式箭頭位置調整*/
+    /*transform: translateY(-50%);*/	/*第二層*/
+}
+
+
+ul ul a {
+    font-size: 0.9em !important;	/*li 字體大小*/
+    padding-left: 55px !important;	/*li 縮排*/
+    background: #2F353A;
+}
+
+#multi {
+    padding-left: 55px !important;	/*li 縮排*/
+
+}
+
+ul.CTAs {
+    padding: 10px 40px; /*選單下方按鈕縮排(上下/左右)*/
+}
+
+ul.CTAs a {
+    text-align: center;	/*選單下方按鈕文字位置*/
+    font-size: 0.9em !important;	/*選單下方按鈕字體大小*/
+    display: block;
+    border-radius: 5px;	/*選單下方按鈕圓角矩形設定*/
+    margin-bottom: 10px; /*選單下方按鈕與按鈕之間的距離*/
+}
+
+a.index {
+    background: #fff; /*選單下方第一個按鈕設定*/
+    color: #2F353A;
+}
+
+a.logout,
+a.logout:hover {
+    background: #2F353A !important;	/*選單下方第二個按鈕設定，滑鼠移過不會改變*/
+    color: #fff !important;
+}
+
+
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+   /* #sidebarCollapse span {
+        display: none;
+    }*/
+}
+/* ---------------------------------------------------
+    SIDEBAR SUBTITLE STYLE (目前：功能選單)
+----------------------------------------------------- */
+p {
+    /*font-family: 'Poppins', sans-serif;*/
+    font-size: 1.7em;	/*字體大小(原：1.0)*/
+	font-weight: 300px;
+    line-height: 0.7em;	/*上下縮排(原：1.7)*/
+}
+#content p{
+	color: gray;
+	font-size: 1.2em;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;	/*block->滑鼠移過ul、li會有下底線*/
+    transition: all 0.3s;
+}
+
+#list_icon {
+	position: relative;
+	left:30px;
+	top:9px;
+	width:24px;
+	height:24px;
+	z-index:2;
+	/*border:1px blue solid;*/
+	
+}
+
+#list {
+	position: relative;
+	z-index:1;
+	top:0px;
+	left:-8px;
+	width:249px;
+	/*border:1px red solid;*/
+}
+
+
+

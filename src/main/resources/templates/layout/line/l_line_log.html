@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Log</title>
+</head>
+<body layout:fragment="content">
+  
+  <h1>Log</h1>
+
+  <table style="border:2px #cccccc solid;" cellpadding="5" border='1'>  
+    <thead>
+      <tr>
+        <th>時間</th>
+        <th>姓名</th>
+        <th>行為</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="log:${logWf8266s}">
+        <td th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss.SSS')}"></td>
+        <td th:text="${userMap[log.userId]}"></td>
+        <td th:text="${wf8266DetailMap[log.wf8266trigger]}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head>
+<meta charset="UTF-8">
+<title th:if="${funcType eq 'add'}">LineRichMenu - 新增</title>
+<title th:if="${funcType} == view">LineRichMenu - 檢視</title>
+<title th:if="${funcType} == edit">LineRichMenu - 修改</title>
+</head>
+<style>
+</style>
+<body layout:fragment="content">
+  <script type="text/javascript">
+  var loadFile = function(event,id) {
+    var output = document.getElementById(id);
+    output.src = URL.createObjectURL(event.target.files[0]);
+  }
+  $().ready(function(){
+	  $("select[name='templateId']").change(function(){
+      var imageBase64 = $(this).find(":selected").attr('image');
+      var size = $(this).find(":selected").attr('size');
+      if(imageBase64){
+			  $("#image_style").attr("src","data:image/png;base64," + imageBase64);
+        testtesttest(size);
+      }else{
+        $("#image_style").removeAttr('src').replaceWith($("#image_style").clone());
+        testtesttest(size);
+      }
+	  });
+	  
+	  var testtesttest = function(size){
+		  $("#richMenuActionTable").find("tbody").find("tr").remove();
+		  for(i=0 ; i < size ; i++){
+			  $("#richMenuActionTable tbody").append(`
+					  <tr>
+			        <td> ${i + 1} </td>
+              <td>
+                <select id="action[${i}]" name="actions[${i}].type" index="${i}">
+                  <option value="">請選擇</option>
+                  <option value="change_view">切換頁面</option>
+                  <option value="trigger_iot">觸發Iot</option>
+                </select>
+              </td>
+              <td id="detail_${i}"></td>
+			      </tr>
+			  `);
+		  }
+		  $("select[id^='action']").change(function(){
+			  var index = $(this).attr("index");
+			  var value= this.value;
+			  var detail = $("#detail_" + index);
+			  detail.html('');
+			  switch(value){
+			  case 'change_view':
+					var change_view_str = `<p>`;
+					change_view_str += `至 `;
+					change_view_str += `<input type="text" id="action_${index}" name="actions[${index}].data" />`;
+          change_view_str += `</p>`;
+				  detail.html(change_view_str);
+				  
+				  $("#action_" + index).autocomplete({
+            minLength: 0,
+            source: function(request,response){
+            	$.ajax({
+                url: '/line/rich_menu/autocomplete/getRichMenu',
+                data: request,
+                dataType: 'json',
+                success: function(result){
+                	console.log(result);
+                	var data = [];
+                	data.label = {};
+                	data.value = {};
+                	result.forEach((d) => {
+                    data.push({
+                    	label: d.name,
+                    	value: d.name
+                    });
+                	});
+                  response(data);
+                }
+              });
+            }
+          });
+
+				  break;
+			  case 'trigger_iot':
+          var trigger_iot_str = '執行 ';
+          $.get('/wf8266/ajax/getAllWf8266Detail',function(result){
+            trigger_iot_str += `<select name="actions[${index}].data">`;
+            trigger_iot_str += `<option value="">請選擇</option>`;
+            result.forEach(wd => {
+              trigger_iot_str += `<option value="${wd.triggerText}">${wd.name}</option>`;
+            })
+            trigger_iot_str += "</select>";
+            detail.html(trigger_iot_str);
+          });
+				  break;
+			  }
+		  });
+	  }
+	  
+  });
+  </script>
+  <pre>
+1. 圖片大小，小於 1Mb。
+2. 沒有功能的視窗，就不選擇。
+3. 選單名稱不得重複。
+4. 選單圖片尺寸必須為 (2500*843或2500*1686)
+5. 動作->切換頁面，轉跳的頁面，是以選單名稱切換，若找不到頁面，則切換無效。
+  </pre>
+  <form th:action="@{/line/rich_menu/save}" enctype="Multipart/Form-Data" method="post">
+    <input th:if="${funcType eq 'edit'}" type="hidden" name="oldRichMenuId" th:value="${richMenu.richMenuId}" />
+	  <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>選單名稱：</td>
+          <td th:if="${funcType eq 'add'}"><input name="name" /></td>
+          <td th:if="${funcType eq 'edit'}"><input type="hidden" name="name" th:value="${richMenu.name}" /><span th:text="${richMenu.name}"/></td>
+        </tr>
+	      <tr>
+	        <th>選單版型：</td>
+	        <td>
+	          <select name="templateId" >
+	            <option value="" size="0">請選擇</option>
+	            <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{getBase64Image()}"/>
+	          </select>
+	        </td>
+	      </tr>
+	      <tr>
+	        <th>選單圖片：</td>
+	        <td>
+	          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')">
+	        </td>
+	      </tr>
+	      <tr>
+	        <td colspan="2">
+	          <table id="richMenuActionTable"  class="table table-bordered">
+	           <thead class="thead-light">
+	             <tr>
+	               <th width="100px">序號</th>
+	               <th width="200px">動作</th>
+	               <th>行為</th>
+	             </tr>
+	           </thead>
+	           <tbody>
+	           </tbody>
+	          </table>
+	        </td>
+	      </tr>
+	  
+	    </tbody>
+	  </table>
+	  <input type="submit" />
+  </form>
+  <div id="template_image_view" > <!-- rowspan="3"  style="position:relative; height:400px; left:350px; " -->
+    <img style=" z-index:1; top:0px; left:0px; width:500px; " id="image_output" /> <!-- position:absolute; -->
+    <img style=" z-index:2; top:0px; left:0px; width:500px;" id="image_style" />
+  </div>
+</body>
+</html>

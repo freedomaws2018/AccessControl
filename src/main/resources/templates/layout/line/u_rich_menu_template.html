@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head>
+<meta charset="UTF-8">
+<title th:if="${funcType eq 'add'}">LineRichMenu - 樣板新增</title>
+<title th:if="${funcType} == view">LineRichMenu - 樣板檢視</title>
+<title th:if="${funcType} == edit">LineRichMenu - 樣板修改</title>
+</head>
+<style>
+</style>
+<body layout:fragment="content">
+  <form th:action="@{/line/rich_menu/template/save}" enctype="Multipart/Form-Data" method="post" >
+    <table>
+      <tr>
+        <td>樣板名稱：</td>
+        <td><input type="text" style="width:150px;" name="name"/></td>
+      </tr>
+    
+      <tr>
+        <td>按鍵數量：</td>
+        <td><input type="number" min="1" max="20" style="width:150px;" name="size"/></td>
+      </tr>
+    
+      <tr>
+        <td>樣板遮設片：</td>
+        <td><input type="file" accept="image/png" name="imageFile"/></td>
+      </tr>
+    
+      <tr>
+        <td>樣板格式語法：</td>
+        <td><input type="file" accept=".json" name="jsonFile"/></td>
+      </tr>
+    
+    </table>
+    <input type="submit" />
+  </form>
+</body>
+</html>

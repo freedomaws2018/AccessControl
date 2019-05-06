@@ -1,0 +1,232 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 1686
+  },
+  "selected": false,
+  "name": ":name",
+  "chatBarText": ":chatBarText",
+  "areas": [
+    {
+      "bounds": {
+        "x": 199,
+        "y": 66,
+        "width": 352,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text01",
+        "data": ":data01"
+      }
+    },
+    {
+      "bounds": {
+        "x": 651,
+        "y": 67,
+        "width": 351,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text02",
+        "data": ":data02"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1075,
+        "y": 66,
+        "width": 352,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text03",
+        "data": ":data03"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1499,
+        "y": 66,
+        "width": 353,
+        "height": 352
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text04",
+        "data": ":data04"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1926,
+        "y": 68,
+        "width": 349,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text05",
+        "data": ":data05"
+      }
+    },
+    {
+      "bounds": {
+        "x": 199,
+        "y": 493,
+        "width": 352,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text06",
+        "data": ":data06"
+      }
+    },
+    {
+      "bounds": {
+        "x": 649,
+        "y": 493,
+        "width": 352,
+        "height": 350
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text07",
+        "data": ":data07"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1073,
+        "y": 493,
+        "width": 352,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text08",
+        "data": ":data08"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1498,
+        "y": 493,
+        "width": 351,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text09",
+        "data": ":data09"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1925,
+        "y": 493,
+        "width": 351,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text10",
+        "data": ":data10"
+      }
+    },
+    {
+      "bounds": {
+        "x": 199,
+        "y": 920,
+        "width": 352,
+        "height": 350
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text11",
+        "data": ":data11"
+      }
+    },
+    {
+      "bounds": {
+        "x": 650,
+        "y": 918,
+        "width": 351,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text12",
+        "data": ":data12"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1075,
+        "y": 918,
+        "width": 351,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text13",
+        "data": ":data13"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1499,
+        "y": 918,
+        "width": 352,
+        "height": 352
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text14",
+        "data": ":data14"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1924,
+        "y": 919,
+        "width": 352,
+        "height": 351
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text15",
+        "data": ":data15"
+      }
+    },
+    {
+      "bounds": {
+        "x": 75,
+        "y": 1311,
+        "width": 302,
+        "height": 303
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text16",
+        "data": ":data16"
+      }
+    },
+    {
+      "bounds": {
+        "x": 2126,
+        "y": 1311,
+        "width": 301,
+        "height": 303
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text17",
+        "data": ":data17"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head>
+<meta charset="UTF-8">
+<title>LineRichMenuTemplate - 列表</title>
+</head>
+
+<body layout:fragment="content">
+  <script>
+	  $(document).ready(function(){
+	    $("a[id^='delete_template']").click(function(event){
+	       var templateId = $(event.currentTarget).attr("templateId");
+	       $.ajax({
+	    	   type: 'DELETE',
+           url: `/line/rich_menu/template/delete/${templateId}`,
+           dataType: 'json',
+           success: (result) =>{
+             
+           },
+           error: function (XMLHttpRequest, textStatus, errorThrown) {
+             
+           }
+	       })
+	    });
+	  });
+	</script>
+	<h1>LineRichMenuTemplate - 列表</h1>
+
+  <a th:href="@{/line/rich_menu/template/add}">新增</a>
+
+	<table id="richMenuTable" style="border: 3px #cccccc solid;" cellpadding="10" border='1'>
+		<thead>
+			<tr>
+			 <td>操作</td>
+       <td>樣板名稱</td>
+       <td>樣板圖片</td>
+       <td>創建日期</td>
+			</tr>
+		</thead>
+		<tbody>
+		  <tr th:each="template:${templateList}" th:object="${template}">
+		    <td><a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}">刪除</a></td>
+        <td th:text="*{name}"></td>
+				<td><img width="300" th:src="@{|data:image/jpeg;base64,*{getBase64Image()}|}" /></td>
+				<td th:text="*{createDate}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+
+</html>

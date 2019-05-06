@@ -1,0 +1,61 @@
+server:
+  https-port: 443
+  http-port: 80
+  port: ${server.https-port}
+  ssl:
+    key-store: file:public/line.jks
+    key-store-password: 123456
+    key-alias: freedomaws_jks
+  servlet:
+    session:
+      timeout: 60s
+      
+spring:
+  jpa:
+    open-in-view: true
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+          
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://54.238.212.55:5432/PROD
+    username: postgres
+    password: postgres
+  
+  thymeleaf:
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    check-template-location: true
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+      
+  resources:
+    static-locations: classpath:/static/ , file:public/static/
+    
+logging:
+  file: logs/log_info.txt
+  level:
+    root: warn
+    com.springframework.web: warn
+    com.example: warn
+    com.example.demo: info
+    com.linecorp.bot: warn
+    
+line:
+  GetProfileUrl: https://api.line.me/v2/bot/profile/{userId}
+  bot:
+    handler:
+      path: /linebot
+    channelId: 1558375646
+    channelSecret: 28d1dadf316026e2c05f849fb4907971
+    channelToken: iRg81sAlAOfBnyzBg42APTLFSaJIu9U4X6gIbHgdeAUwvXTcS7ws73iySnYgkimHRHNEgG9hQGIx0gaeqivBfmBZ5yFI5cKpw8iWWq2SRAl9cuuK5QFikbLSP5BRfn1PzXzoxhYIPmFxT2XGUlam3VGUYhWQfeY8sLGRXgo3xvw=
+

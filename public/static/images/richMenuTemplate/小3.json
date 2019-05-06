@@ -1,0 +1,76 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 843
+  },
+  "selected": false,
+  "name": ":name",
+  "chatBarText": ":chatBarText",
+  "areas": [
+    {
+      "bounds": {
+        "x": 205,
+        "y": 79,
+        "width": 562,
+        "height": 348
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text01",
+        "data": ":data01"
+      }
+    },
+    {
+      "bounds": {
+        "x": 958,
+        "y": 79,
+        "width": 561,
+        "height": 348
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text02",
+        "data": ":data02"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1710,
+        "y": 79,
+        "width": 565,
+        "height": 348
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text03",
+        "data": ":data03"
+      }
+    },
+    {
+      "bounds": {
+        "x": 79,
+        "y": 476,
+        "width": 490,
+        "height": 294
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text04",
+        "data": ":data04"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1943,
+        "y": 476,
+        "width": 488,
+        "height": 294
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text05",
+        "data": ":data05"
+      }
+    }
+  ]
+}

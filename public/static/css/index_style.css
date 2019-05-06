@@ -1,0 +1,58 @@
+body {
+    /*font-family: 'Poppins', sans-serif;*/
+    background: #E4E5E6;
+    overflow-x:hidden;
+}
+
+/*段落內容文字*/
+#content p {
+    color: #999;
+}
+.line {
+    width: 100%;	/*段落與段落中間虛線長度*/
+    height: 1px;	/*段落與段落中間虛線前後縮排高度*/
+    border-bottom: 2px dashed #ddd;	/*段落與段落中間虛線粗度*/
+    margin: 20px 0;	/*段落與段落中間虛線前後縮排高度*/
+}
+#content {
+    width: 70%;
+    padding: 20px;
+    min-height: 30px;
+    transition: all 0.3s;
+}
+
+thead, tbody th {
+	text-align:center;
+}
+
+.tales {
+  width: 100%;
+}
+.carousel-inner{
+  width:100%;
+  max-height: 200px !important;
+}
+#carouselExampleIndicators1,#carouselExampleIndicators2,#carouselExampleIndicators3{
+	width:30%;	
+	
+}
+
+.container{
+	position:relative;
+	top:100px;
+	width:70%;
+	bottom:10px;
+	left:30px;
+	transition: all 0.3s;
+}
+
+.container.active{
+	position:relative;
+	top:100px;
+	width:70%;
+	bottom:10px;
+	left:-220px;
+	transition: all 0.3s;
+}
+
+

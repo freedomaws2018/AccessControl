@@ -1,0 +1,40 @@
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+header {
+	height: 3%;
+	width: 100%;
+	background-color: #0F0;
+  float: left;
+}
+
+aside {
+  height: 95%; 
+	min-width: 250px;
+	max-width: 250px;
+	float: left;
+	background-color: #F00;
+}
+
+.content{
+  float: left;
+	background-color: #0FF;
+  padding: 10px;
+}
+
+footer {
+	height: 2%;
+  width: 100%;
+	background-color: #00F;
+  float: left;
+}
+
+h1 {
+  padding-bottom:10px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+	border-bottom: 3px solid #474747;
+}

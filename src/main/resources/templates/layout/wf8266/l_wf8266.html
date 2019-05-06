@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head> <meta charset="UTF-8" > </head>
+
+<body layout:fragment="content">
+  <h1>WF8266 - 列表</h1>
+
+  <a th:href="@{/wf8266/add}">新增</a>
+  <table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+    <thead>
+      <tr>
+        <th>操作</th>
+        <th>晶片號碼</th>
+        <th>是否啟用</th>
+        <th>狀態</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="wf8266,iterStat:${Wf8266s}">
+        <td>
+          <a th:href="@{/wf8266/view/{wf8266_sn}(wf8266_sn=${wf8266.sn})}">檢視</a>
+          <a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}">修改</a>
+        </td>
+        <td>
+          <span th:text="${wf8266.sn}"></span>
+        </td>
+        <td>
+          <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
+        </td>
+         <td> 
+          <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
+          <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" />
+          <div th:id="|status_${iterStat.index}|" ></div> <!-- 需要一個讀取中的樣式 -->
+          <script th:inline="javascript">
+            reload_[[${iterStat.index}]]();
+            function reload_[[${iterStat.index}]](){
+            	var url = $("#url" + '_' + [[${iterStat.index}]]).val() ;
+            	var status = $("#status_" + [[${iterStat.index}]] );
+              $.ajax({
+                  type: 'GET',
+                  timeout: 2000,
+                  url: url,
+                  async: true,
+                  dataType: "json",
+                  success: (result) => {
+                    if(result.code === 1){
+                      let datas = result.data.Data;
+                      let ip = result.data.LocalIp;
+                      let uuid = result.data.UUID;
+                      status.html(`<span style="color:green;">連線中 </span> ( ${ip} / ${uuid} ) `);
+                    }else{
+                    	status.html(`<span style="color:red;">失去連線</span> (${result.code} / ${result.data}) `);
+                    }
+                  }
+                ,error: function (XMLHttpRequest, textStatus, errorThrown) {
+                	status.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
+                }
+              });
+            }
+          </script>
+        </td> 
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

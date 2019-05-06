@@ -1,0 +1,143 @@
+.navbar {
+	position:fixed;
+	z-index:1;
+    padding: 5px;	/*影響上方列的縮排*/
+	min-height: 55px;	/*影響上方列的高度*/
+	max-height: 55px;	/*影響上方列的高度*/
+	width:100%;
+	background-color: #FFFFFF;
+    border: none;
+    border-radius: 0;
+	margin-left: 0px;		/*上方列跟左邊選單中間的段落*/
+    margin-bottom: 0px;	/*上方列跟主頁內容中間的段落*/
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);	/*上方列陰影設定*/
+}
+
+.navbar_sub {
+	top:56px;
+	left:250px;
+	position:relative;
+	z-index:0;
+    padding: 5px;	/*影響上方列的縮排*/
+	min-height: 45px;	/*影響上方列的高度*/
+	max-height: 45px;	/*影響上方列的高度*/
+	width:100%;
+	background-color: #FFFFFF;
+    border: none;
+    border-radius: 0;
+	margin-left: 0px;		/*上方列跟左邊選單中間的段落*/
+    margin-bottom: 0px;	/*上方列跟主頁內容中間的段落*/
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*上方列陰影設定*/
+    transition: all 0.3s;
+
+}
+
+.navbar_sub.active {
+	top:56px;
+	left:0px;
+	position:relative;
+	z-index:0;
+    padding: 5px;	/*影響上方列的縮排*/
+	min-height: 45px;	/*影響上方列的高度*/
+	max-height: 45px;	/*影響上方列的高度*/
+	width:100%;
+	background-color: #FFFFFF;
+    border: none;
+    border-radius: 0;
+	margin-left: 0px;		/*上方列跟左邊選單中間的段落*/
+    margin-bottom: 0px;	/*上方列跟主頁內容中間的段落*/
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*上方列陰影設定*/
+    transition: all 0.3s;
+}
+
+#navbar_logo {
+	position: absolute;
+	left: 70px;
+	top: 8px;
+
+}
+
+#navbar_title {
+	position: absolute;
+	left: 265px;
+	top: 8px;
+
+}
+
+#navbar_subtitle {
+	position: absolute;
+	left: 20px;
+	top: 13px;
+
+}
+.hamburger-menu {
+	width: 40px;
+	height: 40px;
+	background: none;
+	border:none;
+	display:inline-block;
+	border-radius: 3px;	/*漢堡選單按鈕 圓角矩形*/
+}
+
+.hamburger-menu .icon-bar{
+	background-color: #A9A9A9;	/*漢堡選單 線條顏色*/
+	display: block;
+	height: 3px;			/*漢堡選單按鈕 線條高度*/
+	margin: 4px 1px 4px;	/*漢堡選單按鈕 線條縮排調整 上/左右/下*/
+	width: 25px;
+
+}
+
+#sidebarCollapse {	/*點擊選單鈕之前(展開狀態)*/
+	position: relative;
+	left: 205px;
+	top: 0px;
+	transition: all 0.3s;
+	background: #FFFFFF;	/*漢堡選單 按鈕顏色*/
+
+}
+
+#sidebarCollapse:hover {	/*展開狀態滑鼠移過選單鈕*/
+	position: relative;
+	left: 205px;
+	top: 0px;
+	transition: all 0.3s;
+	background: #F5F5F5;
+}
+
+#sidebarCollapse.active { /*點擊選單鈕之後(收合狀態)*/
+	position: relative;
+	left: 205px;
+	top: 0px;
+	transition: all 0.3s;
+	background: #FFFFFF;
+}
+
+#sidebarCollapse.active:hover {	/*收合狀態滑鼠移過選單鈕*/
+	position: relative;
+	left: 205px;
+	top: 0px;
+	transition: all 0.3s;
+	background: #F5F5F5;
+}
+
+@media (max-width: 768px) {
+	#navbar_sub.active {
+		top:56px;
+		left:0px;
+		position:relative;
+		z-index:0;
+		padding: 5px;	/*影響上方列的縮排*/
+		min-height: 45px;	/*影響上方列的高度*/
+		max-height: 45px;	/*影響上方列的高度*/
+		width:100%;
+		background-color: #FFFFFF;
+		border: none;
+		border-radius: 0;
+		margin-left: 0px;		/*上方列跟左邊選單中間的段落*/
+		margin-bottom: 0px;	/*上方列跟主頁內容中間的段落*/
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*上方列陰影設定*/
+		transition: all 0.3s;
+	}
+
+

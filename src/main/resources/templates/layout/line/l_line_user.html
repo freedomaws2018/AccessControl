@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head>
+<meta charset="UTF-8">
+<title>LineUser - 列表</title>
+</head>
+<body layout:fragment="content">
+  <script type="text/javascript">
+  $().ready(function(){
+	  $("a[id^='delete_user']").click(function(){
+		  var lineUserId = $(this).attr("lineUserId");
+		  $.ajax({
+        type: 'DELETE',
+        url: `/line/user/delete/${lineUserId}`,
+        dataType: 'json',
+        success: (result) =>{
+          
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          
+        }
+      });
+	  });
+  });
+  
+  </script>
+  <h1>LineUser - 列表</h1>
+
+	<table class="table table-bordered">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">操作</th>
+				<th scope="col">姓名</th>
+				<th scope="col">是否啟用</th>
+				<th scope="col">使用日期</th>
+				<th scope="col">建立時間(C)<BR>修改時間(M)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user,itemStar:${Users}">
+				<th scope="row">
+          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}">修改</a>
+          <a th:id="|delete_user_${itemStar.index}|" th:lineUserId="${user.userId}" href="javascript:;" >刪除</a>
+				</th>
+				<td th:text="${user.userName}">姓名</td>
+				<td>
+				  <span th:if="${user.isUse}">是</span>
+          <span th:unless="${user.isUse}">否</span>
+        </td>
+				<td>
+				  <span th:text="${#temporals.format(user.begDt, 'yy/MM/dd HH')}"></span> ～ 
+				  <span th:text="${#temporals.format(user.endDt, 'yy/MM/dd HH')}"></span>
+				</td>
+        <td>
+					C:<span th:text="${#temporals.format(user.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span><BR>
+	        M:<span th:text="${#temporals.format(user.modifyDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+        </td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
