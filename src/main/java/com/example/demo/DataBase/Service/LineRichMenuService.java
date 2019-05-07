@@ -14,7 +14,7 @@ import com.example.demo.LineModel.RichMenu.RichMenuResponse;
 import com.google.gson.Gson;
 
 @Service
-//@PropertySource(value = "config/linebot.yml")
+//@PropertySource("classpath:config/linebot.yml")
 public class LineRichMenuService {
 
 	@Value("${line.bot.channelToken}")
@@ -27,7 +27,7 @@ public class LineRichMenuService {
 
 	public RichMenu getRichMenu(String richMenuId) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		RichMenu response = HttpUtils.doGet(headers, getRichMenuUrl.replace(":richMenuId", richMenuId), RichMenu.class);
 		return response;
 	}
@@ -36,7 +36,7 @@ public class LineRichMenuService {
 
 	public String getRichMenuIdLinkToUser(String userId) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		String responseJson = HttpUtils.doGet(headers, getRichMenuIdLinkToUserUrl.replace(":userId", userId), String.class);
 		Map<String, String> responseMap = new Gson().fromJson(responseJson, Map.class);
 		String result = responseMap.get("richMenuId");
@@ -48,7 +48,7 @@ public class LineRichMenuService {
 
 	public RichMenuResponse getRichMenuList() {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		RichMenuResponse response = HttpUtils.doGet(headers, getRichMenuListUrl, RichMenuResponse.class);
 		return response;
 	}
@@ -58,18 +58,18 @@ public class LineRichMenuService {
 	public void deleteRichMenu(String richMenuId) {
 		/** 刪除 LineServer 資料 **/
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		HttpUtils.doDelete(headers, deleteRichMenuUrl.replace(":richMenuId", richMenuId));
 
 		/** 刪除 資料庫 資料 **/
-		richMenuRepository.deleteById(richMenuId);
+		this.richMenuRepository.deleteById(richMenuId);
 	}
 
 	private final static String downloadImageUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId/content";
 
 	public byte[] downloadImage(String richMenuId) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		byte[] image = null;
 		try {
 			image = HttpUtils.doGetImage(headers, downloadImageUrl.replace(":richMenuId", richMenuId));
@@ -81,7 +81,7 @@ public class LineRichMenuService {
 
 	public String downloadImageBase64(String richMenuId) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		String imageBase64 = null;
 		try {
 			imageBase64 = HttpUtils.doGetImageBase64(headers, downloadImageUrl.replace(":richMenuId", richMenuId));
@@ -95,7 +95,7 @@ public class LineRichMenuService {
 
 	public String createRichMenu(String richMenuJson) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		headers.add("Content-Type", "application/json");
 		Map responseMap = HttpUtils.doPostWithBody(headers, createRichMenuUrl, richMenuJson, Map.class);
 		String richMenuId = responseMap.get("richMenuId").toString();
@@ -106,7 +106,7 @@ public class LineRichMenuService {
 
 	public Boolean uploadRichMenuImage(String richMenuId, byte[] image) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		headers.add("Content-Type", "image/png");
 
 		return HttpUtils.doPostWithImage(headers, uploadRichMenuImageUrl.replace(":richMenuId", richMenuId), image);
@@ -116,7 +116,7 @@ public class LineRichMenuService {
 
 	public Boolean linkRichMenuToUser(String lineUserId, String richMenuId) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		int statusCode = HttpUtils.doPost(headers,
 		    linkRichMenuToUserUrl.replace(":lineUserId", lineUserId).replace(":richMenuId", richMenuId));
 		return statusCode == 200;
@@ -127,7 +127,7 @@ public class LineRichMenuService {
 
 	public Boolean unlinkRichMenuToUser(String lineUserId) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
+		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		int statusCode = HttpUtils.doDelete(headers, unlinkRichMenuToUserUrl.replace(":lineUserId", lineUserId));
 		return statusCode == 200;
 	}

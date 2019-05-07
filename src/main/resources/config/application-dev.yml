@@ -43,7 +43,7 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://54.238.212.55:5432/UAT
+    url: jdbc:postgresql://59.127.199.145:5432/UAT
     username: postgres
     password: postgres
 
@@ -66,4 +66,3 @@ line:
     channelId: 1560051090
     channelSecret: da9fb3c5b0f6d9808033ac7396276eea
     channelToken: 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-

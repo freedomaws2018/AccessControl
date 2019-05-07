@@ -22,6 +22,10 @@ public class Wf8266 extends BaseEntity {
 	@Column(name = "key", updatable = false)
 	private String key;
 
+	/** 區域編號 - 對應 Location **/
+	@Column(name = "location_id")
+	private Long locationId;
+
 	/** 是否啟用 **/
 	@Column(name = "is_use", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
 	private Boolean isUse = new Boolean(false);
@@ -36,6 +40,6 @@ public class Wf8266 extends BaseEntity {
 
 	public String getStatusUrl() {
 		// https://service.wf8266.com/api/mqtt/SN/RequestState/key
-		return String.format("https://service.wf8266.com/api/mqtt/%s/RequestState/%s", getSn(), getKey());
+		return String.format("https://service.wf8266.com/api/mqtt/%s/RequestState/%s", this.getSn(), this.getKey());
 	}
 }

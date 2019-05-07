@@ -13,27 +13,29 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "log_wf8266")
-public class LogWf8266 extends BaseLogEntity {
+@Table(name = "tbl_location")
+public class Location extends BaseEntity {
 
+	/** 地點對應ID **/
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long seqno;
+	private Long id;
 
-	@Column(name = "user_id", nullable = false)
-	private String userId;
 
-	@Column(name = "wf8266_trigger", nullable = false)
-	private String wf8266trigger;
+	/** 地點名稱 **/
+	@Column(name = "name")
+	private String name;
 
-	public LogWf8266() {
+	/** 地點地址 **/
+	@Column(name = "address")
+	private String address;
 
-	}
+	/** 地點電話 **/
+	@Column(name = "phone")
+	private String phone;
 
-	public LogWf8266(String userId, String wf8266trigger) {
-		super();
-		this.userId = userId;
-		this.wf8266trigger = wf8266trigger;
-	}
+	/** 負責人 - 對應 Employee **/
+	@Column(name = "keeper")
+	private String keeper;
 
 }

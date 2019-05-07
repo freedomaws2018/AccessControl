@@ -1,696 +1,104 @@
-2019-05-06 09:28:05.004  INFO 13524 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 13524 (D:\spring-tools-suite-workplace\AccessControl\target\classes started by Shan in D:\spring-tools-suite-workplace\AccessControl)
-2019-05-06 09:28:05.008 DEBUG 13524 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-05-06 09:28:05.008  INFO 13524 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-05-06 09:28:06.256 DEBUG 13524 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 09:28:06.257 DEBUG 13524 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 09:28:06.257 DEBUG 13524 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\spring-tools-suite-workplace\AccessControl\src\main\webapp
-2019-05-06 09:28:12.734  INFO 13524 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
-2019-05-06 09:28:12.735  INFO 13524 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-05-06 09:28:12.735  INFO 13524 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-05-06 09:28:12.735  INFO 13524 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-05-06 09:28:12.781  INFO 13524 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 8.084 seconds (JVM running for 9.019)
-2019-05-06 09:31:32.753  INFO 2300 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 2300 (D:\spring-tools-suite-workplace\AccessControl\target\classes started by Shan in D:\spring-tools-suite-workplace\AccessControl)
-2019-05-06 09:31:32.755 DEBUG 2300 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-05-06 09:31:32.755  INFO 2300 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-05-06 09:31:33.691 DEBUG 2300 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 09:31:33.691 DEBUG 2300 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 09:31:33.691 DEBUG 2300 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\spring-tools-suite-workplace\AccessControl\public
-2019-05-06 09:31:38.888  INFO 2300 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
-2019-05-06 09:31:38.889  INFO 2300 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-05-06 09:31:38.889  INFO 2300 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-05-06 09:31:38.889  INFO 2300 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-05-06 09:31:38.920  INFO 2300 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 6.396 seconds (JVM running for 7.024)
-2019-05-06 09:32:59.188  WARN 2300 --- [https-jsse-nio-10000-exec-1] n.n.u.t.decorators.DecoratorProcessor    : The layout:decorator/data-layout-decorator processor has been deprecated and will be removed in the next major version of the layout dialect.  Please use layout:decorate/data-layout-decorate instead to future-proof your code.  See https://github.com/ultraq/thymeleaf-layout-dialect/issues/95 for more information.
-2019-05-06 09:32:59.191  WARN 2300 --- [https-jsse-nio-10000-exec-1] n.n.u.t.expressions.ExpressionProcessor  : Fragment expression "comm/layout" is being wrapped as a Thymeleaf 3 fragment expression (~{...}) for backwards compatibility purposes.  This wrapping will be dropped in the next major version of the expression processor, so please rewrite as a Thymeleaf 3 fragment expression to future-proof your code.  See https://github.com/thymeleaf/thymeleaf/issues/451 for more information.
-2019-05-06 09:34:12.817  INFO 4820 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 4820 (D:\spring-tools-suite-workplace\AccessControl\target\classes started by Shan in D:\spring-tools-suite-workplace\AccessControl)
-2019-05-06 09:34:12.819 DEBUG 4820 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-05-06 09:34:12.819  INFO 4820 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-05-06 09:34:13.665 DEBUG 4820 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 09:34:13.665 DEBUG 4820 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 09:34:13.665 DEBUG 4820 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\spring-tools-suite-workplace\AccessControl\public
-2019-05-06 09:34:18.956  INFO 4820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
-2019-05-06 09:34:18.956  INFO 4820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-05-06 09:34:18.956  INFO 4820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-05-06 09:34:18.957  INFO 4820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-05-06 09:34:18.986  INFO 4820 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 6.401 seconds (JVM running for 6.982)
-2019-05-06 09:40:37.067 ERROR 4820 --- [https-jsse-nio-10000-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.orm.jpa.JpaSystemException: Unable to access lob stream; nested exception is org.hibernate.HibernateException: Unable to access lob stream] with root cause
+2019-05-07 16:17:00.259  INFO 14192 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 14192 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-05-07 16:17:00.262 DEBUG 14192 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-07 16:17:00.263  INFO 14192 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-07 16:17:01.132 DEBUG 14192 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 16:17:01.133 DEBUG 14192 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 16:17:01.133 DEBUG 14192 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-05-07 16:17:03.452  INFO 14192 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
+2019-05-07 16:17:03.453  INFO 14192 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
+2019-05-07 16:17:03.453  INFO 14192 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
+2019-05-07 16:17:03.453  INFO 14192 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
+2019-05-07 16:17:03.488  INFO 14192 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 3.454 seconds (JVM running for 4.226)
+2019-05-07 17:43:15.598  INFO 4436 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 4436 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-05-07 17:43:15.599 DEBUG 4436 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-07 17:43:15.600  INFO 4436 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-07 17:43:16.436 DEBUG 4436 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 17:43:16.436 DEBUG 4436 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 17:43:16.437 DEBUG 4436 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-05-07 17:43:17.417  WARN 4436 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table public.log_wf8266 add column modify_date timestamp not null" via JDBC Statement
 
-org.postgresql.util.PSQLException: ERROR: large object 32840 does not exist
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table public.log_wf8266 add column modify_date timestamp not null" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:559) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:580) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:297) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:75) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:207) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:114) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:183) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:72) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:310) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:467) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:939) [hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) [spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) [spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) [spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) [spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) [spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1821) [spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1758) [spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) [spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) [spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) [spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) [spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) [spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1105) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at com.example.demo.AccessControlApplication.main(AccessControlApplication.java:18) ~[classes/:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "modify_date" contains null values
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveFastpathResult(QueryExecutorImpl.java:766) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.core.v3.QueryExecutorImpl.fastpathCall(QueryExecutorImpl.java:558) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.fastpath(Fastpath.java:105) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.fastpath(Fastpath.java:146) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.getInteger(Fastpath.java:158) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObject.<init>(LargeObject.java:102) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObjectManager.open(LargeObjectManager.java:257) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObjectManager.open(LargeObjectManager.java:240) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.jdbc.AbstractBlobClob.getLo(AbstractBlobClob.java:272) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.jdbc.AbstractBlobClob.getBinaryStream(AbstractBlobClob.java:116) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.hibernate.type.descriptor.java.PrimitiveByteArrayTypeDescriptor.wrap(PrimitiveByteArrayTypeDescriptor.java:120) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.java.PrimitiveByteArrayTypeDescriptor.wrap(PrimitiveByteArrayTypeDescriptor.java:26) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.sql.BlobTypeDescriptor$1.doExtract(BlobTypeDescriptor.java:48) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.sql.BasicExtractor.extract(BasicExtractor.java:47) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:261) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:257) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:247) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.hydrate(AbstractStandardBasicType.java:333) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.hydrate(AbstractEntityPersister.java:3007) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.loadFromResultSet(Loader.java:1746) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.instanceNotYetLoaded(Loader.java:1672) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.getRow(Loader.java:1561) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.getRowFromResultSet(Loader.java:731) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.processResultSet(Loader.java:990) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doQuery(Loader.java:948) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:340) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doList(Loader.java:2689) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doList(Loader.java:2672) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2506) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.list(Loader.java:2501) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:504) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:395) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:220) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1508) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1537) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1505) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.Query.getResultList(Query.java:135) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:74) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.readPage(SimpleJpaRepository.java:569) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll(SimpleJpaRepository.java:388) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll(SimpleJpaRepository.java:356) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:359) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:644) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:608) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.lambda$invoke$3(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at com.sun.proxy.$Proxy121.findAll(Unknown Source) ~[na:na]
-	at com.example.demo.Controller.LineRichMenuController.templateList(LineRichMenuController.java:199) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:607) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_201]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2183) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:308) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:307) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:293) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:270) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:266) ~[postgresql-42.2.5.jar:42.2.5]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-3.2.0.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	... 34 common frames omitted
 
-2019-05-06 09:40:37.079  WARN 4820 --- [https-jsse-nio-10000-exec-7] n.n.u.t.decorators.DecoratorProcessor    : The layout:decorator/data-layout-decorator processor has been deprecated and will be removed in the next major version of the layout dialect.  Please use layout:decorate/data-layout-decorate instead to future-proof your code.  See https://github.com/ultraq/thymeleaf-layout-dialect/issues/95 for more information.
-2019-05-06 09:40:37.082  WARN 4820 --- [https-jsse-nio-10000-exec-7] n.n.u.t.expressions.ExpressionProcessor  : Fragment expression "comm/layout" is being wrapped as a Thymeleaf 3 fragment expression (~{...}) for backwards compatibility purposes.  This wrapping will be dropped in the next major version of the expression processor, so please rewrite as a Thymeleaf 3 fragment expression to future-proof your code.  See https://github.com/thymeleaf/thymeleaf/issues/451 for more information.
-2019-05-06 09:40:59.072 ERROR 4820 --- [https-jsse-nio-10000-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.orm.jpa.JpaSystemException: Unable to access lob stream; nested exception is org.hibernate.HibernateException: Unable to access lob stream] with root cause
+2019-05-07 17:43:18.864  INFO 4436 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
+2019-05-07 17:43:18.864  INFO 4436 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
+2019-05-07 17:43:18.864  INFO 4436 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
+2019-05-07 17:43:18.864  INFO 4436 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
+2019-05-07 17:43:18.894  INFO 4436 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 3.522 seconds (JVM running for 4.119)
+2019-05-07 17:51:10.961  INFO 7264 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 7264 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-05-07 17:51:10.962 DEBUG 7264 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-07 17:51:10.963  INFO 7264 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-07 17:51:11.811 DEBUG 7264 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 17:51:11.811 DEBUG 7264 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 17:51:11.811 DEBUG 7264 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-05-07 17:51:14.079  INFO 7264 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
+2019-05-07 17:51:14.079  INFO 7264 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
+2019-05-07 17:51:14.079  INFO 7264 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
+2019-05-07 17:51:14.079  INFO 7264 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
+2019-05-07 17:51:14.107  INFO 7264 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 3.377 seconds (JVM running for 3.969)
+2019-05-07 19:09:15.561  INFO 13852 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 13852 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-05-07 19:09:15.563 DEBUG 13852 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-07 19:09:15.563  INFO 13852 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-07 19:09:16.398 DEBUG 13852 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:09:16.399 DEBUG 13852 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:09:16.399 DEBUG 13852 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-05-07 19:09:17.540  WARN 13852 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lineRichMenuController': Unsatisfied dependency expressed through field 'lineRichMenuService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+2019-05-07 19:09:17.572 ERROR 13852 --- [main] o.s.boot.SpringApplication               : Application run failed
 
-org.postgresql.util.PSQLException: ERROR: large object 32840 does not exist
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveFastpathResult(QueryExecutorImpl.java:766) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.core.v3.QueryExecutorImpl.fastpathCall(QueryExecutorImpl.java:558) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.fastpath(Fastpath.java:105) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.fastpath(Fastpath.java:146) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.getInteger(Fastpath.java:158) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObject.<init>(LargeObject.java:102) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObjectManager.open(LargeObjectManager.java:257) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObjectManager.open(LargeObjectManager.java:240) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.jdbc.AbstractBlobClob.getLo(AbstractBlobClob.java:272) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.jdbc.AbstractBlobClob.getBinaryStream(AbstractBlobClob.java:116) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.hibernate.type.descriptor.java.PrimitiveByteArrayTypeDescriptor.wrap(PrimitiveByteArrayTypeDescriptor.java:120) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.java.PrimitiveByteArrayTypeDescriptor.wrap(PrimitiveByteArrayTypeDescriptor.java:26) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.sql.BlobTypeDescriptor$1.doExtract(BlobTypeDescriptor.java:48) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.sql.BasicExtractor.extract(BasicExtractor.java:47) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:261) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:257) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:247) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.hydrate(AbstractStandardBasicType.java:333) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.hydrate(AbstractEntityPersister.java:3007) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.loadFromResultSet(Loader.java:1746) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.instanceNotYetLoaded(Loader.java:1672) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.getRow(Loader.java:1561) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.getRowFromResultSet(Loader.java:731) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.processResultSet(Loader.java:990) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doQuery(Loader.java:948) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:340) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doList(Loader.java:2689) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doList(Loader.java:2672) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2506) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.list(Loader.java:2501) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:504) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:395) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:220) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1508) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1537) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1505) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.Query.getResultList(Query.java:135) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:74) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.readPage(SimpleJpaRepository.java:569) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll(SimpleJpaRepository.java:388) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll(SimpleJpaRepository.java:356) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:359) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:644) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:608) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.lambda$invoke$3(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at com.sun.proxy.$Proxy121.findAll(Unknown Source) ~[na:na]
-	at com.example.demo.Controller.LineRichMenuController.templateList(LineRichMenuController.java:199) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:607) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_201]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
-
-2019-05-06 09:41:01.705 ERROR 4820 --- [https-jsse-nio-10000-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.orm.jpa.JpaSystemException: Unable to access lob stream; nested exception is org.hibernate.HibernateException: Unable to access lob stream] with root cause
-
-org.postgresql.util.PSQLException: ERROR: large object 32842 does not exist
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveFastpathResult(QueryExecutorImpl.java:766) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.core.v3.QueryExecutorImpl.fastpathCall(QueryExecutorImpl.java:558) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.fastpath(Fastpath.java:105) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.fastpath(Fastpath.java:146) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.fastpath.Fastpath.getInteger(Fastpath.java:158) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObject.<init>(LargeObject.java:102) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObjectManager.open(LargeObjectManager.java:257) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.largeobject.LargeObjectManager.open(LargeObjectManager.java:240) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.jdbc.AbstractBlobClob.getLo(AbstractBlobClob.java:272) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.postgresql.jdbc.AbstractBlobClob.getBinaryStream(AbstractBlobClob.java:116) ~[postgresql-42.2.5.jar:42.2.5]
-	at org.hibernate.type.descriptor.java.PrimitiveByteArrayTypeDescriptor.wrap(PrimitiveByteArrayTypeDescriptor.java:120) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.java.PrimitiveByteArrayTypeDescriptor.wrap(PrimitiveByteArrayTypeDescriptor.java:26) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.sql.BlobTypeDescriptor$1.doExtract(BlobTypeDescriptor.java:48) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.descriptor.sql.BasicExtractor.extract(BasicExtractor.java:47) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:261) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:257) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.nullSafeGet(AbstractStandardBasicType.java:247) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.type.AbstractStandardBasicType.hydrate(AbstractStandardBasicType.java:333) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.hydrate(AbstractEntityPersister.java:3007) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.loadFromResultSet(Loader.java:1746) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.instanceNotYetLoaded(Loader.java:1672) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.getRow(Loader.java:1561) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.getRowFromResultSet(Loader.java:731) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.processResultSet(Loader.java:990) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doQuery(Loader.java:948) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:340) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doList(Loader.java:2689) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.doList(Loader.java:2672) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2506) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.Loader.list(Loader.java:2501) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:504) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:395) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:220) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1508) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1537) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1505) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.Query.getResultList(Query.java:135) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:74) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.readPage(SimpleJpaRepository.java:569) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll(SimpleJpaRepository.java:388) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll(SimpleJpaRepository.java:356) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:359) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:644) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:608) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.lambda$invoke$3(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at com.sun.proxy.$Proxy120.findAll(Unknown Source) ~[na:na]
-	at com.example.demo.Controller.LineRichMenuController.list(LineRichMenuController.java:70) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:607) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_201]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
-
-2019-05-06 12:05:46.497  WARN 4820 --- [https-jsse-nio-10000-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1bb75499 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:05:50.957  WARN 4820 --- [https-jsse-nio-10000-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@45b533ed (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:05:51.626  WARN 4820 --- [https-jsse-nio-10000-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@293b05a9 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:05:56.076  WARN 4820 --- [https-jsse-nio-10000-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@8b219cf (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:05:56.727  WARN 4820 --- [https-jsse-nio-10000-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4f89bd47 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:06:01.173  WARN 4820 --- [https-jsse-nio-10000-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@b20ea32 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:06:01.825  WARN 4820 --- [https-jsse-nio-10000-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6e3b3bb3 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:06:06.174  WARN 4820 --- [https-jsse-nio-10000-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4a019e7a (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:06:06.935  WARN 4820 --- [https-jsse-nio-10000-exec-4] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@57ea3de3 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:06:11.269  WARN 4820 --- [https-jsse-nio-10000-exec-9] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@2647e68c (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
-2019-05-06 12:18:27.486  INFO 4820 --- [https-jsse-nio-10000-exec-2] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A關燈
-2019-05-06 12:18:27.528  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:18:27.528  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:18:27.528  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:18:27.528  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:18:27.528  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:18:27.528  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:18:27.528  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"21b0b934cee3446aa317ed13676ea0b8","messages":[{"type":"text","text":"229-A關燈"}]}
-2019-05-06 12:18:27.529  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:18:27.660  WARN 4820 --- [Thread-17] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23505
-2019-05-06 12:18:27.660 ERROR 4820 --- [Thread-17] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: duplicate key value violates unique constraint "log_wf8266_pkey"
-  詳細：Key (seqno)=(2) already exists.
-2019-05-06 12:18:27.664 ERROR 4820 --- [Thread-17] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (158ms)
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: c7799ff9-4957-46b0-8e2b-292cb24e3c87
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Vary: Accept-Encoding
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:18:29 GMT
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:18:29 GMT
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:18:27.687  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:18:27.688  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:18:27.688  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:18:30.247  INFO 4820 --- [https-jsse-nio-10000-exec-3] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A開燈
-2019-05-06 12:18:30.267  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:18:30.268  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:18:30.268  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:18:30.268  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:18:30.268  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:18:30.268  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:18:30.269  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"b1f034f73a4840d6ab0d43ea138c20ef","messages":[{"type":"text","text":"229-A開燈"}]}
-2019-05-06 12:18:30.269  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:18:30.407  WARN 4820 --- [Thread-18] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23505
-2019-05-06 12:18:30.407 ERROR 4820 --- [Thread-18] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: duplicate key value violates unique constraint "log_wf8266_pkey"
-  詳細：Key (seqno)=(3) already exists.
-2019-05-06 12:18:30.408 ERROR 4820 --- [Thread-18] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (174ms)
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: 18f6234f-8c61-4dfc-a1e5-0673dda220dd
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Vary: Accept-Encoding
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:18:32 GMT
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:18:30.443  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:18:30.444  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:18:32 GMT
-2019-05-06 12:18:30.444  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:18:30.444  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:18:30.444  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:18:30.444  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:19:25.439  INFO 4820 --- [https-jsse-nio-10000-exec-2] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A關燈
-2019-05-06 12:19:25.459  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:19:25.459  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:19:25.459  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:19:25.459  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:19:25.459  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:19:25.460  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:19:25.460  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"60f146c7e35340e3b38c5b78f1a3e364","messages":[{"type":"text","text":"229-A關燈"}]}
-2019-05-06 12:19:25.460  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (152ms)
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: d77af047-3bfb-4b35-8bc4-f2af38b7acc2
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Vary: Accept-Encoding
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:19:27 GMT
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:19:27 GMT
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:19:25.613  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:19:31.895  INFO 4820 --- [https-jsse-nio-10000-exec-3] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A開燈
-2019-05-06 12:19:31.909  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:19:31.909  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:19:31.909  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:19:31.909  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:19:31.909  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:19:31.909  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:19:31.910  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"9bcd7703a82e4645930cbf86c1ae733e","messages":[{"type":"text","text":"229-A開燈"}]}
-2019-05-06 12:19:31.910  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:19:32.067  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (157ms)
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: a3e30603-0f9b-4a2f-94b9-5f864c13fc5b
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Vary: Accept-Encoding
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:19:33 GMT
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:19:33 GMT
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:19:32.068  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:26:14.822  INFO 4820 --- [https-jsse-nio-10000-exec-9] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A關燈
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"68cadaf076964238ace704807d5f0389","messages":[{"type":"text","text":"229-A關燈"}]}
-2019-05-06 12:26:14.826  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (148ms)
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: 6fcc6d5c-f652-460f-a162-defe86b82952
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Vary: Accept-Encoding
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:26:16 GMT
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:26:16 GMT
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:26:14.975  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:14.976  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:26:14.976  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:26:17.489  INFO 4820 --- [https-jsse-nio-10000-exec-8] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A開燈
-2019-05-06 12:26:17.503  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:26:17.503  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:26:17.504  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:26:17.504  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:26:17.504  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:26:17.504  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:17.504  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"016be010bd8a497290afccb635d988ac","messages":[{"type":"text","text":"229-A開燈"}]}
-2019-05-06 12:26:17.504  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (150ms)
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: e5bc6e55-592e-42d7-bc78-c8f8cfc5ac19
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 2
-2019-05-06 12:26:17.655  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:26:19 GMT
-2019-05-06 12:26:17.656  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:26:17.656  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:26:17.656  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:26:19 GMT
-2019-05-06 12:26:17.656  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:26:17.656  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:17.656  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:26:17.656  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:26:22.197  INFO 4820 --- [https-jsse-nio-10000-exec-9] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A門禁開啟
-2019-05-06 12:26:22.211  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:26:22.212  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:26:22.212  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 105
-2019-05-06 12:26:22.212  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:26:22.212  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:26:22.212  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:22.213  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"1715c523911d42c4b75975e093222d4d","messages":[{"type":"text","text":"229-A門禁開啟"}]}
-2019-05-06 12:26:22.213  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (105-byte body)
-2019-05-06 12:26:22.374  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (161ms)
-2019-05-06 12:26:22.374  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:26:22.374  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:26:22.374  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: e52596aa-f12d-47a2-955b-7e324689b20d
-2019-05-06 12:26:22.374  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 2
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:26:24 GMT
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:26:24 GMT
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:26:22.375  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:26:24.654  INFO 4820 --- [https-jsse-nio-10000-exec-8] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A關燈
-2019-05-06 12:26:24.668  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:26:24.669  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:26:24.669  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:26:24.669  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:26:24.669  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:26:24.669  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:24.669  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"65b278722b7349c4b3e0d7a775d72697","messages":[{"type":"text","text":"229-A關燈"}]}
-2019-05-06 12:26:24.669  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (164ms)
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: 25739da6-4eb0-409c-b592-f1bd8956e7c8
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 2
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:26:26 GMT
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:26:26 GMT
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:26:24.834  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 12:26:26.706  INFO 4820 --- [https-jsse-nio-10000-exec-9] com.example.demo.LineBotApplication      : 【指令】 張軒豪:229-A開燈
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> POST https://api.line.me/v2/bot/message/reply
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json; charset=UTF-8
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Length: 99
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Authorization: Bearer 9NxxY/OBlkdAZnG2W3++teUAWKBiZ8ahkQokB1Ebs+rFn4AOTRQPPwlHAy1zv1O8R8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMFv57M+JUTKNSrTK6b+b+vXMetSrQ1/qc4WhAjnMJuAygdB04t89/1O/w1cDnyilFU=
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : User-Agent: line-botsdk-java/2.4.0
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {"replyToken":"42e0bbd176254107ba084e870837434a","messages":[{"type":"text","text":"229-A開燈"}]}
-2019-05-06 12:26:26.712  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : --> END POST (99-byte body)
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- 200 OK https://api.line.me/v2/bot/message/reply (151ms)
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Server: nginx
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Content-Type: application/json;charset=UTF-8
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-line-request-id: de555c09-0093-481f-9d6d-628f78544854
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-content-type-options: nosniff
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-xss-protection: 1; mode=block
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : x-frame-options: DENY
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Vary: Accept-Encoding
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Expires: Mon, 06 May 2019 04:26:28 GMT
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Cache-Control: max-age=0, no-cache, no-store
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Pragma: no-cache
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Date: Mon, 06 May 2019 04:26:28 GMT
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : Connection: keep-alive
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : 
-2019-05-06 12:26:26.864  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : {}
-2019-05-06 12:26:26.865  INFO 4820 --- [OkHttp https://api.line.me/...] com.linecorp.bot.client.wire             : <-- END HTTP (2-byte body)
-2019-05-06 14:01:10.585  INFO 9213 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on zhanghanhaode-MacBook-Pro.local with PID 9213 (/Users/sheji/Documents/GitHub/AccessControl/target/classes started by sheji in /Users/sheji/Documents/GitHub/AccessControl)
-2019-05-06 14:01:10.587 DEBUG 9213 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-05-06 14:01:10.587  INFO 9213 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-05-06 14:01:11.813 DEBUG 9213 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
-2019-05-06 14:01:11.814 DEBUG 9213 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
-2019-05-06 14:01:11.814 DEBUG 9213 --- [main] c.e.demo.AccessControlApplication$1      : Document root: /Users/sheji/Documents/GitHub/AccessControl/public
-2019-05-06 14:01:12.981  WARN 9213 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
-2019-05-06 14:01:12.982  WARN 9213 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
-2019-05-06 14:01:16.397  WARN 9213 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
-
-2019-05-06 14:01:16.435 ERROR 9213 --- [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1287) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1181) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lineRichMenuController': Unsatisfied dependency expressed through field 'lineRichMenuService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
@@ -706,63 +114,49 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
 	at com.example.demo.AccessControlApplication.main(AccessControlApplication.java:18) [classes/:na]
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
-
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:184) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1279) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	... 17 common frames omitted
-Caused by: java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
-
-	at com.example.demo.Controller.LineLogController.<init>(LineLogController.java:46) ~[classes/:na]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_201]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_201]
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:172) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:380) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	... 19 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:172) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:124) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:237) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:211) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:175) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:851) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1188) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 30 common frames omitted
 
-2019-05-06 14:53:14.074  INFO 10110 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on zhanghanhaode-MacBook-Pro.local with PID 10110 (/Users/sheji/Documents/GitHub/AccessControl/target/classes started by sheji in /Users/sheji/Documents/GitHub/AccessControl)
-2019-05-06 14:53:14.076 DEBUG 10110 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-05-06 14:53:14.076  INFO 10110 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-05-06 14:53:15.362 DEBUG 10110 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
-2019-05-06 14:53:15.362 DEBUG 10110 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
-2019-05-06 14:53:15.363 DEBUG 10110 --- [main] c.e.demo.AccessControlApplication$1      : Document root: /Users/sheji/Documents/GitHub/AccessControl/public
-2019-05-06 14:53:16.593  WARN 10110 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
-2019-05-06 14:53:16.594  WARN 10110 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.demo.DataBase.Entity.MappingWf8266DetailAndUserId
-2019-05-06 14:53:19.477  WARN 10110 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
+2019-05-07 19:09:48.451  INFO 7700 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 7700 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-05-07 19:09:48.453 DEBUG 7700 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-07 19:09:48.453  INFO 7700 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-07 19:09:49.279 DEBUG 7700 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:09:49.279 DEBUG 7700 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:09:49.279 DEBUG 7700 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-05-07 19:09:50.416  WARN 7700 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lineRichMenuController': Unsatisfied dependency expressed through field 'lineRichMenuService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+2019-05-07 19:09:50.433 ERROR 7700 --- [main] o.s.boot.SpringApplication               : Application run failed
 
-2019-05-06 14:53:19.506 ERROR 10110 --- [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineLogController' defined in file [/Users/sheji/Documents/GitHub/AccessControl/target/classes/com/example/demo/Controller/LineLogController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1287) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1181) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lineRichMenuController': Unsatisfied dependency expressed through field 'lineRichMenuService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
@@ -778,53 +172,100 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
 	at com.example.demo.AccessControlApplication.main(AccessControlApplication.java:18) [classes/:na]
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.example.demo.Controller.LineLogController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
-
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:184) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1279) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
-	... 17 common frames omitted
-Caused by: java.lang.Error: Unresolved compilation problems: 
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments (LineUser::getUserId, LineUser::getUserName)
-	The type LineUser does not define getUserId(T) that is applicable here
-	The type LineUser does not define getUserName(T) that is applicable here
-	The method toMap(Function<? super T,? extends K>, Function<? super T,? extends U>) in the type Collectors is not applicable for the arguments ((<no type> d) -> {}, Wf8266Detail::getName)
-	The method getTriggerText() is undefined for the type T
-	The type Wf8266Detail does not define getName(T) that is applicable here
-
-	at com.example.demo.Controller.LineLogController.<init>(LineLogController.java:46) ~[classes/:na]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_201]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_201]
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_201]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_201]
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:172) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:380) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	... 19 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:172) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:124) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:237) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:211) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:175) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:851) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1188) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 30 common frames omitted
 
-2019-05-06 15:21:01.650  INFO 937 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on zhanghanhaode-MacBook-Pro.local with PID 937 (/Users/sheji/Documents/GitHub/AccessControl/target/classes started by sheji in /Users/sheji/Documents/GitHub/AccessControl)
-2019-05-06 15:21:01.654 DEBUG 937 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-05-06 15:21:01.654  INFO 937 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-05-06 15:21:03.184 DEBUG 937 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
-2019-05-06 15:21:03.185 DEBUG 937 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: /Users/sheji/.m2/repository/org/springframework/boot/spring-boot/2.1.3.RELEASE/spring-boot-2.1.3.RELEASE.jar
-2019-05-06 15:21:03.185 DEBUG 937 --- [main] c.e.demo.AccessControlApplication$1      : Document root: /Users/sheji/Documents/GitHub/AccessControl/public
-2019-05-06 15:21:09.371  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
-2019-05-06 15:21:09.373  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-05-06 15:21:09.373  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-05-06 15:21:09.373  INFO 937 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-05-06 15:21:09.426  INFO 937 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 8.209 seconds (JVM running for 8.936)
-2019-05-06 16:27:09.200  INFO 7788 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 7788 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
-2019-05-06 16:27:09.208 DEBUG 7788 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-05-06 16:27:09.208  INFO 7788 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-05-06 16:27:10.173 DEBUG 7788 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 16:27:10.173 DEBUG 7788 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-05-06 16:27:10.174 DEBUG 7788 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
-2019-05-06 16:27:15.490  INFO 7788 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
-2019-05-06 16:27:15.491  INFO 7788 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-05-06 16:27:15.491  INFO 7788 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-05-06 16:27:15.491  INFO 7788 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-05-06 16:27:15.533  INFO 7788 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 6.599 seconds (JVM running for 7.227)
+2019-05-07 19:11:03.204  INFO 13400 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 13400 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-05-07 19:11:03.206 DEBUG 13400 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-07 19:11:03.206  INFO 13400 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-07 19:11:04.032 DEBUG 13400 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:11:04.033 DEBUG 13400 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:11:04.033 DEBUG 13400 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-05-07 19:11:05.204  WARN 13400 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lineRichMenuController': Unsatisfied dependency expressed through field 'lineRichMenuService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+2019-05-07 19:11:05.223 ERROR 13400 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lineRichMenuController': Unsatisfied dependency expressed through field 'lineRichMenuService'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:596) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:849) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at com.example.demo.AccessControlApplication.main(AccessControlApplication.java:18) [classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'lineRichMenuService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:380) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:592) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 19 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'line.bot.channelToken' in value "${line.bot.channelToken}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:172) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:124) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:237) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:211) ~[spring-core-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:175) ~[spring-context-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:851) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1188) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:593) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:90) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:374) ~[spring-beans-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	... 30 common frames omitted
+
+2019-05-07 19:12:30.633  INFO 12132 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 12132 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-05-07 19:12:30.634 DEBUG 12132 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-05-07 19:12:30.634  INFO 12132 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-05-07 19:12:31.467 DEBUG 12132 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:12:31.468 DEBUG 12132 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-05-07 19:12:31.468 DEBUG 12132 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-05-07 19:12:33.651  INFO 12132 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 3
+2019-05-07 19:12:33.651  INFO 12132 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
+2019-05-07 19:12:33.652  INFO 12132 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public void com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
+2019-05-07 19:12:33.652  INFO 12132 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public void com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
+2019-05-07 19:12:33.679  INFO 12132 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 3.277 seconds (JVM running for 3.891)

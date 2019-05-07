@@ -38,7 +38,7 @@ import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 @LineMessageHandler
-//@PropertySource(value = "config/linebot.yml")
+//@PropertySource("classpath:config/linebot.yml")
 public class LineBotApplication {
 
 	private static Logger logger = LoggerFactory.getLogger(LineBotApplication.class);
@@ -77,10 +77,10 @@ public class LineBotApplication {
 	@EventMapping
 	public void handleFollowEvent(FollowEvent event) {
 		String userId = event.getSource().getUserId();
-		UserProfileResponse userProfile = getProfileByUserId(userId);
+		UserProfileResponse userProfile = this.getProfileByUserId(userId);
 		String userName = userProfile.getDisplayName();
 
-		LineUser lineUser = lineUserRepository.getByUserId(userId).orElse(null);
+		LineUser lineUser = this.lineUserRepository.getByUserId(userId).orElse(null);
 		if (lineUser == null) {
 			lineUser = new LineUser();
 			lineUser.setCreateDate(LocalDateTime.now(ZoneId.of("UTC+8")));
@@ -92,8 +92,8 @@ public class LineBotApplication {
 		} else {
 			lineUser.setIsUse(true);
 		}
-		lineUserRepository.save(lineUser);
-		doReplyMessage(new ReplyMessage(event.getReplyToken(), new TextMessage(userProfile.getDisplayName() + " - 註冊成功")));
+		this.lineUserRepository.save(lineUser);
+		this.doReplyMessage(new ReplyMessage(event.getReplyToken(), new TextMessage(userProfile.getDisplayName() + " - 註冊成功")));
 		logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
 	}
 
@@ -101,11 +101,11 @@ public class LineBotApplication {
 	@EventMapping
 	public void handleUnfollowEvent(UnfollowEvent event) {
 		String userId = event.getSource().getUserId();
-		LineUser lineUser = lineUserRepository.getByUserIdAndIsUseTrue(userId).orElse(null);
+		LineUser lineUser = this.lineUserRepository.getByUserIdAndIsUseTrue(userId).orElse(null);
 
 		if (lineUser != null) {
 			lineUser.setIsUse(false);
-			lineUserRepository.save(lineUser);
+			this.lineUserRepository.save(lineUser);
 		}
 		logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
 	}
@@ -117,7 +117,7 @@ public class LineBotApplication {
 			String userId = event.getSource().getUserId();
 			String text = event.getPostbackContent().getData();
 			List<String> triggerTexts = Arrays.asList(text.split(","));
-			wf8266Handle(replyToken, userId, triggerTexts);
+			this.wf8266Handle(replyToken, userId, triggerTexts);
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 		}
@@ -147,8 +147,9 @@ public class LineBotApplication {
 		List<String> triggerTexts1 = triggerTexts.stream().filter(triggerText -> triggerText.matches("^#.*"))
 		    .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
-		if (triggerTexts1 == null || triggerTexts1.isEmpty())
+		if (triggerTexts1 == null || triggerTexts1.isEmpty()) {
 			return;
+		}
 
 		// 觸動指令
 		List<String> triggerTexts2 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^#.*"))
@@ -161,19 +162,19 @@ public class LineBotApplication {
 		LineUser lineUser = null;
 		if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
 			// 1. 有指令需要執行前 先確認使用者權限
-			lineUser = lineUserRepository.getEffectiveUser(userId).orElse(null);
+			lineUser = this.lineUserRepository.getEffectiveUser(userId).orElse(null);
 			if (lineUser == null) {
-				doReplyMessage(new ReplyMessage(replyToken, new TextMessage("使用者沒有權限")));
+				this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("使用者沒有權限")));
 				return;
 			}
 		}
 
 		if (!triggerTexts2.isEmpty()) {
-			List<Wf8266Detail> wDetails = wf8266DetailRepository.getByTriggerTextInAndIsUseTrue(triggerTexts2);
+			List<Wf8266Detail> wDetails = this.wf8266DetailRepository.getByTriggerTextInAndIsUseTrue(triggerTexts2);
 
 			if (wDetails != null && !wDetails.isEmpty()) {
 				//
-				List<MappingWf8266DetailAndUser> mappingWdUs = mappingWf8266DetailAndUserRepository
+				List<MappingWf8266DetailAndUser> mappingWdUs = this.mappingWf8266DetailAndUserRepository
 				    .getByIsUseTrueAndUserIdAndTriggerTextIn(userId,
 				        wDetails.stream().map(Wf8266Detail::getTriggerText).collect(Collectors.toList()));
 
@@ -184,14 +185,14 @@ public class LineBotApplication {
 
 					new Thread(() -> {
 						triggerTexts.forEach(triggerText -> {
-							loggerWf8266Repository.save(new LogWf8266(userId, triggerText));
+							this.loggerWf8266Repository.save(new LogWf8266(userId, triggerText));
 						});
 					}).start();
 
 					logger.info("【指令】 " + lineUser.getUserName() + ":" + String.join("\r\n", replys));
-					doReplyMessage(new ReplyMessage(replyToken, new TextMessage(String.join("\r\n", replys))));
+					this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage(String.join("\r\n", replys))));
 				} else {
-					doReplyMessage(new ReplyMessage(replyToken, new TextMessage(mappingWdUs.isEmpty() ? "權限不足!!" : "部分權限不足!!")));
+					this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage(mappingWdUs.isEmpty() ? "權限不足!!" : "部分權限不足!!")));
 				}
 			}
 			return;
@@ -199,11 +200,11 @@ public class LineBotApplication {
 
 		if (!triggerTexts3.isEmpty()) {
 			String triggerText = triggerTexts3.get(0);
-			RichMenu rm = richMenuRepository.getByName(triggerText).orElse(null);
-			if (null != rm)
-				lineRichMenuService.linkRichMenuToUser(userId, rm.getRichMenuId());
-			else {
-				doReplyMessage(new ReplyMessage(replyToken, new TextMessage("找不到指定頁面，請洽管理員。")));
+			RichMenu rm = this.richMenuRepository.getByName(triggerText).orElse(null);
+			if (null != rm) {
+				this.lineRichMenuService.linkRichMenuToUser(userId, rm.getRichMenuId());
+			} else {
+				this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("找不到指定頁面，請洽管理員。")));
 			}
 			return;
 		}
@@ -215,7 +216,7 @@ public class LineBotApplication {
 //ReplyMessage replyMessage = new ReplyMessage(replyToken, new TextMessage(text));
 //doReplyMessage(replyMessage);
 	private BotApiResponse doReplyMessage(ReplyMessage replyMessage) {
-		LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+		LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
 		try {
 			return client.replyMessage(replyMessage).get();
 		} catch (InterruptedException | ExecutionException e) {
@@ -228,7 +229,7 @@ public class LineBotApplication {
 //doPushMessage(pushMessage);
 	@SuppressWarnings("unused")
 	private BotApiResponse doPushMessage(PushMessage pushMessage) {
-		LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+		LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
 		try {
 			return client.pushMessage(pushMessage).get();
 		} catch (InterruptedException | ExecutionException e) {
@@ -238,7 +239,7 @@ public class LineBotApplication {
 
 	/** 取得用戶資料 By UserId **/
 	private UserProfileResponse getProfileByUserId(String userId) {
-		LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+		LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
 
 		try {
 			return client.getProfile(userId).get();
