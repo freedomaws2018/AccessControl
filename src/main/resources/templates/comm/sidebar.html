@@ -5,6 +5,7 @@
 <div th:fragment="sidebar">
 		
 	<script type="text/javascript">
+		<!-- 目前header、sidebar、index的onclick事件全部都寫在這裡 -->
 	    $(document).ready(function () {
 	        $('#sidebarCollapse').on('click', function () {
 	            $('#sidebar').toggleClass('active');
@@ -15,7 +16,7 @@
 				$('#navbar_title').toggleClass('active');
 	        });
 	        $('#navbar_user').on('click', function () {
-				$('#navbar_user').toggleClass('active');
+				$('.dropdown-menu').toggleClass('active');
 	        });
 	    });
   	</script>
