@@ -1,0 +1,9 @@
+{
+	"properties": [
+		{
+			"name": "line",
+			"type": "java.util.Map",
+			"description": "A description for 'line'"
+		}
+	]
+}

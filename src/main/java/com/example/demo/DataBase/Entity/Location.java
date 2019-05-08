@@ -21,7 +21,6 @@ public class Location extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-
 	/** 地點名稱 **/
 	@Column(name = "name")
 	private String name;

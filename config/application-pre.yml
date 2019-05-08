@@ -3,12 +3,14 @@ server:
   http-port: 80
   port: ${server.https-port}
   ssl:
-    key-store: file:public/line.jks
+    key-store: file:config/line.jks
     key-store-password: 123456
     key-alias: freedomaws_jks
   servlet:
     session:
       timeout: 60s
+  tomcat:
+    max-threads: 100
       
 spring:
   jpa:
@@ -16,18 +18,13 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: update
+      
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         temp:
           use_jdbc_metadata_defaults: false
-          
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://54.238.212.55:5432/PROD
-    username: postgres
-    password: postgres
-  
+
   thymeleaf:
     mode: HTML
     prefix: classpath:/templates/
@@ -39,10 +36,17 @@ spring:
       content-type: text/html
       
   resources:
-    static-locations: classpath:/static/ , file:public/static/
-    
+    static-locations: file:public/static/
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://54.238.212.55:5432/PROD
+    username: postgres
+    password: postgres
+
 logging:
-  file: logs/log_info.txt
+  path: logs
+  file: log_info.txt
   level:
     root: warn
     com.springframework.web: warn

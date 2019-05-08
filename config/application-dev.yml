@@ -3,7 +3,7 @@ server:
   http-port: 9999
   port: ${server.https-port}
   ssl:
-    key-store: file:public/line.jks
+    key-store: file:config/line.jks
     key-store-password: 123456
     key-alias: freedomaws_jks
   servlet:
@@ -25,8 +25,6 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
   
-  
-  
   thymeleaf:
     mode: HTML
     prefix: classpath:/templates/
@@ -38,19 +36,18 @@ spring:
       content-type: text/html
 
   resources:
-    static-locations: classpath:/static/ , file:public/static/
-    
+    static-locations: file:public/static/
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://59.127.199.145:5432/UAT
+    name: UAT
+    url: jdbc:postgresql://59.127.199.145:5432/${spring.datasource.name}
     username: postgres
     password: postgres
 
-
-
 logging:
-  file: logs/log_info.txt    
+  path: logs
+  file: log_info.txt
   level:  
     root: warn
     com.springframework.web: warn

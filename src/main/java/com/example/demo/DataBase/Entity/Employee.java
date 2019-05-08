@@ -1,8 +1,12 @@
 package com.example.demo.DataBase.Entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -29,5 +33,9 @@ public class Employee extends BaseEntity {
 
 	@Column(name = "password", nullable = false)
 	private String password;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	private Permission permission;
 
 }
