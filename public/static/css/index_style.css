@@ -55,4 +55,24 @@ thead, tbody th {
 	transition: all 0.3s;
 }
 
+@media (max-width: 768px) {
+	.container.active{
+		position:relative;
+		top:100px;
+		width:30%;
+		bottom:10px;
+		left:30px;
+		transition: all 0.3s;
+	}
 
+	.container{
+		position:relative;
+		top:100px;
+		max-width:90%;
+		width:100%;
+		bottom:10px;
+		left:-5px;
+		transition: all 0.3s;
+	}
+	
+	}
