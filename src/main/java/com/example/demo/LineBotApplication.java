@@ -93,7 +93,8 @@ public class LineBotApplication {
 			lineUser.setIsUse(true);
 		}
 		this.lineUserRepository.save(lineUser);
-		this.doReplyMessage(new ReplyMessage(event.getReplyToken(), new TextMessage(userProfile.getDisplayName() + " - 註冊成功")));
+		this.doReplyMessage(
+				new ReplyMessage(event.getReplyToken(), new TextMessage(userProfile.getDisplayName() + " - 註冊成功")));
 		logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
 	}
 
@@ -106,8 +107,9 @@ public class LineBotApplication {
 		if (lineUser != null) {
 			lineUser.setIsUse(false);
 			this.lineUserRepository.save(lineUser);
+			logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
 		}
-		logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
+
 	}
 
 	@EventMapping
@@ -145,7 +147,7 @@ public class LineBotApplication {
 		System.err.println(triggerTexts);
 		// 指令開頭過濾，指令開頭均為 #
 		List<String> triggerTexts1 = triggerTexts.stream().filter(triggerText -> triggerText.matches("^#.*"))
-		    .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
+				.map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
 		if (triggerTexts1 == null || triggerTexts1.isEmpty()) {
 			return;
@@ -153,11 +155,11 @@ public class LineBotApplication {
 
 		// 觸動指令
 		List<String> triggerTexts2 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^#.*"))
-		    .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
+				.map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
 		// 換頁指令
 		List<String> triggerTexts3 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^>.*"))
-		    .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
+				.map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
 		LineUser lineUser = null;
 		if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
@@ -175,8 +177,8 @@ public class LineBotApplication {
 			if (wDetails != null && !wDetails.isEmpty()) {
 				//
 				List<MappingWf8266DetailAndUser> mappingWdUs = this.mappingWf8266DetailAndUserRepository
-				    .getByIsUseTrueAndUserIdAndTriggerTextIn(userId,
-				        wDetails.stream().map(Wf8266Detail::getTriggerText).collect(Collectors.toList()));
+						.getByIsUseTrueAndUserIdAndTriggerTextIn(userId,
+								wDetails.stream().map(Wf8266Detail::getTriggerText).collect(Collectors.toList()));
 
 				if (wDetails.size() == mappingWdUs.size()) { // 所以指令均有權限
 					wDetails.stream().map(Wf8266Detail::getTriggerUrl).forEach(HttpUtils::doGet);
@@ -192,7 +194,8 @@ public class LineBotApplication {
 					logger.info("【指令】 " + lineUser.getUserName() + ":" + String.join("\r\n", replys));
 					this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage(String.join("\r\n", replys))));
 				} else {
-					this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage(mappingWdUs.isEmpty() ? "權限不足!!" : "部分權限不足!!")));
+					this.doReplyMessage(new ReplyMessage(replyToken,
+							new TextMessage(mappingWdUs.isEmpty() ? "權限不足!!" : "部分權限不足!!")));
 				}
 			}
 			return;
@@ -248,30 +251,5 @@ public class LineBotApplication {
 		}
 
 	}
-
-//	/** GET 請求 URL **/
-//	private String doGetUrl(String URL) {
-//
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("Content-Type", "application/json");
-//		headers.add("Accept", "*/*");
-//
-//		ResponseEntity<String> responseEntity = new RestTemplate().exchange(URL, HttpMethod.GET,
-//		    new HttpEntity<>("", headers), String.class);
-//
-//		return responseEntity.getBody();
-//	}
-//
-//	/** POST 請求 URL **/
-//	private String doPostUrl(String URL) {
-//
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("Authorization", String.format("Bearer %s", channelAccessToken));
-//
-//		ResponseEntity<String> responseEntity = new RestTemplate().exchange(URL, HttpMethod.POST,
-//		    new HttpEntity<>("", headers), String.class);
-//
-//		return responseEntity.getBody();
-//	}
 
 }
