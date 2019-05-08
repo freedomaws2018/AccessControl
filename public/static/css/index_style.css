@@ -14,65 +14,60 @@ body {
     border-bottom: 2px dashed #ddd;	/*段落與段落中間虛線粗度*/
     margin: 20px 0;	/*段落與段落中間虛線前後縮排高度*/
 }
+
 #content {
-    width: 70%;
+    width: 100%;
     padding: 20px;
     min-height: 30px;
     transition: all 0.3s;
 }
 
-thead, tbody th {
-	text-align:center;
-}
-
 .tales {
   width: 100%;
 }
+
 .carousel-inner{
   width:100%;
   max-height: 200px !important;
 }
+
 #carouselExampleIndicators1,#carouselExampleIndicators2,#carouselExampleIndicators3{
 	width:30%;	
-	
 }
 
-.container{
+.container-fluid{
 	position:relative;
-	top:100px;
-	width:70%;
-	bottom:10px;
-	left:30px;
+	margin-top:100px;
+	margin-left:280px;
+	margin-right:30px;
+	width:auto;
 	transition: all 0.3s;
 }
 
-.container.active{
+.container-fluid.active{
 	position:relative;
-	top:100px;
-	width:70%;
-	bottom:10px;
-	left:-220px;
+	margin-top:100px;
+	margin-left:30px;
+	margin-right:30x;
+	width:auto;
 	transition: all 0.3s;
 }
 
 @media (max-width: 768px) {
-	.container.active{
+	.container-fluid{
 		position:relative;
-		top:100px;
-		width:30%;
-		bottom:10px;
-		left:30px;
+		margin-top:100px;
+		margin-left:30px;
+		margin-right:30x;
+		width:auto;
+		transition: all 0.3s;
+	}	
+	.container-fluid.active{
+		position:relative;
+		margin-top:100px;
+		margin-left:280px;
+		margin-right:30px;
+		width:auto;
 		transition: all 0.3s;
 	}
-
-	.container{
-		position:relative;
-		top:100px;
-		max-width:90%;
-		width:100%;
-		bottom:10px;
-		left:-5px;
-		transition: all 0.3s;
-	}
-	
-	}
+}
