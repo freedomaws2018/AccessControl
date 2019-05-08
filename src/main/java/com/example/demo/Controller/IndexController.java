@@ -1,30 +1,46 @@
 package com.example.demo.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.DataBase.Repository.EmployeeRepository;
+
 @Controller
 public class IndexController {
 
-	private ModelAndView model;
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@GetMapping(value = "/index")
-	public ModelAndView index() {
-		this.model = new ModelAndView("comm/index");
-		return this.model;
+	public ModelAndView index(ModelAndView model) {
+		model = new ModelAndView("comm/index");
+		System.err.println("=================== index ===================");
+		return model;
 	}
 
 	@GetMapping(value = "/login")
-	public ModelAndView login() {
-		this.model = new ModelAndView("comm/login");
-		return this.model;
+	public ModelAndView login(ModelAndView model) {
+		model = new ModelAndView("comm/login");
+		return model;
+	}
+
+	@GetMapping(value = "/register")
+	public ModelAndView adminRegister(ModelAndView model) {
+		Long empCount = this.employeeRepository.count();
+		if (empCount == 0) {
+			model = new ModelAndView("comm/admin_register");
+		} else {
+			model = new ModelAndView("redirect:/index");
+		}
+		return model;
 	}
 
 	/** Redirect **/
 	@GetMapping(value = "/")
-	public ModelAndView root() {
-		this.model = new ModelAndView("redirect:/index");
-		return this.model;
+	public ModelAndView root(ModelAndView model) {
+		model = new ModelAndView("redirect:/index");
+		return model;
 	}
 }

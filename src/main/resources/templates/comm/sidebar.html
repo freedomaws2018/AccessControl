@@ -34,24 +34,33 @@
                 <li>
                 <div class="row">
                   <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-                  <a th:href="@{/}">0-1. 員工管理</a>
+                  <a th:href="@{/admin/permission/list}">0-1. 權限設定</a>
                 </div>
                 </li>
                 <li>
                 <div class="row">
                   <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-                  <a th:href="@{/}">0-2. 權限設定</a>
+                  <a th:href="@{/admin/menu/edit}">0-2. 選單管理</a>
                 </div>
                 </li>
-                <li>
-                <div class="row">
-                  <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-                  <a th:href="@{/}">0-3. 選單管理</a>
-                </div>
-                </li>
+                
+                
               </ul>
             </li>
-      
+            
+            <li>
+              <div class="row">
+                <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
+                <a th:href="@{/emp/list}">1. 員工管理</a>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
+                <a th:href="@{/location/list}">2. 地點管理</a>
+              </div>
+            </li>
+            
 			<li class="active">
 				<div class="row">
 					<img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png">

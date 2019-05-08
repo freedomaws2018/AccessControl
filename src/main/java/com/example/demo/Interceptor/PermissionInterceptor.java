@@ -1,14 +1,14 @@
 package com.example.demo.Interceptor;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.example.demo.DataBase.Repository.EmployeeRepository;
 
 @Component
 public class PermissionInterceptor extends HandlerInterceptorAdapter {
@@ -16,10 +16,13 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 //	@Autowired
 //	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.err.println(request.getSession());
+//		System.err.println(request.getSession());
 
 		return true;
 	}
@@ -29,10 +32,19 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		System.err.println("=================== postHandle =================== ");
 
-		Map<String,String> map = new HashMap<>();
-		map.put("name", "超級使用者");
-		map.put("data", "測試用");
-		modelAndView.addObject("headerInfo", map);
+		// 首次登入系統 驗證
+		Long empCount = this.employeeRepository.count();
+		if(empCount == 0) {
+			response.sendRedirect("/register");
+		}
+
+		// 登入驗證
+		Boolean is_login = false;
+		if(!is_login) {
+			response.sendRedirect("/login");
+		}
+
+		modelAndView.addObject("employee", null);
 
 		super.postHandle(request, response, handler, modelAndView);
 	}
