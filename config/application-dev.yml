@@ -45,14 +45,14 @@ spring:
     username: postgres
     password: postgres
 
-logging:
-  file: logs/log_info.txt
-  level:  
-    root: warn
-    com.springframework.web: warn
-    com.example: debug
-    com.linecorp.bot: info
-    com.linecorp.bot.client.wire: debug
+#logging:
+#  file: logs/log_info.txt
+#  level:  
+#    root: info
+#    com.springframework.web: warn
+#    com.example: debug
+#    com.linecorp.bot: info
+#    com.linecorp.bot.client.wire: debug
 
 line:
   GetProfileUrl: https://api.line.me/v2/bot/profile/{userId}
