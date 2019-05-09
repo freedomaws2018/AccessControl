@@ -308,5 +308,104 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
+	<div class="row">
+		<div class="col">
+			<div class="card">
+				<div class="card-header">
+					<span class="glyphicon glyphicon-align-justify"></span>
+					<a th:if="${funcType eq 'view'}">LineUser - 檢視</a>
+					<a th:if="${funcType eq 'edit'}">LineUser - 修改</a>
+				</div>
+				<div class="card-body">
+					<table class="table table-hover table-responsive-sm">
+						<thead class="center">
+							<tr>
+								<th scope="col">操作</th>
+								<th scope="col">姓名</th>
+								<th scope="col">是否啟用</th>
+								<th scope="col">使用時間</th>
+								<th scope="col">建立時間</th>
+								<th scope="col">修改時間</th>
+							</tr>
+						</thead>
+						<tbody class="center">
+							<tr th:each="user,itemStar:${Users}">
+								<th scope="row">
+						          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success btn-sm">
+						          	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+						          </a>
+						          <a th:id="|delete_user_${itemStar.index}|" th:lineUserId="${user.userId}" href="javascript:;" class="btn btn-danger btn-sm">
+						          	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+						          </a>
+								</th>
+								<td th:text="${user.userName}">姓名</td>
+								<td>
+								  <span th:if="${user.isUse}">是</span>
+						          <span th:unless="${user.isUse}">否</span>
+						        </td>
+								<td>
+								  <span th:text="${#temporals.format(user.begDt, 'yyyy/MM/dd HH:mm:ss')}"></span> 至
+								  <span th:text="${#temporals.format(user.endDt, 'yyyy/MM/dd HH:mm:ss')}"></span>
+								</td>
+								<td>
+								  <span th:text="${#temporals.format(user.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+								</td>
+								<td>
+					        	  <span th:text="${#temporals.format(user.modifyDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+                    <div th:if="${Users.totalPages ne 1}" >
+                      <div th:replace="~{comm/page :: page01(entity=${Users})}"></div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
