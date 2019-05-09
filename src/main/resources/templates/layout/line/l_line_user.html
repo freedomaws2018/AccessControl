@@ -45,8 +45,8 @@
 						<tbody class="center">
 							<tr th:each="user,itemStar:${Users}">
 								<th scope="row">
-						          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-primary">修改</a>
-						          <a th:id="|delete_user_${itemStar.index}|" th:lineUserId="${user.userId}" href="javascript:;" class="btn btn-warning">刪除</a>
+						          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success btn-sm">修改</a>
+						          <a th:id="|delete_user_${itemStar.index}|" th:lineUserId="${user.userId}" href="javascript:;" class="btn btn-danger btn-sm">刪除</a>
 								</th>
 								<td th:text="${user.userName}">姓名</td>
 								<td>

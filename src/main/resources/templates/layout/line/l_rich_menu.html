@@ -52,7 +52,7 @@ $().ready(()=>{
 				<div class="card-header">
 					<span class="glyphicon glyphicon-align-justify"></span>LineRichMenu - 列表
 						<a th:href="@{/line/rich_menu/add}" class="btn btn-primary btn-sm a-btn-first">新增</a>
-						<a href="javascript:;" id="rich_menu_synchronize" class="btn btn-success btn-sm a-btn-second">更新</a>
+						<a href="javascript:;" id="rich_menu_synchronize" class="btn btn-warning btn-sm a-btn-second">更新</a>
 				</div>
 				<div class="card-body">
 					<table id="richMenuTable" class="table table-hover table-responsive-sm">
@@ -69,8 +69,8 @@ $().ready(()=>{
 							<tr th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
 								<th scope="row" th:richMenu="*{richMenuId}">
 									<span style="display: none;"  th:text="*{richMenuId}">richMenuId</span>
-									<a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-primary">修改</a>
-									<a class="btn btn-warning rich_menu_delete" href="javascript:;" th:richMenuId="*{richMenuId}">刪除</a>
+									<a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success btn-sm">修改</a>
+									<a class="btn btn-danger btn-sm rich_menu_delete" href="javascript:;" th:richMenuId="*{richMenuId}">刪除</a>
 								</th>
 								<td th:text="*{name}">name</td>
 								<td th:object="${richMenu.size}">

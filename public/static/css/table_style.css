@@ -49,11 +49,16 @@
 }
 
 .table tbody th{
-	line-height:45px;
+	line-height:30px;
 }
 
 .table tbody td{
-	line-height:50px;
+	line-height:30px;
+}
+
+.btn-info {
+	position:relative;
+	margin-right:15px;
 }
 
 .breadcrumb>li+li:before {

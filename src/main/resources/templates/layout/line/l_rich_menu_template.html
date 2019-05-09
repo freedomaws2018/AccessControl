@@ -43,7 +43,7 @@
 						</thead>
 						<tbody class="center">
 							<tr th:each="template:${templateList}" th:object="${template}">
-								<th scope="row"><a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}" class="btn btn-warning">刪除</a></th>
+								<th scope="row"><a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}" class="btn btn-danger btn-sm">刪除</a></th>
 								<td th:text="*{name}">姓名</td>
 								<td><img width="300" th:src="@{|data:image/jpeg;base64,*{getBase64Image()}|}" /></td>
 								<td th:text="*{createDate}"></td>

@@ -26,8 +26,8 @@
                             </tr>
 							<tr th:unless="${Wf8266s.empty}" th:each="wf8266,iterStat:${Wf8266s}">
 								<th scope="row">
-									<a th:href="@{/wf8266/view/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-secondary">檢視</a>
-          							<a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-success">修改</a>
+									<a th:href="@{/wf8266/view/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-secondary btn-sm">檢視</a>
+          							<a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-success btn-sm">修改</a>
 								</th>
 								<td>
 						          <span th:text="${wf8266.sn}"></span>
@@ -35,10 +35,11 @@
 						        <td>
 						          <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
 						        </td>
-				                <td> 
+				                <th> 
 						          <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
 						          <div class="row">
-						          <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> <!-- 到時候再重畫按鈕 -->
+						          <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-info btn-sm">重新讀取</a> <!-- 從input改寫成a，不確定此按鈕的作用還在不在 -->
+						          <!-- <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> 到時候再重畫按鈕 -->
 						          <div th:id="|status_${iterStat.index}|" ></div> <!-- 需要一個讀取中的樣式 -->
 						          <script th:inline="javascript">
 						            reload_[[${iterStat.index}]]();
@@ -68,7 +69,7 @@
 						            }
 						          </script>
 						          </div>
-						        </td>
+						        </th>
 							</tr>
 						</tbody>
 					</table>
