@@ -13,6 +13,11 @@
 
 .card-header span{
 	top:2px;
+	padding-right:15px;
+}
+
+.card-header a span{
+	top:2px;
 	padding-right:5px;
 }
 
