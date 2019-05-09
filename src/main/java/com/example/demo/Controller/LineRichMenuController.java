@@ -9,10 +9,9 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +45,6 @@ import com.google.gson.Gson;
 @RequestMapping(value = "/line/rich_menu")
 public class LineRichMenuController {
 
-	private ModelAndView model;
-
 	@Autowired
 	private LineUserRepository lineUserRepository;
 
@@ -60,14 +57,11 @@ public class LineRichMenuController {
 	@Autowired
 	private RichMenuTemplateRepository richMenuTemplateRepository;
 
-//	@Autowired
-//	private MappingRichMenuRepository mappingRichMenuRepository;
-
-	@GetMapping(value = "/list/{page}")
-	public ModelAndView list(@PathVariable int page) throws Exception {
+	@GetMapping(value = "/list")
+	public ModelAndView list(ModelAndView model,
+			@PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.ASC) Pageable pageable) {
 		model = new ModelAndView("layout/line/l_rich_menu");
-		Pageable pageable = PageRequest.of(page - 1, 20, Sort.by(Order.asc("createDate")));
-		Page<RichMenu> richMenus = richMenuRepository.findAll(pageable);
+		Page<RichMenu> richMenus = this.richMenuRepository.findAll(pageable);
 		model.addObject("richMenus", richMenus);
 
 		return model;
@@ -75,34 +69,34 @@ public class LineRichMenuController {
 
 	@DeleteMapping(value = "/delete/{richMenuId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> delete(@PathVariable String richMenuId) {
-		lineRichMenuService.deleteRichMenu(richMenuId);
+		this.lineRichMenuService.deleteRichMenu(richMenuId);
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 
 	@GetMapping("/add")
-	public ModelAndView add() {
+	public ModelAndView add(ModelAndView model) {
 		model = new ModelAndView("layout/line/u_rich_menu");
 		model.addObject("funcType", "add");
-		List<RichMenuTemplate> templates = richMenuTemplateRepository.findAll();
+		List<RichMenuTemplate> templates = this.richMenuTemplateRepository.findAll();
 		model.addObject("templates", templates);
 		return model;
 	}
 
 	@GetMapping("/edit/{richMenuId}")
-	public ModelAndView edit(@PathVariable String richMenuId) {
+	public ModelAndView edit(ModelAndView model,@PathVariable String richMenuId) {
 		model = new ModelAndView("layout/line/u_rich_menu");
 		model.addObject("funcType", "edit");
 
-		RichMenu richMenu = richMenuRepository.findById(richMenuId).orElse(null);
+		RichMenu richMenu = this.richMenuRepository.findById(richMenuId).orElse(null);
 		model.addObject("richMenu", richMenu);
 
-		List<RichMenuTemplate> templates = richMenuTemplateRepository.findAll();
+		List<RichMenuTemplate> templates = this.richMenuTemplateRepository.findAll();
 		model.addObject("templates", templates);
 		return model;
 	}
 
 	@PostMapping("/save")
-	public ModelAndView save(@Valid FormRichMenu form, BindingResult result) throws IOException {
+	public ModelAndView save(ModelAndView model,@Valid FormRichMenu form, BindingResult result) throws IOException {
 		model = new ModelAndView("redirect:/line/rich_menu/list/1");
 
 		/** 0. 獲取存檔所需資料 **/
@@ -124,7 +118,7 @@ public class LineRichMenuController {
 		List<FormRichMenuAction> actions = form.getActions();
 
 		// 0.2 透過 TemplateId 取出樣式
-		RichMenuTemplate template = richMenuTemplateRepository.findById(templateId).orElse(null);
+		RichMenuTemplate template = this.richMenuTemplateRepository.findById(templateId).orElse(null);
 		String templateJson = template.getTemplate();
 
 		/** 1. 發送資料至 LINE Service 建立 RichMenu **/
@@ -160,31 +154,28 @@ public class LineRichMenuController {
 		templateJson = new Gson().toJson(richMenu);
 
 		// 1.3 建立新的選單
-		String richMenuId = lineRichMenuService.createRichMenu(templateJson);
+		String richMenuId = this.lineRichMenuService.createRichMenu(templateJson);
 		// 1.4 上傳新選單圖片
-		lineRichMenuService.uploadRichMenuImage(richMenuId, image.getBytes());
+		this.lineRichMenuService.uploadRichMenuImage(richMenuId, image.getBytes());
 
 		// 2. 存入 RichMenu 資料表
 		richMenu.setRichMenuId(richMenuId);
-		richMenu.setImage(lineRichMenuService.downloadImage(richMenu.getRichMenuId()));
-		richMenu = richMenuRepository.save(richMenu);
+		richMenu.setImage(this.lineRichMenuService.downloadImage(richMenu.getRichMenuId()));
+		richMenu = this.richMenuRepository.save(richMenu);
 
 		// 3. 是否有舊版型
 		if (StringUtils.isNotBlank(oldRichMenuId)) {
 			// 3.1 刪除 已被覆蓋的模型
-			lineRichMenuService.deleteRichMenu(oldRichMenuId);
+			this.lineRichMenuService.deleteRichMenu(oldRichMenuId);
 			// 3.2 重新推送 更新後的版型給 當前使用中的所有人 (Thread)
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					List<LineUser> users = lineUserRepository.findAll();
-					users.stream().forEach(user -> {
-						String userRichMenuId = lineRichMenuService.getRichMenuIdLinkToUser(user.getUserId());
-						if (userRichMenuId.equals(oldRichMenuId)) {
-							lineRichMenuService.linkRichMenuToUser(user.getUserId(), richMenuId);
-						}
-					});
-				}
+			new Thread(() -> {
+				List<LineUser> users = LineRichMenuController.this.lineUserRepository.findAll();
+				users.stream().forEach(user -> {
+					String userRichMenuId = LineRichMenuController.this.lineRichMenuService.getRichMenuIdLinkToUser(user.getUserId());
+					if (userRichMenuId.equals(oldRichMenuId)) {
+						LineRichMenuController.this.lineRichMenuService.linkRichMenuToUser(user.getUserId(), richMenuId);
+					}
+				});
 			}).start();
 		}
 
@@ -192,18 +183,18 @@ public class LineRichMenuController {
 	}
 
 	/** Tempalte **/
-	@GetMapping(value = "/template/list/{page}")
-	public ModelAndView templateList(@PathVariable int page) throws Exception {
+	@GetMapping(value = "/template/list")
+	public ModelAndView templateList(ModelAndView model,
+			@PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.ASC) Pageable pageable) {
 		model = new ModelAndView("layout/line/l_rich_menu_template");
-		Pageable pageable = PageRequest.of(page - 1, 20, Sort.by(Order.asc("createDate")));
-		Page<RichMenuTemplate> richMenuTemplates = richMenuTemplateRepository.findAll(pageable);
+		Page<RichMenuTemplate> richMenuTemplates = this.richMenuTemplateRepository.findAll(pageable);
 		model.addObject("templateList", richMenuTemplates);
 
 		return model;
 	}
 
 	@GetMapping("/template/add")
-	public ModelAndView tempalteAdd() {
+	public ModelAndView tempalteAdd(ModelAndView model) {
 		model = new ModelAndView("layout/line/u_rich_menu_template");
 		model.addObject("funcType", "add");
 
@@ -211,50 +202,39 @@ public class LineRichMenuController {
 	}
 
 	@PostMapping("/template/save")
-	public ModelAndView templateSave(FormRichMenuTemplate form) {
+	public ModelAndView templateSave(ModelAndView model,FormRichMenuTemplate form) {
 		model = new ModelAndView("redirect:/line/rich_menu/template/list/1");
 		RichMenuTemplate template = form.toRichMenuTemplate();
-		richMenuTemplateRepository.save(template);
+		this.richMenuTemplateRepository.save(template);
 		return model;
 	}
 
 	@DeleteMapping("/template/delete/{id}")
 	public ResponseEntity<Object> templateDelete(@PathVariable Long id) {
-		richMenuTemplateRepository.deleteById(id);
+		this.richMenuTemplateRepository.deleteById(id);
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 
 	/** Redirect **/
-	@GetMapping("/template/list")
-	public ModelAndView redirectTemplateList() {
-		model = new ModelAndView("redirect:/line/rich_menu/template/list/1");
-		return model;
-	}
-
-	@GetMapping("/list")
-	public ModelAndView redirectList() {
-		model = new ModelAndView("redirect:/line/rich_menu/list/1");
-		return model;
-	}
 
 	/** ajax **/
 	/** getRichMenuList & downloadImage 寫入資料庫 **/
 	@PostMapping(value = "/ajax/getRichMenuDataOnLineServer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> ajaxGetRichMenuDataOnLineServer() {
-		RichMenuResponse response1 = lineRichMenuService.getRichMenuList();
+		RichMenuResponse response1 = this.lineRichMenuService.getRichMenuList();
 		List<RichMenu> richMenus = response1.getRichmenus().stream().map(rm -> {
 			RichMenu richMenu = new RichMenu(rm);
-			richMenu.setImage(lineRichMenuService.downloadImage(richMenu.getRichMenuId()));
+			richMenu.setImage(this.lineRichMenuService.downloadImage(richMenu.getRichMenuId()));
 			return richMenu;
 		}).collect(Collectors.toList());
-		richMenus = richMenuRepository.saveAll(richMenus);
+		richMenus = this.richMenuRepository.saveAll(richMenus);
 		return new ResponseEntity<>(richMenus, HttpStatus.OK);
 	}
 
 	/** autocomplete **/
 	@GetMapping(value = "/autocomplete/getRichMenu", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> getRichMenuList(@RequestParam("term") String term) {
-		List<RichMenu> richMenus = richMenuRepository.getByNameLike(term);
+		List<RichMenu> richMenus = this.richMenuRepository.getByNameLike(term);
 //		List<String> rmNames = richMenus.stream().map(RichMenu::getName).collect(Collectors.toList());
 		return new ResponseEntity<>(richMenus, HttpStatus.OK);
 	}

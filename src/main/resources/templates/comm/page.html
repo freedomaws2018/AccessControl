@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"></head>
+<div th:fragment="page01(entity)">
+  <nav  aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li th:unless="${entity.first}" class="page-item">
+        <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(size=${entity.size},page=${entity.number-1})}" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+  
+      <li th:each="i:${#numbers.sequence(1,entity.totalPages)}" class="page-item" th:classappend="${entity.number eq i-1 ? 'active' : '' }">
+        <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(size=${entity.size},page=${i-1})}" href="javascript:;" >
+          <span th:text="${i}"></span>
+        </a>
+      </li>
+  
+      <li th:unless="${entity.last}" class="page-item">
+        <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(size=${entity.size},page=${entity.number+1})}" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

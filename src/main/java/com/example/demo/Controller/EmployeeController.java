@@ -1,8 +1,10 @@
 package com.example.demo.Controller;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,17 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/emp")
 public class EmployeeController {
 
-	private ModelAndView model;
 
-	@GetMapping(value = "/list/{page:[0-9]+}")
-	private ModelAndView list(@PathVariable int page) {
-		this.model = new ModelAndView("layout/employee/l_employee");
-		return this.model;
+	@GetMapping(value = "/list")
+	private ModelAndView list(ModelAndView model,
+			@PageableDefault(page = 0, size = 10, sort = { "id" }, direction = Direction.ASC) Pageable pageable) {
+		model = new ModelAndView("layout/employee/l_employee");
+		return model;
 	}
 
 	/** Redirect **/
-	@GetMapping(value = "/list")
-	public ModelAndView redirectList() {
-		return new ModelAndView("redirect:/emp/list/1");
-	}
 }

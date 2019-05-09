@@ -2,6 +2,60 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-
+  <script type="text/javascript" th:inline="javascript">
+  	console.log([[${locations}]]);
+  </script>
+  <div class="row">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+		<div class="col">
+			<div class="card">
+				<div class="card-header">
+					<span class="glyphicon glyphicon-align-justify"></span>地點列表
+<!-- <pre> -->
+<!-- 是否為空：<span th:text="${locations.empty}"></span> -->
+<!-- 是否為第一頁：<span th:text="${locations.first}"></span> -->
+<!-- 是否為最後一頁：<span th:text="${locations.last}"></span> -->
+<!-- 一頁顯示幾筆：<span th:text="${locations.size}"></span> -->
+<!-- 當前頁數：<span th:text="${locations.number}"></span> -->
+<!-- 總共有幾頁：<span th:text="${locations.totalPages}"></span> -->
+<!-- 總比數:<span th:text="${locations.totalElements}"></span> -->
+<!-- </pre> -->
+				</div>
+				<div class="card-body">
+                  <table class="table table-hover table-responsive-sm">
+                    <thead class="center">
+                      <tr>
+                        <th scope="col">操作</th>
+                        <th scope="col">名稱</th>
+                        <th scope="col">地址</th>
+                        <th scope="col">管理員</th>
+                      </tr>
+                    </thead>
+                    <tbody class="center">
+                      <tr th:if="${locations.empty}">
+                        <th colspan="4">沒有資料</th>
+                      </tr>
+                      <tr th:unless="${locations.empty}" th:each="location:${locations}" th:object="${location}">
+                        <th> 修改 | 刪除</th>
+                        <td>
+                          <span th:text="*{name}"></span>
+                        </td>
+                        <td>
+                          <span th:text="*{address}"></span>
+                        </td>
+                        <td>
+                          <span th:text="*{keeper}"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div th:if="${locations.totalPages ne 1}" >
+                    <div th:replace="~{comm/page :: page01(entity=${locations})}"></div>
+                  </div>
+                </div>
+            </div>
+        </div>
+     </div>
+  </div>
 </body>
 </html>

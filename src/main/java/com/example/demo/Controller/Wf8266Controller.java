@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,26 +28,24 @@ import com.example.demo.DataBase.Repository.Wf8266Repository;
 @RequestMapping(value = "/wf8266")
 public class Wf8266Controller {
 
-	private ModelAndView model;
-
 	@Autowired
 	private Wf8266Repository wf8266Repository;
 
 	@Autowired
 	private Wf8266DetailRepository wf8266DetailRepository;
 
-	@GetMapping("/list/{page:[0-9]+}")
-	public ModelAndView list(@PathVariable int page) {
+	@GetMapping("/list")
+	public ModelAndView list(ModelAndView model, @PageableDefault(page = 0, size = 10, sort = {
+			"createDate" }, direction = Direction.ASC) Pageable pageable) {
 		model = new ModelAndView("layout/wf8266/l_wf8266");
-		Pageable pageable = PageRequest.of(page - 1, 20, Sort.by(Order.asc("createDate")));
-		Page<Wf8266> wf8266s = wf8266Repository.findAll(pageable);
+		Page<Wf8266> wf8266s = this.wf8266Repository.findAll(pageable);
 
 		model.addObject("Wf8266s", wf8266s);
 		return model;
 	}
 
 	@GetMapping("/add")
-	public ModelAndView add() {
+	public ModelAndView add(ModelAndView model) {
 		model = new ModelAndView("layout/wf8266/u_wf8266");
 
 		model.addObject("wf8266", new Wf8266());
@@ -58,10 +55,10 @@ public class Wf8266Controller {
 	}
 
 	@GetMapping("/{funcType:add|view|edit}/{sn}")
-	public ModelAndView viewAndEdit(@PathVariable String funcType, @PathVariable String sn) {
+	public ModelAndView viewAndEdit(ModelAndView model, @PathVariable String funcType, @PathVariable String sn) {
 		model = new ModelAndView("layout/wf8266/u_wf8266");
-		Wf8266 wf8266 = wf8266Repository.getBySn(sn).orElse(null);
-		List<Wf8266Detail> details = wf8266DetailRepository.getBySn(sn, Sort.by(Direction.ASC, "triggerText"));
+		Wf8266 wf8266 = this.wf8266Repository.getBySn(sn).orElse(null);
+		List<Wf8266Detail> details = this.wf8266DetailRepository.getBySn(sn, Sort.by(Direction.ASC, "triggerText"));
 
 		model.addObject("wf8266", wf8266);
 		model.addObject("wf8266Details", details);
@@ -70,28 +67,24 @@ public class Wf8266Controller {
 	}
 
 	/** Redirect **/
-	@GetMapping("/list")
-	public ModelAndView redirectList() {
-		return new ModelAndView("redirect:/wf8266/list/1");
-	}
 
 	@RequestMapping("/save")
-	public ModelAndView save(FormWf8266 wf8266, RedirectAttributes attr) {
+	public ModelAndView save(ModelAndView model, FormWf8266 wf8266, RedirectAttributes attr) {
 		model = new ModelAndView(String.format("redirect:/wf8266/view/%s", wf8266.getSn()));
 		// Wf8266
-		wf8266Repository.save(wf8266.toWf8266());
+		this.wf8266Repository.save(wf8266.toWf8266());
 		// 刪除所有 Detail
 
 		// 刪除的
 		List<String> DDetailId = wf8266.toWf8266DetailsDelete();
 		if (DDetailId != null && !DDetailId.isEmpty()) {
-			DDetailId.forEach(wdId -> wf8266DetailRepository.deleteById(wdId));
+			DDetailId.forEach(wdId -> this.wf8266DetailRepository.deleteById(wdId));
 		}
 
 		List<Wf8266Detail> SUDetailList = wf8266.toWf8266DetailsSaveOrUpdate();
 		if (SUDetailList != null && !SUDetailList.isEmpty()) {
 			// 添加新增 Detail
-			wf8266DetailRepository.saveAll(SUDetailList);
+			this.wf8266DetailRepository.saveAll(SUDetailList);
 		}
 		return model;
 	}
@@ -99,11 +92,12 @@ public class Wf8266Controller {
 	/** Ajax **/
 	@GetMapping(value = "/ajax/getAllWf8266Detail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> getAllWf8266Detail() {
-		List<Wf8266Detail> wdList = wf8266DetailRepository.findAll();
-		if (wdList != null)
+		List<Wf8266Detail> wdList = this.wf8266DetailRepository.findAll();
+		if (wdList != null) {
 			return new ResponseEntity<>(wdList, HttpStatus.OK);
-		else
+		} else {
 			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+		}
 	}
 
 }

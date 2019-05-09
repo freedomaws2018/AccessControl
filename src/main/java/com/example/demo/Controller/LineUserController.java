@@ -6,10 +6,9 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +34,6 @@ import com.example.demo.LineModel.RichMenu.RichMenuResponse;
 @RequestMapping(value = "/line/user")
 public class LineUserController {
 
-	private ModelAndView model;
-
 	@Autowired
 	private LineUserRepository lineUserRepository;
 
@@ -49,42 +46,42 @@ public class LineUserController {
 	@Autowired
 	private LineRichMenuService lineRichMenuService;
 
-	@GetMapping(value = "/list/{page:[0-9]+}")
-	public ModelAndView list(@PathVariable int page) {
+	@GetMapping(value = "/list")
+	public ModelAndView list(ModelAndView model,
+			@PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.ASC) Pageable pageable) {
 		model = new ModelAndView("layout/line/l_line_user");
-		Pageable pageable = PageRequest.of(page - 1, 20, Sort.by(Order.asc("createDate")));
-		Page<LineUser> users = lineUserRepository.findAll(pageable);
+		Page<LineUser> users = this.lineUserRepository.findAll(pageable);
 		model.addObject("Users", users);
 		return model;
 	}
 
 	@GetMapping(value = "/{funcType:view|edit}/{userId}")
-	public ModelAndView viewAndEdit(@PathVariable String funcType, @PathVariable String userId) {
+	public ModelAndView viewAndEdit(ModelAndView model,@PathVariable String funcType, @PathVariable String userId) {
 		model = new ModelAndView("layout/line/u_line_user");
 
-		List<String> allTriggerTexts = mappingWf8266DetailAndUserRepository.getByUserId(userId).stream()
+		List<String> allTriggerTexts = this.mappingWf8266DetailAndUserRepository.getByUserId(userId).stream()
 		    .filter(MappingWf8266DetailAndUser::getIsUse).map(MappingWf8266DetailAndUser::getTriggerText)
 		    .collect(Collectors.toList());
 
 		model.addObject("funcType", funcType);
-		model.addObject("User", lineUserRepository.findById(userId).orElse(null));
+		model.addObject("User", this.lineUserRepository.findById(userId).orElse(null));
 		model.addObject("groupBySnDetails", //
-		    wf8266DetailRepository.findAll().stream().map(detail -> {
+		    this.wf8266DetailRepository.findAll().stream().map(detail -> {
 			    detail.setIsUse(allTriggerTexts.contains(detail.getTriggerText()));
 			    return detail;
 		    }).collect(Collectors.groupingBy(detail -> detail.getSn())) //
 		);
 
 		try {
-			String richMenuId = lineRichMenuService.getRichMenuIdLinkToUser(userId);
-			RichMenu richMenu = lineRichMenuService.getRichMenu(richMenuId);
+			String richMenuId = this.lineRichMenuService.getRichMenuIdLinkToUser(userId);
+			RichMenu richMenu = this.lineRichMenuService.getRichMenu(richMenuId);
 			model.addObject("richMenu", richMenu);
 		} catch (Exception ex) {
 			model.addObject("richMenu", new RichMenu());
 		}
 
 		if ("edit".equals(funcType)) {
-			RichMenuResponse response = lineRichMenuService.getRichMenuList();
+			RichMenuResponse response = this.lineRichMenuService.getRichMenuList();
 			List<RichMenu> allRichMenu = response.getRichmenus();
 			model.addObject("allRichMenu", allRichMenu);
 
@@ -95,47 +92,37 @@ public class LineUserController {
 
 	@DeleteMapping(value = "/delete/{lineUserId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> delete(@PathVariable String lineUserId) {
-		lineUserRepository.deleteById(lineUserId);
+		this.lineUserRepository.deleteById(lineUserId);
 
-		List<MappingWf8266DetailAndUser> allMapping = mappingWf8266DetailAndUserRepository.getByUserId(lineUserId);
-		if (allMapping != null && !allMapping.isEmpty())
-			mappingWf8266DetailAndUserRepository.deleteAll(allMapping);
+		List<MappingWf8266DetailAndUser> allMapping = this.mappingWf8266DetailAndUserRepository.getByUserId(lineUserId);
+		if (allMapping != null && !allMapping.isEmpty()) {
+			this.mappingWf8266DetailAndUserRepository.deleteAll(allMapping);
+		}
 
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 
 	/** Redirect **/
-	@GetMapping(value = "/list")
-	public ModelAndView redirectList() {
-		model = new ModelAndView("redirect:/line/user/list/1");
-		return model;
-	}
 
 	@RequestMapping(value = "/save")
-	public ModelAndView save(FormLineUser form, RedirectAttributes attr) {
+	public ModelAndView save(ModelAndView model,FormLineUser form, RedirectAttributes attr) {
 		model = new ModelAndView(String.format("redirect:/line/user/view/%s", form.getUserId()));
 
 		try {
-			LineUser lineUser = lineUserRepository.save(form.toLineUser());
-			mappingWf8266DetailAndUserRepository.updateAllIsUseFalseByUserId(form.getUserId());
-			mappingWf8266DetailAndUserRepository.saveAll(form.toMappingWf8266DetailAndUser());
+			LineUser lineUser = this.lineUserRepository.save(form.toLineUser());
+			this.mappingWf8266DetailAndUserRepository.updateAllIsUseFalseByUserId(form.getUserId());
+			this.mappingWf8266DetailAndUserRepository.saveAll(form.toMappingWf8266DetailAndUser());
 
 			if (StringUtils.isNotBlank(form.getRichMenuId())) {
-				lineRichMenuService.linkRichMenuToUser(form.getUserId(), form.getRichMenuId());
+				this.lineRichMenuService.linkRichMenuToUser(form.getUserId(), form.getRichMenuId());
 			} else {
-				lineRichMenuService.unlinkRichMenuToUser(form.getUserId());
+				this.lineRichMenuService.unlinkRichMenuToUser(form.getUserId());
 			}
 
 			attr.addFlashAttribute("info_status", String.format("%s 的資料異動成功", lineUser.getUserName()));
 		} catch (RuntimeException ex) {
 			attr.addFlashAttribute("error_status", String.format("資料異動時發生錯誤 : %s", ex.getMessage()));
 		}
-		return model;
-	}
-
-	@GetMapping(value = "/{funcType:[Vv][Ii][Ee][Ww]|[Ee][Dd][Ii][Tt]/{userId}")
-	public ModelAndView redirectViewAndEdit(@PathVariable String funcType, @PathVariable String userId) {
-		model = new ModelAndView(String.format("redirect:/line/user/%s/%s", funcType.toLowerCase(), userId));
 		return model;
 	}
 

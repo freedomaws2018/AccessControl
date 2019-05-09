@@ -9,12 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/admin/menu")
 public class MenuController {
 
-	private ModelAndView model;
-
 	@GetMapping(value = "/edit")
-	private ModelAndView edit() {
-		this.model = new ModelAndView("layout/admin/menu/u_menu");
-		return this.model;
+	private ModelAndView edit(ModelAndView model) {
+		model = new ModelAndView("layout/admin/menu/u_menu");
+		return model;
 	}
 
 }
