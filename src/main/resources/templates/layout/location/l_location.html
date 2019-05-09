@@ -2,15 +2,27 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-  <script type="text/javascript" th:inline="javascript">
-  	console.log([[${locations}]]);
+  <script type="text/javascript">
+  	delete_location = function(id){
+      $.ajax({
+        type: 'DELETE',
+        url: `/location/delete/${id}`,
+        dataType: 'json',
+        success: (result) =>{
+          
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          
+        }
+      });
+  	}
   </script>
   <div class="row">
 	<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
 		<div class="col">
 			<div class="card">
 				<div class="card-header">
-					<span class="glyphicon glyphicon-align-justify"></span>地點列表
+					<span class="glyphicon glyphicon-align-justify"></span>據點列表
 <!-- <pre> -->
 <!-- 是否為空：<span th:text="${locations.empty}"></span> -->
 <!-- 是否為第一頁：<span th:text="${locations.first}"></span> -->
@@ -22,6 +34,7 @@
 <!-- </pre> -->
 				</div>
 				<div class="card-body">
+                  <a class="btn btn-primary" th:href="@{/location/add}">新增</a>
                   <table class="table table-hover table-responsive-sm">
                     <thead class="center">
                       <tr>
@@ -36,7 +49,10 @@
                         <th colspan="4">沒有資料</th>
                       </tr>
                       <tr th:unless="${locations.empty}" th:each="location:${locations}" th:object="${location}">
-                        <th> 修改 | 刪除</th>
+                        <th>
+                          <a class="btn btn-primary" th:href="@{/location/edit/__*{id}__}">修改</a>
+                          <a class="btn btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">刪除</a>
+                        </th>
                         <td>
                           <span th:text="*{name}"></span>
                         </td>
