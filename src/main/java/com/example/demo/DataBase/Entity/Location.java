@@ -44,4 +44,7 @@ public class Location extends BaseEntity {
 
 	@OneToMany(mappedBy = "locationId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Wf8266> wf8266s;
+
+//	@OneToMany(mappedBy = "userId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//	private List<LineUser> lineUsers;
 }
