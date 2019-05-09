@@ -45,8 +45,7 @@ spring:
     password: postgres
 
 logging:
-  path: logs
-  file: log_info.txt
+  file: logs/log_info.txt
   level:
     root: warn
     com.springframework.web: warn
