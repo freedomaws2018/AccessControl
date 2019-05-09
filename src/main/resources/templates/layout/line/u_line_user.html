@@ -30,8 +30,8 @@ $().ready(function(){
   
 });
 </script>
-  <h1><a th:if="${funcType eq 'view'}">LineUser - 檢視</a></h1>
-  <h1><a th:if="${funcType eq 'edit'}">LineUser - 修改</a></h1>
+  <!-- <h1><a th:if="${funcType eq 'view'}">LineUser - 檢視</a></h1> -->
+  <!-- <h1><a th:if="${funcType eq 'edit'}">LineUser - 修改</a></h1> -->
   
   <div th:if="|${funcType eq 'view' and info_status ne null}|" class="alert alert-success" role="alert" th:text="${info_status}"></div>
   <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
@@ -135,7 +135,11 @@ $().ready(function(){
 				      </tbody>
 				      <tfoot th:if="${funcType} == edit">
 				        <tr>
-				          <td colspan="2"><input type="submit" value="送出" /></td>
+				          <td colspan="2">
+				          	<button type="submit" class="btn btn-primary btn-sm">
+				          		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+						  	</button>
+				          </td>
 				        </tr>
 				      </tfoot>
 				    </table>

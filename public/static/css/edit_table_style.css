@@ -25,14 +25,19 @@
 	text-align:center;
 }
 
+.card-body table tfoot span{
+	padding-right:5px;
+}
+
+.card-body table tfoot{
+	text-align:center;
+}
+
 .card-body tr th a span{
 	top:2px;
 	padding-right:5px;
 }
 
-.card-header{
-	display:none;
-}
 .a-btn-first {
 	position: absolute;
 	top: 9px;
