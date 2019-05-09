@@ -10,7 +10,7 @@
 	        $('#sidebarCollapse').on('click', function () {
 	            $('#sidebar').toggleClass('active');
 				$('#sidebarCollapse').toggleClass('active');
-				$('.container').toggleClass('active');
+				$('.container-fluid').toggleClass('active');
 				$('.navbar').toggleClass('active');
 				$('.navbar_sub').toggleClass('active');
 				$('#navbar_title').toggleClass('active');
@@ -82,13 +82,13 @@
 				  			<li>
 							<div class="row">
 								<img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png">
-								<a id="multi" th:href="@{/line/rich_menu/list}">1-2-1. LineRIchMenu列表</a>
+								<a id="multi" th:href="@{/line/rich_menu/list}">1-2-1. LineRichMenu列表</a>
 							</div>
 					 	 	</li>
                			  	<li>
                			  		<div class="row">
 									<img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png">
-									<a id="multi" th:href="@{/line/rich_menu/template/list}">1-2-1. RIchMenu樣式列表</a>
+									<a id="multi" th:href="@{/line/rich_menu/template/list}">1-2-2. RichMenuTemplate</a>
 								</div>
                			  	</li>
 						</ul>

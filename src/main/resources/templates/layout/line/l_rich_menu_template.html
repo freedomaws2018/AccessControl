@@ -23,28 +23,58 @@
 	    });
 	  });
 	</script>
-	<h1>LineRichMenuTemplate - 列表</h1>
-
-  <a th:href="@{/line/rich_menu/template/add}">新增</a>
-
-	<table id="richMenuTable" style="border: 3px #cccccc solid;" cellpadding="10" border='1'>
-		<thead>
-			<tr>
-			 <td>操作</td>
-       <td>樣板名稱</td>
-       <td>樣板圖片</td>
-       <td>創建日期</td>
-			</tr>
-		</thead>
-		<tbody>
-		  <tr th:each="template:${templateList}" th:object="${template}">
-		    <td><a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}">刪除</a></td>
-        <td th:text="*{name}"></td>
-				<td><img width="300" th:src="@{|data:image/jpeg;base64,*{getBase64Image()}|}" /></td>
-				<td th:text="*{createDate}"></td>
-			</tr>
-		</tbody>
-	</table>
+	<!-- <h1>LineRichMenuTemplate - 列表</h1> -->
+	<div class="row">
+		<div class="col">
+			<div class="card">
+				<div class="card-header">
+					<span class="glyphicon glyphicon-align-justify"></span>LineRichMenuTemplate - 列表
+					<a th:href="@{/line/rich_menu/template/add}" class="btn btn-primary btn-sm a-btn-second">新增</a>
+				</div>
+				<div class="card-body">
+					<table class="table table-hover table-responsive-sm">
+						<thead class="center">
+							<tr>
+								<th scope="col">操作</th>
+								<th scope="col">樣板名稱</th>
+								<th scope="col">樣板圖片</th>
+								<th scope="col">創建日期</th>
+							</tr>
+						</thead>
+						<tbody class="center">
+							<tr th:each="template:${templateList}" th:object="${template}">
+								<th scope="row"><a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}" class="btn btn-warning">刪除</a></th>
+								<td th:text="*{name}">姓名</td>
+								<td><img width="300" th:src="@{|data:image/jpeg;base64,*{getBase64Image()}|}" /></td>
+								<td th:text="*{createDate}"></td>
+							</tr>
+						</tbody>
+					</table>
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item">
+								<a class="page-link" href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+									<span class="sr-only">Previous</span>
+								</a>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+									<span class="sr-only">Next</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 

@@ -2,64 +2,97 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-  <h1>WF8266 - 列表</h1>
-
-  <a th:href="@{/wf8266/add}">新增</a>
-  <table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
-    <thead>
-      <tr>
-        <th>操作</th>
-        <th>晶片號碼</th>
-        <th>是否啟用</th>
-        <th>狀態</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:each="wf8266,iterStat:${Wf8266s}">
-        <td>
-          <a th:href="@{/wf8266/view/{wf8266_sn}(wf8266_sn=${wf8266.sn})}">檢視</a>
-          <a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}">修改</a>
-        </td>
-        <td>
-          <span th:text="${wf8266.sn}"></span>
-        </td>
-        <td>
-          <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
-        </td>
-         <td> 
-          <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
-          <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" />
-          <div th:id="|status_${iterStat.index}|" ></div> <!-- 需要一個讀取中的樣式 -->
-          <script th:inline="javascript">
-            reload_[[${iterStat.index}]]();
-            function reload_[[${iterStat.index}]](){
-            	var url = $("#url" + '_' + [[${iterStat.index}]]).val() ;
-            	var status = $("#status_" + [[${iterStat.index}]] );
-              $.ajax({
-                  type: 'GET',
-                  timeout: 2000,
-                  url: url,
-                  async: true,
-                  dataType: "json",
-                  success: (result) => {
-                    if(result.code === 1){
-                      let datas = result.data.Data;
-                      let ip = result.data.LocalIp;
-                      let uuid = result.data.UUID;
-                      status.html(`<span style="color:green;">連線中 </span> ( ${ip} / ${uuid} ) `);
-                    }else{
-                    	status.html(`<span style="color:red;">失去連線</span> (${result.code} / ${result.data}) `);
-                    }
-                  }
-                ,error: function (XMLHttpRequest, textStatus, errorThrown) {
-                	status.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
-                }
-              });
-            }
-          </script>
-        </td> 
-      </tr>
-    </tbody>
-  </table>
+  <!-- <h1>WF8266 - 列表</h1> -->
+	<div class="row">
+		<div class="col">
+			<div class="card">
+				<div class="card-header">
+					<span class="glyphicon glyphicon-align-justify"></span>LineRichMenuTemplate - 列表
+					<a th:href="@{/wf8266/add}" class="btn btn-primary btn-sm a-btn-second">新增</a>
+				</div>
+				<div class="card-body">
+					<table class="table table-hover table-responsive-sm">
+						<thead class="center">
+							<tr>
+								<th scope="col">操作</th>
+								<th scope="col">晶片號碼</th>
+								<th scope="col">是否啟用</th>
+								<th scope="col">狀態</th>
+							</tr>
+						</thead>
+						<tbody class="center">
+							<tr th:each="wf8266,iterStat:${Wf8266s}">
+								<th scope="row">
+									<a th:href="@{/wf8266/view/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-secondary">檢視</a>
+          							<a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-success">修改</a>
+								</th>
+								<td>
+						          <span th:text="${wf8266.sn}"></span>
+						        </td>
+						        <td>
+						          <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
+						        </td>
+				                <td> 
+						          <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
+						          <div class="row">
+						          <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> <!-- 到時候再重畫按鈕 -->
+						          <div th:id="|status_${iterStat.index}|" ></div> <!-- 需要一個讀取中的樣式 -->
+						          <script th:inline="javascript">
+						            reload_[[${iterStat.index}]]();
+						            function reload_[[${iterStat.index}]](){
+						            	var url = $("#url" + '_' + [[${iterStat.index}]]).val() ;
+						            	var status = $("#status_" + [[${iterStat.index}]] );
+						              $.ajax({
+						                  type: 'GET',
+						                  timeout: 2000,
+						                  url: url,
+						                  async: true,
+						                  dataType: "json",
+						                  success: (result) => {
+						                    if(result.code === 1){
+						                      let datas = result.data.Data;
+						                      let ip = result.data.LocalIp;
+						                      let uuid = result.data.UUID;
+						                      status.html(`<span style="color:green;">連線中 </span> ( ${ip} / ${uuid} ) `);
+						                    }else{
+						                    	status.html(`<span style="color:red;">失去連線</span> (${result.code} / ${result.data}) `);
+						                    }
+						                  }
+						                ,error: function (XMLHttpRequest, textStatus, errorThrown) {
+						                	status.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
+						                }
+						              });
+						            }
+						          </script>
+						          </div>
+						        </td>
+							</tr>
+						</tbody>
+					</table>
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item">
+								<a class="page-link" href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+									<span class="sr-only">Previous</span>
+								</a>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+									<span class="sr-only">Next</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
