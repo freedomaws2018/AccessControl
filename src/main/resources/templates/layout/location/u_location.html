@@ -2,6 +2,54 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-
+<!--   <p th:if="${}" th:text=""></p> -->
+  <form th:action="@{/location/save}" method="post">
+    <table th:object="${location}">
+      <tbody>
+        <tr th:if="*{id}">
+          <th>編號</th>
+          <td>
+            <input type="hidden" th:if="${funcType eq 'edit'}" name="id" th:value="*{id}" />
+            <span th:text="*{id}"></span>
+          </td>
+        </tr>
+        <tr>
+          <th>別名</th>
+          <td th:if="${funcType eq 'view'}"><span th:text="*{name}"></span></td>
+          <td th:if="${funcType eq 'edit'}"><input type="text" name="name" th:value="*{name}" /></td>
+        </tr>
+        <tr>
+          <th>地址</th>
+          <td th:if="${funcType eq 'view'}"><span th:text="*{address}"></span></td>
+          <td th:if="${funcType eq 'edit'}"><input type="text" name="address" th:value="*{address}" /></td>
+        </tr>
+        <tr>
+          <th>電話</th>
+          <td th:if="${funcType eq 'view'}"><span th:text="*{phone}"></span></td>
+          <td th:if="${funcType eq 'edit'}"><input type="text" name="phone" th:value="*{phone}" /></td>
+        </tr>
+        <tr>
+          <th>負責人</th>
+          <td th:if="${funcType eq 'view'}"><span th:text="*{keeper}"></span></td>
+          <td th:if="${funcType eq 'edit'}"><input type="text" name="keeper" th:value="*{keeper}" /></td>
+        </tr>
+        <tr>
+          <th>建立時間</th>
+          <td><span th:text="*{createDate}"></span></td>
+        </tr>
+        <tr>
+          <th>最後修改時間</th>
+          <td><span th:text="*{modifyDate}"></span></td>
+        </tr>
+      </tbody>
+      <tfoot th:if="${funcType eq 'edit'}">
+        <tr>
+          <td colspan="2">
+            <input type="submit" />
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
 </body>
 </html>

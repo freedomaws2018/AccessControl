@@ -23,4 +23,16 @@ public class LocationService {
 	public Page<Location> getAll(Pageable pageable) {
 		return this.locationRepository.findAll(pageable);
 	}
+
+	public Location getById(Long id) {
+		return this.locationRepository.findById(id).orElse(null);
+	}
+
+	public Location save(Location location) {
+		return this.locationRepository.save(location);
+	}
+
+	public void delete(Location location) {
+		this.locationRepository.delete(location);
+	}
 }

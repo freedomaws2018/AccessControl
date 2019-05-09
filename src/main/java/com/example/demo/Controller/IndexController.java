@@ -37,6 +37,18 @@ public class IndexController {
 		return model;
 	}
 
+	@GetMapping(value = "/404")
+	public ModelAndView v404(ModelAndView model) {
+		model = new ModelAndView("error/404");
+		return model;
+	}
+
+	@GetMapping(value = "/500")
+	public ModelAndView v500(ModelAndView model) {
+		model = new ModelAndView("error/500");
+		return model;
+	}
+
 	/** Redirect **/
 	@GetMapping(value = "/")
 	public ModelAndView root(ModelAndView model) {

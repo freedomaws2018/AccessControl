@@ -42,6 +42,6 @@ public class Location extends BaseEntity {
 	@Column(name = "keeper")
 	private String keeper;
 
-	@OneToMany(mappedBy = "locationId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "locationId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Wf8266> wf8266s;
 }
