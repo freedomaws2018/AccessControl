@@ -6,8 +6,8 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class RichMenuResponse implements Serializable{
+public class LineRichMenuResponse implements Serializable{
 
-	private List<RichMenu> richmenus;
+	private List<LineRichMenu> richmenus;
 
 }

@@ -17,8 +17,9 @@ import org.hibernate.annotations.TypeDef;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.util.Base64Utils;
 
-import com.example.demo.LineModel.RichMenu.RichMenuArea;
-import com.example.demo.LineModel.RichMenu.RichMenuSize;
+import com.example.demo.LineModel.RichMenu.LineRichMenu;
+import com.example.demo.LineModel.RichMenu.LineRichMenuArea;
+import com.example.demo.LineModel.RichMenu.LineRichMenuSize;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 import lombok.Data;
@@ -48,11 +49,11 @@ public class RichMenu {
 
 	@Type(type = "jsonb")
 	@Column(name = "size", columnDefinition = "jsonb")
-	private RichMenuSize size;
+	private LineRichMenuSize size;
 
 	@Type(type = "jsonb")
 	@Column(name = "areas", columnDefinition = "jsonb")
-	private List<RichMenuArea> areas;
+	private List<LineRichMenuArea> areas;
 
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
@@ -62,7 +63,7 @@ public class RichMenu {
 
 	}
 
-	public RichMenu(com.example.demo.LineModel.RichMenu.RichMenu richMenu) {
+	public RichMenu(LineRichMenu richMenu) {
 		this.setRichMenuId(richMenu.getRichMenuId());
 		this.setName(richMenu.getName());
 		this.setChatBarText(richMenu.getChatBarText());

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.demo.DataBase.Entity.Base.BaseEntity;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

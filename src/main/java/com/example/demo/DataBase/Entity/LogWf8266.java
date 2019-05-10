@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.demo.DataBase.Entity.Base.BaseLogEntity;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,22 +20,22 @@ public class LogWf8266 extends BaseLogEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long seqno;
+	private Long id;
 
 	@Column(name = "user_id", nullable = false)
 	private String userId;
 
 	@Column(name = "wf8266_trigger", nullable = false)
-	private String wf8266trigger;
+	private String wf8266Trigger;
 
 	public LogWf8266() {
 
 	}
 
-	public LogWf8266(String userId, String wf8266trigger) {
+	public LogWf8266(String userId, String wf8266Trigger) {
 		super();
 		this.userId = userId;
-		this.wf8266trigger = wf8266trigger;
+		this.wf8266Trigger = wf8266Trigger;
 	}
 
 }

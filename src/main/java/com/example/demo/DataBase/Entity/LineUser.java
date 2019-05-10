@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.demo.DataBase.Entity.Base.BaseEntity;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,9 +27,6 @@ public class LineUser extends BaseEntity {
 
 	@Column(name = "is_use", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
 	private Boolean isUse = new Boolean(false);
-
-	@Column(name = "is_admin", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
-	private Boolean isAdmin = new Boolean(false);
 
 	@Column(name = "beg_dt")
 	private LocalDateTime begDt;

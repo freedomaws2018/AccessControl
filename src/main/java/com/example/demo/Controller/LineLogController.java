@@ -15,10 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.DataBase.Entity.LineUser;
 import com.example.demo.DataBase.Entity.LogWf8266;
-import com.example.demo.DataBase.Entity.Wf8266Detail;
+import com.example.demo.DataBase.Entity.Wf8266;
 import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.LogWf8266Repository;
-import com.example.demo.DataBase.Repository.Wf8266DetailRepository;
+import com.example.demo.DataBase.Repository.Wf8266Repository;
 
 @Controller
 @RequestMapping(value = "/line/log")
@@ -28,7 +28,7 @@ public class LineLogController {
 	private LineUserRepository lineUserRepository;
 
 	@Autowired
-	private Wf8266DetailRepository wf8266DetailRepository;
+	private Wf8266Repository wf8266Repository;
 
 	@Autowired
 	private LogWf8266Repository logwf8266Repostory;
@@ -40,15 +40,13 @@ public class LineLogController {
 		Page<LogWf8266> logWf8266s = this.logwf8266Repostory.findAll(pageable);
 		Map<String, String> userMap = this.lineUserRepository.findAll().stream()
 		    .collect(Collectors.toMap(LineUser::getUserId, LineUser::getUserName));
-		Map<String, String> wdMap = this.wf8266DetailRepository.findAll().stream()
-		    .collect(Collectors.toMap(d -> "##" + d.getTriggerText(), Wf8266Detail::getName));
+		Map<String, String> wdMap = this.wf8266Repository.findAll().stream()
+		    .collect(Collectors.toMap(d -> "##" + d.getTriggerText(), Wf8266::getName));
 
 		model.addObject("logWf8266s", logWf8266s);
 		model.addObject("userMap", userMap);
 		model.addObject("wf8266DetailMap", wdMap);
 		return model;
 	}
-
-	/** Redirect **/
 
 }

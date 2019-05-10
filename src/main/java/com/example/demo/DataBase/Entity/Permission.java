@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.example.demo.DataBase.Entity.Base.BaseEntity;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -35,9 +37,6 @@ public class Permission extends BaseEntity {
 
 	@Column(name = "is_use")
 	private Boolean isUse;
-
-	@Column(name = "is_default")
-	private Boolean isDefault;
 
 	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<PermissionDetail> detail;

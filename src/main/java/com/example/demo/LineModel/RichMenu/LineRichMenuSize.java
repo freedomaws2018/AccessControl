@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class RichMenuSize implements Serializable{
+public class LineRichMenuSize implements Serializable{
 
 	private Integer width;
 

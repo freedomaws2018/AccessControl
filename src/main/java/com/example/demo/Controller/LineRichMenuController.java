@@ -37,8 +37,8 @@ import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.RichMenuRepository;
 import com.example.demo.DataBase.Repository.RichMenuTemplateRepository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
-import com.example.demo.LineModel.RichMenu.RichMenuArea;
-import com.example.demo.LineModel.RichMenu.RichMenuResponse;
+import com.example.demo.LineModel.RichMenu.LineRichMenuArea;
+import com.example.demo.LineModel.RichMenu.LineRichMenuResponse;
 import com.google.gson.Gson;
 
 @Controller
@@ -119,7 +119,7 @@ public class LineRichMenuController {
 
 		// 0.2 透過 TemplateId 取出樣式
 		RichMenuTemplate template = this.richMenuTemplateRepository.findById(templateId).orElse(null);
-		String templateJson = template.getTemplate();
+		String templateJson = template.getTemplateJson();
 
 		/** 1. 發送資料至 LINE Service 建立 RichMenu **/
 		// 1.1 寫入名稱
@@ -148,7 +148,7 @@ public class LineRichMenuController {
 		}
 
 		RichMenu richMenu = new Gson().fromJson(templateJson, RichMenu.class);
-		List<RichMenuArea> richMenuAreas = richMenu.getAreas().stream()
+		List<LineRichMenuArea> richMenuAreas = richMenu.getAreas().stream()
 		    .filter(area -> StringUtils.isNotBlank(area.getAction().getData())).collect(Collectors.toList());
 		richMenu.setAreas(richMenuAreas);
 		templateJson = new Gson().toJson(richMenu);
@@ -221,7 +221,7 @@ public class LineRichMenuController {
 	/** getRichMenuList & downloadImage 寫入資料庫 **/
 	@PostMapping(value = "/ajax/getRichMenuDataOnLineServer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> ajaxGetRichMenuDataOnLineServer() {
-		RichMenuResponse response1 = this.lineRichMenuService.getRichMenuList();
+		LineRichMenuResponse response1 = this.lineRichMenuService.getRichMenuList();
 		List<RichMenu> richMenus = response1.getRichmenus().stream().map(rm -> {
 			RichMenu richMenu = new RichMenu(rm);
 			richMenu.setImage(this.lineRichMenuService.downloadImage(richMenu.getRichMenuId()));

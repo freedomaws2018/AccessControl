@@ -12,17 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.example.demo.Common.HttpUtils;
 import com.example.demo.DataBase.Entity.LineUser;
-import com.example.demo.DataBase.Entity.LogWf8266;
-import com.example.demo.DataBase.Entity.MappingWf8266DetailAndUser;
 import com.example.demo.DataBase.Entity.RichMenu;
-import com.example.demo.DataBase.Entity.Wf8266Detail;
 import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.LogWf8266Repository;
-import com.example.demo.DataBase.Repository.MappingWf8266DetailAndUserRepository;
+import com.example.demo.DataBase.Repository.MappingWf8266AndLineUserRepository;
 import com.example.demo.DataBase.Repository.RichMenuRepository;
-import com.example.demo.DataBase.Repository.Wf8266DetailRepository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.linecorp.bot.client.LineMessagingClient;
@@ -56,10 +51,7 @@ public class LineBotApplication {
 	private Wf8266Repository wf8266Repository;
 
 	@Autowired
-	private Wf8266DetailRepository wf8266DetailRepository;
-
-	@Autowired
-	private MappingWf8266DetailAndUserRepository mappingWf8266DetailAndUserRepository;
+	private MappingWf8266AndLineUserRepository mappingWf8266AndLineUserRepository;
 
 	@Autowired
 	private RichMenuRepository richMenuRepository;
@@ -125,26 +117,20 @@ public class LineBotApplication {
 		}
 	}
 
-//	@EventMapping
-//	public void handleTextMessageEvent(MessageEvent<MessageContent> event) {
-//		// 1. 取得 Message 類別
-//		MessageContent message = event.getMessage();
-//		// 2. 確認 Message 種類 ( 只處理 文字類 <TextMessageContext> )
-//		try {
-//			if (message instanceof TextMessageContent) {
-//				String replyToken = event.getReplyToken();
-//				String userId = event.getSource().getUserId();
-//				String text = ((TextMessageContent) event.getMessage()).getText();
-//				List<String> triggerTexts = Arrays.asList(text.split(","));
-//				wf8266Handle(replyToken, userId, triggerTexts);
-//			}
-//		} catch (Exception ex) {
-//			logger.error(ex.getMessage());
-//		}
-//	}
+	/*
+	 * @EventMapping public void handleTextMessageEvent(MessageEvent<MessageContent>
+	 * event) { // 1. 取得 Message 類別 MessageContent message = event.getMessage(); //
+	 * 2. 確認 Message 種類 ( 只處理 文字類 <TextMessageContext> ) try { if (message
+	 * instanceof TextMessageContent) { String replyToken = event.getReplyToken();
+	 * String userId = event.getSource().getUserId(); String text =
+	 * ((TextMessageContent) event.getMessage()).getText(); List<String>
+	 * triggerTexts = Arrays.asList(text.split(",")); wf8266Handle(replyToken,
+	 * userId, triggerTexts); } } catch (Exception ex) {
+	 * logger.error(ex.getMessage()); } }
+	 */
 
 	private void wf8266Handle(String replyToken, String userId, List<String> triggerTexts) {
-		System.err.println(triggerTexts);
+//		System.err.println(triggerTexts);
 		// 指令開頭過濾，指令開頭均為 #
 		List<String> triggerTexts1 = triggerTexts.stream().filter(triggerText -> triggerText.matches("^#.*"))
 				.map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
@@ -171,35 +157,35 @@ public class LineBotApplication {
 			}
 		}
 
-		if (!triggerTexts2.isEmpty()) {
-			List<Wf8266Detail> wDetails = this.wf8266DetailRepository.getByTriggerTextInAndIsUseTrue(triggerTexts2);
-
-			if (wDetails != null && !wDetails.isEmpty()) {
-				//
-				List<MappingWf8266DetailAndUser> mappingWdUs = this.mappingWf8266DetailAndUserRepository
-						.getByIsUseTrueAndUserIdAndTriggerTextIn(userId,
-								wDetails.stream().map(Wf8266Detail::getTriggerText).collect(Collectors.toList()));
-
-				if (wDetails.size() == mappingWdUs.size()) { // 所以指令均有權限
-					wDetails.stream().map(Wf8266Detail::getTriggerUrl).forEach(HttpUtils::doGet);
-					List<String> replys = wDetails.stream().map(Wf8266Detail::getReply).collect(Collectors.toList());
-//					System.err.println(lineUser.getUserName() + ":" + String.join("\r\n", replys));
-
-					new Thread(() -> {
-						triggerTexts.forEach(triggerText -> {
-							this.loggerWf8266Repository.save(new LogWf8266(userId, triggerText));
-						});
-					}).start();
-
-					logger.info("【指令】 " + lineUser.getUserName() + ":" + String.join("\r\n", replys));
-					this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage(String.join("\r\n", replys))));
-				} else {
-					this.doReplyMessage(new ReplyMessage(replyToken,
-							new TextMessage(mappingWdUs.isEmpty() ? "權限不足!!" : "部分權限不足!!")));
-				}
-			}
-			return;
-		}
+//		if (!triggerTexts2.isEmpty()) {
+//			List<Wf8266Detail> wDetails = this.wf8266DetailRepository.getByTriggerTextInAndIsUseTrue(triggerTexts2);
+//
+//			if (wDetails != null && !wDetails.isEmpty()) {
+//				//
+//				List<MappingWf8266DetailAndUser> mappingWdUs = this.mappingWf8266DetailAndUserRepository
+//						.getByIsUseTrueAndUserIdAndTriggerTextIn(userId,
+//								wDetails.stream().map(Wf8266Detail::getTriggerText).collect(Collectors.toList()));
+//
+//				if (wDetails.size() == mappingWdUs.size()) { // 所以指令均有權限
+//					wDetails.stream().map(Wf8266Detail::getTriggerUrl).forEach(HttpUtils::doGet);
+//					List<String> replys = wDetails.stream().map(Wf8266Detail::getReply).collect(Collectors.toList());
+////					System.err.println(lineUser.getUserName() + ":" + String.join("\r\n", replys));
+//
+//					new Thread(() -> {
+//						triggerTexts.forEach(triggerText -> {
+//							this.loggerWf8266Repository.save(new LogWf8266(userId, triggerText));
+//						});
+//					}).start();
+//
+//					logger.info("【指令】 " + lineUser.getUserName() + ":" + String.join("\r\n", replys));
+//					this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage(String.join("\r\n", replys))));
+//				} else {
+//					this.doReplyMessage(new ReplyMessage(replyToken,
+//							new TextMessage(mappingWdUs.isEmpty() ? "權限不足!!" : "部分權限不足!!")));
+//				}
+//			}
+//			return;
+//		}
 
 		if (!triggerTexts3.isEmpty()) {
 			String triggerText = triggerTexts3.get(0);

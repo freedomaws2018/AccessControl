@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Common.HttpUtils;
 import com.example.demo.DataBase.Repository.RichMenuRepository;
-import com.example.demo.LineModel.RichMenu.RichMenu;
-import com.example.demo.LineModel.RichMenu.RichMenuResponse;
+import com.example.demo.LineModel.RichMenu.LineRichMenu;
+import com.example.demo.LineModel.RichMenu.LineRichMenuResponse;
 import com.google.gson.Gson;
 
 @Service
@@ -25,10 +25,10 @@ public class LineRichMenuService {
 
 	private final static String getRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
 
-	public RichMenu getRichMenu(String richMenuId) {
+	public LineRichMenu getRichMenu(String richMenuId) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-		RichMenu response = HttpUtils.doGet(headers, getRichMenuUrl.replace(":richMenuId", richMenuId), RichMenu.class);
+		LineRichMenu response = HttpUtils.doGet(headers, getRichMenuUrl.replace(":richMenuId", richMenuId), LineRichMenu.class);
 		return response;
 	}
 
@@ -46,10 +46,10 @@ public class LineRichMenuService {
 
 	private final static String getRichMenuListUrl = "https://api.line.me/v2/bot/richmenu/list";
 
-	public RichMenuResponse getRichMenuList() {
+	public LineRichMenuResponse getRichMenuList() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-		RichMenuResponse response = HttpUtils.doGet(headers, getRichMenuListUrl, RichMenuResponse.class);
+		LineRichMenuResponse response = HttpUtils.doGet(headers, getRichMenuListUrl, LineRichMenuResponse.class);
 		return response;
 	}
 

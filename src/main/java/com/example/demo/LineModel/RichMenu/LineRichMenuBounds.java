@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class RichMenuBounds implements Serializable{
+public class LineRichMenuBounds implements Serializable{
 	private Integer x;
 
 	private Integer y;

@@ -22,13 +22,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Controller.FormEntity.FormLineUser;
 import com.example.demo.DataBase.Entity.LineUser;
-import com.example.demo.DataBase.Entity.MappingWf8266DetailAndUser;
+import com.example.demo.DataBase.Entity.Mapping.MappingWf8266AndLineUser;
 import com.example.demo.DataBase.Repository.LineUserRepository;
-import com.example.demo.DataBase.Repository.MappingWf8266DetailAndUserRepository;
-import com.example.demo.DataBase.Repository.Wf8266DetailRepository;
+import com.example.demo.DataBase.Repository.MappingWf8266AndLineUserRepository;
+import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
-import com.example.demo.LineModel.RichMenu.RichMenu;
-import com.example.demo.LineModel.RichMenu.RichMenuResponse;
+import com.example.demo.LineModel.RichMenu.LineRichMenu;
+import com.example.demo.LineModel.RichMenu.LineRichMenuResponse;
 
 @Controller
 @RequestMapping(value = "/line/user")
@@ -38,17 +38,17 @@ public class LineUserController {
 	private LineUserRepository lineUserRepository;
 
 	@Autowired
-	private Wf8266DetailRepository wf8266DetailRepository;
+	private Wf8266Repository wf8266Repository;
 
 	@Autowired
-	private MappingWf8266DetailAndUserRepository mappingWf8266DetailAndUserRepository;
+	private MappingWf8266AndLineUserRepository mappingWf8266AndLineUserRepository;
 
 	@Autowired
 	private LineRichMenuService lineRichMenuService;
 
 	@GetMapping(value = "/list")
-	public ModelAndView list(ModelAndView model,
-			@PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.ASC) Pageable pageable) {
+	public ModelAndView list(ModelAndView model, @PageableDefault(page = 0, size = 10, sort = {
+			"createDate" }, direction = Direction.ASC) Pageable pageable) {
 		model = new ModelAndView("layout/line/l_line_user");
 		Page<LineUser> users = this.lineUserRepository.findAll(pageable);
 		model.addObject("Users", users);
@@ -56,33 +56,33 @@ public class LineUserController {
 	}
 
 	@GetMapping(value = "/{funcType:view|edit}/{userId}")
-	public ModelAndView viewAndEdit(ModelAndView model,@PathVariable String funcType, @PathVariable String userId) {
+	public ModelAndView viewAndEdit(ModelAndView model, @PathVariable String funcType, @PathVariable String userId) {
 		model = new ModelAndView("layout/line/u_line_user");
 
-		List<String> allTriggerTexts = this.mappingWf8266DetailAndUserRepository.getByUserId(userId).stream()
-		    .filter(MappingWf8266DetailAndUser::getIsUse).map(MappingWf8266DetailAndUser::getTriggerText)
-		    .collect(Collectors.toList());
+		List<String> allTriggerTexts = this.mappingWf8266AndLineUserRepository.getByLineUserId(userId).stream()
+				.filter(MappingWf8266AndLineUser::getIsUse).map(MappingWf8266AndLineUser::getWf8266Id)
+				.collect(Collectors.toList());
 
 		model.addObject("funcType", funcType);
 		model.addObject("User", this.lineUserRepository.findById(userId).orElse(null));
 		model.addObject("groupBySnDetails", //
-		    this.wf8266DetailRepository.findAll().stream().map(detail -> {
-			    detail.setIsUse(allTriggerTexts.contains(detail.getTriggerText()));
-			    return detail;
-		    }).collect(Collectors.groupingBy(detail -> detail.getSn())) //
+				this.wf8266Repository.findAll().stream().map(detail -> {
+					detail.setIsUse(allTriggerTexts.contains(detail.getTriggerText()));
+					return detail;
+				}).collect(Collectors.groupingBy(detail -> detail.getSn())) //
 		);
 
 		try {
 			String richMenuId = this.lineRichMenuService.getRichMenuIdLinkToUser(userId);
-			RichMenu richMenu = this.lineRichMenuService.getRichMenu(richMenuId);
+			LineRichMenu richMenu = this.lineRichMenuService.getRichMenu(richMenuId);
 			model.addObject("richMenu", richMenu);
 		} catch (Exception ex) {
-			model.addObject("richMenu", new RichMenu());
+			model.addObject("richMenu", new LineRichMenu());
 		}
 
 		if ("edit".equals(funcType)) {
-			RichMenuResponse response = this.lineRichMenuService.getRichMenuList();
-			List<RichMenu> allRichMenu = response.getRichmenus();
+			LineRichMenuResponse response = this.lineRichMenuService.getRichMenuList();
+			List<LineRichMenu> allRichMenu = response.getRichmenus();
 			model.addObject("allRichMenu", allRichMenu);
 
 		}
@@ -94,9 +94,9 @@ public class LineUserController {
 	public ResponseEntity<Object> delete(@PathVariable String lineUserId) {
 		this.lineUserRepository.deleteById(lineUserId);
 
-		List<MappingWf8266DetailAndUser> allMapping = this.mappingWf8266DetailAndUserRepository.getByUserId(lineUserId);
+		List<MappingWf8266AndLineUser> allMapping = this.mappingWf8266AndLineUserRepository.getByLineUserId(lineUserId);
 		if (allMapping != null && !allMapping.isEmpty()) {
-			this.mappingWf8266DetailAndUserRepository.deleteAll(allMapping);
+			this.mappingWf8266AndLineUserRepository.deleteAll(allMapping);
 		}
 
 		return new ResponseEntity<>(null, HttpStatus.OK);
@@ -105,13 +105,13 @@ public class LineUserController {
 	/** Redirect **/
 
 	@RequestMapping(value = "/save")
-	public ModelAndView save(ModelAndView model,FormLineUser form, RedirectAttributes attr) {
+	public ModelAndView save(ModelAndView model, FormLineUser form, RedirectAttributes attr) {
 		model = new ModelAndView(String.format("redirect:/line/user/view/%s", form.getUserId()));
 
 		try {
 			LineUser lineUser = this.lineUserRepository.save(form.toLineUser());
-			this.mappingWf8266DetailAndUserRepository.updateAllIsUseFalseByUserId(form.getUserId());
-			this.mappingWf8266DetailAndUserRepository.saveAll(form.toMappingWf8266DetailAndUser());
+			this.mappingWf8266AndLineUserRepository.updateAllIsUseFalseByLineUserId(form.getUserId());
+			this.mappingWf8266AndLineUserRepository.saveAll(form.toMappingWf8266DetailAndUser());
 
 			if (StringUtils.isNotBlank(form.getRichMenuId())) {
 				this.lineRichMenuService.linkRichMenuToUser(form.getUserId(), form.getRichMenuId());

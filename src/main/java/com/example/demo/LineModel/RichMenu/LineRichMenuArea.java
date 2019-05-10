@@ -5,12 +5,12 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class RichMenuArea implements Serializable{
+public class LineRichMenuArea implements Serializable{
 
 	private static final long serialVersionUID = 1419137717186476934L;
 
-	private RichMenuBounds bounds;
+	private LineRichMenuBounds bounds;
 
-	private RichMenuActoin action;
+	private LineRichMenuActoin action;
 
 }

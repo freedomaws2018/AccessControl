@@ -13,7 +13,11 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
+
+import com.example.demo.LineModel.RichMenu.LineRichMenu;
+import com.google.gson.Gson;
 
 import lombok.Data;
 
@@ -31,7 +35,6 @@ public class RichMenuTemplate {
 	@Column(name = "create_date", nullable = false, updatable = false)
 	private LocalDateTime createDate = LocalDateTime.now();
 
-
 	@Column(name = "name")
 	private String name;
 
@@ -39,14 +42,19 @@ public class RichMenuTemplate {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
 
-	@Column(name = "template", columnDefinition = "TEXT")
-	private String template;
+	@Type(type = "jsonb")
+	@Column(name = "template", columnDefinition = "jsonb")
+	private LineRichMenu template;
 
 	@Column(name = "size")
 	private Integer size;
 
+	public String getTemplateJson() {
+		return new Gson().toJson(this.template);
+	}
+
 	public String getBase64Image() {
-		return Base64.encodeBase64String(image);
+		return Base64.encodeBase64String(this.image);
 	}
 
 }

@@ -6,7 +6,9 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class RichMenu implements Serializable{
+public class LineRichMenu implements Serializable{
+
+	private static final long serialVersionUID = 905184618007304420L;
 
 	private String richMenuId;
 
@@ -16,8 +18,8 @@ public class RichMenu implements Serializable{
 
 	private Boolean selected;
 
-	private RichMenuSize size;
+	private LineRichMenuSize size;
 
-	private List<RichMenuArea> areas;
+	private List<LineRichMenuArea> areas;
 
 }

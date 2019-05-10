@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.example.demo.DataBase.Entity.Base.BaseEntity;
+import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeAndLocation;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -39,12 +42,13 @@ public class Location extends BaseEntity {
 	private String phone;
 
 	/** 負責人 - 對應 Employee **/
-	@Column(name = "keeper")
-	private String keeper;
+	@OneToMany(mappedBy = "locationId" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<MappingEmployeeAndLocation> keepers;
 
-	@OneToMany(mappedBy = "locationId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	/** 對應的設備 **/
+	@OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Wf8266> wf8266s;
 
-//	@OneToMany(mappedBy = "userId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-//	private List<LineUser> lineUsers;
+//	@OneToMany(mappedBy = "lineuser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<MappingLineUserAndLocation> lineusers;
 }
