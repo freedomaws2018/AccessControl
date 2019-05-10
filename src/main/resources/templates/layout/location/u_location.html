@@ -2,54 +2,109 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-<!--   <p th:if="${}" th:text=""></p> -->
   <form th:action="@{/location/save}" method="post">
-    <table th:object="${location}">
-      <tbody>
-        <tr th:if="*{id}">
-          <th>編號</th>
-          <td>
-            <input type="hidden" th:if="${funcType eq 'edit'}" name="id" th:value="*{id}" />
-            <span th:text="*{id}"></span>
-          </td>
-        </tr>
-        <tr>
-          <th>別名</th>
-          <td th:if="${funcType eq 'view'}"><span th:text="*{name}"></span></td>
-          <td th:if="${funcType eq 'edit'}"><input type="text" name="name" th:value="*{name}" /></td>
-        </tr>
-        <tr>
-          <th>地址</th>
-          <td th:if="${funcType eq 'view'}"><span th:text="*{address}"></span></td>
-          <td th:if="${funcType eq 'edit'}"><input type="text" name="address" th:value="*{address}" /></td>
-        </tr>
-        <tr>
-          <th>電話</th>
-          <td th:if="${funcType eq 'view'}"><span th:text="*{phone}"></span></td>
-          <td th:if="${funcType eq 'edit'}"><input type="text" name="phone" th:value="*{phone}" /></td>
-        </tr>
-        <tr>
-          <th>負責人</th>
-          <td th:if="${funcType eq 'view'}"><span th:text="*{keeper}"></span></td>
-          <td th:if="${funcType eq 'edit'}"><input type="text" name="keeper" th:value="*{keeper}" /></td>
-        </tr>
-        <tr>
-          <th>建立時間</th>
-          <td><span th:text="*{createDate}"></span></td>
-        </tr>
-        <tr>
-          <th>最後修改時間</th>
-          <td><span th:text="*{modifyDate}"></span></td>
-        </tr>
-      </tbody>
-      <tfoot th:if="${funcType eq 'edit'}">
-        <tr>
-          <td colspan="2">
-            <input type="submit" />
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+  
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <span class="glyphicon glyphicon-align-justify"></span>據點修改
+            </div>
+            <div class="card-body">
+    
+              <table th:object="${location}">
+                <tbody>
+                  <tr th:if="*{id}">
+                    <th>編號</th>
+                    <td>
+                      <input type="hidden" th:if="${funcType eq 'edit'}" name="id" th:value="*{id}" />
+                      <span th:text="*{id}"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>別名</th>
+                    <td th:if="${funcType eq 'view'}"><span th:text="*{name}"></span></td>
+                    <td th:if="${funcType eq 'edit'}"><input type="text" name="name" th:value="*{name}" /></td>
+                  </tr>
+                  <tr>
+                    <th>地址</th>
+                    <td th:if="${funcType eq 'view'}"><span th:text="*{address}"></span></td>
+                    <td th:if="${funcType eq 'edit'}"><input type="text" name="address" th:value="*{address}" /></td>
+                  </tr>
+                  <tr>
+                    <th>電話</th>
+                    <td th:if="${funcType eq 'view'}"><span th:text="*{phone}"></span></td>
+                    <td th:if="${funcType eq 'edit'}"><input type="text" name="phone" th:value="*{phone}" /></td>
+                  </tr>
+                  <tr>
+                    <th>負責人</th>
+          <!--           <td th:if="${funcType eq 'view'}"><span th:text="*{keeper}"></span></td> -->
+          <!--           <td th:if="${funcType eq 'edit'}"><input type="text" name="keeper" th:value="*{keeper}" /></td> -->
+                  </tr>
+                  <tr>
+                    <th>建立時間</th>
+                    <td><span th:text="*{createDate}"></span></td>
+                  </tr>
+                  <tr>
+                    <th>最後修改時間</th>
+                    <td><span th:text="*{modifyDate}"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <span class="glyphicon glyphicon-align-justify"></span>物聯網晶片管理
+            </div>
+            <div class="card-body">
+              
+              <table>
+                <thead>
+                  <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+<!--     <div class="row"> -->
+<!--       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> -->
+<!--         <div class="col"> -->
+<!--           <div class="card"> -->
+<!--             <div class="card-header"> -->
+<!--               <span class="glyphicon glyphicon-align-justify"></span>據點修改 -->
+<!--             </div> -->
+<!--             <div class="card-body"> -->
+<!--               123 -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+  
+  
+    <div th:if="${funcType eq 'edit'}">
+      <input type="submit" />
+    </div>
   </form>
 </body>
 </html>

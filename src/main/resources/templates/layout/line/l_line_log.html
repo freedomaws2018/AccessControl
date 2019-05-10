@@ -78,15 +78,15 @@
                   <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss.SSS')}"></span>
                 </th>
                 <td>
-                  <span th:text="${userMap[log.userId]}"></span>
+                  <span th:text="${log.lineUser?.userName}"></span>
                 </td>
                 <td>
-                  <span  th:text="${wf8266DetailMap[log.wf8266trigger]}"></span>
+                  <span  th:text="${log.wf8266?.name}"></span>
                 </td>
               </tr>
             </tbody>
           </table>
-          <div th:if="${logWf8266s.totalPages ne 1}" >
+          <div th:if="${logWf8266s.totalPages ge 1}" >
             <div th:replace="~{comm/page :: page01(entity=${logWf8266s})}"></div>
           </div>
         </div>

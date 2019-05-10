@@ -43,7 +43,10 @@
 							</tr>
 						</thead>
 						<tbody class="center">
-							<tr th:each="user,itemStar:${Users}">
+                            <tr>
+                              <th th:if="${Users.empty}" colspan="6">沒有資料</th>
+                            </tr>
+							<tr th:unless="${Users.empty}" th:each="user,itemStar:${Users}">
 								<th scope="row">
 						          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success btn-sm">
 						          	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
@@ -70,7 +73,7 @@
 							</tr>
 						</tbody>
 					</table>
-                    <div th:if="${Users.totalPages ne 1}" >
+                    <div th:if="${Users.totalPages gt 1}" >
                       <div th:replace="~{comm/page :: page01(entity=${Users})}"></div>
                     </div>
 				</div>

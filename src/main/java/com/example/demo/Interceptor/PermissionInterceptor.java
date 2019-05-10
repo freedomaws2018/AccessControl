@@ -3,12 +3,9 @@ package com.example.demo.Interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import com.example.demo.DataBase.Repository.EmployeeRepository;
 
 @Component
 public class PermissionInterceptor extends HandlerInterceptorAdapter {
@@ -16,8 +13,8 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 //	@Autowired
 //	private JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+//	@Autowired
+//	private EmployeeRepository employeeRepository;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -33,10 +30,10 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 		System.err.println("=================== postHandle =================== ");
 
 		// 首次登入系統 驗證
-		Long empCount = this.employeeRepository.count();
-		if(empCount == 0) {
-			response.sendRedirect("/register");
-		}
+//		Long empCount = this.employeeRepository.count();
+//		if(empCount == 0) {
+//			response.sendRedirect("/register");
+//		}
 
 		// 登入驗證
 		Boolean is_login = false;

@@ -1,17 +1,14 @@
 package com.example.demo.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.DataBase.Repository.EmployeeRepository;
-
 @Controller
 public class IndexController {
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+//	@Autowired
+//	private EmployeeRepository employeeRepository;
 
 	@GetMapping(value = "/index")
 	public ModelAndView index(ModelAndView model) {
@@ -26,16 +23,16 @@ public class IndexController {
 		return model;
 	}
 
-	@GetMapping(value = "/register")
-	public ModelAndView adminRegister(ModelAndView model) {
-		Long empCount = this.employeeRepository.count();
-		if (empCount == 0) {
-			model = new ModelAndView("comm/admin_register");
-		} else {
-			model = new ModelAndView("redirect:/index");
-		}
-		return model;
-	}
+//	@GetMapping(value = "/register")
+//	public ModelAndView adminRegister(ModelAndView model) {
+//		Long empCount = this.employeeRepository.count();
+//		if (empCount == 0) {
+//			model = new ModelAndView("comm/admin_register");
+//		} else {
+//			model = new ModelAndView("redirect:/index");
+//		}
+//		return model;
+//	}
 
 	@GetMapping(value = "/404")
 	public ModelAndView v404(ModelAndView model) {

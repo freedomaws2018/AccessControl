@@ -32,7 +32,7 @@
                         <th scope="col">操作</th>
                         <th scope="col">名稱</th>
                         <th scope="col">地址</th>
-                        <th scope="col">管理員</th>
+                        <th scope="col">負責人</th>
                       </tr>
                     </thead>
                     <tbody class="center">
@@ -51,12 +51,12 @@
                           <span th:text="*{address}"></span>
                         </td>
                         <td>
-                          <span th:text="*{keeper}"></span>
+                          <span th:text="*{keepers}"></span>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                  <div th:if="${locations.totalPages ne 1}" >
+                  <div th:if="${locations.totalPages ge 1}" >
                     <div th:replace="~{comm/page :: page01(entity=${locations})}"></div>
                   </div>
                 </div>

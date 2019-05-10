@@ -97,7 +97,7 @@ public class LineRichMenuController {
 
 	@PostMapping("/save")
 	public ModelAndView save(ModelAndView model,@Valid FormRichMenu form, BindingResult result) throws IOException {
-		model = new ModelAndView("redirect:/line/rich_menu/list/1");
+		model = new ModelAndView("redirect:/line/rich_menu/list");
 
 		/** 0. 獲取存檔所需資料 **/
 		// 0.1 確認驗證結果

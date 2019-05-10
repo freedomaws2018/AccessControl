@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.example.demo.DataBase.Entity.Base.BaseLogEntity;
 
@@ -27,6 +28,12 @@ public class LogWf8266 extends BaseLogEntity {
 
 	@Column(name = "wf8266_trigger", nullable = false)
 	private String wf8266Trigger;
+
+	@Transient
+	private LineUser lineUser;
+
+	@Transient
+	private Wf8266 wf8266;
 
 	public LogWf8266() {
 
