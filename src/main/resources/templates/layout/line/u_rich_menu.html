@@ -99,16 +99,21 @@
 	  
   });
   </script>
-  <pre>
-1. 圖片大小，小於 1Mb。
-2. 沒有功能的視窗，就不選擇。
-3. 選單名稱不得重複。
-4. 選單圖片尺寸必須為 (2500*843或2500*1686)
-5. 動作->切換頁面，轉跳的頁面，是以選單名稱切換，若找不到頁面，則切換無效。
-  </pre>
+<div class="card border-info col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" style="border:3px #DCDCDC solid;">
+  <div class="card-body text-info">
+    <h5 class="card-text">
+    1. 圖片大小，小於 1Mb。<br>
+    2. 沒有功能的視窗，就不選擇。<br>
+    3. 選單名稱不得重複。<br>
+    4. 選單圖片尺寸必須為 (2500*843或2500*1686)<br>
+    5. 動作->切換頁面，轉跳的頁面，是以選單名稱切換，若找不到頁面，則切換無效。
+    </h5>
+  </div>
+</div>
   <form th:action="@{/line/rich_menu/save}" enctype="Multipart/Form-Data" method="post">
     <input th:if="${funcType eq 'edit'}" type="hidden" name="oldRichMenuId" th:value="${richMenu.richMenuId}" />
-	  <table class="table table-bordered">
+    <div class="card-body">
+	  <table class="table table-responsive-sm">
       <tbody>
         <tr>
           <th><span>*</span>選單名稱：</th>
@@ -148,11 +153,12 @@
 	  
 	    </tbody>
 	  </table>
+	  </div>
 	  <input type="submit" />
   </form>
-  <div id="template_image_view" > <!-- rowspan="3"  style="position:relative; height:400px; left:350px; " -->
-    <img style=" z-index:1; top:0px; left:0px; width:500px; " id="image_output" /> <!-- position:absolute; -->
-    <img style=" z-index:2; top:0px; left:0px; width:500px;" id="image_style" />
+  <div id="template_image_view" style="height:200px;"> <!-- rowspan="3"  style="position:relative; height:400px; left:350px; " -->
+    <img style=" position:absolute; bottom:10px; width:500px; " id="image_output" /> <!-- position:absolute; -->
+    <img style=" position:absolute; bottom:10px; width:500px;" id="image_style" />
   </div>
 </body>
 </html>
