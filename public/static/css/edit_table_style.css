@@ -62,20 +62,13 @@
 	width:100%
 }
 
-.table tbody a{
-	
-}
-
 .center{
 	text-align:center;
 }
 
-.table tbody th{
-	line-height:30px;
-}
-
-.table tbody td{
-	line-height:30px;
+.table tbody th, .table tbody td{
+    display: table-cell;
+    vertical-align: inherit;
 }
 
 .card-body .btn-warning {
