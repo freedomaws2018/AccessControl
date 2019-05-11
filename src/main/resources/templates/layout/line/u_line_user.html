@@ -17,48 +17,6 @@
   
   <form th:action="@{/line/user/save}" method="post">
 
-  <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> <div class="col">
-  <div class="card">
-  	<div class="card-header">
-  		<span class="glyphicon glyphicon-align-justify"></span>
-  		<a th:if="${funcType eq 'view'}">LineUser - 檢視</a>
-  			<a th:if="${funcType eq 'edit'}">LineUser - 修改</a> 
-  			<a th:if="${funcType eq 'view'}" th:href="@{/line/user/edit/{userId}(userId=${User.userId})}" class="btn btn-success btn-sm a-btn-second">
-  				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-  			</a>
-  	</div>
-  	<div class="card-body">
-  	    <table class="table table-responsive-sm">
-  	      <tbody>
-  	        <tr>
-  	          <th>使用者編號</th>
-  	          <td>
-  	            <input type="hidden" name="userId" th:value="${User.userId}" />
-  	            <span th:text="${User.userId}">UserId</span>
-  	          </td>
-  	        </tr>
-  	      
-  	        <tr>
-  	          <th>使用者名稱</th>
-  	          <td th:if="${funcType} == view"><span th:text="${User.userName}"></span></td>
-  	          <td th:if="${funcType} == edit"><input name="userName" th:value="${User.userName}" /></td>
-  	        </tr>
-  	      
-  	        <tr>
-  	          <th>是否啟用</th>
-  	          <td th:if="${funcType} == view"><span th:text="${User.isUse ? '是' : '否' }"></span></td>
-  	          <td th:if="${funcType} == edit">
-  	            <input type="radio" id="isUseTrue" name="isUse" value="true" th:checked="${User.isUse}" /> <label for="isUseTrue">是</label>
-  	            <input type="radio" id="isUseFalse" name="isUse" value="false" th:checked="not ${User.isUse}" /> <label for="isUseFalse">否</label>
-  	          </td>
-  	        </tr>
-  	        
-  	        <tr>
-  	          <th>有效時限</th>
-  	          <td th:if="${funcType} == view"><input type="datetime-local" name="begDt" th:value="${User.begDt}" /> &rArr; <input type="datetime-local" name="endDt" th:value="${User.endDt}" />
-  	          </td>
-  	          <td th:if="${funcType} == edit"><input type="datetime-local" name="begDt" th:value="${User.begDt}" /> &rArr; <input type="datetime-local" name="endDt" th:value="${User.endDt}" />
-  	          </td>
   
 	<div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
