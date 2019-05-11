@@ -19,7 +19,7 @@
 
   
 	<div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
 		<div class="col">
 			<div class="card">
 				<div class="card-header">
@@ -31,72 +31,67 @@
   					</a>
 				</div>
 				<div class="card-body">
-				    <table class="table table-responsive-sm">
-				      <tbody>
-				        <tr>
-				          <th>使用者編號</th>
-				          <td>
-				            <input type="hidden" name="userId" th:value="${User.userId}" />
-				            <span th:text="${User.userId}">UserId</span>
-				          </td>
-				        </tr>
-				      
-				        <tr>
-				          <th>使用者名稱</th>
-				          <td th:if="${funcType} == view"><span th:text="${User.userName}"></span></td>
-				          <td th:if="${funcType} == edit"><input name="userName" th:value="${User.userName}" /></td>
-				        </tr>
-				      
-				        <tr>
-				          <th>是否啟用</th>
-				          <td th:if="${funcType} == view"><span th:text="${User.isUse ? '是' : '否' }"></span></td>
-				          <td th:if="${funcType} == edit">
-				            <input type="radio" id="isUseTrue" name="isUse" value="true" th:checked="${User.isUse}" /> <label for="isUseTrue">是</label>
-				            <input type="radio" id="isUseFalse" name="isUse" value="false" th:checked="not ${User.isUse}" /> <label for="isUseFalse">否</label>
-				          </td>
-				        </tr>
-				        
-				        <tr>
-				          <th>有效時限</th>
-				          <td th:if="${funcType} == view"><input type="datetime-local" name="begDt" th:value="${User.begDt}" /> &rArr; <input type="datetime-local" name="endDt" th:value="${User.endDt}" />
-				          </td>
-				          <td th:if="${funcType} == edit"><input type="datetime-local" name="begDt" th:value="${User.begDt}" /> &rArr; <input type="datetime-local" name="endDt" th:value="${User.endDt}" />
-				          </td>
-		
-				        </tr>
-				        <tr>
-				          <th>當前使用選單</th>
-				          <td th:if="${funcType} == view">
-				            <span th:unless="${richMenu.richMenuId == null}" th:text="${richMenu.name}"></span>
-				            <span th:if="${richMenu.richMenuId == null}" >無</span>
-				          </td>
-				          <td th:if="${funcType} == edit">
-				            <select name="richMenuId">
-				              <option value="">請選擇</option>
-				              <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${richMenu.richMenuId}"></option>
-				            </select>
-				          </td>
-				        </tr>
-				      
-				        <tr>
-				          <td colspan="2">
-				            <label>建立時間：<span th:text="${#temporals.format(User.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span></label>
-				            <label>修改時間：<span th:text="${#temporals.format(User.modifyDate, 'yyyy/MM/dd HH:mm:ss')}"></span></label>
-				          </td>
-				        </tr>
-				      
-				      </tbody>
-				      <tfoot th:if="${funcType} == edit">
-				        <tr>
-				          <td colspan="2">
-				          	<button type="submit" class="btn btn-primary btn-sm">
-				          		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
-						  	</button>
-				          </td>
-				        </tr>
-				      </tfoot>
-				    </table>
-    			</div>
+				  <div class="row">
+					<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-7">
+			          <label class="font-weight-bold">使用者編號</label>
+			          <input class="form-control" id="userId" th:value="${User.userId}" disabled/>
+			   		</div>  
+			   		<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+			          <label class="font-weight-bold">使用者名稱</label>
+			          <input th:if="${funcType} == view" class="form-control" id="userName" th:value="${User.userName}" disabled/>
+			          <input th:if="${funcType} == edit" class="form-control" id="userName" th:value="${User.userName}"/>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="col-11 col-sm-11 col-md-11 col-lg-6 col-xl-6">
+			          <label class="font-weight-bold">是否啟用</label>
+			          <a th:if="${funcType} == view"><br><span style="margin-left:15px;" th:text="${User.isUse ? '是' : '否' }"></span></a>  
+			          <a th:if="${funcType} == edit"><br>
+			          <input type="radio" id="isUseTrue" name="isUse" value="true" th:checked="${User.isUse}" /><label for="isUseTrue">&nbsp;是</label>
+			          <input type="radio" id="isUseFalse" name="isUse" value="false" th:checked="not ${User.isUse}"/><label for="isUseFalse">&nbsp;否</label></a>
+			        </div>
+			      </div>
+				  <div class="row">
+					<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+			          <label class="font-weight-bold">有效時限 (起始日)</label>
+			          <input th:if="${funcType} == view" type="datetime-local" name="begDt" class="form-control" th:value="${User.begDt}" disabled/>
+			          <input th:if="${funcType} == edit" type="datetime-local" name="begDt" class="form-control" th:value="${User.begDt}"/>
+				    </div>
+					<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+			          <label class="font-weight-bold">有效時限 (結束日)</label>
+			          <input th:if="${funcType} == view" type="datetime-local" name="endDt" class="form-control" th:value="${User.endDt}" disabled/>
+			          <input th:if="${funcType} == edit" type="datetime-local" name="endDt" class="form-control" th:value="${User.endDt}"/>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="col-11 col-sm-11 col-md-11 col-lg-4 col-xl-4">
+			          <label class="font-weight-bold">當前使用選單</label>
+			          <a th:if="${funcType} == view">
+			          <span th:unless="${richMenu.richMenuId == null}" th:text="${richMenu.name}"></span>
+			          <span th:if="${richMenu.richMenuId == null}" >無</span></a>  
+			          <a th:if="${funcType} == edit"><br>
+			          <select class="form-control" name="richMenuId">
+		                <option value="">請選擇</option>
+		                <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${richMenu.richMenuId}"></option>
+	            	  </select></a>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+				      建立時間：<span th:text="${#temporals.format(User.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span><br>
+				      修改時間：<span th:text="${#temporals.format(User.modifyDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+				    </div>
+		          </div>			      
+			      <div class="line"></div>
+		          <div class="row">
+					<a th:if="${funcType} == edit">
+					  <button type="submit" class="btn btn-primary btn-sm">
+				         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+					  </button>
+				    </a>
+		          </div>
+	          
+	            </div>
 			</div>
 		  </div>
 		</div>

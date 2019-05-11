@@ -79,12 +79,12 @@
 
 ul ul a {
     font-size: 0.9em !important;	/*li 字體大小*/
-    padding-left: 55px !important;	/*li 縮排*/
+    padding-left: 70px !important;	/*li 縮排*/
     background: #2F353A;
 }
 
 #multi {
-    padding-left: 55px !important;	/*li 縮排*/
+    padding-left: 85px !important;	/*li 縮排*/
 
 }
 
