@@ -6,63 +6,60 @@
 
 <body layout:fragment="content">
   <script>
-	  $(document).ready(function(){
-	    $("a[id^='delete_template']").click(function(event){
-	       var templateId = $(event.currentTarget).attr("templateId");
-	       $.ajax({
-	    	   type: 'DELETE',
-           url: `/line/rich_menu/template/delete/${templateId}`,
-           dataType: 'json',
-           success: (result) =>{
-             
-           },
-           error: function (XMLHttpRequest, textStatus, errorThrown) {
-             
-           }
-	       })
-	    });
-	  });
-	</script>
-	<!-- <h1>LineRichMenuTemplate - 列表</h1> -->
-	<div class="row">
-		<div class="col">
-			<div class="card">
-				<div class="card-header">
-					<span class="glyphicon glyphicon-align-justify"></span>LineRichMenuTemplate - 列表
-					<a th:href="@{/line/rich_menu/template/add}" class="btn btn-primary btn-sm a-btn-second">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
-					</a>
-				</div>
-				<div class="card-body">
-					<table class="table table-hover table-responsive-sm">
-						<thead class="center">
-							<tr>
-								<th scope="col">操作</th>
-								<th scope="col">樣板名稱</th>
-								<th scope="col">樣板圖片</th>
-								<th scope="col">創建日期</th>
-							</tr>
-						</thead>
-						<tbody class="center">
-							<tr th:each="template:${templateList}" th:object="${template}">
-								<th scope="row">
-									<a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}" class="btn btn-danger btn-sm">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
-									</a>
-								</th>
-								<td th:text="*{name}">姓名</td>
-								<td><img width="300" th:src="@{|data:image/jpeg;base64,*{getBase64Image()}|}" /></td>
-								<td th:text="*{createDate}"></td>
-							</tr>
-						</tbody>
-					</table>
-					<div th:if="${templateList.totalPages ne 1}" >
-                      <div th:replace="~{comm/page :: page01(entity=${templateList})}"></div>
-                    </div>
-				</div>
-			</div>
-		</div>
-	</div>
+  $(document).ready(function(){
+    $("a[id^='delete_template']").click(function(event){
+       var templateId = $(event.currentTarget).attr("templateId");
+       $.ajax({
+         type: 'DELETE',
+         url: `/line/rich_menu/template/delete/${templateId}`,
+         dataType: 'json',
+         success: (result) =>{
+           
+         },
+         error: function (XMLHttpRequest, textStatus, errorThrown) {
+           
+         }
+       })
+    });
+  });
+  </script>
+
+  <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> <div class="card">
+    <div class="card-header" toggleId='a'>
+      <span class="glyphicon glyphicon-align-justify"></span>LineRichMenuTemplate - 列表
+      <a th:href="@{/line/rich_menu/template/add}" class="btn btn-primary btn-sm a-btn-second">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
+      </a>
+    </div>
+    <div class="card-body" toggleId='a'>
+      <a th:href="@{/line/rich_menu/template/add}" class="btn btn-primary">新增</a>
+      <table class="table table-hover table-responsive-sm">
+        <thead class="center">
+          <tr>
+            <th scope="col">操作</th>
+            <th scope="col">樣板名稱</th>
+            <th scope="col">樣板圖片</th>
+            <th scope="col">創建日期</th>
+          </tr>
+        </thead>
+        <tbody class="center">
+          <tr th:each="template:${templateList}" th:object="${template}">
+            <th scope="row">
+              <a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}" class="btn btn-danger btn-sm">
+             	  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+              </a>
+            </th>
+            <td th:text="*{name}">姓名</td>
+            <td><img width="300" th:src="@{|data:image/jpeg;base64,*{getBase64Image()}|}" /></td>
+            <td th:text="*{createDate}">CreateData</td>
+          </tr>
+        </tbody>
+      </table>
+      <div th:if="${templateList.totalPages gt 1}" >
+        <div th:replace="~{comm/page :: page01(entity=${templateList})}"></div>
+      </div>
+    </div>
+  </div> </div> </div>
 </body>
 
 

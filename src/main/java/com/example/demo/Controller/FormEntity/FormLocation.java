@@ -1,11 +1,11 @@
 package com.example.demo.Controller.FormEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
 import com.example.demo.DataBase.Entity.Location;
-import com.example.demo.DataBase.Entity.Wf8266;
 
 import lombok.Data;
 
@@ -20,9 +20,7 @@ public class FormLocation {
 
 	private String phone;
 
-	private String keeper;
-
-	private List<Wf8266> wf8266s;
+	private List<Long> keepers = new ArrayList<>();
 
 	public Location toEntity() {
 		Location location = new Location();

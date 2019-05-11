@@ -51,60 +51,21 @@
                     <td><span th:text="*{modifyDate}"></span></td>
                   </tr>
                 </tbody>
-              </table>
-  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
-        <div class="col">
-          <div class="card">
-            <div class="card-header">
-              <span class="glyphicon glyphicon-align-justify"></span>物聯網晶片管理
-            </div>
-            <div class="card-body">
-              
-              <table>
-                <thead>
+                <tfoot th:if="${funcType eq 'edit'}">
                   <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
+                    <td colspan="2">
+                      <input type="submit" />
+                    </td>
+                  </tr>  
+                </tfoot>
               </table>
-              
+  
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-<!--     <div class="row"> -->
-<!--       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> -->
-<!--         <div class="col"> -->
-<!--           <div class="card"> -->
-<!--             <div class="card-header"> -->
-<!--               <span class="glyphicon glyphicon-align-justify"></span>據點修改 -->
-<!--             </div> -->
-<!--             <div class="card-body"> -->
-<!--               123 -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-  
-  
-    <div th:if="${funcType eq 'edit'}">
-      <input type="submit" />
-    </div>
+
   </form>
 </body>
 </html>
