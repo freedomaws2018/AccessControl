@@ -9,11 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import com.example.demo.DataBase.Entity.Base.BaseEntity;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 import lombok.Data;
@@ -44,17 +43,10 @@ public class Location extends BaseEntity {
 	private String phone;
 
 //	/** 負責人 - 對應 Employee **/
-	@Column(name = "keepers", columnDefinition = "jsonb")
-	private String keepers;
+	@Type(type = "jsonb")
+	@Column(name = "keepers", columnDefinition = "jsonb default '[]' ")
+	private List<Long> keepers;
 
-	public void setKeepers(List<Long> keepers) {
-		this.keepers = new Gson().toJson(keepers);
-	}
-
-	public List<Long> getKeepers() {
-		return new Gson().fromJson(this.keepers, new TypeToken<List<Long>>() {
-		}.getType());
-	}
 
 //	/** 對應的設備 **/
 //	@OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

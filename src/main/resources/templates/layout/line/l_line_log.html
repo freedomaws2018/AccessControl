@@ -5,95 +5,83 @@
 </head>
 <body layout:fragment="content">
   
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <span class="glyphicon glyphicon-align-justify"></span>查詢
-          </div>
-          <div class="card-body">
-            <table class="table table-hover table-responsive-sm">
-              <tbody>
-                <tr>
-                  <th>時間區間</th>
-                  <td>
-                    <input type="datetime" name="begDt" /> ~ 
-                    <input type="datetime" name="endDt" />
-                  </td>
-                </tr>
-                <tr>
-                  <th>據點</th>
-                  <td>
-                    <input type="text" name="location" />
-                  </td>
-                </tr>
-                <tr>
-                  <th>人員</th>
-                  <td>
-                    <input type="text" name="name" />
-                  </td>
-                </tr>
-                <tr>
-                  <th>觸發器</th>
-                  <td>
-                    <input type="text" name="triggerText" />
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="4">
-                    <input type="submit" />
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
-      </div>
+  <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> <div class="card">
+    <div class="card-header" toggleId='a'>
+      <span class="glyphicon glyphicon-align-justify"></span>查詢
     </div>
-  </div>
+    <div class="card-body" toggleId='a'>
+      <table class="table table-hover table-responsive-sm">
+        <tbody>
+          <tr>
+            <th>時間區間</th>
+            <td>
+              <input type="datetime-local" name="begDt" /> ~ 
+              <input type="datetime-local" name="endDt" />
+            </td>
+          </tr>
+          <tr>
+            <th>據點</th>
+            <td>
+              <input type="text" name="location" />
+            </td>
+          </tr>
+          <tr>
+            <th>人員</th>
+            <td>
+              <input type="text" name="name" />
+            </td>
+          </tr>
+          <tr>
+            <th>觸發器</th>
+            <td>
+              <input type="text" name="triggerText" />
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <input type="submit" />
+              <a href="javascript:;">下載(X)</a>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div> </div> </div>
   
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
-    <div class="col">
-      <div class="card">
-        <div class="card-header">
-          <span class="glyphicon glyphicon-align-justify"></span>列表
-        </div>
-        <div class="card-body">
-          <a href="javascript:;">下載(X)</a>
-          <table class="table table-hover table-responsive-sm">
-            <thead class="center">
-              <tr>
-                <th scope="col">時間</th>
-                <th scope="col">姓名</th>
-                <th scope="col">行為</th>
-              </tr>
-            </thead>
-            <tbody class="center">
-              <tr th:each="log:${logWf8266s}">
-                <th>
-                  <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss.SSS')}"></span>
-                </th>
-                <td>
-                  <span th:text="${log.lineUser?.userName}"></span>
-                </td>
-                <td>
-                  <span  th:text="${log.wf8266?.name}"></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div th:if="${logWf8266s.totalPages ge 1}" >
-            <div th:replace="~{comm/page :: page01(entity=${logWf8266s})}"></div>
-          </div>
-        </div>
-        </div>
+  <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> <div class="card">
+    <div class="card-header" toggleId='b'>
+      <span class="glyphicon glyphicon-align-justify"></span>列表
+    </div>
+    <div class="card-body" toggleId='b'>
+      <table class="table table-hover table-responsive-sm">
+        <thead class="center">
+          <tr>
+            <th scope="col">時間</th>
+            <th scope="col">姓名</th>
+            <th scope="col">行為</th>
+          </tr>
+        </thead>
+        <tbody class="center">
+          <tr th:each="log:${logWf8266s}">
+            <th>
+              <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss.SSS')}"></span>
+            </th>
+            <td>
+              <span th:text="${log.lineUser?.userName}"></span>
+            </td>
+            <td>
+              <span  th:text="${log.wf8266?.name}"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div th:if="${logWf8266s.totalPages gt 1}" >
+        <div th:replace="~{comm/page :: page01(entity=${logWf8266s})}"></div>
       </div>
     </div>
-  </div>
+  </div> </div> </div>
 	
 </body>
 </html>

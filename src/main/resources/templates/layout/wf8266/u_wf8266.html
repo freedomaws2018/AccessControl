@@ -1,0 +1,194 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head>
+<meta charset="UTF-8">
+<title th:if="${funcType} == add">WF8266 - 新增</title>
+<title th:if="${funcType} == view">WF8266 - 檢視</title>
+<title th:if="${funcType} == edit">WF8266 - 修改</title>
+<script>
+  $(function() {
+    
+      /** 新增/修改： 刪除該資料  **/
+      remove_detail = function(index){
+        var status = $(`input[name="detail[${index}].status"]`);
+        var statusText = $(`a[id="detail[${index}].statusText"]`);
+        switch(status.val()){
+          case 'U':
+            status.val('D');
+            statusText.html("送出後移除")
+            break;
+          case 'D':
+            status.val('U');
+            statusText.html("移除")
+            break;
+          case 'N':
+            status.val('D');
+            $("#tr_detail_" + index).hide(200);
+            break;
+        }
+      };
+      
+      /** 新增/修改：新增一項  **/
+      $("#add_detail").click(function(){
+        var index = $("#detail_table").find("tr").length - 1;
+        $("#detail_table").append(`
+          <tr id="tr_detail_${index}">
+            <td> 
+              <input type="hidden" name="detail[${index}].status" value="N" /> 
+              <a href="javascript:;" onClick="javascript:remove_detail(${index});" >移除</a>
+            </td>
+            <td> <input size="10" name="detail[${index}].name"></input> </td>
+            <td> 
+              <input type="radio" name="detail[${index}].isUse" vlaue="true" checked="true">是</input>
+              <input type="radio" name="detail[${index}].isUse" vlaue="false">否</input>
+            </td>
+            <td> <input size="10" name="detail[${index}].reply1"></input> </td>
+            <td> <input size="10" name="detail[${index}].reply2"></input> </td>
+            <td> 
+            <select name="detail[${index}].data1">
+             <option selected="selected" value="" >請選擇</option>
+             <option value="5"  >1</option>
+             <option value="4"  >2</option>
+             <option value="12" >3</option>
+             <option value="13" >4</option>
+            </select>
+           </td>
+           <td> 
+            <select name="detail[${index}].data2">
+             <option selected="selected" value="" >請選擇</option>
+             <option value="0" > 開啟 </option>
+             <option value="1" > 關閉 </option>
+             <option value="4" > 點一下 </option>
+            </select>
+           </td>
+          </tr>
+        `);
+      });
+      
+      /** 檢視：測試觸發 **/
+      $("a[id^='testTriggerUrl']").click(function(){
+        var triggerUrl = $(this).attr('url');
+        $.get(triggerUrl);
+      })
+  });
+</script>
+</head>
+<body layout:fragment="content">
+  <h1 th:if="${funcType} == add">WF8266 - 新增</h1>
+  <h1 th:if="${funcType} == view">WF8266 - 檢視</h1>
+  <h1 th:if="${funcType} == edit">WF8266 - 修改</h1>
+
+  <p th:if="${funcType eq 'view'}" th:text="${status}"></p>
+  <a th:if="${funcType eq 'view'}" th:href="@{/wf8266/edit/{SN}(SN=${wf8266s.get(0)?.sn})}">修改</a>
+  
+  <form method="post" th:action="@{/wf8266/save}">
+    <table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+      <tbody>
+        <tr>
+          <td>晶片序號：</td>
+          <td>
+            <input th:if="${funcType eq 'add' }" name="sn" size="10" ></input>
+            <span th:if="${funcType eq 'view' }" th:text="${wf8266s.get(0).sn}"></span>
+            <div th:if="${funcType eq 'edit' }">
+             <input th:value="${wf8266s.get(0).sn}" name="sn" type="hidden" ></input>
+             <span th:text="${wf8266s.get(0).sn}"></span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>晶片金鑰：</td>
+          <td>
+            <input name="key" size="30" th:if="${funcType eq 'add' }" ></input>
+            <span th:if="${funcType eq 'view' }" th:text="${wf8266s.get(0)?.key}"></span>
+            <div th:if="${funcType eq 'edit' }">
+             <input th:value="${wf8266s.get(0)?.key}" name="key" size="40"></input>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>細項：</td>
+          <td>
+            <a th:if="${funcType ne 'view'}" href="javascript:;" id="add_detail">新增一項</a>
+            <table id="detail_table" style="border:1px #cccccc solid;" cellpadding="5" border='1'>
+              <thead>
+                <tr>
+                  <th th:if="${funcType ne 'view'}">操作</th>
+                  <th>指令名稱</th>
+                  <th>是否啟用</th>
+                  <th>觸發後回應</th>
+                  <th>執行後回應</th>
+<!--                   <th th:if="${funcType ne 'view'}">CMD</th> -->
+                  <th th:if="${funcType ne 'view'}">按鈕編號</th>
+                  <th th:if="${funcType ne 'view'}">動作行為</th>
+                  <th th:if="${funcType eq 'view'}">測試</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:if="${funcType eq 'view'}" th:each="detail,itemStar:${wf8266s}">
+                  <td> <span th:text="${detail.name}"></span> </td>
+                  <td> <span th:text="${detail.isUse}"></span> </td>
+                  <td> <span th:text="${detail.reply1}"></span> </td>
+                  <td> <span th:text="${detail.reply2}"></span> </td>
+                  <td> <a th:id="|testTriggerUrl[${itemStar.index}]|" href="javascript:;" th:url="${detail.triggerUrl}">測試觸發</a></td>
+                </tr>
+                
+                <tr th:if="${funcType eq 'edit'}" th:each="detail,iterStat:${wf8266s}">
+                  
+                  <td>
+                    <input type="hidden" th:name="|detail[${iterStat.index}].status|" value="U" />
+                    <input type="hidden" th:name="|detail[${iterStat.index}].triggerText|" th:value="${detail.triggerText}" />
+                    <a href="javascript:;" th:id="|detail[${iterStat.index}].statusText|" th:onclick="|remove_detail(${iterStat.index})|" >移除</a>
+                  </td>
+                  <td>
+                    <input th:name="|detail[${iterStat.index}].name|" size="10" th:value="${detail.name}" /> 
+                  </td>
+                  <td> 
+                    <label><input type="radio" th:name="|detail[${iterStat.index}].isUse|" value="true" th:checked="${detail.isUse}" />是</label>
+                    <label><input type="radio" th:name="|detail[${iterStat.index}].isUse|" value="false" th:checked="${!detail.isUse}" />否</label>
+                  </td>
+                  <td> <input th:name="|detail[${iterStat.index}].reply1|" size="10" th:value="${detail.reply1}" /> </td>
+                  <td> <input th:name="|detail[${iterStat.index}].reply2|" size="10" th:value="${detail.reply2}" /> </td>
+                  <td> 
+                   <select th:if="${funcType eq 'edit'}" th:name="|detail[${iterStat.index}].data1|">
+                    <option th:selected="true" >請選擇</option>
+                    <option th:selected="${detail.data1 eq '5' }" th:value="5"  >1</option>
+                    <option th:selected="${detail.data1 eq '4' }" th:value="4"  >2</option>
+                    <option th:selected="${detail.data1 eq '12'}" th:value="12" >3</option>
+                    <option th:selected="${detail.data1 eq '13'}" th:value="13" >4</option>
+                   </select>
+                  </td>
+                  
+                  <td> 
+                   <select th:if="${funcType eq 'edit'}" th:name="|detail[${iterStat.index}].data2|">
+                    <option th:selected="true" >請選擇</option>
+                    <option th:selected="${detail.data2 eq '0'}" th:value="0" >開啟</option>
+                    <option th:selected="${detail.data2 eq '1'}" th:value="1" >關閉</option>
+                    <option th:selected="${detail.data2 eq '4'}" th:value="4" >按一下</option>
+                   </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
+          </td>
+        </tr>
+        <tr th:if="${funcType ne 'add'}">
+         <td style="text-align: right;" colspan="2">
+                            創建時間:<span th:text="${wf8266s.get(0)?.createDate}"></span> &ensp; 修改時間:<span th:text="${wf8266s.get(0)?.modifyDate}"></span>
+         </td>
+        </tr>
+      </tbody>
+      <tfoot th:if="${funcType eq 'add' || funcType eq 'edit' }">
+        <tr>
+          <td style="text-align: center;" colspan="2">
+            <input type="submit" value="送出" />
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+
+</body>
+
+</html>

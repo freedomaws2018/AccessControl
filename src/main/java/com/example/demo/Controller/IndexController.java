@@ -46,6 +46,12 @@ public class IndexController {
 		return model;
 	}
 
+	@GetMapping(value = "/demo")
+	public ModelAndView demo(ModelAndView model) {
+		model = new ModelAndView("comm/demo");
+		return model;
+	}
+
 	/** Redirect **/
 	@GetMapping(value = "/")
 	public ModelAndView root(ModelAndView model) {
