@@ -57,8 +57,10 @@
 				        
 				        <tr>
 				          <th>有效時限</th>
-				          <td th:if="${funcType} == view"><span th:text="${#temporals.format(User.begDt, 'yyyy/MM/dd HH:mm:ss')}"></span> &rArr; <span th:text="${#temporals.format(User.endDt, 'yyyy/MM/dd HH:mm:ss')}"></span></td>
-				          <td th:if="${funcType} == edit"><input name="begDt" th:value="${#temporals.format(User.begDt, 'yyyy/MM/dd HH:mm:ss')}" /> &rArr; <input name="endDt" th:value="${#temporals.format(User.endDt, 'yyyy/MM/dd HH:mm:ss')}" /></td>
+				          <td th:if="${funcType} == view"><input type="datetime-local" name="begDt" th:value="${User.begDt}" /> &rArr; <input type="datetime-local" name="endDt" th:value="${User.endDt}" />
+				          </td>
+				          <td th:if="${funcType} == edit"><input type="datetime-local" name="begDt" th:value="${User.begDt}" /> &rArr; <input type="datetime-local" name="endDt" th:value="${User.endDt}" />
+				          </td>
 				        </tr>
 
 				        <tr>
