@@ -52,18 +52,6 @@ public class IndexController {
 		return model;
 	}
 
-	@GetMapping(value = "/test")
-	public ModelAndView test(ModelAndView model) {
-		model = new ModelAndView("comm/test");
-		return model;
-	}	
-
-	@GetMapping(value = "/test2")
-	public ModelAndView test2(ModelAndView model) {
-		model = new ModelAndView("comm/test2");
-		return model;
-	}		
-	
 	/** Redirect **/
 	@GetMapping(value = "/")
 	public ModelAndView root(ModelAndView model) {
