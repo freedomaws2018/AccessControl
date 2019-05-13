@@ -76,21 +76,23 @@
 	            	  </select></a>
 			        </div>
 			      </div>
-			      <div class="row">
-			        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
-				      建立時間：<span th:text="${#temporals.format(User.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span><br>
+			      <div class="row justify-content-center">
+			      	&emsp;
+			        <div class="badge badge-info text-wrap col-10 col-sm-10 col-md-10 col-lg-10 col-xl-5">
+				      建立時間：<span th:text="${#temporals.format(User.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+				    </div>&emsp;
+				    <div class="badge badge-info text-wrap col-10 col-sm-10 col-md-10 col-lg-10 col-xl-5">
 				      修改時間：<span th:text="${#temporals.format(User.modifyDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
 				    </div>
 		          </div>			      
 			      <div class="line"></div>
-		          <div class="row">
+		          <div class="row justify-content-center">
 					<a th:if="${funcType} == edit">
-					  <button type="submit" class="btn btn-primary btn-sm">
+					  <button type="submit" class="btn btn-primary">
 				         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
 					  </button>
 				    </a>
 		          </div>
-	          
 	            </div>
 			</div>
 		  </div>
