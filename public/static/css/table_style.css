@@ -55,17 +55,14 @@
 }
 
 .line{
-	
+	padding-top:25px;
 }
 .badge{
-    /*position: absolute;
+    position: absolute;
     right:20px;
     bottom:75px;
     font-size:16px;
-    line-height:30px;*/
-    font-size:16px;
     line-height:30px;
-    margin-top:15px;
 }
 
 .row button{
