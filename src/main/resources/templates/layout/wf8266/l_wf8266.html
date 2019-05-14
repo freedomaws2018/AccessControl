@@ -4,7 +4,7 @@
 <body layout:fragment="content">
   <!-- <h1>WF8266 - 列表</h1> -->
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
       <div class="card">
         <div class="card-header" toggleId='a'>
           <span class="glyphicon glyphicon-align-justify"></span>LineRichMenuTemplate - 列表
@@ -16,11 +16,11 @@
           <table class="table table-hover table-responsive-sm">
             <thead class="center">
               <tr>
-                <th scope="col" width="200px">據點</th>
-                <th scope="col" width="200px">操作</th>
-                <th scope="col" width="200px">晶片號碼</th>
-                <th scope="col" width="200px">是否啟用</th>
-                <th scope="col" width="500px">狀態</th>
+                <th scope="col">操作</th>
+                <th scope="col">據點</th>
+                <th scope="col">晶片號碼</th>
+                <th scope="col">是否啟用</th>
+                <th scope="col">狀態</th>
               </tr>
             </thead>
             <tbody class="center">
@@ -30,9 +30,6 @@
               </tr>
               
               <tr th:unless="${wf8266s.empty}" th:each="wf8266,iterStat:${wf8266s}">
-                <th>
-                  <span th:text="${wf8266.location.name}"></span>
-                </th>
                 <th scope="row">
                   <a th:href="@{/wf8266/view/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-secondary btn-sm">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
@@ -41,6 +38,9 @@
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
                   </a>
                 </th>
+                <th>
+                  <span th:text="${wf8266.location.name}"></span>
+                </th>                
                 <td>
                       <span th:text="${wf8266.sn}"></span>
                     </td>
@@ -54,7 +54,7 @@
                         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
                       </a> <!-- 從input改寫成a，不確定此按鈕的作用還在不在 -->
                       <!-- <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> 到時候再重畫按鈕 -->
-                      <div th:id="|status_${iterStat.index}|" ></div> <!-- 需要一個讀取中的樣式 -->
+                      <div th:id="|status_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
                       <script th:inline="javascript">
                         reload_[[${iterStat.index}]]();
                         function reload_[[${iterStat.index}]](){
