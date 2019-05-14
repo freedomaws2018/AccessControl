@@ -5,6 +5,24 @@
 </head>
 <body layout:fragment="content">
   <h2>這裡是主頁</h2>
+  
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
     <div class="line"></div>
       <h2>段落一</h2>
       <p id="content">內容一</p>

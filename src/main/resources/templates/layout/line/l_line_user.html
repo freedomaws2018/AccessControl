@@ -26,12 +26,12 @@
   <div th:if="|${funcType eq 'view' and info_status ne null}|" class="alert alert-success" role="alert" th:text="${info_status}"></div>
   <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
 	<div class="row">
-		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl2">
 			<div class="card">
-				<div class="card-header" toggleId="a">
+				<div class="card-header" toggleId="l-line-user-toggle">
 					<span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
 				</div>
-				<div class="card-body" toggleId="a">
+				<div class="card-body" toggleId="l-line-user-toggle">
 					<table class="table table-hover table-responsive-sm">
 						<thead class="center">
 							<tr>
