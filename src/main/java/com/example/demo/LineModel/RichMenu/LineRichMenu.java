@@ -18,6 +18,8 @@ public class LineRichMenu implements Serializable{
 
 	private Boolean selected;
 
+	private Long locationId;
+
 	private LineRichMenuSize size;
 
 	private List<LineRichMenuArea> areas;

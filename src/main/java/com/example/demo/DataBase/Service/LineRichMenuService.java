@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Common.HttpUtils;
 import com.example.demo.DataBase.Repository.RichMenuRepository;
+import com.example.demo.DataBase.Repository.RichMenuTemplateRepository;
 import com.example.demo.LineModel.RichMenu.LineRichMenu;
 import com.example.demo.LineModel.RichMenu.LineRichMenuResponse;
 import com.google.gson.Gson;
@@ -23,12 +24,16 @@ public class LineRichMenuService {
 	@Autowired
 	private RichMenuRepository richMenuRepository;
 
+	@Autowired
+	private RichMenuTemplateRepository richMenuTemplateRepository;
+
 	private final static String getRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
 
 	public LineRichMenu getRichMenu(String richMenuId) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-		LineRichMenu response = HttpUtils.doGet(headers, getRichMenuUrl.replace(":richMenuId", richMenuId), LineRichMenu.class);
+		LineRichMenu response = HttpUtils.doGet(headers, getRichMenuUrl.replace(":richMenuId", richMenuId),
+				LineRichMenu.class);
 		return response;
 	}
 
@@ -37,7 +42,8 @@ public class LineRichMenuService {
 	public String getRichMenuIdLinkToUser(String userId) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-		String responseJson = HttpUtils.doGet(headers, getRichMenuIdLinkToUserUrl.replace(":userId", userId), String.class);
+		String responseJson = HttpUtils.doGet(headers, getRichMenuIdLinkToUserUrl.replace(":userId", userId),
+				String.class);
 		Map<String, String> responseMap = new Gson().fromJson(responseJson, Map.class);
 		String result = responseMap.get("richMenuId");
 
@@ -118,7 +124,7 @@ public class LineRichMenuService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 		int statusCode = HttpUtils.doPost(headers,
-		    linkRichMenuToUserUrl.replace(":lineUserId", lineUserId).replace(":richMenuId", richMenuId));
+				linkRichMenuToUserUrl.replace(":lineUserId", lineUserId).replace(":richMenuId", richMenuId));
 		return statusCode == 200;
 	}
 

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 
 import com.example.demo.DataBase.Entity.Wf8266;
+import com.example.demo.DataBase.Entity.Wf8266Detail;
 
 import lombok.Data;
 
@@ -18,38 +19,46 @@ public class FormWf8266 {
 
 	private String key;
 
+	private Boolean isUse;
+
+	private Long locationId;
+
 	private List<FormWf8266Detail> detail;
 
-	public List<Wf8266> toDeleteEntity() {
-		List<Wf8266> list = new ArrayList<>();
-
-		List<FormWf8266Detail> deleteList = this.detail.stream().filter(detail -> "D".equals(detail.getStatus()))
-				.collect(Collectors.toList());
-		deleteList.forEach(dl -> {
-			Wf8266 temp = new Wf8266();
-			BeanUtils.copyProperties(dl, temp);
-			temp.setSn(this.getSn());
-			temp.setKey(this.getKey());
-			list.add(temp);
-		});
-
-		return list;
+	public List<Wf8266Detail> toDeleteEntity() {
+		List<Wf8266Detail> details = new ArrayList<>();
+		if (this.detail != null) {
+			List<FormWf8266Detail> deleteList = this.detail.stream().filter(detail -> "D".equals(detail.getStatus()))
+					.collect(Collectors.toList());
+			deleteList.forEach(dl -> {
+				Wf8266Detail temp = new Wf8266Detail();
+				BeanUtils.copyProperties(dl, temp);
+				details.add(temp);
+			});
+			return details;
+		} else {
+			return null;
+		}
 	}
 
-	public List<Wf8266> toEntity() {
-		List<Wf8266> list = new ArrayList<>();
+	public Wf8266 toEntity() {
+		Wf8266 wf8266 = new Wf8266();
+		List<Wf8266Detail> list = wf8266.getDetails();
 
-		List<FormWf8266Detail> updateList = this.detail.stream()
-				.filter(detail -> Arrays.asList("N", "U").contains(detail.getStatus())).collect(Collectors.toList());
-		updateList.forEach(dl -> {
-			Wf8266 temp = new Wf8266();
-			BeanUtils.copyProperties(dl, temp);
-			temp.setSn(this.getSn());
-			temp.setKey(this.getKey());
-			list.add(temp);
-		});
+		BeanUtils.copyProperties(this, wf8266);
+		if (this.detail != null) {
+			List<FormWf8266Detail> updateList = this.detail.stream()
+					.filter(detail -> Arrays.asList("N", "U").contains(detail.getStatus()))
+					.collect(Collectors.toList());
+			updateList.forEach(dl -> {
+				Wf8266Detail temp = new Wf8266Detail();
+				BeanUtils.copyProperties(dl, temp);
+				temp.setWf8266(wf8266);
+				list.add(temp);
+			});
+		}
 
-		return list;
+		return wf8266;
 	}
 
 }

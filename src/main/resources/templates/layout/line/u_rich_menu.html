@@ -50,52 +50,105 @@
 			  detail.html('');
 			  switch(value){
 			  case 'change_view':
-					var change_view_str = `<p>`;
-					change_view_str += `至 `;
-					change_view_str += `<input type="text" id="action_${index}" name="actions[${index}].data" required />`;
-          change_view_str += `</p>`;
-				  detail.html(change_view_str);
-				  
-				  $("#action_" + index).autocomplete({
-            minLength: 0,
-            source: function(request,response){
-            	$.ajax({
-                url: '/line/rich_menu/autocomplete/getRichMenu',
-                data: request,
-                dataType: 'json',
-                success: function(result){
-                	var data = [];
-                	data.label = {};
-                	data.value = {};
-                	result.forEach((d) => {
-                    data.push({
-                    	label: d.name,
-                    	value: d.name
-                    });
-                	});
-                  response(data);
-                }
-              });
-            }
-          });
+                var change_view_str = `<p>`;
+                change_view_str += `至 `;
+                change_view_str += `<input type="text" id="action_${index}" name="actions[${index}].data" required />`;
+                change_view_str += `</p>`;
+                detail.html(change_view_str);
 
-				  break;
+                $("#action_" + index).autocomplete({
+                  minLength: 0,
+                  source: function(request,response){
+                    $.ajax({
+                      url: '/line/rich_menu/autocomplete/getRichMenu',
+                      data: request,
+                      dataType: 'json',
+                      success: function(result){
+                        var data = [];
+                        result.forEach((d) => {
+                          data.push({ label: d.name, value: d.name });
+                        });
+                        response(data);
+                      }
+                    });
+                  }
+                })
+                .blur(function(){
+                    $(this).autocomplete('enable');
+                })
+                .focus(function () {
+                    $(this).autocomplete('search', '');
+                });
+                break;
 			  case 'trigger_iot':
-          var trigger_iot_str = '執行 ';
-          $.get('/wf8266/ajax/getAllWf8266',function(result){
-            trigger_iot_str += `<select name="actions[${index}].data" required>`;
-            trigger_iot_str += `<option value="">請選擇</option>`;
-            result.forEach(wd => {
-              trigger_iot_str += `<option value="${wd.triggerText}">${wd.name}</option>`;
-            })
-            trigger_iot_str += "</select>";
-            detail.html(trigger_iot_str);
-          });
-				  break;
+ 				var trigger_iot_str = `<p>`;
+ 				trigger_iot_str += `至 `;
+ 				trigger_iot_str += `<input type="text" id="action_${index}" name="actions[${index}].data" required />`;
+ 				trigger_iot_str += `</p>`;
+                detail.html(trigger_iot_str);
+
+
+                $("#action_" + index).autocomplete({
+                  minLength: 0,
+                  source: function(request,response){
+                	var locationId = $("#locationId").val();
+                    $.ajax({
+                      url: '/wf8266/autocomplete/getAllWf8266Detail',
+                      data: {locationId:locationId, name: request.term},
+                      dataType: 'json',
+                      success: function(result){
+                        var data = [];
+                        result.forEach((d) => {
+                          data.push({ label: d.name, value: d.name });
+                        });
+                        response(data);
+                      }
+                    });
+                  },
+                  select: function(event , ui){
+                	  console.log(ui)
+                  }
+                })
+                .blur(function(){
+                    $(this).autocomplete('enable');
+                })
+                .focus(function () {
+                    $(this).autocomplete('search', '');
+                });  
+				break;
 			  }
 		  });
 	  }
-	  
+	
+    $("#auto_location").autocomplete({
+      minLength: 0,
+      source: function(request,response){
+      	$.ajax({
+      	  method: 'post',
+          url: '/location/autocomplete/getAll',
+          data: request,
+          dataType: 'json',
+          success: function(result){
+          	var data = [];
+          	result.forEach((d) => {
+              data.push({ label: d.name, value: d.name, object: d });
+          	});
+            response(data);
+          }
+        });
+      },
+      select: function(event,ui){
+    	  var obj = ui.item.object;
+    	  $("#locationId").val(obj.id);
+    	  $("#location_address").text(obj.address);
+      }
+    })
+    .blur(function(){
+        $(this).autocomplete('enable');
+    })
+    .focus(function () {
+        $(this).autocomplete('search', '');
+    });
   });
   </script>
   <div class="card border-info col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" style="border:3px #DCDCDC solid;">
@@ -120,36 +173,59 @@
           <td th:if="${funcType eq 'add'}"><input name="name" required /></td>
           <td th:if="${funcType eq 'edit'}"><input type="hidden" name="name" th:value="${richMenu.name}" /><span th:text="${richMenu.name}"></span></td>
         </tr>
-	      <tr>
-	        <th><span>*</span>選單版型：</th>
-	        <td>
-	          <select name="templateId" required >
-	            <option value="" size="0">請選擇</option>
-	            <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{getBase64Image()}"/>
-	          </select>
-	        </td>
-	      </tr>
-	      <tr>
-	        <th><span>*</span>選單圖片：</th>
-	        <td>
-	          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" required>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td colspan="2">
-	          <table id="richMenuActionTable"  class="table table-bordered">
-	           <thead class="thead-light">
-	             <tr>
-	               <th width="100px">序號</th>
-	               <th width="200px">動作</th>
-	               <th>行為</th>
-	             </tr>
-	           </thead>
-	           <tbody>
-	           </tbody>
-	          </table>
-	        </td>
-	      </tr>
+        <tr>
+          <th><span>*</span>選單版型：</th>
+          <td>
+            <select name="templateId" required >
+              <option value="" size="0">請選擇</option>
+              <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{getBase64Image()}"/>
+            </select>
+          </td>
+        </tr>
+        
+        <tr>
+          <th><span>*</span>使用據點：</th>
+          <td th:if="${funcType eq 'add'}">
+            <input type="hidden" id="locationId" name="locationId" ></input>
+            <input type="text" size="10" id="auto_location" ></input>
+            <span id="location_address" ></span>
+          </td>
+          <td th:if="${funcType eq 'view' }">
+            <span th:text="${wf8266.location?.name}" ></span>
+          </td>
+          <td th:if="${funcType eq 'edit' && wf8266?.location == null}">
+              <input type="hidden" id="locationId" name="locationId" ></input>
+              <input type="text" size="10" id="auto_location" ></input>
+              <span id="location_address" ></span>
+          </td>
+          <td th:if="${funcType eq 'edit' && wf8266?.location != null}">
+              <input type="hidden" id="locationId" name="locationId" th:value="${wf8266.location.id}" ></input>
+              <input type="text" size="10" id="auto_location" th:value="${wf8266.location.name}" ></input>
+              <span id="location_address" th:value="${wf8266.location.address}" ></span>
+          </td>
+        </tr>
+        
+        <tr>
+          <th><span>*</span>選單圖片：</th>
+          <td>
+            <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" required>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table id="richMenuActionTable"  class="table table-bordered">
+             <thead class="thead-light">
+               <tr>
+                 <th width="100px">序號</th>
+                 <th width="200px">動作</th>
+                 <th>行為</th>
+               </tr>
+             </thead>
+             <tbody>
+             </tbody>
+            </table>
+          </td>
+        </tr>
 	  
 	    </tbody>
 	  </table>

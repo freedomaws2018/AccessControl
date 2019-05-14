@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -47,6 +48,12 @@ public class RichMenu {
 	@Column(name = "selected")
 	private Boolean selected;
 
+	/** 區域編號 - 對應 Location **/
+	@Transient
+	private Location location;
+	@Column(name = "location_id")
+	private Long locationId;
+
 	@Type(type = "jsonb")
 	@Column(name = "size", columnDefinition = "jsonb")
 	private LineRichMenuSize size;
@@ -68,6 +75,7 @@ public class RichMenu {
 		this.setName(richMenu.getName());
 		this.setChatBarText(richMenu.getChatBarText());
 		this.setSelected(richMenu.getSelected());
+		this.setLocationId(richMenu.getLocationId());
 		this.setSize(richMenu.getSize());
 		this.setAreas(richMenu.getAreas());
 	}

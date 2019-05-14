@@ -56,10 +56,10 @@ public class LocationController {
 	@GetMapping(value = "/{funcType:view|edit}/{id}")
 	private ModelAndView edit(ModelAndView model, @PathVariable String funcType, @PathVariable Long id) {
 		model = new ModelAndView("layout/location/u_location");
-		model.addObject("funcType", funcType);
+
 		Location location = this.locationService.getById(id);
 		model.addObject("location", location);
-
+		model.addObject("funcType", funcType);
 		return model;
 	}
 
@@ -92,6 +92,14 @@ public class LocationController {
 			this.locationService.delete(location);
 		}
 		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+
+	/** autocomplete **/
+	@PostMapping(value = "/autocomplete/getAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	private ResponseEntity<Object> getAll(String term) {
+		List<Location> location = this.locationService.getByNameLike(term);
+
+		return new ResponseEntity<>(location, HttpStatus.OK);
 	}
 
 }

@@ -23,7 +23,8 @@
   });
   
   </script>
-  <!-- <h1>LineUser - 列表</h1> -->
+  <div th:if="|${funcType eq 'view' and info_status ne null}|" class="alert alert-success" role="alert" th:text="${info_status}"></div>
+  <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
 	<div class="row">
 		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
 			<div class="card">
@@ -44,9 +45,9 @@
 						</thead>
 						<tbody class="center">
                             <tr>
-                              <th th:if="${Users.empty}" colspan="6">沒有資料</th>
+                              <th th:if="${users.empty}" colspan="6">沒有資料</th>
                             </tr>
-							<tr th:unless="${Users.empty}" th:each="user,itemStar:${Users}">
+							<tr th:unless="${users.empty}" th:each="user,itemStar:${users}">
 								<th scope="row">
 						          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success btn-sm">
 						          	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
@@ -61,20 +62,20 @@
 						          <span th:unless="${user.isUse}">否</span>
 						        </td>
 								<td>
-								  <span th:text="${#temporals.format(user.begDt, 'yyyy/MM/dd HH:mm:ss')}"></span> 至
-								  <span th:text="${#temporals.format(user.endDt, 'yyyy/MM/dd HH:mm:ss')}"></span>
+								  <span th:text="${user.begDt}"></span> 至
+								  <span th:text="${user.endDt}"></span>
 								</td>
 								<td>
-								  <span th:text="${#temporals.format(user.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+								  <span th:text="${user.createDate}"></span>
 								</td>
 								<td>
-					        	  <span th:text="${#temporals.format(user.modifyDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+					        	  <span th:text="${user.modifyDate}"></span>
 								</td>
 							</tr>
 						</tbody>
 					</table>
-                    <div th:if="${Users.totalPages gt 1}" >
-                      <div th:replace="~{comm/page :: page01(entity=${Users})}"></div>
+                    <div th:if="${users.totalPages gt 1}" >
+                      <div th:replace="~{comm/page :: page01(entity=${users})}"></div>
                     </div>
 				</div>
 			</div>

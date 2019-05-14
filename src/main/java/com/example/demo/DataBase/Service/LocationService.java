@@ -35,4 +35,8 @@ public class LocationService {
 	public void delete(Location location) {
 		this.locationRepository.delete(location);
 	}
+
+	public List<Location> getByNameLike(String name) {
+		return this.locationRepository.getByNameLikeOrderByLenNameAndNameLimit10(name);
+	}
 }

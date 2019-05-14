@@ -24,6 +24,6 @@ public class Permission extends BaseEntity {
 //	private Boolean isUse;
 //
 //	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<PermissionDetail> detail;
+//	private List<long> detail;
 
 }

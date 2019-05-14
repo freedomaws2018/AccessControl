@@ -13,12 +13,14 @@ public class FormWf8266Detail {
 
 	private Boolean isUse;
 
+	private String cmd;
+
+	private Integer relay;
+
+	private Integer value;
+
 	private String reply1;
 
 	private String reply2;
-
-	private String data1;
-
-	private String data2;
 
 }

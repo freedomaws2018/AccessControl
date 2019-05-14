@@ -1,15 +1,16 @@
 package com.example.demo.DataBase.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.example.demo.DataBase.Entity.Wf8266;
 
 public interface Wf8266Repository extends JpaRepository<Wf8266, String> {
 
-	List<Wf8266> getBySn(String sn);
-
-	List<Wf8266> getByTriggerTextIn(List<String> triggerTexts);
+	@Query(value = "SELECT * FROM tbl_wf8266 WHERE sn = :sn ORDER BY location_id ASC ", nativeQuery = true)
+	Optional<Wf8266> getBySnOrderByLocationIdAsc(@Param("sn") String sn);
 
 }
