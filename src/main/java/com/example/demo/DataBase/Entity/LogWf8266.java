@@ -33,7 +33,7 @@ public class LogWf8266 extends BaseLogEntity {
 	private LineUser lineUser;
 
 	@Transient
-	private Wf8266 wf8266;
+	private Wf8266Detail wf8266Detail;
 
 	public LogWf8266() {
 

@@ -3,9 +3,6 @@ package com.example.demo.DataBase.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Common.FunctionUtils;
 import com.example.demo.DataBase.Entity.Wf8266;
 import com.example.demo.DataBase.Entity.Wf8266Detail;
 import com.example.demo.DataBase.Repository.Wf8266DetailRepository;
@@ -39,16 +37,13 @@ public class Wf8266Service {
 
 	public Page<Wf8266> getAll(Pageable pageable) {
 		List<Wf8266> wf8266s = this.getAll();
-		wf8266s = wf8266s.stream().filter(distinctByKey(Wf8266::getSn)).collect(Collectors.toList());
+		wf8266s = wf8266s.stream().filter(FunctionUtils.distinctByKey(Wf8266::getSn)).collect(Collectors.toList());
 		int start = (int) pageable.getOffset();
 		int end = start + pageable.getPageSize() > wf8266s.size() ? wf8266s.size() : (start + pageable.getPageSize());
 		return new PageImpl<>(wf8266s.subList(start, end), pageable, wf8266s.size());
 	}
 
-	public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
-		Map<Object, Boolean> seen = new ConcurrentHashMap<>();
-		return object -> seen.putIfAbsent(keyExtractor.apply(object), Boolean.TRUE) == null;
-	}
+
 
 	public Wf8266 getBySn(String sn) {
 		return this.wf8266Repository.getBySnOrderByLocationIdAsc(sn).orElse(null);

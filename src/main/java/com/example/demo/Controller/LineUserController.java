@@ -113,6 +113,8 @@ public class LineUserController {
 	/** Redirect **/
 	@RequestMapping(value = "/save")
 	public ModelAndView save(ModelAndView model, RedirectAttributes attr, FormLineUser form, BindingResult result) {
+
+
 		String lineUserId = form.getUserId();
 		try {
 			LineUser lineUser = this.lineUserRepository.save(form.toLineUser());

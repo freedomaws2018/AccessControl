@@ -166,7 +166,7 @@
             <span id="location_address" ></span>
           </td>
           <td th:if="${funcType eq 'view' }">
-            <span th:text="${wf8266.location?.name}" ></span>
+            <span th:text="|${wf8266.location?.name}:${wf8266.location?.address}|" ></span>
           </td>
           <td th:if="${funcType eq 'edit' && wf8266?.location == null}">
               <input type="hidden" id="locationId" name="locationId" ></input>

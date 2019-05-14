@@ -1,11 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
 <head>
 <meta charset="UTF-8">
-	<!-- CSS -->
-	<link rel=stylesheet type="text/css" th:href="@{/css/edit_table_style.css}">
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" th:href="@{/css/edit_table_style.css}">
 	
-<title th:if="${funcType} == view">LineUser - 檢視</title>
-<title th:if="${funcType} == edit">LineUser - 修改</title>
+  <title th:if="${funcType} == view">LineUser - 檢視</title>
+  <title th:if="${funcType} == edit">LineUser - 修改</title>
+
 </head>
 <body layout:fragment="content">
 
@@ -16,7 +17,6 @@
   <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
   
   <form th:action="@{/line/user/save}" method="post">
-
   
 	<div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
@@ -55,14 +55,14 @@
 			      </div>
 				  <div class="row">
 					<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-			          <label class="font-weight-bold">有效時限 (起始日)</label>
-			          <input th:if="${funcType eq 'view'}" name="begDt" class="form-control" th:value="${user.begDt}" disabled />
-			          <input th:if="${funcType eq 'edit'}" name="begDt" class="form-control" th:value="${user.begDt}" />
+			          <label class="font-weight-bold">有效時限 (起始日)</label><!-- yyyy-MM-dd HH:mm -->
+			          <input th:if="${funcType eq 'view'}" name="begDt" class="form-control" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" disabled />
+			          <input th:if="${funcType eq 'edit'}" name="begDt" class="form-control" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" />
 				    </div>
 					<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
 			          <label class="font-weight-bold">有效時限 (結束日)</label>
-			          <input th:if="${funcType eq 'view'}" type="datetime-local" name="endDt" class="form-control" th:value="${user.endDt}" disabled />
-			          <input th:if="${funcType eq 'edit'}" type="datetime-local" name="endDt" class="form-control" th:value="${user.endDt}" />
+			          <input th:if="${funcType eq 'view'}" name="endDt" class="form-control" th:value="${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}" disabled />
+			          <input th:if="${funcType eq 'edit'}" name="endDt" class="form-control" th:value="${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}" />
 			        </div>
 			      </div>
 			      <div class="row">

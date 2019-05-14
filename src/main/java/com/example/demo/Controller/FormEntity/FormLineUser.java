@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.example.demo.DataBase.Entity.LineUser;
 
 import lombok.Data;
@@ -20,8 +22,10 @@ public class FormLineUser {
 	@NotNull
 	private Boolean isUse;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime begDt;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime endDt;
 
 //	private List<MappingWf8266AndLineUser> mappings;
