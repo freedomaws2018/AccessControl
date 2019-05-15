@@ -7,6 +7,7 @@
 
 #sidebar {
 	position: fixed;
+	z-index:1;
 	top:55px;
     min-width: 250px;	/*設定選單寬度最小值*/
     max-width: 250px;	/*設定選單寬度最大值*/
@@ -20,6 +21,7 @@
 }
 
 #sidebar.active {
+	z-index:1;
     margin-left: -250px; 	/*點擊選單開啟/關閉選單->*/
 							/*選單寬度多寬就設定負值多寬*/
 }

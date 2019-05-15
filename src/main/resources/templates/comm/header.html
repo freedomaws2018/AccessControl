@@ -8,7 +8,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		<div id="navbar_logo">
-			<a th:href="@{/index}"><img style="width:110px;" th:src="@{/images/icon/logo_full.png}" /></a>
+			<a th:href="@{/index}"><img th:src="@{/images/icon/logo_full.png}" /></a>
 		</div>
 		<div id="navbar_title" th:if="${#ctx.containsVariable('headerInfo')}" th:object="${headerInfo}">
 			<h3><span th:text="*{name}"></span>:<span th:text="*{data}"></span></h3>
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 	</nav>
-	<nav id="navbar_sub" class="navbar_sub navbar-light d-none d-sm-block">
+	<nav id="navbar_sub" class="navbar_sub navbar-light">
 		<ul class="breadcrumb">
 		  <li><a href="#">首頁</a></li>
 		  <li><a href="#">Line應用管理</a></li>

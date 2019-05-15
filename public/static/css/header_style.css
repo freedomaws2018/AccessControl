@@ -54,8 +54,12 @@
 	position: absolute;
 	left: 55px;
 	top: 8px;
-
 }
+
+#navbar_logo img{
+	width:110px;
+}
+
 #navbar_user {
 	position: absolute;
 	right:175px;
@@ -89,7 +93,7 @@
 	line-height:26px;
 }
 
-/* 代辦事項＞使用者下拉式選單：點擊淡入與淡出 */
+/* 代辦事項＞使用者下拉式選單：點擊淡入與淡出(目前只有完成mobile版本的) */
 .dropdown-menu.active{
 	padding:0px;
 	margin:0px;
@@ -184,13 +188,14 @@
 @media (max-width: 768px) {
 	.navbar_sub.active {
 		top:52px;
-		left:244px;
+		left:-6px;
 		position:relative;
 		z-index:0;
 		padding: 5px;	/*影響上方列的縮排*/
 		min-height: 45px;	/*影響上方列的高度*/
 		max-height: 45px;	/*影響上方列的高度*/
-		width:100%;
+		width:104%;
+		font-size:14px;
 		background-color: #FFFFFF;
 		border: none;
 		border-radius: 0;
@@ -209,7 +214,8 @@
 		padding: 5px;	/*影響上方列的縮排*/
 		min-height: 45px;	/*影響上方列的高度*/
 		max-height: 45px;	/*影響上方列的高度*/
-		width:102%;
+		width:104%;
+		font-size:14px;
 		background-color: #FFFFFF;
 		border: none;
 		border-radius: 0;
@@ -221,10 +227,22 @@
 	
 	#navbar_user {
 		position: absolute;
-		right:2%;
+		right:4%;
 		top: 8px;
 		transition: all 0.3s;
 	}
+
+	#navbar_logo{
+		position: absolute;
+		width:110px;
+	    display: table-cell;
+	    vertical-align: inherit;
+	    left:35%;
+	}
+	
+	#navbar_logo img{
+		width:110px;
+	}	
 
 	.dropdown-menu{
 		padding:0px;
