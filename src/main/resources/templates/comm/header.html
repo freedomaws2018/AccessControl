@@ -16,14 +16,13 @@
 		<div id="navbar_user">
 			<div>
 				<input type="image" style="width:40px;" th:src="@{/images/user.png}" data-toggle="dropdown-menu" id="Test" />
-				<h4>User Name</h4>
+				<a class="d-none d-sm-block"><h4>User Name</h4></a>
 			</div>
 			<div>
 				<div class="dropdown-menu">
 					<h6 class="dropdown-header text-center">帳戶 Account</h6>
 						<a class="dropdown-item" href="#">Updates
 						<span class="badge badge-info">42</span></a>
-						<a class="dropdown-item" href="#">Another action</a>
 						<a class="dropdown-item" href="#">Messages
 						<span class="badge badge-success">42</span></a>
 						<a class="dropdown-item" href="#">Tasks
@@ -31,11 +30,9 @@
 						<a class="dropdown-item" href="#">Comments
 						<span class="badge badge-warning">42</span></a>
 					<h6 class="dropdown-header text-center">設定 Settings</h6>
-						<a class="dropdown-item" href="#">Profile</a>
-						<a class="dropdown-item" href="#">Settings</a>
-						<a class="dropdown-item" href="#">Payments
+						<a class="dropdown-item" href="#">Profile
 						<span class="badge badge-dark">42</span></a>
-						<a class="dropdown-item" href="#">Projects
+						<a class="dropdown-item" href="#">Settings
 						<span class="badge badge-primary">42</span></a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#">Lock Account</a>
@@ -44,15 +41,12 @@
 			</div>
 		</div>
 	</nav>
-	<nav id="navbar_sub" class="navbar_sub navbar-light">
+	<nav id="navbar_sub" class="navbar_sub navbar-light d-none d-sm-block">
 		<ul class="breadcrumb">
 		  <li><a href="#">首頁</a></li>
 		  <li><a href="#">Line應用管理</a></li>
 		  <li class="active">LineRichMenu管理</li>
 		</ul>
-	  <!-- <div id="navbar_subtitle">
-	    <h6>首頁&emsp;&frasl;&emsp;Line應用管理&emsp;&frasl;&emsp;LineRichMenu管理</h6>
-	  </div> -->
 	</nav> 
 </header>
 
