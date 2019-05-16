@@ -5,24 +5,25 @@
 </head>
 <body layout:fragment="content">
   <h2>這裡是主頁</h2>
-  
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
+ 
+	<input name="datetimes" style="width:400px;"/>
+	<script>
+	$(function() {
+	  $('input[name="datetimes"]').daterangepicker({
+		timePicker: true,
+		timePicker24Hour: true,
+		cancelClass: "btn-danger",
+		startDate: moment().startOf('hour'),
+		endDate: moment().startOf('hour').add(32, 'hour'),
+		locale: {
+		  format: 'YYYY/MM/DD hh:mm A',
+		  applyLabel: '提交',
+		  cancelLabel: '取消'
+		}	
+	  });
+	});
+	</script>	
+	
     <div class="line"></div>
       <h2>段落一</h2>
       <p id="content">內容一</p>
