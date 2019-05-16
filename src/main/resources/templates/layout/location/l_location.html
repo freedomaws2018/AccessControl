@@ -18,15 +18,15 @@
   	}
   </script>
   <div class="row">
-	<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
 		<div class="col">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header" toggleId="l-location-toggle">
 					<span class="glyphicon glyphicon-align-justify"></span>據點列表
-					<a th:href="@{/location/add}" id="rich_menu_synchronize" class="btn btn-primary a-btn-second">
+					<a th:href="@{/location/add}" id="rich_menu_synchronize" class="btn btn-primary btn-sm a-btn-second">
 					   <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增</a>
 				</div>
-				<div class="card-body">
+				<div class="card-body" toggleId="l-location-toggle">
                   <table class="table table-hover table-responsive-sm">
                     <thead class="center">
                       <tr>
@@ -42,10 +42,10 @@
                       </tr>
                       <tr th:unless="${locations.empty}" th:each="location:${locations}" th:object="${location}">
                         <th>
-                          <a th:href="@{/location/edit/__*{id}__}" class="btn btn-success">
+                          <a th:href="@{/location/edit/__*{id}__}" class="btn btn-sm btn-success">
 						    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
 						  </a>
-						  <a class="btn btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">
+						  <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">
 							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
 						  </a>
                         </th>

@@ -47,10 +47,10 @@ $().ready(()=>{
   <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> <div class="card">
     <div class="card-header">
       <span class="glyphicon glyphicon-align-justify"></span>LineRichMenu - 列表
-      <a th:href="@{/line/rich_menu/add}" class="btn btn-primary a-btn-first">
+      <a th:href="@{/line/rich_menu/add}" class="btn btn-primary a-btn-first btn-sm">
         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
       </a>
-      <a href="javascript:;" id="rich_menu_synchronize" class="btn btn-warning a-btn-second">
+      <a href="javascript:;" id="rich_menu_synchronize" class="btn btn-warning a-btn-second btn-sm">
         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>更新
       </a>
     </div>
@@ -72,10 +72,10 @@ $().ready(()=>{
           <tr th:unless="${richMenus.empty}" th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
             <th scope="row" th:richMenu="*{richMenuId}">
               <span style="display: none;"  th:text="*{richMenuId}">richMenuId</span>
-              <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success">
+              <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success btn-sm">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
               </a>
-              <a class="btn btn-danger rich_menu_delete" href="javascript:;" th:richMenuId="*{richMenuId}">
+              <a class="btn btn-danger rich_menu_delete btn-sm" href="javascript:;" th:richMenuId="*{richMenuId}">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
             </th>

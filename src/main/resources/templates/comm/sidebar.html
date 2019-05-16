@@ -15,9 +15,11 @@
       $('.navbar_sub').toggleClass('active');
       $('#navbar_title').toggleClass('active');
     });
+    
     $('#navbar_user').on('click', function() {
       $('.dropdown-menu').toggleClass('active');
     });
+    
     $('.card-header').on('click', function() {
     	var toggleId = $(this).attr('toggleId');
     	$(`[class='card-body'][toggleId='${toggleId}']`).slideToggle('active');
