@@ -25,7 +25,7 @@
 				<div class="card-header" toggleId="u-line-user-toggle">
 					<span class="glyphicon glyphicon-align-justify"></span>
                     <span th:if="${funcType eq 'view'}">LineUser - 檢視</span>
-                    <a th:if="${funcType eq 'view'}" th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success btn-sm a-btn-second"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+                    <a th:if="${funcType eq 'view'}" th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success a-btn-second"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
                     <span th:if="${funcType eq 'edit'}">LineUser - 修改</span>
 				</div>
 				<div class="card-body" toggleId="u-line-user-toggle">

@@ -16,20 +16,29 @@
 	padding-right:15px;
 }
 
+.card-header a{
+	top:11px;
+	padding:0px 2px;
+}
+
 .card-header a span{
 	top:2px;
 	padding-right:5px;
 }
 
+.card-body tr th a{
+	padding:0px 2px;
+}
+
 .card-body tr th a span{
 	top:2px;
-	padding-right:5px;
+	/*padding-right:5px;*/
 }
 
 .a-btn-first {
 	position: absolute;
 	top: 9px;
-	right:82px;
+	right:72px;
 }
 
 .a-btn-second {
@@ -71,6 +80,7 @@
 .row button{
 	margin-bottom:10px;
 	margin-left:15px;
+	padding:0px 2px;
 }
 
 .table{
@@ -91,7 +101,6 @@
 	position:relative;
 	margin-right:15px;
 }
-
 
 .breadcrumb>li+li:before {
     padding: 0 5px;
