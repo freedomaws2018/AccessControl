@@ -50,6 +50,10 @@
     transition: all 0.3s;
 }
 
+.breadcrumb{
+	margin-bottom:0px;
+}
+
 #navbar_logo {
 	position: absolute;
 	left: 55px;
@@ -188,13 +192,13 @@
 @media (max-width: 768px) {
 	.navbar_sub.active {
 		top:52px;
-		left:-6px;
+		left:-1px;
 		position:relative;
 		z-index:0;
-		padding: 5px;	/*影響上方列的縮排*/
+		padding: 0px 0px 0px 0px;	/*影響上方列的縮排*/
 		min-height: 45px;	/*影響上方列的高度*/
 		max-height: 45px;	/*影響上方列的高度*/
-		width:104%;
+		width:101%;
 		font-size:14px;
 		background-color: #FFFFFF;
 		border: none;
@@ -208,13 +212,13 @@
 	
 	.navbar_sub {
 		top:52px;
-		left:-6px;
+		left:-1px;
 		position:relative;
 		z-index:0;
-		padding: 5px;	/*影響上方列的縮排*/
+		padding: 0px;	/*影響上方列的縮排*/
 		min-height: 45px;	/*影響上方列的高度*/
 		max-height: 45px;	/*影響上方列的高度*/
-		width:104%;
+		width:101%;
 		font-size:14px;
 		background-color: #FFFFFF;
 		border: none;
