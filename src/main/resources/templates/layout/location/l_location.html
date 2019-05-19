@@ -18,55 +18,89 @@
   	}
   </script>
   <div class="row">
-	<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
-		<div class="col">
-			<div class="card">
-				<div class="card-header" toggleId="l-location-toggle">
-					<span class="glyphicon glyphicon-align-justify"></span>據點列表
-					<a th:href="@{/location/add}" id="rich_menu_synchronize" class="btn btn-primary btn-sm a-btn-second">
-					   <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增</a>
-				</div>
-				<div class="card-body" toggleId="l-location-toggle">
-                  <table class="table table-hover table-responsive-sm">
-                    <thead class="center">
-                      <tr>
-                        <th scope="col">操作</th>
-                        <th scope="col">名稱</th>
-                        <th scope="col">地址</th>
-                        <th scope="col">負責人</th>
-                      </tr>
-                    </thead>
-                    <tbody class="center">
-                      <tr th:if="${locations.empty}">
-                        <th colspan="4">沒有資料</th>
-                      </tr>
-                      <tr th:unless="${locations.empty}" th:each="location:${locations}" th:object="${location}">
-                        <th>
-                          <a th:href="@{/location/edit/__*{id}__}" class="btn btn-sm btn-success">
-						    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-						  </a>
-						  <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">
-							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
-						  </a>
-                        </th>
-                        <td>
-                          <span th:text="*{name}"></span>
-                        </td>
-                        <td>
-                          <span th:text="*{address}"></span>
-                        </td>
-                        <td>
-                          <span th:text="*{keepers}"></span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div th:if="${locations.totalPages ge 1}" >
-                    <div th:replace="~{comm/page :: page01(entity=${locations})}"></div>
-                  </div>
-                </div>
-            </div>
-        </div>
+	<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-7">
+	  <div class="col">
+	    <div class="card">
+		  <div class="card-header" toggleId="l-location-toggle">
+		    <span class="glyphicon glyphicon-align-justify"></span>據點列表
+			  <a th:href="@{/location/add}" id="rich_menu_synchronize" class="btn btn-primary btn-sm a-btn-second">
+			    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增</a>
+	      </div>
+		  <div class="card-body" toggleId="l-location-toggle">
+            <table class="table table-hover table-responsive-sm hide-in-phone">
+               <thead class="center">
+                 <tr>
+                   <th scope="col">操作</th>
+                   <th scope="col">名稱</th>
+                   <th scope="col">地址</th>
+                   <th scope="col">負責人</th>
+                 </tr>
+               </thead>
+               <tbody class="center">
+                 <tr th:if="${locations.empty}">
+                   <th colspan="4">沒有資料</th>
+                 </tr>
+                 <tr th:unless="${locations.empty}" th:each="location:${locations}" th:object="${location}">
+                   <th>
+                      <a th:href="@{/location/edit/__*{id}__}" class="btn btn-sm btn-success">
+		    		    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+		  			  </a>
+		   			  <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+		  			  </a>
+                   </th>
+                   <td>
+                      <span th:text="*{name}"></span>
+                   </td>
+                   <td>
+                      <span th:text="*{address}"></span>
+                   </td>
+                   <td>
+                      <span th:text="*{keepers}"></span>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+             <table class="table-hover show-on-phone rwd-table">
+		       <thead>
+		         <tr>
+		           <th>操作</th>
+		           <th>名稱</th>
+		           <th>地址</th>
+		           <th>負責人</th>
+		         </tr>
+		       </thead>
+		       <tbody>
+		         <tr th:if="${locations.empty}">
+		           <td colspan="4">沒有資料</td>
+		         </tr>
+		         <tr th:unless="${locations.empty}" th:each="location:${locations}" th:object="${location}">
+		           <td class="td-first">
+		             <a th:href="@{/location/edit/__*{id}__}" class="btn btn-sm btn-success">
+				       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+				     </a>
+				     <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">
+					   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+				     </a>
+		           </td>
+		           <td data-th="名稱：">
+		             <span th:text="*{name}"></span>
+		           </td>
+		           <td data-th="地址：">
+		             <span th:text="*{address}"></span>
+		           </td>
+		           <td data-th="負責人：" class="td-last">
+		             <span th:text="*{keepers}"></span>
+		           </td>
+		         </tr>
+		       </tbody>
+		     </table>
+             <div th:if="${locations.totalPages ge 1}" >
+               <div th:replace="~{comm/page :: page01(entity=${locations})}"></div>
+             </div>
+           </div>
+         </div>
+       </div>
      </div>
   </div>
 </body>

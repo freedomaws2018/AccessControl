@@ -7,7 +7,7 @@
   <h2>這裡是主頁</h2>
       <div class="line"></div>
       <h2>單個 日期時間選擇器</h2>
-		<input name="datetimes" style="width:300px;"/>
+		<input name="datetimes" style="width:300px;" value="2019/05/20T20:00:00"/>
 		<script>
 		$(function() {
 		  $('input[name="datetimes"]').daterangepicker({
@@ -15,8 +15,6 @@
 			timePicker: true,
 			timePicker24Hour: true,
 			cancelClass: "btn-danger",
-			startDate: moment().startOf('hour'),
-			endDate: moment().startOf('hour').add(32, 'hour'),
 			locale: {
 			  format: 'YYYY/MM/DD hh:mm A',
 			  applyLabel: '提交',
