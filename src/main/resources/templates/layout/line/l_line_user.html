@@ -32,7 +32,7 @@
 					<span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
 				</div>
 				<div class="card-body" toggleId="l-line-user-toggle">
-					<table class="table table-hover table-responsive-sm">
+					<table class="table table-hover table-responsive-sm hide-in-phone">
 						<thead class="center">
 							<tr>
 								<th scope="col">操作</th>
@@ -69,6 +69,50 @@
 								  <span th:text="${user.createDate}"></span>
 								</td>
 								<td>
+					        	  <span th:text="${user.modifyDate}"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table-hover show-on-phone rwd-table">
+						<thead>
+							<tr>
+								<th>操作</th>
+								<th>姓名</th>
+								<th>是否啟用</th>
+								<th>使用時間</th>
+								<th>建立時間</th>
+								<th>修改時間</th>
+							</tr>
+						</thead>
+						<tbody>
+                            <tr>
+                              <th th:if="${users.empty}" colspan="6">沒有資料</th>
+                            </tr>
+							<tr th:unless="${users.empty}" th:each="user,itemStar:${users}">
+								<td class="td-first">
+						          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success btn-sm">
+						          	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+						          </a>
+						          <a th:id="|delete_user_${itemStar.index}|" th:lineUserId="${user.userId}" href="javascript:;" class="btn btn-danger btn-sm">
+						          	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+						          </a>
+								</td>
+								<td data-th="姓名：">
+								  <span th:text="${user.userName}"></span>
+								</td>
+								<td data-th="是否啟用：">
+								  <span th:if="${user.isUse}">是</span>
+						          <span th:unless="${user.isUse}">否</span>
+						        </td>
+								<td data-th="使用時間：">
+								  <span th:text="${user.begDt}"></span> 至
+								  <span th:text="${user.endDt}"></span>
+								</td>
+								<td data-th="建立時間：">
+								  <span th:text="${user.createDate}"></span>
+								</td>
+								<td data-th="修改時間：" class="td-last">
 					        	  <span th:text="${user.modifyDate}"></span>
 								</td>
 							</tr>
