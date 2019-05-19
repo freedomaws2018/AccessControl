@@ -169,12 +169,12 @@
 	  <table class="table table-responsive-sm">
       <tbody>
         <tr>
-          <th><span>*</span>選單名稱：</th>
+          <th><span class="req-field">*</span>選單名稱：</th>
           <td th:if="${funcType eq 'add'}"><input name="name" required /></td>
           <td th:if="${funcType eq 'edit'}"><input type="hidden" name="name" th:value="${richMenu.name}" /><span th:text="${richMenu.name}"></span></td>
         </tr>
         <tr>
-          <th><span>*</span>選單版型：</th>
+          <th><span class="req-field">*</span>選單版型：</th>
           <td>
             <select name="templateId" required >
               <option value="" size="0">請選擇</option>
@@ -184,7 +184,7 @@
         </tr>
         
         <tr>
-          <th><span>*</span>使用據點：</th>
+          <th><span class="req-field">*</span>使用據點：</th>
           <td th:if="${funcType eq 'add'}">
             <input type="hidden" id="locationId" name="locationId" ></input>
             <input type="text" size="10" id="auto_location" ></input>
@@ -206,7 +206,7 @@
         </tr>
         
         <tr>
-          <th><span>*</span>選單圖片：</th>
+          <th><span class="req-field">*</span>選單圖片：</th>
           <td>
             <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" required>
           </td>
