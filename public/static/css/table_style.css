@@ -17,10 +17,14 @@
 	padding-right:15px;
 }
 
-/*.card-header a{
-	top:11px;
-	padding:0px 2px;
-}*/
+.span-margin {
+	margin-left:15px;
+	line-height:30px;
+}
+
+.form-control{
+	margin-left:15px;
+}
 
 .card-header a span{
 	top:2px;
@@ -61,20 +65,24 @@
 }
 
 .row .badge{
-    /*position: absolute;
-    right:20px;
-    bottom:75px;
-    font-size:16px;
-    line-height:30px;*/
     font-size:16px;
     line-height:30px;
     margin-top:15px;
+    margin-bottom:10px;
 }
 
 .row button{
 	margin-bottom:10px;
 	margin-left:15px;
 	/*padding:0px 2px;*/
+}
+
+.row .select-sm{
+	line-height:0px;
+}
+
+.select-bcolor{
+	background-color: #E9ECEF;
 }
 
 .center{
@@ -85,7 +93,6 @@
     display: table-cell;
     vertical-align: inherit;
 }
-
 
 .card-body .btn-warning {
 	position:relative;
@@ -119,6 +126,7 @@
 	.show-on-phone{
 		display:block;
 	}
+	
 	.rwd-table{
 		width:100%;
 	}
@@ -140,10 +148,22 @@
 		content: attr(data-th) "";
 		font-weight: bold;
 	}
+	
 	.td-first{
 		margin-top:10px;
 	}
+	
 	.td-last{
 		margin-bottom:10px;
 	}
+	
+	.row .badge{
+	    font-size:16px;
+	    line-height:30px;
+	    margin-top:15px;
+	    margin-bottom:10px;
+	    position:relative;
+	    left:15px;
+	}
+	
 }
