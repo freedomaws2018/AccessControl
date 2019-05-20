@@ -23,33 +23,40 @@ import com.example.demo.DataBase.Service.PermissionService;
 @RequestMapping(value = "/permission")
 public class PermissionController {
 
-	@Autowired
-	private PermissionService permissionService;
+  @Autowired
+  private PermissionService permissionService;
 
-	@GetMapping(value = "/list")
-	private ModelAndView list(ModelAndView model,
-			@PageableDefault(page = 0, size = 10, sort = { "id" }, direction = Direction.ASC) Pageable pageable) {
-		model = new ModelAndView("layout/permission/l_permission");
-		Page<Permission> permissions = this.permissionService.getAllPermission(pageable);
-		model.addObject("permissions", permissions);
-		return model;
-	}
+  @GetMapping(value = "/list")
+  private ModelAndView list(ModelAndView model,
+      @PageableDefault(page = 0, size = 10, sort = { "id" }, direction = Direction.ASC) Pageable pageable) {
+    model = new ModelAndView("layout/permission/l_permission");
+    Page<Permission> permissions = this.permissionService.getAllPermission(pageable);
+    model.addObject("permissions", permissions);
+    return model;
+  }
 
-	@GetMapping(value = "/{funcType:view|edit}/{permissionId}")
-	public ModelAndView viewAndEdit(ModelAndView model, RedirectAttributes attr, @PathVariable String funcType,
-			@PathVariable Long permissionId) {
-		model = new ModelAndView("layout/permission/u_permission");
-		Permission permission = this.permissionService.getPermissionById(permissionId);
-		model.addObject("permission", permission);
-		model.addObject("funcType", funcType);
-		return model;
-	}
+  @GetMapping(value = "/add")
+  public ModelAndView add(ModelAndView model, RedirectAttributes attr) {
+    model = new ModelAndView("layout/permission/u_permission");
 
-	@DeleteMapping(value = "/delete/{permissionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Object> delete(@PathVariable String permissionId) {
+    return model;
+  }
 
-		return new ResponseEntity(null, HttpStatus.OK);
-	}
+  @GetMapping(value = "/{funcType:view|edit}/{permissionId}")
+  public ModelAndView viewAndEdit(ModelAndView model, RedirectAttributes attr, @PathVariable String funcType,
+      @PathVariable Long permissionId) {
+    model = new ModelAndView("layout/permission/u_permission");
+    Permission permission = this.permissionService.getPermissionById(permissionId);
+    model.addObject("permission", permission);
+    model.addObject("funcType", funcType);
+    return model;
+  }
 
-	/** Redirect **/
+  @DeleteMapping(value = "/delete/{permissionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Object> delete(@PathVariable String permissionId) {
+
+    return new ResponseEntity(null, HttpStatus.OK);
+  }
+
+  /** Redirect **/
 }

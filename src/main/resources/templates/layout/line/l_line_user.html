@@ -37,10 +37,7 @@
 							<tr>
 								<th scope="col">操作</th>
 								<th scope="col">姓名</th>
-								<th scope="col">是否啟用</th>
-								<th scope="col">使用時間</th>
-								<th scope="col">建立時間</th>
-								<th scope="col">修改時間</th>
+								<th scope="col">使用狀態</th>
 							</tr>
 						</thead>
 						<tbody class="center">
@@ -58,18 +55,23 @@
 								</th>
 								<td th:text="${user.userName}">姓名</td>
 								<td>
-								  <span th:if="${user.isUse}">是</span>
-						          <span th:unless="${user.isUse}">否</span>
-						        </td>
-								<td>
-								  <span th:text="${user.begDt}"></span> 至
-								  <span th:text="${user.endDt}"></span>
-								</td>
-								<td>
-								  <span th:text="${user.createDate}"></span>
-								</td>
-								<td>
-					        	  <span th:text="${user.modifyDate}"></span>
+                                  <script th:inline="javascript">
+                                  	var now = Date.now();
+                                  	var isUse = [[${user.isUse}]];
+                                  	var begDt = Date.parse([[${user.begDt}]]);
+                                  	var endDt = Date.parse([[${user.endDt}]]);
+                                  	if(isUse){
+                                    	if(now >= begDt && endDt >= 4102415940000){
+                                    	  document.write("終身有效");
+                                    	}else if(now >= begDt && now <= endDt){
+                                    	  document.write("到 " + [[${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}]] + " 止" )
+                                    	}else{
+                                    	  document.write("禁止使用")
+                                    	}
+                                  	}else{
+                                  	  document.write("停止使用")
+                                  	}
+                                  </script>
 								</td>
 							</tr>
 						</tbody>
