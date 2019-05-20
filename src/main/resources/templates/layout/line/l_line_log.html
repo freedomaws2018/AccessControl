@@ -7,35 +7,102 @@
 <body layout:fragment="content">
   <script type="text/javascript">
   $().ready(function(){
-    $("#auto_location").autocomplete({
-        minLength: 0,
-        source: function(request,response){
-          $.ajax({
-            method: 'post',
-            url: '/location/autocomplete/getAll',
-            data: request,
-            dataType: 'json',
-            success: function(result){
-              var data = [];
+
+  	dateTimePicke("datetimePicker","begDt","endDt");
+  	
+  	$("#auto_location").autocomplete({
+      minLength: 0,
+      source: function(request,response){
+        $.ajax({
+          method: 'post',
+          url: '/location/autocomplete/getAll',
+          data: request,
+          dataType: 'json',
+          success: function(result){
+            var data = [];
+          result.forEach((d) => {
+              data.push({ label: d.name, value: d.name, object: d });
+          });
+            response(data);
+          }
+        });
+      },
+      select: function(event,ui){
+        var obj = ui.item.object;
+        $("#locationId").val(obj.id);
+        $("#location_address").text(obj.address);
+      }
+    })
+    .blur(function(){
+      $(this).autocomplete('enable');
+    })
+    .focus(function () {
+      $(this).autocomplete('search', '');
+    });
+  	
+  	$("#auto_line_user").autocomplete({
+      minLength: 0,
+      source: function(request,response){
+        $.ajax({
+          method: 'post',
+          url: '/line/user/autocomplete/getAll',
+          data: request,
+          dataType: 'json',
+          success: function(result){
+            var data = [];
+          result.forEach((d) => {
+              data.push({ label: d.userName, value: d.userName, object: d });
+          });
+            response(data);
+          }
+        });
+      },
+      select: function(event,ui){
+        var obj = ui.item.object;
+        $("#lineUserId").val(obj.userId);
+      }
+    })
+    .blur(function(){
+      $(this).autocomplete('enable');
+    })
+    .focus(function () {
+      $(this).autocomplete('search', '');
+    });
+  	
+  	$("#auto_trigger").autocomplete({
+      minLength: 0,
+      source: function(request,response){
+        var locationId = $("#locationId").val();
+        $.ajax({
+          method: 'post',
+          url: '/wf8266/autocomplete/getAllWf8266DetailWithLocationIdAndName',
+          data: { locationId:locationId  , name:request.term },
+          dataType: 'json',
+          success: function(result){
+            var data = [];
+            console.log(result)
+            if(result.length == 0){
+              data.push({ value: '找不到資料' });
+            }
             result.forEach((d) => {
                 data.push({ label: d.name, value: d.name, object: d });
             });
-              response(data);
-            }
-          });
-        },
-        select: function(event,ui){
-          var obj = ui.item.object;
-          $("#locationId").val(obj.id);
-          $("#location_address").text(obj.address);
-        }
-      })
-      .blur(function(){
-        $(this).autocomplete('enable');
-      })
-      .focus(function () {
-        $(this).autocomplete('search', '');
-      });
+            response(data);
+          }
+        });
+      },
+      select: function(event,ui){
+        var obj = ui.item.object;
+        console.log(obj);
+        $("#triggerText").val(obj.triggertext);
+      }
+    })
+    .blur(function(){
+      $(this).autocomplete('enable');
+    })
+    .focus(function () {
+      $(this).autocomplete('search', '');
+    });
   })
   </script>
   
@@ -44,40 +111,38 @@
       <div class="card-header" toggleId='a'>
         <span class="glyphicon glyphicon-align-justify"></span>查詢
       </div>
-<!--       <span th:text="${param}"></span> -->
-      <script th:inline="javascript">
-       	console.log([[${logWf8266s}]].valueOf())
-</script>
-      <div class="card-body" toggleId='a' style="display: none;" >
+      
+      <div class="card-body" toggleId='a' >
         <table class="table table-hover table-responsive-sm">
           <tbody>
             <tr>
               <th>時間區間</th>
               <td>
-                <input name="begDt" th:value="${param.begDt}" /> ~ 
-                <input name="endDt" th:value="${param.begDt}" />
+                <input type="hidden" id="begDt" name="begDt" th:value="${param.begDt}" />
+                <input type="hidden" id="endDt" name="endDt" th:value="${param.begDt}" />
+                <input id="datetimePicker" class="form-control" readonly />
               </td>
             </tr>
             <tr>
               <th>Location</th>
               <td>
-                <input type="text" id="locationId" name="locationId" />
-                <input type="text" id="auto_location" />
+                <input type="hidden" id="locationId" name="locationId" />
+                <input type="text" class="form-control" id="auto_location" />
                 <span id="location_address"></span>
               </td>
             </tr>
             <tr>
               <th>LineUser</th>
               <td>
-                <input type="text" name="employeeId" />
-                <input type="text" id="auto_employee" />
+                <input type="hidden" id="lineUserId" name="lineUserId" />
+                <input type="text" class="form-control" id="auto_line_user" />
               </td>
             </tr>
             <tr>
               <th>TriggerText</th>
               <td>
-                <input type="text" name="triggerText" />
-                <input type="text" id="auto_trigger" />
+                <input type="hidden" id="triggerText" name="triggerText" />
+                <input type="text" class="form-control" id="auto_trigger" />
               </td>
             </tr>
           </tbody>

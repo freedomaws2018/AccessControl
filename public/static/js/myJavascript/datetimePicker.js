@@ -1,7 +1,10 @@
 dateTimePicke = function(eveId,begId,endId){
+  var startDate = $("#" + begId).val() ? $("#" + begId).val() : moment();
+  var endDate = $("#" + endId).val() ? $("#" + endId).val() : moment();
+//  console.log(startDate, endDate);
   $('#' + eveId).daterangepicker({
-    "startDate" : $("#" + begId).val(),
-    "endDate" : $("#" + endId).val(),
+    "startDate" : startDate,
+    "endDate" : endDate,
     "timePicker" : true,
     "showDropdowns" : true,
     "timePicker24Hour" : true,

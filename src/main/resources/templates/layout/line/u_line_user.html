@@ -7,7 +7,7 @@
   
   <script type="text/javascript">
   $().ready(function(){
-  dateTimePicke("datetimePicker","begDt","endDt");
+  	dateTimePicke("datetimePicker","begDt","endDt");
   });
   </script>
   
@@ -59,7 +59,7 @@
                 <input type="hidden" id="begDt" name="begDt" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" />
                 <input type="hidden" id="endDt" name="endDt" th:value="${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}" />
                 <input th:if="${funcType eq 'view'}" class="form-control" th:value="|${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}-${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}|" disabled />
-                <input th:if="${funcType eq 'edit'}" id="datetimePicker" class="form-control" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" readonly />
+                <input th:if="${funcType eq 'edit'}" id="datetimePicker" class="form-control" readonly />
               </div>
                           
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">

@@ -8,5 +8,6 @@ import com.example.demo.DataBase.Entity.Wf8266Detail;
 
 public interface Wf8266DetailRepository extends JpaRepository<Wf8266Detail, String> {
 
-	List<Wf8266Detail> getByTriggerTextIn(List<String> triggerText);
+  List<Wf8266Detail> getByTriggerTextIn(List<String> triggerText);
+
 }

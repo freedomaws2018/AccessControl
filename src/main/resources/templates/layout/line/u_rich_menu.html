@@ -93,7 +93,8 @@
                   source: function(request,response){
                 	var locationId = $("#locationId").val();
                     $.ajax({
-                      url: '/wf8266/autocomplete/getAllWf8266Detail',
+                      method: 'post',
+                      url: '/wf8266/autocomplete/getAllWf8266DetailWithLocationIdAndName',
                       data: {locationId:locationId, name: request.term},
                       dataType: 'json',
                       success: function(result){
