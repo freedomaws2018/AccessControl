@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head> <meta charset="UTF-8" > </head>
+
+<body layout:fragment="content">
+
+  <script type="text/javascript">
+  $().ready(function(){
+	  $("a[id^='delete_permission_']").click(function(){
+		  var permissionId = $(this).attr("permissionId");
+		  $.ajax({
+            type: 'DELETE',
+            url: `/permission/delete/${permissionId}`,
+            dataType: 'json',
+            success: (result) =>{
+              
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              
+            }
+          });
+	  });
+  });
+  </script>
+
+  <div class="row">
+    <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+      <div class="card">
+        <div class="card-header" toggleId="l-permission-toggle">
+          <span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
+        </div>
+        <div class="card-body" toggleId="l-permission-toggle">
+          <table class="table table-hover table-responsive-sm">
+            <thead class="center">
+              <tr>
+                <th scope="col">操作</th>
+                <th scope="col">權限名稱</th>
+                <th scope="col">權限說明</th>
+              </tr>
+            </thead>
+            <tbody class="center">
+              <tr>
+                <th th:if="${permissions.empty}" colspan="3">沒有資料</th>
+              </tr>
+              <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
+                <td>
+                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>檢視
+                  </a>
+                  <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+                  </a>
+                  <a th:id="|delete_permission_${iterStar.index}|" th:permissionId="*{id}" href="javascript:;" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+                  </a>
+                </td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{remarks}"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div th:if="${permissions.totalPages gt 1}" >
+            <div th:replace="~{comm/page :: page01(entity=${permissions})}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

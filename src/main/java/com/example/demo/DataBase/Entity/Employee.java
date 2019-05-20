@@ -1,32 +1,50 @@
 package com.example.demo.DataBase.Entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+
 import com.example.demo.DataBase.Entity.Base.BaseEntity;
 
-//@Data
-//@EqualsAndHashCode(callSuper = false)
-//@Entity
-//@Table(name = "tbl_employee")
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Entity
+@Table(name = "tbl_employee")
 public class Employee extends BaseEntity {
 
-//	@Id
-//	@Column(name = "id", nullable = false, insertable = false, updatable = false)
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private Long id;
-//
-//	@Column(name = "first_name")
-//	private String firstName;
-//
-//	@Column(name = "last_name")
-//	private String lastName;
-//
-//	@Column(name = "account", nullable = false, updatable = false)
-//	private String account;
-//
-//	@Column(name = "password", nullable = false)
-//	private String password;
+	@Id
+	@Column(name = "id", nullable = false, insertable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@JoinColumn(name = "id", referencedColumnName = "id")
-//	private Permission permission;
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+	@Column(name = "account", nullable = false, updatable = false)
+	private String account;
+
+	@Column(name = "password", nullable = false)
+	private String password;
+
+	@Column(name = "positionId")
+	private Long positionId;
+
+//	/** 負責人 - 對應 Employee **/
+	@Type(type = "jsonb")
+	@Column(name = "permissonIds", columnDefinition = "jsonb default '[]' ")
+	private List<Long> permissionIds;
 
 }

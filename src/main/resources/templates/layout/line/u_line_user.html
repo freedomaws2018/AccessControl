@@ -9,6 +9,11 @@
 
 </head>
 <body layout:fragment="content">
+  <script type="text/javascript">
+  $().ready(function(){
+	  dateTimePicke("datetimePicker","begDt","endDt");
+  });
+  </script>
 
   <!-- <h1><a th:if="${funcType eq 'view'}">LineUser - 檢視</a></h1> -->
   <!-- <h1><a th:if="${funcType eq 'edit'}">LineUser - 修改</a></h1> -->
@@ -55,15 +60,13 @@
 				  </div>
 				  <div class="row">
 					<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-			          <label class="font-weight-bold">有效時限 (起始日)</label><!-- yyyy-MM-dd HH:mm -->
-			          <input th:if="${funcType eq 'view'}" name="begDt" class="form-control" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" disabled />
-			          <input th:if="${funcType eq 'edit'}" name="begDt" class="form-control" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" />
+			          <label class="font-weight-bold">有效時限</label><BR>
+                      <span th:if="${funcType eq 'view'}" th:text="|${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}-${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}|" ></span>
+                
+                      <input type="hidden" id="begDt" name="begDt" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" />
+                      <input type="hidden" id="endDt" name="endDt" th:value="${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}" />
+			          <input th:if="${funcType eq 'edit'}" id="datetimePicker" class="form-control" th:value="${#temporals.format(user.begDt, 'yyyy-MM-dd HH:mm')}" />
 				    </div>
-					<div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-			          <label class="font-weight-bold">有效時限 (結束日)</label>
-			          <input th:if="${funcType eq 'view'}" name="endDt" class="form-control" th:value="${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}" disabled />
-			          <input th:if="${funcType eq 'edit'}" name="endDt" class="form-control" th:value="${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}" />
-			        </div>
 			      </div>
 			      <div class="row">
 			        <div class="col-11 col-sm-11 col-md-11 col-lg-4 col-xl-4">

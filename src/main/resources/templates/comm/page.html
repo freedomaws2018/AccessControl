@@ -9,12 +9,20 @@
           <span class="sr-only">Previous</span>
         </a>
       </li>
-  
-      <li th:each="i:${#numbers.sequence(1,entity.totalPages)}" class="page-item" th:classappend="${entity.number eq i-1 ? 'active' : '' }">
+            
+      <li th:if="${ (i - entity.number) ge -2 && (i - entity.number) le 4 }" th:each="i:${#numbers.sequence(1,entity.totalPages)}" class="page-item" th:classappend="${entity.number eq i-1 ? 'active' : '' }">
         <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(size=${entity.size},page=${i-1})}" href="javascript:;" >
+          <span th:if="${ (i - entity.number) eq -2 }">...</span>
           <span th:text="${i}"></span>
+          <span th:if="${ (i - entity.number) eq 4 }">...</span>
         </a>
       </li>
+            
+<!--       <li th:if="${entity.totalPages ge 8}" th:each="i:${#numbers.sequence(entity.number - 4,entity.number + 4)}" class="page-item" th:classappend="${entity.number eq i-1 ? 'active' : '' }"> -->
+<!--         <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(size=${entity.size},page=${i-1})}" href="javascript:;" > -->
+<!--           <span th:text="${i}"></span> -->
+<!--         </a> -->
+<!--       </li> -->
   
       <li th:unless="${entity.last}" class="page-item">
         <a class="page-link" th:href="@{__${#httpServletRequest.requestURI}__(size=${entity.size},page=${entity.number+1})}" href="#" aria-label="Next">

@@ -34,4 +34,5 @@ public class LineUser extends BaseEntity {
 	@Column(name = "end_dt")
 	private LocalDateTime endDt;
 
+
 }

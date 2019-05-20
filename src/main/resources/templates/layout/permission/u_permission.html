@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head> <meta charset="UTF-8" >
+
+<title th:if="${funcType eq 'add'}"> - 新增</title>
+<title th:if="${funcType eq 'view'}"> - 檢視</title>
+<title th:if="${funcType eq 'edit'}"> - 修改</title>
+</head>
+
+<body layout:fragment="content">
+  <script type="text/javascript">
+  </script>
+  <form th:action="@{/permission/save}" method="post" th:object="${permission}">
+    <div th:if="${funcType eq 'add'}">
+新增
+    </div>
+    <div th:if="${funcType eq 'edit'}">
+修改    
+<BR>名稱：<input th:value="*{name}" />
+<BR>備註：<input th:value="*{remarks}" />
+<BR>細項：
+<BR>代號 名稱 備註
+<pre th:each="detail:*{detail}" th:object="${detail}">
+<input th:value="*{type}" /> <input th:value="*{name}" /> <input th:value="*{remarks}" />
+</pre>
+
+    </div>
+    <div th:if="${funcType eq 'view'}">
+檢視    
+    </div>
+  </form>
+</body>
+</html>

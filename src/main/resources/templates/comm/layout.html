@@ -4,43 +4,41 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" th:href="@{/css/bootstrap-3.3.7/bootstrap-glyphicon.css}">
-	<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap-grid.min.css}">
-	<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap-reboot.min.css}">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap-3.3.7/bootstrap-glyphicon.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap-grid.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap-reboot.min.css}">
 
-	<!-- Scripts -->
-	<script type="text/javascript" th:src="@{/js/jQuery/jquery-3.4.0.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/bootstrap-4.3.1/bootstrap.bundle.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/bootstrap-4.3.1/bootstrap.min.js}"></script>
-	
-	<!-- CSS -->
-	<link rel=stylesheet type="text/css" th:href="@{/css/header_style.css}">
-	<link rel=stylesheet type="text/css" th:href="@{/css/sidebar_style.css}">
-	<link rel=stylesheet type="text/css" th:href="@{/css/index_style.css}">
-	<link rel=stylesheet type="text/css" th:href="@{/css/table_style.css}">
-	
-	<!-- JQuery Ui -->
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  
-	<!-- DateTimePicker -->
-	<script type="text/javascript" src="../static/js/Daterangepicker/jquery.min.js"></script>
-	<script type="text/javascript" src="../static/js/Daterangepicker/moment.min.js"></script>
-	<script type="text/javascript" src="../static/js/Daterangepicker/daterangepicker.min.js"></script>
-	<link rel=stylesheet type="text/css" href="../static/css/daterangepicker.css">
-	
+<!-- Scripts -->
+<script type="text/javascript" th:src="@{/js/jQuery/jquery-3.4.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-4.3.1/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-4.3.1/bootstrap.min.js}"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/header_style.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar_style.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/index_style.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/table_style.css}">
+
+<!-- JQuery Ui 好像沒有用到 -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+
+<!-- DateTimePicker -->
+<script type="text/javascript" th:src="@{/js/daterangepicker/moment.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/daterangepicker/daterangepicker.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/myJavascript/datetimePicker.js}"></script>
+<link rel=stylesheet type="text/css" th:href="@{/css/daterangepicker.css}">
+
+<!-- Dialog -->
+
 </head>
 <body>
-	<div th:replace="~{comm/header :: header(headerInfo=${headerInfo})}"></div>
-	<div th:replace="~{comm/sidebar :: sidebar}"></div>
-	<div class="container-fluid">
-		<div layout:fragment="content"></div>
-	</div>
-	
-	<div th:replace="~{comm/dialog :: dialog_default}"></div>
-
-
+  <div th:replace="~{comm/header :: header(headerInfo=${headerInfo})}"></div>
+  <div th:replace="~{comm/sidebar :: sidebar}"></div>
+  <div class="container-fluid">
+    <div layout:fragment="content"></div>
+  </div>
 </body>
 </html>
