@@ -21,7 +21,7 @@
           success: function(result){
             var data = [];
           result.forEach((d) => {
-              data.push({ label: d.name, value: d.name, object: d });
+              data.push({ label: d.name + ":" + d.address, value: d.name + ":" + d.address, object: d });
           });
             response(data);
           }
@@ -30,7 +30,6 @@
       select: function(event,ui){
         var obj = ui.item.object;
         $("#locationId").val(obj.id);
-        $("#location_address").text(obj.address);
       }
     })
     .blur(function(){
@@ -51,7 +50,7 @@
           success: function(result){
             var data = [];
           result.forEach((d) => {
-              data.push({ label: d.userName, value: d.userName, object: d });
+              data.push({ label: d.userName, value: d.userName , object: d });
           });
             response(data);
           }
@@ -103,46 +102,46 @@
     .focus(function () {
       $(this).autocomplete('search', '');
     });
-  })
+  	
+  });
   </script>
   
-  <form th:action="@{/line/log/list}" >
+  <form th:action="@{/line/log/list}" method="get">
     <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-7"> <div class="card">
       <div class="card-header" toggleId='a'>
         <span class="glyphicon glyphicon-align-justify"></span>查詢
       </div>
       
       <div class="card-body" toggleId='a' >
-        <table class="table table-hover table-responsive-sm">
+        <table class="table table-hover table-responsive-sm col-11">
           <tbody>
             <tr>
               <th>時間區間</th>
               <td>
                 <input type="hidden" id="begDt" name="begDt" th:value="${param.begDt}" />
-                <input type="hidden" id="endDt" name="endDt" th:value="${param.begDt}" />
+                <input type="hidden" id="endDt" name="endDt" th:value="${param.endDt}" />
                 <input id="datetimePicker" class="form-control" readonly />
               </td>
             </tr>
             <tr>
               <th>Location</th>
               <td>
-                <input type="hidden" id="locationId" name="locationId" />
-                <input type="text" class="form-control" id="auto_location" />
-                <span id="location_address"></span>
+                <input type="hidden" id="locationId" name="locationId" th:value="${param.locationId}" />
+                <input type="text" class="form-control" id="auto_location" name="auto_location" th:value="${param.auto_location}" />
               </td>
             </tr>
             <tr>
               <th>LineUser</th>
               <td>
-                <input type="hidden" id="lineUserId" name="lineUserId" />
-                <input type="text" class="form-control" id="auto_line_user" />
+                <input type="hidden" id="lineUserId" name="lineUserId" th:value="${param.lineUserId}" />
+                <input type="text" class="form-control" id="auto_line_user" name="auto_line_user" th:value="${param.auto_line_user}" />
               </td>
             </tr>
             <tr>
               <th>TriggerText</th>
               <td>
-                <input type="hidden" id="triggerText" name="triggerText" />
-                <input type="text" class="form-control" id="auto_trigger" />
+                <input type="hidden" id="triggerText" name="triggerText" th:value="${param.triggerText}" />
+                <input type="text" class="form-control" id="auto_trigger" name="auto_trigger" th:value="${param.auto_trigger}" />
               </td>
             </tr>
           </tbody>
@@ -157,6 +156,7 @@
       </div>
     </div> </div> </div>
   </form>
+  
   <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-7"> <div class="card">
     <div class="card-header" toggleId='b'>
       <span class="glyphicon glyphicon-align-justify"></span>列表
@@ -171,22 +171,22 @@
           </tr>
         </thead>
         <tbody class="center">
-          <tr th:each="log:${logWf8266s}">
-            <th>
-              <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss.SSS')}"></span>
-            </th>
-            <td>
-              <span th:text="${log.lineUser?.userName}"></span>
-            </td>
-            <td>
-              <span  th:text="${log.wf8266Detail?.name}"></span>
-            </td>
-          </tr>
+<!--           <tr th:each="log:${logWf8266s}"> -->
+<!--             <th> -->
+<!--               <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss.SSS')}"></span> -->
+<!--             </th> -->
+<!--             <td> -->
+<!--               <span th:text="${log.lineUser?.userName}"></span> -->
+<!--             </td> -->
+<!--             <td> -->
+<!--               <span  th:text="${log.wf8266Detail?.name}"></span> -->
+<!--             </td> -->
+<!--           </tr> -->
         </tbody>
       </table>
-      <div th:if="${logWf8266s.totalPages gt 1}" >
-        <div th:replace="~{comm/page :: page01(entity=${logWf8266s})}"></div>
-      </div>
+<!--       <div th:if="${logWf8266s.totalPages gt 1}" > -->
+<!--         <div th:replace="~{comm/page :: page01(entity=${logWf8266s})}"></div> -->
+<!--       </div> -->
     </div>
   </div> </div> </div>
 	

@@ -17,7 +17,7 @@ public class FromLogWf8266 {
 
 	private Long locationId;
 
-	private Long employeeId;
+	private String lineUserId;
 
 	private String triggerText;
 

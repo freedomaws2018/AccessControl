@@ -26,7 +26,7 @@ public class LineLogController {
 	public ModelAndView list(FromLogWf8266 form ,ModelAndView model,
 			@PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.DESC) Pageable pageable) {
 		model = new ModelAndView("layout/line/l_line_log");
-
+		System.err.println(form);
 		Page<LogWf8266> logWf8266s = this.logWf8266Service.findAll(pageable);
 
 		if(!logWf8266s.isEmpty()) {

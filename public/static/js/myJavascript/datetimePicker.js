@@ -1,7 +1,18 @@
 dateTimePicke = function(eveId,begId,endId){
-  var startDate = $("#" + begId).val() ? $("#" + begId).val() : moment();
-  var endDate = $("#" + endId).val() ? $("#" + endId).val() : moment();
-//  console.log(startDate, endDate);
+  var startDate,endDate;
+  if($("#" + begId).val()){
+    startDate = $("#" + begId).val();
+  }else{
+    startDate = moment().startOf('days');
+    $("#" + begId).val(startDate.format('YYYY-MM-DD HH:mm'));
+  }
+  if($("#" + endId).val()){
+    endDate = $("#" + endId).val();
+  }else{
+    endDate = moment().endOf('days');
+    $("#" + endId).val(endDate.format('YYYY-MM-DD HH:mm'));
+  }
+  
   $('#' + eveId).daterangepicker({
     "startDate" : startDate,
     "endDate" : endDate,
