@@ -31,6 +31,14 @@
 	padding-right:5px;
 }
 
+.card-body span{
+	padding-right:5px;
+}
+
+.card-body a{
+	margin-bottom:10px;
+}
+
 .card-body tr th a span{
 	top:2px;
 	padding-right:5px;
@@ -71,10 +79,14 @@
     margin-bottom:10px;
 }
 
-.row button{
+.row button .btn-download{
 	margin-bottom:10px;
 	margin-left:15px;
 	/*padding:0px 2px;*/
+}
+
+.btn-submit{
+	margin-bottom:10px;
 }
 
 .row .select-sm{
@@ -164,6 +176,11 @@
 	    margin-bottom:10px;
 	    position:relative;
 	    left:15px;
+	}
+	
+	.btn{
+		padding-bottom: 7px;
+	    padding-right: 4px;
 	}
 	
 }
