@@ -24,6 +24,12 @@
 
 
 	<dependencies>
+	
+	    <!-- 授權認證 security -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
 		<!-- 圖片處理 Opencv -->
 		<dependency>
