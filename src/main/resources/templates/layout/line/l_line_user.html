@@ -94,10 +94,10 @@
 							<tr th:unless="${users.empty}" th:each="user,itemStar:${users}">
 								<td class="td-first">
 						          <a th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" class="btn btn-success btn-sm">
-						          	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+						          	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 						          </a>
 						          <a th:id="|delete_user_${itemStar.index}|" th:lineUserId="${user.userId}" href="javascript:;" class="btn btn-danger btn-sm">
-						          	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+						          	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 						          </a>
 								</td>
 								<td data-th="姓名：">
