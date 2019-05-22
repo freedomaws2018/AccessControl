@@ -1,16 +1,12 @@
 package com.example.demo.DataBase.Entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import com.example.demo.DataBase.Entity.Base.BaseEntity;
@@ -55,14 +51,12 @@ public class Location extends BaseEntity {
 	@Column(name = "beacon_key")
 	private String beaconKey;
 
-	/** 負責人 - 對應 Employee **/
-	@Type(type = "jsonb")
-	@Column(name = "keepers", columnDefinition = "jsonb default '[]' ")
-	private List<Long> keepers;
-  @Transient
-  private List<Employee> employees;
-
-
+//	/** 負責人 - 對應 Employee **/
+//	@Type(type = "jsonb")
+//	@Column(name = "keepers", columnDefinition = "jsonb default '[]' ")
+//	private List<Long> keepers;
+//  @Transient
+//  private List<Employee> employees;
 
 //	/** 對應的設備 **/
 //	@OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

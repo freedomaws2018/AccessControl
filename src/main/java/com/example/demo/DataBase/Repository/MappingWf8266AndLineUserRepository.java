@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.DataBase.Entity.IdClass.MappingWf8266AndLineUserId;
 import com.example.demo.DataBase.Entity.Mapping.MappingWf8266AndLineUser;
-import com.example.demo.DataBase.Entity.Mapping.MappingWf8266AndLineUserId;
 
 public interface MappingWf8266AndLineUserRepository
 		extends JpaRepository<MappingWf8266AndLineUser, MappingWf8266AndLineUserId> {

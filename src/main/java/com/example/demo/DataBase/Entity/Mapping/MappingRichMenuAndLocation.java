@@ -7,7 +7,7 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import com.example.demo.DataBase.Entity.Base.BaseMapping;
-import com.example.demo.DataBase.Entity.IdClass.MappingWf8266AndLineUserId;
+import com.example.demo.DataBase.Entity.IdClass.MappingRichMenuAndLocationId;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,16 +15,16 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "mapping_wf8266_lineuser")
-@IdClass(MappingWf8266AndLineUserId.class)
-public class MappingWf8266AndLineUser extends BaseMapping {
+@Table(name = "mapping_richmenu_location")
+@IdClass(MappingRichMenuAndLocationId.class)
+public class MappingRichMenuAndLocation extends BaseMapping {
 
   @Id
-  @Column(name = "wf8266_id")
-  private String wf8266Id;
+  @Column(name = "rich_menu_id")
+  private String richMenuId;
 
   @Id
-  @Column(name = "line_user_id")
-  private String lineUserId;
+  @Column(name = "location_id")
+  private Long locationId;
 
 }

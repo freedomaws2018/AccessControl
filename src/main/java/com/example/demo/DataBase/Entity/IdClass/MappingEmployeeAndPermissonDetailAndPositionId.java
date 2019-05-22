@@ -1,4 +1,4 @@
-package com.example.demo.DataBase.Entity.Mapping;
+package com.example.demo.DataBase.Entity.IdClass;
 
 import java.io.Serializable;
 

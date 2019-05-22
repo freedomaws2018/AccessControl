@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import com.example.demo.DataBase.Entity.Base.BaseMapping;
+import com.example.demo.DataBase.Entity.IdClass.MappingEmployeeAndPermissonDetailAndPositionId;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,7 +20,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 對應 Employee 的 PermissionDetail 與 Position 的關係
  */
-public class MappingEmployeeAndPermissonDetailAndPosition {
+public class MappingEmployeeAndPermissonDetailAndPosition extends BaseMapping {
 
   @Id
   @Column(name = "employee_id")
@@ -30,8 +33,5 @@ public class MappingEmployeeAndPermissonDetailAndPosition {
   @Id
   @Column(name = "position_id")
   private Long positionId;
-
-  @Column(name = "isUse")
-  private Boolean isUse;
 
 }
