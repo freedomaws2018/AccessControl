@@ -23,7 +23,7 @@
   </script>
 
   <div class="row">
-    <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+    <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-6">
       <div class="card">
         <div class="card-header" toggleId="l-permission-toggle">
           <span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
@@ -46,12 +46,12 @@
               </tr>
               <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
                 <td>
-                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-info btn-sm">
+                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-info btn-sm btn-submit">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>檢視
-                  </a>
-                  <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm">
+                  </a><br>
+                  <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm btn-submit">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-                  </a>
+                  </a><br>
                   <a th:id="|delete_permission_${iterStar.index}|" th:permissionId="*{id}" href="javascript:;" class="btn btn-danger btn-sm">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>

@@ -44,12 +44,12 @@
         <tbody class="center">
           <tr th:each="template:${templateList}" th:object="${template}">
             <th scope="row">
-              <a th:href="@{/line/rich_menu/template/view/{id}(id=*{id})}" class="btn btn-info btn-sm">
+              <a th:href="@{/line/rich_menu/template/view/{id}(id=*{id})}" class="btn btn-info btn-sm btn-submit">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>檢視
-              </a>
-              <a th:href="@{/line/rich_menu/template/edit/{id}(id=*{id})}" class="btn btn-success btn-sm">
+              </a><br>
+              <a th:href="@{/line/rich_menu/template/edit/{id}(id=*{id})}" class="btn btn-success btn-sm btn-submit">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-              </a>
+              </a><br>
               <a href="javascript:;" th:id="|delete_template_*{id}|" th:templateId="*{id}" class="btn btn-danger btn-sm">
            	    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
