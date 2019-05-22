@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -42,10 +43,25 @@ public class Location extends BaseEntity {
 	@Column(name = "phone")
 	private String phone;
 
-//	/** 負責人 - 對應 Employee **/
+	/** 據點裝置使用的 WIFI SSID **/
+	@Column(name = "wifi_ssid")
+  private String wifiSsid;
+
+	/** 據點裝置使用的 WIFI Password **/
+	@Column(name = "wifi_passwd")
+  private String wifiPasswd;
+
+	/** 據點的Beacon 對應值 **/
+	@Column(name = "beacon_key")
+	private String beaconKey;
+
+	/** 負責人 - 對應 Employee **/
 	@Type(type = "jsonb")
 	@Column(name = "keepers", columnDefinition = "jsonb default '[]' ")
 	private List<Long> keepers;
+  @Transient
+  private List<Employee> employees;
+
 
 
 //	/** 對應的設備 **/

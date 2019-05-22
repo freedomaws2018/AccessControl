@@ -23,6 +23,7 @@ import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.event.BeaconEvent;
 import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.event.PostbackEvent;
 import com.linecorp.bot.model.event.UnfollowEvent;
@@ -36,126 +37,135 @@ import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 //@PropertySource("classpath:config/linebot.yml")
 public class LineBotApplication {
 
-	private static Logger logger = LoggerFactory.getLogger(LineBotApplication.class);
+  private static Logger logger = LoggerFactory.getLogger(LineBotApplication.class);
 
-	@Autowired
-	private LineRichMenuService lineRichMenuService;
+  @Autowired
+  private LineRichMenuService lineRichMenuService;
 
-	@Autowired
-	private LineUserRepository lineUserRepository;
+  @Autowired
+  private LineUserRepository lineUserRepository;
 
-	@Autowired
-	private LogWf8266Repository loggerWf8266Repository;
+  @Autowired
+  private LogWf8266Repository loggerWf8266Repository;
 
-	@Autowired
-	private Wf8266Repository wf8266Repository;
+  @Autowired
+  private Wf8266Repository wf8266Repository;
 
-	@Autowired
-	private MappingWf8266AndLineUserRepository mappingWf8266AndLineUserRepository;
+  @Autowired
+  private MappingWf8266AndLineUserRepository mappingWf8266AndLineUserRepository;
 
-	@Autowired
-	private RichMenuRepository richMenuRepository;
+  @Autowired
+  private RichMenuRepository richMenuRepository;
 
 //	@Autowired
 //	private LoggerWf8266Repository loggerWf8266Repository;
 
-	@Value("${line.bot.channelToken}")
-	private String channelAccessToken;
+  @Value("${line.bot.channelToken}")
+  private String channelAccessToken;
 
-	@Value("${line.GetProfileUrl}")
-	private String getProfileUrl;
+  @Value("${line.GetProfileUrl}")
+  private String getProfileUrl;
 
-	/** 加入/解除封鎖 時 **/
-	@EventMapping
-	public void handleFollowEvent(FollowEvent event) {
-		String userId = event.getSource().getUserId();
-		UserProfileResponse userProfile = this.getProfileByUserId(userId);
-		String userName = userProfile.getDisplayName();
+  /** 加入/解除封鎖 時 **/
+  @EventMapping
+  public void handleFollowEvent(FollowEvent event) {
+    String userId = event.getSource().getUserId();
+    UserProfileResponse userProfile = this.getProfileByUserId(userId);
+    String userName = userProfile.getDisplayName();
 
-		LineUser lineUser = this.lineUserRepository.getByUserId(userId).orElse(null);
-		if (lineUser == null) {
-			lineUser = new LineUser();
-			lineUser.setCreateDate(LocalDateTime.now(ZoneId.of("UTC+8")));
-			lineUser.setUserName(userName);
-			lineUser.setUserId(userId);
-			lineUser.setBegDt(LocalDateTime.now());
-			lineUser.setEndDt(LocalDateTime.now().plusYears(1l));
-			lineUser.setIsUse(true);
-		} else {
-			lineUser.setIsUse(true);
-		}
-		this.lineUserRepository.save(lineUser);
-		this.doReplyMessage(
-				new ReplyMessage(event.getReplyToken(), new TextMessage(userProfile.getDisplayName() + " - 註冊成功")));
-		logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
-	}
+    LineUser lineUser = this.lineUserRepository.getByUserId(userId).orElse(null);
+    if (lineUser == null) {
+      lineUser = new LineUser();
+      lineUser.setCreateDate(LocalDateTime.now(ZoneId.of("UTC+8")));
+      lineUser.setUserName(userName);
+      lineUser.setUserId(userId);
+      lineUser.setBegDt(LocalDateTime.now());
+      lineUser.setEndDt(LocalDateTime.now().plusYears(1l));
+      lineUser.setIsUse(true);
+    } else {
+      lineUser.setIsUse(true);
+    }
+    this.lineUserRepository.save(lineUser);
+    this.doReplyMessage(
+        new ReplyMessage(event.getReplyToken(), new TextMessage(userProfile.getDisplayName() + " - 註冊成功")));
+    logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
+  }
 
-	/** 移除/封鎖 時 **/
-	@EventMapping
-	public void handleUnfollowEvent(UnfollowEvent event) {
-		String userId = event.getSource().getUserId();
-		LineUser lineUser = this.lineUserRepository.getByUserIdAndIsUseTrue(userId).orElse(null);
+  /** 移除/封鎖 時 **/
+  @EventMapping
+  public void handleUnfollowEvent(UnfollowEvent event) {
+    String userId = event.getSource().getUserId();
+    LineUser lineUser = this.lineUserRepository.getByUserIdAndIsUseTrue(userId).orElse(null);
 
-		if (lineUser != null) {
-			lineUser.setIsUse(false);
-			this.lineUserRepository.save(lineUser);
-			logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
-		}
+    if (lineUser != null) {
+      lineUser.setIsUse(false);
+      this.lineUserRepository.save(lineUser);
+      logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
+    }
 
-	}
+  }
 
-	@EventMapping
-	public void handlePostbackEvent(PostbackEvent event) {
-		try {
-			String replyToken = event.getReplyToken();
-			String userId = event.getSource().getUserId();
-			String text = event.getPostbackContent().getData();
-			List<String> triggerTexts = Arrays.asList(text.split(","));
-			this.wf8266Handle(replyToken, userId, triggerTexts);
-		} catch (Exception ex) {
-			logger.error(ex.getMessage());
-		}
-	}
+  @EventMapping
+  public void handlePostbackEvent(PostbackEvent event) {
+    try {
+      String replyToken = event.getReplyToken();
+      String userId = event.getSource().getUserId();
+      String text = event.getPostbackContent().getData();
+      List<String> triggerTexts = Arrays.asList(text.split(","));
+      this.wf8266Handle(replyToken, userId, triggerTexts);
+    } catch (Exception ex) {
+      logger.error(ex.getMessage());
+    }
+  }
 
-	/*
-	 * @EventMapping public void handleTextMessageEvent(MessageEvent<MessageContent>
-	 * event) { // 1. 取得 Message 類別 MessageContent message = event.getMessage(); //
-	 * 2. 確認 Message 種類 ( 只處理 文字類 <TextMessageContext> ) try { if (message
-	 * instanceof TextMessageContent) { String replyToken = event.getReplyToken();
-	 * String userId = event.getSource().getUserId(); String text =
-	 * ((TextMessageContent) event.getMessage()).getText(); List<String>
-	 * triggerTexts = Arrays.asList(text.split(",")); wf8266Handle(replyToken,
-	 * userId, triggerTexts); } } catch (Exception ex) {
-	 * logger.error(ex.getMessage()); } }
-	 */
+  @EventMapping
+  public void handleBeaconEvent(BeaconEvent event) {
+    String replyToken = event.getReplyToken();
+    String text = event.getBeacon().getType();
+    System.err.println(event);
+    ReplyMessage replyMessage = new ReplyMessage(replyToken, new TextMessage(text));
+    doReplyMessage(replyMessage);
+  }
 
-	private void wf8266Handle(String replyToken, String userId, List<String> triggerTexts) {
+  /*
+   * @EventMapping public void handleTextMessageEvent(MessageEvent<MessageContent>
+   * event) { // 1. 取得 Message 類別 MessageContent message = event.getMessage(); //
+   * 2. 確認 Message 種類 ( 只處理 文字類 <TextMessageContext> ) try { if (message
+   * instanceof TextMessageContent) { String replyToken = event.getReplyToken();
+   * String userId = event.getSource().getUserId(); String text =
+   * ((TextMessageContent) event.getMessage()).getText(); List<String>
+   * triggerTexts = Arrays.asList(text.split(",")); wf8266Handle(replyToken,
+   * userId, triggerTexts); } } catch (Exception ex) {
+   * logger.error(ex.getMessage()); } }
+   */
+
+  private void wf8266Handle(String replyToken, String userId, List<String> triggerTexts) {
 //		System.err.println(triggerTexts);
-		// 指令開頭過濾，指令開頭均為 #
-		List<String> triggerTexts1 = triggerTexts.stream().filter(triggerText -> triggerText.matches("^#.*"))
-				.map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
+    // 指令開頭過濾，指令開頭均為 #
+    List<String> triggerTexts1 = triggerTexts.stream().filter(triggerText -> triggerText.matches("^#.*"))
+        .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
-		if (triggerTexts1 == null || triggerTexts1.isEmpty()) {
-			return;
-		}
+    if (triggerTexts1 == null || triggerTexts1.isEmpty()) {
+      return;
+    }
 
-		// 觸動指令
-		List<String> triggerTexts2 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^#.*"))
-				.map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
+    // 觸動指令
+    List<String> triggerTexts2 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^#.*"))
+        .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
-		// 換頁指令
-		List<String> triggerTexts3 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^>.*"))
-				.map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
+    // 換頁指令
+    List<String> triggerTexts3 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^>.*"))
+        .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
-		LineUser lineUser = null;
-		if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
-			// 1. 有指令需要執行前 先確認使用者權限
-			lineUser = this.lineUserRepository.getEffectiveUser(userId).orElse(null);
-			if (lineUser == null) {
-				this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("使用者沒有權限")));
-				return;
-			}
-		}
+    LineUser lineUser = null;
+    if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
+      // 1. 有指令需要執行前 先確認使用者權限
+      lineUser = this.lineUserRepository.getEffectiveUser(userId).orElse(null);
+      if (lineUser == null) {
+        this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("使用者沒有權限")));
+        return;
+      }
+    }
 
 //		if (!triggerTexts2.isEmpty()) {
 //			List<Wf8266Detail> wDetails = this.wf8266DetailRepository.getByTriggerTextInAndIsUseTrue(triggerTexts2);
@@ -187,55 +197,55 @@ public class LineBotApplication {
 //			return;
 //		}
 
-		if (!triggerTexts3.isEmpty()) {
-			String triggerText = triggerTexts3.get(0);
-			RichMenu rm = this.richMenuRepository.getByName(triggerText).orElse(null);
-			if (null != rm) {
-				this.lineRichMenuService.linkRichMenuToUser(userId, rm.getRichMenuId());
-			} else {
-				this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("找不到指定頁面，請洽管理員。")));
-			}
-			return;
-		}
+    if (!triggerTexts3.isEmpty()) {
+      String triggerText = triggerTexts3.get(0);
+      RichMenu rm = this.richMenuRepository.getByName(triggerText).orElse(null);
+      if (null != rm) {
+        this.lineRichMenuService.linkRichMenuToUser(userId, rm.getRichMenuId());
+      } else {
+        this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("找不到指定頁面，請洽管理員。")));
+      }
+      return;
+    }
 
-	}
+  }
 
-	/** 回應訊息 **/
-	@SuppressWarnings("unused")
+  /** 回應訊息 **/
+  @SuppressWarnings("unused")
 //ReplyMessage replyMessage = new ReplyMessage(replyToken, new TextMessage(text));
 //doReplyMessage(replyMessage);
-	private BotApiResponse doReplyMessage(ReplyMessage replyMessage) {
-		LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
-		try {
-			return client.replyMessage(replyMessage).get();
-		} catch (InterruptedException | ExecutionException e) {
-			return null;
-		}
-	}
+  private BotApiResponse doReplyMessage(ReplyMessage replyMessage) {
+    LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
+    try {
+      return client.replyMessage(replyMessage).get();
+    } catch (InterruptedException | ExecutionException e) {
+      return null;
+    }
+  }
 
-	/** 發送訊息 **/
+  /** 發送訊息 **/
 //PushMessage pushMessage = new PushMessage(event.getSource().getUserId(), new TextMessage("Push"));
 //doPushMessage(pushMessage);
-	@SuppressWarnings("unused")
-	private BotApiResponse doPushMessage(PushMessage pushMessage) {
-		LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
-		try {
-			return client.pushMessage(pushMessage).get();
-		} catch (InterruptedException | ExecutionException e) {
-			return null;
-		}
-	}
+  @SuppressWarnings("unused")
+  private BotApiResponse doPushMessage(PushMessage pushMessage) {
+    LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
+    try {
+      return client.pushMessage(pushMessage).get();
+    } catch (InterruptedException | ExecutionException e) {
+      return null;
+    }
+  }
 
-	/** 取得用戶資料 By UserId **/
-	private UserProfileResponse getProfileByUserId(String userId) {
-		LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
+  /** 取得用戶資料 By UserId **/
+  private UserProfileResponse getProfileByUserId(String userId) {
+    LineMessagingClient client = LineMessagingClient.builder(this.channelAccessToken).build();
 
-		try {
-			return client.getProfile(userId).get();
-		} catch (InterruptedException | ExecutionException e1) {
-			return null;
-		}
+    try {
+      return client.getProfile(userId).get();
+    } catch (InterruptedException | ExecutionException e1) {
+      return null;
+    }
 
-	}
+  }
 
 }
