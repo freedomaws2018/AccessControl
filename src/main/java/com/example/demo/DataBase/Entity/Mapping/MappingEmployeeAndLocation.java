@@ -5,6 +5,9 @@ package com.example.demo.DataBase.Entity.Mapping;
 //@Entity
 //@Table(name = "mapping_employee_location")
 //@IdClass(MappingEmployeeAndLocationId.class)
+/**
+ * 對應 Employee 與 Location 的關係表
+ */
 public class MappingEmployeeAndLocation {
 
 //	@Id

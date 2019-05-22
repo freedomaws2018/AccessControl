@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Controller.FormEntity.FromLogWf8266;
-import com.example.demo.DataBase.Entity.LogWf8266;
+import com.example.demo.DataBase.Entity.Log.LogWf8266;
 import com.example.demo.DataBase.Service.LogWf8266Service;
 
 @Controller

@@ -179,7 +179,7 @@
           <td>
             <select name="templateId" required >
               <option value="" size="0">請選擇</option>
-              <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{getBase64Image()}"/>
+              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
             </select>
           </td>
         </tr>

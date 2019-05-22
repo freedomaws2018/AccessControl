@@ -30,7 +30,8 @@ import com.example.demo.DataBase.Repository.MappingWf8266AndLineUserRepository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.LineModel.RichMenu.LineRichMenu;
-import com.example.demo.LineModel.RichMenu.LineRichMenuResponse;
+import com.linecorp.bot.model.richmenu.RichMenuListResponse;
+import com.linecorp.bot.model.richmenu.RichMenuResponse;
 
 @Controller
 @RequestMapping(value = "/line/user")
@@ -91,9 +92,9 @@ public class LineUserController {
 
     /** 修改時 取得所有選單 **/
     if ("edit".equals(funcType)) {
-      LineRichMenuResponse response = this.lineRichMenuService.getRichMenuList();
-      List<LineRichMenu> allRichMenu = response.getRichmenus();
-      model.addObject("allRichMenu", allRichMenu);
+      RichMenuListResponse response = lineRichMenuService.getRichMenuList();
+      List<RichMenuResponse> RichMenuResponses = response.getRichMenus();
+      model.addObject("allRichMenu", RichMenuResponses);
     }
 
     return model;

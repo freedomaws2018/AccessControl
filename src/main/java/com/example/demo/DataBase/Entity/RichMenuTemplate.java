@@ -53,8 +53,8 @@ public class RichMenuTemplate {
 		return new Gson().toJson(this.template);
 	}
 
-	public String getBase64Image() {
-		return Base64.encodeBase64String(this.image);
+	public String getImage() {
+		return Base64.encodeBase64String(image);
 	}
 
 }

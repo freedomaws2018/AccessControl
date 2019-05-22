@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap.min.css}">
+
+<script type="text/javascript" th:src="@{/js/jQuery/jquery-3.4.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/daterangepicker/moment.min.js}"></script>
+</head>
+
+<body>
+  <script>
+  $().ready(function(){
+    $("#test190522").click(function(){
+      var start = moment().startOf('days').format('x');
+      var now = moment().format('x');
+      var end = moment().endOf('days').format('x');
+      if(now > start && now < end){
+        $.get('https://service.wf8266.com/api/mqtt/3213790/Relay1/xoeExDUjSkPG2GMBDCAqfgPYl8v2/4');
+        alert('已開啟');
+      }else{
+        alert('已失效');
+      }
+    });
+  });
+  </script>
+  <button class="btn btn-info" style="width:800px;height:300px;font-size: 50px" id="test190522" value="" >汀洲大門(19-05-22臨時)<BR>點擊開啟</button>
+</body>
