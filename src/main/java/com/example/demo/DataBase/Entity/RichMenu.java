@@ -32,6 +32,10 @@ public class RichMenu {
   @Column(name = "rich_menu_id")
   private String richMenuId;
 
+  @CreatedDate
+  @Column(name = "create_date", nullable = false, updatable = false)
+  private LocalDateTime createDate = LocalDateTime.now();
+
   @Column(name = "name")
   private String name;
 
@@ -40,10 +44,6 @@ public class RichMenu {
   private Location location;
   @Column(name = "location_id")
   private Long locationId;
-
-  @CreatedDate
-  @Column(name = "create_date", nullable = false, updatable = false)
-  private LocalDateTime createDate = LocalDateTime.now();
 
   @Type(type = "jsonb")
   @Column(name = "rich_menu_json", columnDefinition = "jsonb")

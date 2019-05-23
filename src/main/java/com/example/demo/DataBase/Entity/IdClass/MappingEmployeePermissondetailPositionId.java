@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class MappingEmployeeAndPermissonDetailAndPositionId implements Serializable {
+public class MappingEmployeePermissondetailPositionId implements Serializable {
 
   private static final long serialVersionUID = 5870006910011866336L;
 

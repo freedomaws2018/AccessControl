@@ -23,12 +23,6 @@ public class IndexController {
 		return model;
 	}
 
-	@GetMapping(value="/test190522")
-	public ModelAndView test190522(ModelAndView model) {
-    model = new ModelAndView("test190522");
-    return model;
-	}
-
 //	@GetMapping(value = "/register")
 //	public ModelAndView adminRegister(ModelAndView model) {
 //		Long empCount = this.employeeRepository.count();

@@ -34,7 +34,7 @@ public class PermissionService {
 		if (permission != null) {
 			List<PermissionDetail> pds = this.permissionDetailRepository.findByPermissionId(permission.getId());
 			if (pds != null && !pds.isEmpty()) {
-				permission.setDetail(pds);
+				permission.setDetails(pds);
 			}
 
 		}
