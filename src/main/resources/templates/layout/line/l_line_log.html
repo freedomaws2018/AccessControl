@@ -10,6 +10,21 @@
 
   	dateTimePicke("datetimePicker","begDt","endDt");
   	
+  	isSelectShowOrHide = function(){
+    	if($("#locationId").val()){
+          $("#lineUserSelect").show();
+          $("#triggerTextSelect").show();
+    	}else{
+          $("#lineUserSelect").hide();
+          $("#triggerTextSelect").hide();
+          $("#lineUserId").val("");
+          $("#auto_line_user").val("");
+          $("#auto_trigger").val("");
+          $("#triggerText").val("");
+    	} 
+  	}
+  	isSelectShowOrHide();
+  	
   	$("#auto_location").autocomplete({
       minLength: 0,
       source: function(request,response){
@@ -30,6 +45,7 @@
       select: function(event,ui){
         var obj = ui.item.object;
         $("#locationId").val(obj.id);
+        isSelectShowOrHide();
       }
     })
     .blur(function(){
@@ -37,6 +53,9 @@
     })
     .focus(function () {
       $(this).autocomplete('search', '');
+      $(this).val("");
+      $("#locationId").val("");
+      isSelectShowOrHide();
     });
   	
   	$("#auto_line_user").autocomplete({
@@ -92,7 +111,6 @@
       },
       select: function(event,ui){
         var obj = ui.item.object;
-        console.log(obj);
         $("#triggerText").val(obj.triggertext);
       }
     })
@@ -130,14 +148,14 @@
                 <input type="text" class="form-control" id="auto_location" name="auto_location" th:value="${param.auto_location}" />
               </td>
             </tr>
-            <tr>
+            <tr id="lineUserSelect" style="display: none;">
               <th>LineUser</th>
               <td>
                 <input type="hidden" id="lineUserId" name="lineUserId" th:value="${param.lineUserId}" />
                 <input type="text" class="form-control" id="auto_line_user" name="auto_line_user" th:value="${param.auto_line_user}" />
               </td>
             </tr>
-            <tr>
+            <tr id="triggerTextSelect" style="display: none;">
               <th>TriggerText</th>
               <td>
                 <input type="hidden" id="triggerText" name="triggerText" th:value="${param.triggerText}" />
@@ -147,8 +165,13 @@
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="4">
-                <input type="submit" /> <a href="javascript:;">下載(X)</a>
+              <td colspan="4" class="center">
+                <button type="submit" class="btn btn-primary btn-sm btn-submit">
+            	  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+            	</button>
+            	<a href="javascript:;" class="btn btn-secondary btn-sm btn-download">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>下載(X)
+                </a>
               </td>
             </tr>
           </tfoot>

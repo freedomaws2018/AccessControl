@@ -2,7 +2,6 @@ package com.example.demo.DataBase.Entity;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,9 +17,7 @@ import org.hibernate.annotations.TypeDef;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.util.Base64Utils;
 
-import com.example.demo.LineModel.RichMenu.LineRichMenu;
-import com.example.demo.LineModel.RichMenu.LineRichMenuArea;
-import com.example.demo.LineModel.RichMenu.LineRichMenuSize;
+import com.linecorp.bot.model.richmenu.RichMenuResponse;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 import lombok.Data;
@@ -31,62 +28,42 @@ import lombok.Data;
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class RichMenu {
 
-	@Id
-	@Column(name = "rich_menu_id")
-	private String richMenuId;
+  @Id
+  @Column(name = "rich_menu_id")
+  private String richMenuId;
 
-	@CreatedDate
-	@Column(name = "create_date", nullable = false, updatable = false)
-	private LocalDateTime createDate = LocalDateTime.now();
+  @CreatedDate
+  @Column(name = "create_date", nullable = false, updatable = false)
+  private LocalDateTime createDate = LocalDateTime.now();
 
-	@Column(name = "name")
-	private String name;
+  @Column(name = "name")
+  private String name;
 
-	@Column(name = "chatBarText")
-	private String chatBarText;
+  /** 區域編號 - 對應 Location **/
+  @Transient
+  private Location location;
+  @Column(name = "location_id")
+  private Long locationId;
 
-	@Column(name = "selected")
-	private Boolean selected;
+  @Type(type = "jsonb")
+  @Column(name = "rich_menu_json", columnDefinition = "jsonb")
+  private RichMenuResponse richMenuResponse;
 
-	/** 區域編號 - 對應 Location **/
-	@Transient
-	private Location location;
-	@Column(name = "location_id")
-	private Long locationId;
+  @Lob
+  @Basic(fetch = FetchType.LAZY)
+  private byte[] image;
 
-	@Type(type = "jsonb")
-	@Column(name = "size", columnDefinition = "jsonb")
-	private LineRichMenuSize size;
+  public RichMenu() {
 
-	@Type(type = "jsonb")
-	@Column(name = "areas", columnDefinition = "jsonb")
-	private List<LineRichMenuArea> areas;
+  }
 
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	private byte[] image;
-
-	public RichMenu() {
-
-	}
-
-	public RichMenu(LineRichMenu richMenu) {
-		this.setRichMenuId(richMenu.getRichMenuId());
-		this.setName(richMenu.getName());
-		this.setChatBarText(richMenu.getChatBarText());
-		this.setSelected(richMenu.getSelected());
-		this.setLocationId(richMenu.getLocationId());
-		this.setSize(richMenu.getSize());
-		this.setAreas(richMenu.getAreas());
-	}
-
-	public String getImageBase64() {
-		byte[] encodeBase64 = Base64Utils.encode(this.getImage());
-		try {
-			return new String(encodeBase64, "UTF-8");
-		} catch (UnsupportedEncodingException uee) {
-			return null;
-		}
-	}
+  public String getImage() {
+    byte[] encodeBase64 = Base64Utils.encode(image);
+    try {
+      return new String(encodeBase64, "UTF-8");
+    } catch (UnsupportedEncodingException uee) {
+      return null;
+    }
+  }
 
 }

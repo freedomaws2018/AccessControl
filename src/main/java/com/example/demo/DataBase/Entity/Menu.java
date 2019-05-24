@@ -1,12 +1,9 @@
 package com.example.demo.DataBase.Entity;
 
-import com.example.demo.DataBase.Entity.Base.BaseEntity;
-
 //@Data
-//@EqualsAndHashCode(callSuper = false)
 //@Entity
 //@Table(name = "tbl_menu")
-public class Menu extends BaseEntity {
+public class Menu {
 
 //	@Id
 //	@Column(name = "key")

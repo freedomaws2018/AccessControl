@@ -1,4 +1,4 @@
-package com.example.demo.DataBase.Entity.Mapping;
+package com.example.demo.DataBase.Entity.IdClass;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class MappingWf8266AndLineUserId implements Serializable {
+public class MappingWf8266LineuserId implements Serializable {
 
 	private static final long serialVersionUID = -4781425387685569479L;
 

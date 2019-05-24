@@ -1,5 +1,6 @@
 package com.example.demo.DataBase.Entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,21 +14,30 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.example.demo.DataBase.Entity.Base.BaseEntity;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
+//@EqualsAndHashCode(callSuper = false)
+//public class Wf8266 extends BaseEntity {
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "tbl_wf8266")
-public class Wf8266 extends BaseEntity {
+public class Wf8266 {
 
 	/** wf8266 編號 **/
 	@Id
 	@Column(name = "sn", updatable = false)
 	private String sn;
+
+  @CreatedDate
+  @Column(name = "create_date", nullable = false, updatable = false)
+  private LocalDateTime createDate = LocalDateTime.now();
+
+  @LastModifiedDate
+  @Column(name = "modify_date", nullable = false)
+  private LocalDateTime modifyDate = LocalDateTime.now();
 
 	/** 區域編號 - 對應 Location **/
 	@Transient

@@ -24,13 +24,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Controller.FormEntity.FormLineUser;
 import com.example.demo.DataBase.Entity.LineUser;
-import com.example.demo.DataBase.Entity.Mapping.MappingWf8266AndLineUser;
+import com.example.demo.DataBase.Entity.Mapping.MappingWf8266Lineuser;
 import com.example.demo.DataBase.Repository.LineUserRepository;
-import com.example.demo.DataBase.Repository.MappingWf8266AndLineUserRepository;
+import com.example.demo.DataBase.Repository.MappingWf8266LineuserRepository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.LineModel.RichMenu.LineRichMenu;
-import com.example.demo.LineModel.RichMenu.LineRichMenuResponse;
+import com.linecorp.bot.model.richmenu.RichMenuListResponse;
+import com.linecorp.bot.model.richmenu.RichMenuResponse;
 
 @Controller
 @RequestMapping(value = "/line/user")
@@ -43,7 +44,7 @@ public class LineUserController {
   private Wf8266Repository wf8266Repository;
 
   @Autowired
-  private MappingWf8266AndLineUserRepository mappingWf8266AndLineUserRepository;
+  private MappingWf8266LineuserRepository mappingWf8266LineuserRepository;
 
   @Autowired
   private LineRichMenuService lineRichMenuService;
@@ -68,8 +69,8 @@ public class LineUserController {
 
     model = new ModelAndView("layout/line/u_line_user");
 
-    List<String> allTriggerTexts = this.mappingWf8266AndLineUserRepository.getByLineUserId(userId).stream()
-        .filter(MappingWf8266AndLineUser::getIsUse).map(MappingWf8266AndLineUser::getWf8266Id)
+    List<String> allTriggerTexts = mappingWf8266LineuserRepository.getByLineUserId(userId).stream()
+        .filter(MappingWf8266Lineuser::getIsUse).map(MappingWf8266Lineuser::getWf8266Id)
         .collect(Collectors.toList());
 
     LineUser user = this.lineUserRepository.findById(userId).orElse(null);
@@ -91,9 +92,9 @@ public class LineUserController {
 
     /** 修改時 取得所有選單 **/
     if ("edit".equals(funcType)) {
-      LineRichMenuResponse response = this.lineRichMenuService.getRichMenuList();
-      List<LineRichMenu> allRichMenu = response.getRichmenus();
-      model.addObject("allRichMenu", allRichMenu);
+      RichMenuListResponse response = lineRichMenuService.getRichMenuList();
+      List<RichMenuResponse> RichMenuResponses = response.getRichMenus();
+      model.addObject("allRichMenu", RichMenuResponses);
     }
 
     return model;
@@ -103,9 +104,9 @@ public class LineUserController {
   public ResponseEntity<Object> delete(@PathVariable String lineUserId) {
     this.lineUserRepository.deleteById(lineUserId);
 
-    List<MappingWf8266AndLineUser> allMapping = this.mappingWf8266AndLineUserRepository.getByLineUserId(lineUserId);
+    List<MappingWf8266Lineuser> allMapping = mappingWf8266LineuserRepository.getByLineUserId(lineUserId);
     if (allMapping != null && !allMapping.isEmpty()) {
-      this.mappingWf8266AndLineUserRepository.deleteAll(allMapping);
+      mappingWf8266LineuserRepository.deleteAll(allMapping);
     }
 
     return new ResponseEntity<>(null, HttpStatus.OK);

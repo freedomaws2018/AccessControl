@@ -2,36 +2,51 @@
 <head>
 <meta charset="UTF-8">
 <title th:if="${funcType eq 'add'}">LineRichMenu - 樣板新增</title>
-<title th:if="${funcType} == view">LineRichMenu - 樣板檢視</title>
-<title th:if="${funcType} == edit">LineRichMenu - 樣板修改</title>
+<title th:if="${funcType eq 'view'}">LineRichMenu - 樣板檢視</title>
+<title th:if="${funcType eq 'edit'}">LineRichMenu - 樣板修改</title>
 </head>
 <style>
 </style>
 <body layout:fragment="content">
   <form th:action="@{/line/rich_menu/template/save}" enctype="Multipart/Form-Data" method="post" >
+    <input th:if="${funcType eq 'edit'}" type="" th:value="${rmt.id}" />
     <table>
       <tr>
         <td>樣板名稱：</td>
-        <td><input type="text" style="width:150px;" name="name"/></td>
+        <td th:if="${funcType eq 'add'}"><input type="text" name="name"/></td>
+        <td th:if="${funcType eq 'view'}"><input type="text" name="name" th:value="${rmt.name}" readonly/></td>
+        <td th:if="${funcType eq 'edit'}"><input type="text" name="name" th:value="${rmt.name}"/></td>
       </tr>
     
       <tr>
         <td>按鍵數量：</td>
-        <td><input type="number" min="1" max="20" style="width:150px;" name="size"/></td>
+        <td th:if="${funcType eq 'add'}"><input type="number" min="1" max="20" name="size"/></td>
+        <td th:if="${funcType eq 'view'}"><input type="number" min="1" max="20" name="size" th:value="${rmt.size}" readonly/></td>
+        <td th:if="${funcType eq 'edit'}"><input type="number" min="1" max="20" name="size" th:value="${rmt.size}"/></td>
       </tr>
     
       <tr>
         <td>樣板遮設片：</td>
-        <td><input type="file" accept="image/png" name="imageFile"/></td>
+        <td th:if="${funcType eq 'add' || funcType eq 'edit' }"><input type="file" accept="image/png" name="imageFile"/></td>
+        <td th:if="${funcType eq 'view'}"><img width="300" th:src="@{|data:image/jpeg;base64,${rmt.image}|}" /></td>
       </tr>
     
       <tr>
         <td>樣板格式語法：</td>
-        <td><input type="file" accept=".json" name="jsonFile"/></td>
+        <td th:if="${funcType eq 'add' || funcType eq 'edit' }"><input type="file" accept=".json" name="jsonFile"/></td>
+        <td th:if="${funcType eq 'view'}">
+          <textarea id="myTextArea" cols=50 rows=20 th:text="${rmt.getTemplateJson()}" readonly></textarea>
+          <script th:inline="javascript">
+            var ugly = document.getElementById('myTextArea').value;
+            var obj = JSON.parse([[${rmt.getTemplateJson()}]]);
+            var pretty = JSON.stringify(obj, undefined, 4);
+            document.getElementById('myTextArea').value = pretty;
+          </script>
+        </td>
       </tr>
     
     </table>
-    <input type="submit" />
+    <input th:if="${funcType eq 'add' || funcType eq 'edit' }" type="submit" />
   </form>
 </body>
 </html>

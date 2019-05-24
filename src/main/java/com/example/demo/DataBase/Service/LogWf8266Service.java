@@ -1,9 +1,6 @@
 package com.example.demo.DataBase.Service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,9 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.DataBase.Entity.LineUser;
-import com.example.demo.DataBase.Entity.LogWf8266;
-import com.example.demo.DataBase.Entity.Wf8266Detail;
+import com.example.demo.DataBase.Entity.Log.LogWf8266;
 import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.LogWf8266Repository;
 import com.example.demo.DataBase.Repository.Wf8266DetailRepository;
@@ -46,23 +41,23 @@ public class LogWf8266Service {
 	}
 
 	public Page<LogWf8266> getLineUserAndWf8266Detail(Page<LogWf8266> logWf8266s){
-		List<String> userIds = logWf8266s.stream().map(LogWf8266::getUserId).distinct().collect(Collectors.toList());
-		Map<String,LineUser> mappingLineUser = this.lineUserRepository.getByUserIdIn(userIds).stream().collect(Collectors.toMap(LineUser::getUserId, Function.identity()));
+//		List<String> userIds = logWf8266s.stream().map(LogWf8266::getUserId).distinct().collect(Collectors.toList());
+//		Map<String,LineUser> mappingLineUser = this.lineUserRepository.getByUserIdIn(userIds).stream().collect(Collectors.toMap(LineUser::getUserId, Function.identity()));
+//
+//		List<String> wf8266Ids = logWf8266s.stream().map(log -> log.getWf8266Trigger()).distinct().collect(Collectors.toList());
+//		Map<String,Wf8266Detail> mappingWf8266Detail = this.wf8266DetailRepository.getByTriggerTextIn(wf8266Ids).stream().collect(Collectors.toMap(Wf8266Detail::getTriggerText, Function.identity()));
 
-		List<String> wf8266Ids = logWf8266s.stream().map(log -> log.getWf8266Trigger()).distinct().collect(Collectors.toList());
-		Map<String,Wf8266Detail> mappingWf8266Detail = this.wf8266DetailRepository.getByTriggerTextIn(wf8266Ids).stream().collect(Collectors.toMap(Wf8266Detail::getTriggerText, Function.identity()));
-
-		logWf8266s.stream().forEach( entity -> {
-			String userId = entity.getUserId();
-			if(mappingLineUser.containsKey(userId)){
-				entity.setLineUser(mappingLineUser.get(userId));
-			}
-			String triggerText = entity.getWf8266Trigger();
-			if(mappingWf8266Detail.containsKey(triggerText)) {
-				entity.setWf8266Detail(mappingWf8266Detail.get(triggerText));
-			}
-		});
-		return logWf8266s;
+//		logWf8266s.stream().forEach( entity -> {
+//			String userId = entity.getUserId();
+//			if(mappingLineUser.containsKey(userId)){
+//				entity.setLineUser(mappingLineUser.get(userId));
+//			}
+//			String triggerText = entity.getWf8266Trigger();
+//			if(mappingWf8266Detail.containsKey(triggerText)) {
+//				entity.setWf8266Detail(mappingWf8266Detail.get(triggerText));
+//			}
+//		});
+		return null;
 	}
 
 }

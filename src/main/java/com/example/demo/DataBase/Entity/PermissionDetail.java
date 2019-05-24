@@ -25,4 +25,7 @@ public class PermissionDetail {
 	@Column(name = "remarks")
 	private String remarks;
 
+  @Column(name = "is_super_admin")
+  private Boolean isSuperAdmin;
+
 }
