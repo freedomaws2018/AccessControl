@@ -1,0 +1,4 @@
+INSERT INTO public.tbl_employee(id, position_id , position_status, create_date, modify_date, first_name, last_name, account, password) VALUES 
+(1 , null , 0 , now(),now(),'TEST','001','test1','RkRDZSY5V1lARXpWcF5EOTltdGVzdGFiYzEyMw=='), -- abc123
+(2 , null , 1, now(),now(),'TEST','002','test2','RkRDZSY5V1lARXpWcF5EOTltdGVzdGFiYzEyMw=='),
+(3 , null , 2, now(),now(),'TEST','003','test3','RkRDZSY5V1lARXpWcF5EOTltdGVzdGFiYzEyMw==');

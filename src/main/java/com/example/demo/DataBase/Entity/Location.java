@@ -71,17 +71,4 @@ public class Location {
 	@Column(name = "beacon_key")
 	private String beaconKey;
 
-//	/** 負責人 - 對應 Employee **/
-//	@Type(type = "jsonb")
-//	@Column(name = "keepers", columnDefinition = "jsonb default '[]' ")
-//	private List<Long> keepers;
-//  @Transient
-//  private List<Employee> employees;
-
-//	/** 對應的設備 **/
-//	@OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<Wf8266> wf8266s;
-
-//	@OneToMany(mappedBy = "lineuser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<MappingLineUserAndLocation> lineusers;
 }
