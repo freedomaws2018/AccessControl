@@ -1,5 +1,6 @@
 package com.example.demo.DataBase.Entity;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+
+import com.google.common.hash.Hashing;
 
 import lombok.Data;
 
@@ -74,5 +77,9 @@ public class Employee {
     default:
       return "未知";
     }
+  }
+
+  public void setPassword(String password) {
+    this.password = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
   }
 }

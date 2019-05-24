@@ -41,7 +41,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect("/login");
 		}
 
-		modelAndView.addObject("employee", null);
+		modelAndView.addObject("employee", "employeeEntity");
 
 		super.postHandle(request, response, handler, modelAndView);
 	}
