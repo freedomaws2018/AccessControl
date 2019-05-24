@@ -1,9 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
-<head> <meta charset="UTF-8" > </head>
+<head> <meta charset="UTF-8" /> </head>
 
 <body layout:fragment="content">
 <script th:inline="javascript">
-   console.log([[${menus}]]);
+  var menus = [[${menus}]];
+  console.log(menus);
+//   var level1 = menus.filter(function(menu) {
+//     return menu.level == 1;
+//   });
+  
+//   console.log(level1);
 </script>
 </body>
 </html>
