@@ -28,19 +28,19 @@ public class Menu {
   /** 主類別 <沒有主類別就是頂層> **/
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "main_class", referencedColumnName = "class_name")
-  private Menu mainClass = null;
+  private Menu mainMenu = null;
 
   /** 父類別 <該類別的上一層類別> **/
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "parent_class", referencedColumnName = "class_name")
-  private Menu parentClass = null;
+  private Menu parentMenu = null;
 
   /** 子類別<該類別的下一層類別> **/
 //  @OneToMany(targetEntity = Menu.class, cascade = { CascadeType.ALL }, mappedBy = "parentClass", fetch = FetchType.LAZY )
 //  @Fetch(FetchMode.SUBSELECT)
-  @OneToMany(targetEntity = Menu.class, cascade = { CascadeType.ALL }, mappedBy = "parentClass", fetch = FetchType.LAZY)
+  @OneToMany( cascade = { CascadeType.ALL }, mappedBy = "parentMenu", fetch = FetchType.LAZY)
   @OrderBy("sort")
-  private List<Menu> childClasses = new ArrayList<>();
+  private List<Menu> childMenus = new ArrayList<>();
 
   @Column(name = "level")
   private Integer level;
