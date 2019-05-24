@@ -1,0 +1,17 @@
+﻿INSERT INTO tbl_permission (id , create_date , modify_date ,  name , remarks)
+VALUES 
+( 1 , '2019-05-01 00:01:00' , now() , 'WF8266' , 'WF8266權限');
+
+SELECT * FROM public.tbl_permission;
+	
+INSERT INTO tbl_permission_detail (type, is_super_admin, permission_id, name, remarks) VALUES
+('WF8266_MENU'      , false , 1 , 'WF8266選單' , 'WF8266選單權限'),
+('WF8266_ADD'       , false , 1 ,'WF8266新增' , 'WF8266新增權限'),
+('WF8266_DELETE_ALL', false , 1 ,'WF8266刪除全部' , 'WF8266刪除全部權限'),
+('WF8266_DELETE_OWN', false , 1 ,'WF8266刪除個人' , 'WF8266刪除個人權限'),
+('WF8266_EDIT_ALL'  , false , 1 ,'WF8266修改全部' , 'WF8266修改全部權限'),
+('WF8266_EDIT_OWN'  , false , 1 ,'WF8266修改個人' , 'WF8266修改個人權限'),
+('WF8266_VIEW_ALL'  , false , 1 ,'WF8266檢視全部' , 'WF8266檢視全部權限'),
+('WF8266_VIEW_OWN'  , false , 1 ,'WF8266檢視個人' , 'WF8266檢視個人權限');
+
+SELECT * FROM public.tbl_permission_detail;

@@ -35,13 +35,6 @@
         <li>
           <div class="row">
             <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-            <a th:href="@{/}">職階管理(X)</a>
-          </div>
-        </li>
-
-        <li>
-          <div class="row">
-            <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
             <a th:href="@{/permission/list}">權限管理(X)</a>
           </div>
         </li>
@@ -49,16 +42,33 @@
         <li>
           <div class="row">
             <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-            <a th:href="@{/}">選單管理(X)</a>
+            <a th:href="@{/menu/list}">選單管理(X)</a>
           </div>
         </li>
         
-        <li>
+        <li class="active">
           <div class="row">
-            <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-            <a th:href="@{/}">員工管理</a>
+            <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png">
+            <a href="#PERSONNEL" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">人事管理</a>
           </div>
+          <ul class="collapse list-unstyled" id="PERSONNEL">
+            <li>
+              <div class="row">
+                <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
+                <a th:href="@{/employee/list}">員工管理</a>
+              </div>
+            </li>
+    
+            <li>
+              <div class="row">
+                <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
+                <a th:href="@{/position/list}">職階管理</a>
+              </div>
+            </li>
+          </ul>
         </li>
+            
+        
         <li>
           <div class="row">
             <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">

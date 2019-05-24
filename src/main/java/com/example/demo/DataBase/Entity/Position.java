@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,9 +29,11 @@ public class Position {
   @Column(name = "create_date", nullable = false, updatable = false)
   private LocalDateTime createDate = LocalDateTime.now();
 
-  @LastModifiedDate
-  @Column(name = "modify_date", nullable = false)
-  private LocalDateTime modifyDate = LocalDateTime.now();
+  @Column(name = "is_use")
+  private Boolean isUse;
+
+  @Column(name = "is_default")
+  private Boolean isDefault;
 
 	@Column(name = "name")
 	private String name;

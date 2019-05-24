@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head> <meta charset="UTF-8" /> </head>
+
+<body layout:fragment="content">
+<!-- <script th:inline="javascript"> -->
+<!--   var menus = [[${menus}]]; -->
+<!--   console.log(menus); -->
+<!-- </script> -->
+<div th:each="v1:${menus}">
+<span th:text="${v1.name}"></span>
+  <div th:each="v2:${v1.childMenus}">
+    &ensp;<span th:text="${v2.name}"></span>
+    <div th:each="v3:${v2.childMenus}">
+      &ensp;&ensp;<span th:text="${v3.name}"></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
