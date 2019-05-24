@@ -1,6 +1,7 @@
 package com.example.demo.DataBase.Entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,6 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.springframework.data.annotation.CreatedDate;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.vladmihalcea.hibernate.type.json.JsonNodeBinaryType;
 
 import lombok.Data;
@@ -32,6 +32,6 @@ public class MenuTemporary {
 
   @Type(type = "jsonb-node")
   @Column(columnDefinition = "jsonb")
-  private JsonNode temporary;
+  private List<Menu> temporary;
 
 }

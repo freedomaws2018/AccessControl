@@ -25,7 +25,7 @@ public class MenuController {
   private ModelAndView list(ModelAndView model,
       @PageableDefault(page = 0, size = 10, sort = { "id" }, direction = Direction.ASC) Pageable pageable) {
     model = new ModelAndView("layout/menu/l_menu");
-    List<Menu> menus = menuService.getAll();
+    List<Menu> menus = menuService.getLevelOne();
     model.addObject("menus", menus);
     System.err.println(menus);
     return model;

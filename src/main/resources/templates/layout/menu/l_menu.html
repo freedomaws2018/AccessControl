@@ -2,14 +2,18 @@
 <head> <meta charset="UTF-8" /> </head>
 
 <body layout:fragment="content">
-<script th:inline="javascript">
-  var menus = [[${menus}]];
-  console.log(menus);
-//   var level1 = menus.filter(function(menu) {
-//     return menu.level == 1;
-//   });
-  
-//   console.log(level1);
-</script>
+<!-- <script th:inline="javascript"> -->
+<!--   var menus = [[${menus}]]; -->
+<!--   console.log(menus); -->
+<!-- </script> -->
+<div th:each="v1:${menus}">
+<span th:text="${v1.name}"></span>
+  <div th:each="v2:${v1.childMenus}">
+    &ensp;<span th:text="${v2.name}"></span>
+    <div th:each="v3:${v2.childMenus}">
+      &ensp;&ensp;<span th:text="${v3.name}"></span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
