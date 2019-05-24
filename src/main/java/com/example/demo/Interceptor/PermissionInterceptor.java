@@ -19,7 +19,8 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-//		System.err.println(request.getSession());
+    System.err.println("=================== preHandle =================== ");
+		System.err.println(request.getSession());
 
 		return true;
 	}
@@ -28,13 +29,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.err.println("=================== postHandle =================== ");
-
-		// 首次登入系統 驗證
-//		Long empCount = this.employeeRepository.count();
-//		if(empCount == 0) {
-//			response.sendRedirect("/register");
-//		}
-
+		System.err.println(request.getSession());
 		// 登入驗證
 		Boolean is_login = false;
 		if(!is_login) {

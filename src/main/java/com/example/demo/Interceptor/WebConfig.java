@@ -27,14 +27,14 @@ public class WebConfig implements WebMvcConfigurer {
 		excludePathList.add("/register");
 		excludePathList.add("/login");
 
-//		// 調用 攔截器
-//		registry.addInterceptor(this.permissionInterceptor)
-//		// 設定攔截對象
-//		.addPathPatterns(interceptPathList)
-//		// 忽略 攔截器
-//		.excludePathPatterns(excludePathList);
-//
-//		WebMvcConfigurer.super.addInterceptors(registry);
+		// 調用 攔截器
+		registry.addInterceptor(this.permissionInterceptor)
+		// 設定攔截對象
+		.addPathPatterns(interceptPathList)
+		// 忽略 攔截器
+		.excludePathPatterns(excludePathList);
+
+		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 
 }
