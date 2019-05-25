@@ -8,10 +8,10 @@ server:
 #    key-alias: freedomaws_jks
   servlet:
     session:
-      timeout: 60s
+      timeout: 20m
   tomcat:
     max-threads: 100
-    
+        
 spring:
   jpa:
     open-in-view: true

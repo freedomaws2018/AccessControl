@@ -2,6 +2,7 @@ package com.example.demo.DataBase.Entity;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,13 +48,16 @@ public class Employee {
   @Column(name = "account", nullable = false, updatable = false)
   private String account;
 
-  /** 密碼 BASE64([FDCe&9WY@EzVp^D99m][account][password]) **/
+  /** 密碼 SHA256([FDCe&9WY@EzVp^D99m]-[account]-[password]) **/
   @Column(name = "password", nullable = false)
   private String password;
 
   /** 職位 ID **/
   @Column(name = "position_id")
   private Long positionId;
+
+  @Column(name = "is_use")
+  private Boolean isUse;
 
   /**
    * 職位狀態<BR>
@@ -80,6 +84,7 @@ public class Employee {
   }
 
   public void setPassword(String password) {
-    this.password = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+    String sha256_str = String.format("%s-%s-%s", "FDCe&9WY@EzVp^D99m", this.account, password);
+    this.password = Hashing.sha256().hashString(sha256_str, StandardCharsets.UTF_8).toString().toUpperCase(Locale.US);
   }
 }
