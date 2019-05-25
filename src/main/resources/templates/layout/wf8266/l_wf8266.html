@@ -50,7 +50,7 @@
                       <div class="row">
                       <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-warning btn-sm">
                         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
-                      </a> <!-- 從input改寫成a，不確定此按鈕的作用還在不在 -->
+                      </a>
                       <!-- <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> 到時候再重畫按鈕 -->
                       <div th:id="|status_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
                       <script th:inline="javascript">
@@ -58,6 +58,7 @@
                         function reload_[[${iterStat.index}]](){
                           var url = $("#url" + '_' + [[${iterStat.index}]]).val() ;
                           var status = $("#status_" + [[${iterStat.index}]] );
+                          status.html('');
                           $.ajax({
                               type: 'GET',
                               timeout: 2000,
@@ -69,14 +70,15 @@
                                   let datas = result.data.Data;
                                   let ip = result.data.LocalIp;
                                   let uuid = result.data.UUID;
-                                  status.html(`<span style="color:green;">連線中 </span> ( ${ip} / ${uuid} ) `);
+//                                   status.html(`<span style="color:green;">連線中 </span> ( ${ip} / ${uuid} ) `);
+                                  status.html(`<span style="color:green;">連線中 </span> ( ${ip} ) `);
                                 }else{
                                   status.html(`<span style="color:red;">失去連線</span> (${result.code} / ${result.data}) `);
                                 }
+                              },
+                              error: function (XMLHttpRequest, textStatus, errorThrown) {
+                              	status.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
                               }
-                            ,error: function (XMLHttpRequest, textStatus, errorThrown) {
-                              status.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
-                            }
                           });
                         }
                       </script>

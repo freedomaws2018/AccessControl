@@ -38,6 +38,7 @@ public class PermissionController {
   @GetMapping(value = "/add")
   public ModelAndView add(ModelAndView model, RedirectAttributes attr) {
     model = new ModelAndView("layout/permission/u_permission");
+    model.addObject("funcType", "add");
 
     return model;
   }
@@ -46,9 +47,9 @@ public class PermissionController {
   public ModelAndView viewAndEdit(ModelAndView model, RedirectAttributes attr, @PathVariable String funcType,
       @PathVariable Long permissionId) {
     model = new ModelAndView("layout/permission/u_permission");
+    model.addObject("funcType", funcType);
     Permission permission = this.permissionService.getPermissionById(permissionId);
     model.addObject("permission", permission);
-    model.addObject("funcType", funcType);
     return model;
   }
 

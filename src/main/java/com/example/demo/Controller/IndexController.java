@@ -24,7 +24,6 @@ public class IndexController {
 
   @GetMapping(value = "/index")
   public ModelAndView index(ModelAndView model) {
-    System.err.println(model.getModel());
     model = new ModelAndView("comm/index");
     System.err.println("=================== index =================== ");
     return model;
@@ -54,7 +53,7 @@ public class IndexController {
       session.setAttribute("employee", employee);
 
       String uri = (String) session.getAttribute("URI");
-      if (Arrays.asList("/error", "/login").contains(uri)) {
+      if (Arrays.asList("/error", "/login" , "/logout").contains(uri)) {
         uri = "/index";
       }
       return new ModelAndView(new RedirectView(uri));
