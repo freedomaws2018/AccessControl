@@ -52,6 +52,8 @@ public class IndexController {
 
       session.setAttribute("employee", employee);
 
+      session.setAttribute("password", employee.getPassword());
+
       String uri = (String) session.getAttribute("URI");
       if (Arrays.asList("/error", "/login" , "/logout" , "/employee/changePassword").contains(uri)) {
         uri = "/index";

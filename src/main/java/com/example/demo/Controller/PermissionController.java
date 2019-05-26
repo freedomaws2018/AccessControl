@@ -12,10 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.demo.Controller.FormEntity.FormPermission;
 import com.example.demo.DataBase.Entity.Permission;
 import com.example.demo.DataBase.Service.PermissionService;
 
@@ -57,6 +60,13 @@ public class PermissionController {
   public ResponseEntity<Object> delete(@PathVariable String permissionId) {
 
     return new ResponseEntity(null, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/save")
+  public ModelAndView save(ModelAndView model, FormPermission form) {
+    System.err.println(form.getPermission());
+    permissionService.save(form.getPermission());
+    return new ModelAndView(new RedirectView("/permission/list"));
   }
 
   /** Redirect **/

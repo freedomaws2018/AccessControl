@@ -12,14 +12,14 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.springframework.data.annotation.CreatedDate;
 
-import com.vladmihalcea.hibernate.type.json.JsonNodeBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "tbl_menu_temporay")
-@TypeDef(name = "jsonb-node", typeClass = JsonNodeBinaryType.class)
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class MenuTemporary {
 
   @Id
@@ -30,7 +30,7 @@ public class MenuTemporary {
   @Column(name = "create_date", nullable = false, updatable = false)
   private LocalDateTime createDate = LocalDateTime.now();
 
-  @Type(type = "jsonb-node")
+  @Type(type = "jsonb")
   @Column(columnDefinition = "jsonb")
   private List<Menu> temporary;
 

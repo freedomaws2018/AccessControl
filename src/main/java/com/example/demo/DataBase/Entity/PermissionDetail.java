@@ -22,10 +22,7 @@ public class PermissionDetail {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "remarks")
-	private String remarks;
-
-  @Column(name = "is_super_admin")
+  @Column(name = "is_super_admin" ,columnDefinition = "bool DEFAULT FALSE")
   private Boolean isSuperAdmin;
 
 }

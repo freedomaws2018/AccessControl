@@ -32,6 +32,7 @@
 <link rel=stylesheet type="text/css" th:href="@{/css/daterangepicker.css}">
 
 <!-- Dialog -->
+<script type="text/javascript" th:src="@{/js/myJavascript/dialog.js}"></script>
 
 </head>
 <body>
@@ -40,5 +41,7 @@
   <div class="container-fluid">
     <div layout:fragment="content"></div>
   </div>
+  
+  <div th:include="~{comm/dialog :: dialog_default}"></div>
 </body>
 </html>

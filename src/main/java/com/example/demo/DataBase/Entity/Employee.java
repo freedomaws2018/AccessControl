@@ -64,7 +64,7 @@ public class Employee {
    * ( 0:在職 , 1:離職 , 2:留職停薪 )
    **/
   @Column(name = "position_status")
-  public Integer positionStatus;
+  private Integer positionStatus;
 
   public String getName() {
     return String.format("%s %s", firstName, lastName);
