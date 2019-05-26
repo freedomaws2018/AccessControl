@@ -77,28 +77,28 @@
               </div>              
             </div>        
             <div class="row badge-margin justify-content-center hide-in-phone">
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
-            <span th:text="|建立時間：  ${#temporals.format(user.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
-            </div>&emsp;
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
-            <span th:text="|修改時間：  ${#temporals.format(user.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
-            </div>
+              <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+                <span th:text="|建立時間：  ${#temporals.format(user.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+              </div>&emsp;
+              <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+                <span th:text="|修改時間：  ${#temporals.format(user.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+              </div>
             </div>
             <div class="row badge-margin justify-content-center show-on-phone">
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
-            <span th:text="|建立時間：  ${#temporals.format(user.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
-            </div>&emsp;
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
-            <span th:text="|修改時間：  ${#temporals.format(user.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
-            </div>
+              <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+                <span th:text="|建立時間：  ${#temporals.format(user.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+              </div>&emsp;
+              <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+                <span th:text="|修改時間：  ${#temporals.format(user.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+              </div>
             </div>
             <div th:if="${funcType eq 'edit'}"><div class="line"></div></div>
             <div class="row justify-content-center">
-            <a th:if="${funcType} == edit">
-            <button type="submit" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
-            </button>
-            </a>
+              <a th:if="${funcType} == edit">
+                <button type="submit" class="btn btn-primary btn-sm">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+                </button>
+              </a>
             </div>
             </div>
           </div>

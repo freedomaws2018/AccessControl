@@ -53,7 +53,7 @@ public class IndexController {
       session.setAttribute("employee", employee);
 
       String uri = (String) session.getAttribute("URI");
-      if (Arrays.asList("/error", "/login" , "/logout").contains(uri)) {
+      if (Arrays.asList("/error", "/login" , "/logout" , "/employee/changePassword").contains(uri)) {
         uri = "/index";
       }
       return new ModelAndView(new RedirectView(uri));

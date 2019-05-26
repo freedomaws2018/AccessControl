@@ -50,6 +50,10 @@ public class EmployeeService {
     return employee;
   }
 
+  public Employee save(Employee employee) {
+    return employeeRepository.save(employee);
+  }
+
   private class LoginException extends RuntimeException {
 
     private static final long serialVersionUID = -8251600280803010569L;

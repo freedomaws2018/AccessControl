@@ -87,4 +87,10 @@ public class Employee {
     String sha256_str = String.format("%s-%s-%s", "FDCe&9WY@EzVp^D99m", this.account, password);
     this.password = Hashing.sha256().hashString(sha256_str, StandardCharsets.UTF_8).toString().toUpperCase(Locale.US);
   }
+
+  public String hashPassword(String password) {
+    String sha256_str = String.format("%s-%s-%s", "FDCe&9WY@EzVp^D99m", this.account, password);
+    return Hashing.sha256().hashString(sha256_str, StandardCharsets.UTF_8).toString().toUpperCase(Locale.US);
+  }
+
 }
