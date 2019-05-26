@@ -3,18 +3,21 @@
 
 <body layout:fragment="content">
   <script type="text/javascript">
-  	delete_location = function(id){
-      $.ajax({
-        type: 'DELETE',
-        url: `/location/delete/${id}`,
-        dataType: 'json',
-        success: (result) =>{
-          
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-          
-        }
-      });
+  	delete_location = function(id,name){
+
+  	  showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 據點嗎?',function(){
+        $.ajax({
+          type: 'DELETE',
+          url: `/location/delete/${id}`,
+          dataType: 'json',
+          success: (result) =>{
+            
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            
+          }
+        });
+  	  });
   	}
   </script>
   <div class="row">
@@ -48,7 +51,7 @@
                       <a th:href="@{/location/edit/__*{id}__}" class="btn btn-sm btn-success">
 		    		    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
 		  			  </a>
-		   			  <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">
+		   			  <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_location(__*{id}__,__*{name}__)|" >
 						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
 		  			  </a>
                    </th>

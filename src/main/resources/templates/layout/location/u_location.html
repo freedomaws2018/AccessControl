@@ -37,6 +37,24 @@
                     <td th:if="${funcType eq 'view'}"><span th:text="*{phone}"></span></td>
                     <td th:if="${funcType eq 'edit'}"><input type="text" name="phone" th:value="*{phone}" /></td>
                   </tr>
+                  
+                  <tr>
+                    <th>WiFi名稱</th>
+                    <td th:if="${funcType eq 'view'}"><span th:text="*{wifiSsid}"></span></td>
+                    <td th:if="${funcType eq 'edit'}"><input type="text" name="wifiSsid" th:value="*{wifiSsid}" /></td>
+                  </tr>
+                  
+                  <tr>
+                    <th>WiFi密碼</th>
+                    <td th:if="${funcType eq 'view'}"><span th:text="*{wifiPasswd}"></span></td>
+                    <td th:if="${funcType eq 'edit'}"><input type="text" name="wifiPasswd" th:value="*{wifiPasswd}" /></td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Beacon值</th>
+                    <td th:if="${funcType eq 'view'}"><span th:text="*{beaconKey}"></span></td>
+                    <td th:if="${funcType eq 'edit'}"><input type="text" name="beaconKey" th:value="*{beaconKey}" /></td>
+                  </tr>
                   <tr>
                     <th>負責人</th>
                     <td th:if="${funcType eq 'view'}">
