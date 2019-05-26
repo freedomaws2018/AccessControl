@@ -12,9 +12,11 @@ import org.springframework.data.annotation.CreatedDate;
 
 import com.example.demo.DataBase.Entity.IdClass.MappingEmployeeLocationId;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "mapping_employee_location")
 @IdClass(MappingEmployeeLocationId.class)

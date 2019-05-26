@@ -39,8 +39,17 @@
                   </tr>
                   <tr>
                     <th>負責人</th>
-          <!--           <td th:if="${funcType eq 'view'}"><span th:text="*{keeper}"></span></td> -->
-          <!--           <td th:if="${funcType eq 'edit'}"><input type="text" name="keeper" th:value="*{keeper}" /></td> -->
+                    <td th:if="${funcType eq 'view'}">
+<!--                       <span th:text="${mappingEmp}"></span> -->
+                      <span th:each="obj:*{mappingEL}" th:object="${obj}">
+                        <span th:text="|${mappingEmp.get(__*{employeeId}__).name}|"></span>,
+                      </span>
+                    </td>
+                    <td th:if="${funcType eq 'edit'}">
+                      <select multiple name="keepers">
+                        <option th:each="emp:${mappingEmp}" th:value="${emp.value.id}" th:text="${emp.value.name}" th:selected="${#lists.contains(location.employeeIds, emp.value.id)}" ></option>
+                      </select>
+                    </td>
                   </tr>
                   <tr>
                     <th>建立時間</th>

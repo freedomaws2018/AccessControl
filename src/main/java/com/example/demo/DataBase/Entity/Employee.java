@@ -16,11 +16,13 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import com.google.common.hash.Hashing;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 //@EqualsAndHashCode(callSuper = false)
 //public class Employee extends BaseEntity {
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "tbl_employee")
 public class Employee {

@@ -149,8 +149,7 @@
             <label><input type="radio" name="isUse" value="false" />停用</label>
           </td>
           <td th:if="${funcType eq 'view' }">
-            <label><input type="radio" name="isUse" value="true" checked />啟用</label>
-            <label><input type="radio" name="isUse" value="false" />停用</label>
+            <label th:text="${wf8266.isUse}?'啟用':'停用'">啟用/停用</label>
           </td>
           <td th:if="${funcType eq 'edit' }">
             <label><input type="radio" name="isUse" value="true" th:checked="${wf8266.isUse}" />啟用</label>

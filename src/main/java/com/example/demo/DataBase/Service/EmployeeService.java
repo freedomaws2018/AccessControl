@@ -27,6 +27,10 @@ public class EmployeeService {
     return employeeRepository.findAll(pageable);
   }
 
+  public List<Employee> getByIdIn(List<Long> ids){
+    return employeeRepository.findAllById(ids);
+  }
+
   public Employee loginVerification(String account, String passwd) {
     System.err.println(account + " : " + passwd);
     Employee employee = null;
@@ -39,9 +43,6 @@ public class EmployeeService {
     String passwd_sha256 = Hashing.sha256()
         .hashString(String.format("%s-%s-%s", "FDCe&9WY@EzVp^D99m", account, passwd), StandardCharsets.UTF_8).toString()
         .toUpperCase(Locale.US);
-
-//    System.err.println(employee.getPassword());
-//    System.err.println(passwd_sha256);
 
     if (!employee.getPassword().equals(passwd_sha256)) {
       throw new LoginException("用戶密碼錯誤");

@@ -3,7 +3,9 @@ package com.example.demo.DataBase.Entity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,16 +14,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import lombok.Data;
+import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeLocation;
+
+import lombok.Getter;
+import lombok.Setter;
 
 //@EqualsAndHashCode(callSuper = false)
 //public class Location extends BaseEntity {
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "tbl_location")
 //@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
@@ -30,10 +37,10 @@ import lombok.Data;
  */
 public class Location {
 
-	/** 地點對應ID **/
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+  /** 地點對應ID **/
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
   @OneToMany(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id")
@@ -47,28 +54,37 @@ public class Location {
   @Column(name = "modify_date", nullable = false)
   private LocalDateTime modifyDate = LocalDateTime.now();
 
-	/** 地點名稱 **/
-	@Column(name = "name")
-	private String name;
+  /** 地點名稱 **/
+  @Column(name = "name")
+  private String name;
 
-	/** 地點地址 **/
-	@Column(name = "address")
-	private String address;
+  /** 地點地址 **/
+  @Column(name = "address")
+  private String address;
 
-	/** 地點電話 **/
-	@Column(name = "phone")
-	private String phone;
+  /** 地點電話 **/
+  @Column(name = "phone")
+  private String phone;
 
-	/** 據點裝置使用的 WIFI SSID **/
-	@Column(name = "wifi_ssid")
+  /** 據點裝置使用的 WIFI SSID **/
+  @Column(name = "wifi_ssid")
   private String wifiSsid;
 
-	/** 據點裝置使用的 WIFI Password **/
-	@Column(name = "wifi_passwd")
+  /** 據點裝置使用的 WIFI Password **/
+  @Column(name = "wifi_passwd")
   private String wifiPasswd;
 
-	/** 據點的Beacon 對應值 **/
-	@Column(name = "beacon_key")
-	private String beaconKey;
+  /** 據點的Beacon 對應值 **/
+  @Column(name = "beacon_key")
+  private String beaconKey;
+
+  /** 據點負責人 **/
+  @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @OrderBy("employeeId ASC")
+  private List<MappingEmployeeLocation> mappingEL = new ArrayList<>();
+
+  public List<Long> getEmployeeIds() {
+    return mappingEL.stream().map(MappingEmployeeLocation::getEmployeeId).collect(Collectors.toList());
+  }
 
 }

@@ -1,6 +1,8 @@
 package com.example.demo.Controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -24,82 +26,89 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Controller.FormEntity.FormLocation;
+import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Location;
+import com.example.demo.DataBase.Service.EmployeeService;
 import com.example.demo.DataBase.Service.LocationService;
+import com.google.common.base.Functions;
 
 @Controller
 @RequestMapping(value = "/location")
 public class LocationController {
 
-	@Autowired
-	private LocationService locationService;
+  @Autowired
+  private LocationService locationService;
 
-	@GetMapping(value = "/list")
-	private ModelAndView list(ModelAndView model,
-			@PageableDefault(page = 0, size = 10, sort = { "id" }, direction = Direction.ASC) Pageable pageable) {
-		model = new ModelAndView("layout/location/l_location");
-		Page<Location> locations = this.locationService.getAll(pageable);
-		model.addObject("locations", locations);
-		return model;
-	}
+  @Autowired
+  private EmployeeService employeeService;
 
-	@GetMapping(value = "/add")
-	private ModelAndView add(ModelAndView model) {
-		model = new ModelAndView("layout/location/u_location");
-		model.addObject("funcType", "edit");
+  @GetMapping(value = "/list")
+  private ModelAndView list(ModelAndView model,
+      @PageableDefault(page = 0, size = 10, sort = { "id" }, direction = Direction.ASC) Pageable pageable) {
+    model = new ModelAndView("layout/location/l_location");
+    Page<Location> locations = this.locationService.getAll(pageable);
+    model.addObject("locations", locations);
+    return model;
+  }
+
+  @GetMapping(value = "/add")
+  private ModelAndView add(ModelAndView model) {
+    model = new ModelAndView("layout/location/u_location");
+    model.addObject("funcType", "edit");
 //		Location location = this.locationService.getById(id);
-		model.addObject("location", new Location());
+    model.addObject("location", new Location());
 
-		return model;
-	}
+    return model;
+  }
 
-	@GetMapping(value = "/{funcType:view|edit}/{id}")
-	private ModelAndView edit(ModelAndView model, @PathVariable String funcType, @PathVariable Long id) {
-		model = new ModelAndView("layout/location/u_location");
+  @GetMapping(value = "/{funcType:view|edit}/{id}")
+  private ModelAndView edit(ModelAndView model, @PathVariable String funcType, @PathVariable Long id) {
+    model = new ModelAndView("layout/location/u_location");
 
-		Location location = this.locationService.getById(id);
-		model.addObject("location", location);
-		model.addObject("funcType", funcType);
-		return model;
-	}
+    Location location = this.locationService.getById(id);
+    model.addObject("location", location);
+    model.addObject("funcType", funcType);
+    Map<Integer, Employee> empMap = employeeService.getAll().stream()
+        .collect(Collectors.toMap(e -> Math.toIntExact(e.getId()), Functions.identity()));
+    model.addObject("mappingEmp", empMap);
 
-	@PostMapping(value = "/save")
-	private ModelAndView save(ModelAndView model, RedirectAttributes attr, @Valid FormLocation form,
-			BindingResult result) {
+    return model;
+  }
 
-		if (result.hasErrors()) {
-			List<FieldError> fieldErrors = result.getFieldErrors();
-			for (FieldError error : fieldErrors) {
-				System.err.printf("%s:%s:%s\n", error.getField(), error.getDefaultMessage(), error.getCode());
-			}
-			return new ModelAndView("redirect:/location/edit/" + form.getId());
-		}
+  @PostMapping(value = "/save")
+  private ModelAndView save(ModelAndView model, RedirectAttributes attr, @Valid FormLocation form,
+      BindingResult result) {
 
-		System.err.println(form);
-		Location location = form.toEntity();
-		System.err.println(location);
+    if (result.hasErrors()) {
+      List<FieldError> fieldErrors = result.getFieldErrors();
+      for (FieldError error : fieldErrors) {
+        System.err.printf("%s:%s:%s\n", error.getField(), error.getDefaultMessage(), error.getCode());
+      }
+      return new ModelAndView("redirect:/location/edit/" + form.getId());
+    }
 
-		location = this.locationService.save(location);
-		System.err.println(location);
+    Location location = form.getLocaiton();
+    locationService.removeAllMappingWithLocationId(form.getId());
+    location = locationService.save(location);
 
-		return new ModelAndView("redirect:/location/view/" + location.getId());
-	}
+    return new ModelAndView("redirect:/location/view/" + location.getId());
+  }
 
-	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	private ResponseEntity<Object> delete(@PathVariable Long id) {
-		Location location = this.locationService.getById(id);
-		if (location != null) {
-			this.locationService.delete(location);
-		}
-		return new ResponseEntity<>(null, HttpStatus.OK);
-	}
+  @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  private ResponseEntity<Object> delete(@PathVariable Long id) {
+    Location location = this.locationService.getById(id);
+    if (location != null) {
+      this.locationService.delete(location);
+    }
+    return new ResponseEntity<>(null, HttpStatus.OK);
+  }
 
-	/** autocomplete **/
-	@PostMapping(value = "/autocomplete/getAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	private ResponseEntity<Object> getAll(String term) {
-		List<Location> location = this.locationService.getByNameLike(term);
+  /** autocomplete **/
+  @PostMapping(value = "/autocomplete/getAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  private ResponseEntity<Object> getAll(String term) {
+    List<Location> location = this.locationService.getByNameLike(term);
 
-		return new ResponseEntity<>(location, HttpStatus.OK);
-	}
+    return new ResponseEntity<>(location, HttpStatus.OK);
+  }
 
 }
