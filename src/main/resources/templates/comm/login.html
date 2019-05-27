@@ -1,14 +1,83 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap-3.3.7/bootstrap-glyphicon.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap-grid.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.3.1/bootstrap-reboot.min.css}">
+
+<!-- Scripts -->
+<script type="text/javascript" th:src="@{/js/jQuery/jquery-3.4.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-4.3.1/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-4.3.1/bootstrap.min.js}"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/login_style.css}">
+
+<!-- JQuery Ui (Autocomplete) -->
+<script type="text/javascript" th:src="@{/js/jQueryUi-1.12.1/jquery-ui.min.js}"></script>
+<link rel="stylesheet" th:href="@{/css/jQueryUi-1.12.1/jquery-ui.css}">
+
+<!-- DateTimePicker -->
+<script type="text/javascript" th:src="@{/js/daterangepicker/moment.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/daterangepicker/daterangepicker.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/myJavascript/datetimePicker.js}"></script>
+<link rel=stylesheet type="text/css" th:href="@{/css/daterangepicker.css}">
+
+<!-- Dialog -->
+<script type="text/javascript" th:src="@{/js/myJavascript/dialog.js}"></script>
+
 <title>登入</title>
 </head>
 <body>
   <p th:text="${err_msg}"></p>
   <form method="POST" th:action="@{/login}">
-    帳號：<input type="text" name="account" placeholder="請輸入帳號"></input>
-    密碼：<input type="password" name="passwd" placeholder="請輸入密碼"></input>
-    <input type="submit"></input>
+  <div class="container-fluid">
+	<div class="row justify-content-center">
+	  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-8 col-12">
+	  <div class="card">
+		<div class="card-body">
+		  <h1>登入</h1>
+		  <p class="text-muted">Sign In to your account</p>
+		  <div class="input-box">
+			<label class="sr-only" for="inlineFormInputGroup">Username</label>
+			<div class="input-group mb-2">
+			  <div class="input-group-prepend">
+				<div class="input-group-text">
+				  <span class="glyphicon glyphicon-user"></span>
+				</div>
+			  </div>
+			  <input type="text" name="account" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+			</div>
+		  </div>
+		  <div class="input-box">
+			<label class="sr-only" for="inlineFormInputGroup">Password</label>
+			<div class="input-group mb-2">
+			  <div class="input-group-prepend">
+				<div class="input-group-text">
+				  <span class="glyphicon glyphicon-lock"></span>
+				</div>
+			  </div>
+			  <input type="text" name="passwd" class="form-control" id="inlineFormInputGroup" placeholder="Password">
+			</div>
+		  </div>		    
+		  <div class="row">
+			<div class="col-6">
+			  <button class="btn btn-primary px-4" type="submit">登入</button>
+			</div>
+			<div class="col-6 text-right">
+			  <button class="btn btn-link px-0" type="button">忘記密碼?</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	</div>
+  </div>
   </form>
 </body>
 </html>
