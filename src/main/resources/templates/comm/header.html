@@ -1,6 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head><meta charset="UTF-8"></head>
 <header th:fragment="header(headerInfo)" >
+  <script th:inline="javascript">
+  	console.log([[${session}]])
+  </script>
   <span th:text="${#httpServletRequest.getParameter('employee')}"></span>
 	<nav id="navbar" class="navbar navbar-light">
 		<button class="hamburger-menu" id="sidebarCollapse">

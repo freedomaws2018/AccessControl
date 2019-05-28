@@ -7,6 +7,11 @@
 <script>
   $(function() {
     
+
+    $("#test").click(function(){
+      console.log($("#test_form").toJson());
+    })
+    
       /** 新增/修改： 刪除該資料  **/
       remove_detail = function(index){
         var status = $(`input[name="detail[${index}].status"]`);
@@ -47,8 +52,8 @@
             <td> 
             <select name="detail[${index}].relay">
              <option selected="selected" value="" >請選擇</option>
-             <option value="1"  >1</option>
-             <option value="2"  >2</option>
+             <option value="1" >1</option>
+             <option value="2" >2</option>
              <option value="3" >3</option>
              <option value="4" >4</option>
             </select>
@@ -100,7 +105,6 @@
         .focus(function () {
             $(this).autocomplete('search', '');
         });
-      
   });
 </script>
 </head>
@@ -112,7 +116,7 @@
   <p th:if="${funcType eq 'view'}" th:text="${status}"></p>
   <a th:if="${funcType eq 'view'}" th:href="@{/wf8266/edit/{SN}(SN=${wf8266.sn})}">修改</a>
   
-  <form method="post" th:action="@{/wf8266/save}">
+  <form id="test_form" method="post" th:action="@{/wf8266/save}">
     <table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
       <tbody>
         <tr>
@@ -269,6 +273,7 @@
         <tr>
           <td style="text-align: center;" colspan="2">
             <input type="submit" value="送出" />
+            <input type="button" id="test" value="測試"/>
           </td>
         </tr>
       </tfoot>

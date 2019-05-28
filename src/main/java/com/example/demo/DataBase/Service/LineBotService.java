@@ -42,6 +42,11 @@ public class LineBotService {
 
   }
 
+//  @Scheduled(fixedRate = 1000 , initialDelay = 1000)
+//  public void test() {
+//     System.err.println("Hello");
+//  }
+
   /**
    * 回應訊息 <BR>
    * doReplyMessage(String replyToken , String text);

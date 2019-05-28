@@ -33,9 +33,6 @@ public class Menu implements Serializable{
   @Column(name = "parent_menu_name")
   private String parentMenuName;
 
-//  @Fetch(FetchMode.SUBSELECT)
-//  @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "parentMenuName", fetch = FetchType.EAGER)
-//  @OrderBy("sort")
   @Transient
   private List<Menu> childMenus = new ArrayList<>();
 

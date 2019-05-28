@@ -27,6 +27,10 @@ public class EmployeeService {
     return employeeRepository.findAll(pageable);
   }
 
+  public Employee getById(Long id) {
+    return employeeRepository.findById(id).orElse(null);
+  }
+
   public List<Employee> getByIdIn(List<Long> ids){
     return employeeRepository.findAllById(ids);
   }
@@ -46,6 +50,10 @@ public class EmployeeService {
 
     if (!employee.getPassword().equals(passwd_sha256)) {
       throw new LoginException("用戶密碼錯誤");
+    }
+
+    if(employee.getPositionStatus() != 0) {
+      throw new LoginException("該用戶非在職狀態");
     }
 
     return employee;

@@ -1,7 +1,270 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
-<head> <meta charset="UTF-8" > </head>
+<head> <meta charset="UTF-8" /> </head>
 
 <body layout:fragment="content">
+  <style>
+  .input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  </style>
+  <script th:inline="javascript">
+  	var menus = [[${menus}]];
+  	  	
+  	$(function(){
+  	  menus.forEach(function(menuV1){
+  	    var optionV1 = $(new Option());
+  	    optionV1.attr("value", menuV1.menuName).text(menuV1.sort + " : " + menuV1.name);
+  	    optionV1.click(function(){
+  	      var level2 = menuV1.childMenus;
+          $("#level2 option").remove();
+          $("#level3 option").remove();
+  	      $("#level2").prop("disabled" , true);
+  	      $("#level3").prop("disabled" , true);
+  	      
+          level2.forEach(function(menuV2){
+      	    var optionV2 = $(new Option());
+      	    optionV2.attr("value", menuV2.menuName).text(menuV2.sort + " : " + menuV2.name);
+      	    optionV2.click(function(){
+      	      var level3 = menuV2.childMenus;
+              $("#level3 option").remove();
+      	      $("#level3").prop("disabled" , true);
+      	      
+      	      level3.forEach(function(menuV3){
+          	    var optionV3 = $(new Option());
+          	    optionV3.attr("value", menuV3.menuName).text(menuV3.sort + " : " + menuV3.name);
+          	    
+          	    optionV3.click(function(){
+          	      create_edit(menuV3);
+          	    });
+      	        
+                $("#level3").append(optionV3);
+      	      });
+              create_add(3);
+              create_edit(menuV2);
+      	    });
+            $("#level2").append(optionV2);
+          });
+          create_add(2);
+          create_edit(menuV1);
+  	    });
+  	    $("#level1").append(optionV1);
+      });
+      create_add(1);
+  	});
+  	
+  	create_add = function(level){
+  	  var option = $(new Option());
+  	  option.text(" - - - - - 新增 - - - - - ");
+  	  option.click(function(){
+        // 刪除無用參數
+        for(var i = 5;i >= level ; i--){
+          $("#level" + i + "_selected").val('');
+        }
+        $("#menu_form").html('');
+        var mainMenuName = $("#level1_selected").val() ? $("#level1_selected").val() : '';
+        var parentMenuName = $("#level" + (level - 1) + "_selected").val() ? $("#level" + (level - 1) + "_selected").val() : '';
+        var lastLevelId = $("#level" + i + "_selected").val() ? $("#level" + i + "_selected").val() : '';
+        var html_str = "";
+        html_str += 
+        `
+        <div class="row col-12">
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+            <label class="font-weight-bold">ID</label>
+            <div class="input-group">
+              <span class="input-group-addon" id="afterMenuName">${lastLevelId}</span>
+              <input type="text" class="form-control" name="menuName" />
+            </div>
+            <input type="hidden" class="form-control" name="level" value="${level}" />
+            <input type="hidden" class="form-control" name="mainMenuName" value="${mainMenuName}" />
+            <input type="hidden" class="form-control" name="parentMenuName" value="${parentMenuName}" />
+          </div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-9">
+            <label class="font-weight-bold">選單名稱</label><br>
+            <input type="text" class="form-control" name="name" value=""/>
+          </div>  
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+            <label class="font-weight-bold">排序</label><br>
+            <input type="number" class="form-control" name="sort" value="0"/>
+          </div>   
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-9">
+            <label class="font-weight-bold">URL</label><br>
+            <input type="text" class="form-control" name="url" value=""/>
+          </div>      
+        </div>
+        `;
+        
+        $("#menu_form").html(html_str);
+        $("#level" + (level + 1)).prop("disabled" , $("#level" + (level + 1)));
+        $("#submit_btn").show();
+        $("#delete_btn").hide();
+  	  });
+  	  $("#level" + level).append(option);
+  	}
+  	
+  	create_edit = function(menu){
+  	  // 刪除無用參數
+  	  for(var i = 5;i > menu.level ; i--){
+    	  $("#level" + i + "_selected").val('');
+  	  }
+  	  // 紀錄選中層的名稱
+  	  $("#level" + menu.level + "_selected").val(menu.menuName)
+  	  
+  	  $("#menu_form").html('');
+  	  var html_str = "";
+//   	  html_str += JSON.stringify(menu);
+  	  html_str += 
+      `
+      <div class="row col-12">
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+          <label class="font-weight-bold">ID</label>
+  		  <input type="text" class="form-control" name="menuName" value="${menu.menuName}" readonly />
+          <input type="hidden" class="form-control" name="level" value="${menu.level}" />
+          <input type="hidden" class="form-control" name="mainMenuName" value="${menu.mainMenuName}" />
+          <input type="hidden" class="form-control" name="parentMenuName" value="${menu.parentMenuName}" />
+        </div>
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-9">
+          <label class="font-weight-bold">選單名稱</label><br>
+          <input type="text" class="form-control" name="name" value="${menu.name}"/>
+        </div>  
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+          <label class="font-weight-bold">排序</label><br>
+          <input type="number" class="form-control" name="sort" value="${menu.sort}"/>
+        </div>   
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-9">
+          <label class="font-weight-bold">URL</label><br>
+          <input type="text" class="form-control" name="url" value="${menu.url}"/>
+        </div>      
+      </div>
+      `;
+  	  $("#menu_form").html(html_str);
+      $("#level" + (menu.level + 1)).prop("disabled" , false);
+      $("#submit_btn").show();
+      $("#delete_btn").show();
+  	}
+  	
+  	$().ready(function(){
+  	  
+  	  $("#submit_btn").click(function(){
+  	    var data = $("#menu_form").serializeObject();
+  	    data.menuName = $("#afterMenuName").text() + data.menuName;
+  	    $.ajax({
+  	      method: 'POST',
+          url: '/menu/save',
+          data: data,
+          dataType: 'json',
+          success: function(result){
+            if(result.status === 'success'){
+              location.reload();
+            }
+          }
+  	    })
+  	  });
+  	  
+  	  $("#delete_btn").click(function(){
+  	    var menuName = $("input[type='text'][name='menuName']").val();
+  	    $.ajax({
+  	      method: 'DELETE',
+          url: '/menu/delete',
+          data: { menuName : menuName },
+          dataType: 'json',
+          success: function(result){
+            if(result.status === 'success'){
+              location.reload();
+            }
+          }
+  	    })
+  	  });
+  	  
+  	})
 
+  </script>
+  <div class="row"> <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-11"> <div class="card">
+    <div class="card-header" toggleId="l_menu">
+      <span class="glyphicon glyphicon-align-justify"></span>選單管理
+    </div>
+    <div class="card-body" toggleId="l_menu">
+      <input type="hidden" id="level1_selected"/>
+      <input type="hidden" id="level2_selected"/>
+      <input type="hidden" id="level3_selected"/>
+      
+      <select class="custom-select" size="10" id="level1" style="width:200px;" >
+      </select>
+    
+      <select class="custom-select" size="10" id="level2" style="width:200px;" disabled>
+      </select>
+      
+      <select class="custom-select" size="10" id="level3" style="width:200px;" disabled>
+      </select>
+      
+    </div>
+  </div> </div> </div>
+  
+  <div class="row"> <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-11"> <div class="card">
+    <div class="card-header" toggleId="u_menu">
+      <span class="glyphicon glyphicon-align-justify"></span>選單管理
+    </div>
+    <div class="card-body" toggleId="u_menu" id="edit_menu_body">
+      <form id="menu_form" ></form>
+        
+      <div class="row justify-content-center">
+        <button type="button" id="submit_btn" class="btn btn-primary btn-sm" style="display: none;">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+        </button>
+        &emsp;
+        <button type="button" id="delete_btn" class="btn btn-danger btn-sm" style="display: none;">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+        </button>
+      </div>
+      
+    </div>
+  </div> </div> </div>
+  
+  
+  <!-- 
+  
+  <div th:each="v1:${menus}" th:object="${v1}">
+    <span th:text="*{name}"></span>
+    <div th:each="v2:*{childMenus}" th:object="${v2}">
+      &ensp;<span th:text="*{name}"></span>
+      <div th:each="v3:${v2.childMenus}" th:object="${v3}">
+        &ensp;&ensp;<span th:text="*{name}"></span>
+        <div th:each="v4:*{childMenus}" th:object="${v4}">
+          &ensp;&ensp;&ensp;<span th:text="*{name}"></span>
+          <div th:each="v5:*{childMenus}" th:object="${v5}">
+            &ensp;&ensp;&ensp;<span th:text="*{name}"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <BR>
+  
+  <div th:each="v1:${session.menu}" th:object="${v1}">
+    <span th:text="*{name}"></span>
+    <div th:each="v2:*{childMenus}" th:object="${v2}">
+      &ensp;<span th:text="*{name}"></span>
+      <div th:each="v3:${v2.childMenus}" th:object="${v3}">
+        &ensp;&ensp;<span th:text="*{name}"></span>
+        <div th:each="v4:*{childMenus}" th:object="${v4}">
+          &ensp;&ensp;&ensp;<span th:text="*{name}"></span>
+          <div th:each="v5:*{childMenus}" th:object="${v5}">
+            &ensp;&ensp;&ensp;<span th:text="*{name}"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   -->
+  
 </body>
 </html>

@@ -76,6 +76,19 @@
               </td>
              </tr>
              <tr>
+              <th>對應選單</th>
+              <td th:if="${funcType eq 'add' }">
+                <input name="menuName" />
+              </td>
+              <td th:if="${funcType eq 'edit' }">
+                <input th:value="*{menuName}" name="menuName" />
+              </td>
+              <td th:if="${funcType eq 'view' }">
+                <span th:text="*{menuName}" ></span>
+              </td>
+             </tr>
+             
+             <tr>
               <th>細項</th>
               <td>
                 <a th:if="${funcType eq 'edit' || funcType eq 'add'}" herf="javascript:;" id="add_permission_detail" > 新增 </a>

@@ -2,6 +2,7 @@ package com.example.demo.DataBase.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,13 +28,26 @@ public class MenuService {
   @Autowired
   private MappingEmployeeMenuRepository mappingEmployeeMenuRepository;
 
+  public Menu save(Menu menu) {
+    return menuRepository.save(menu);
+  }
+
+  public void deleteMenuWithMenuName(String menuName) {
+    menuRepository.deleteById(menuName);
+  }
+
   public List<Menu> getAllWithChild() {
     List<Menu> menus = menuRepository.findAll();
-    List<Menu> mv1s = menus.stream().filter(menu -> menu.getLevel() == 1).collect(Collectors.toList());
-    List<Menu> mv2s = menus.stream().filter(menu -> menu.getLevel() == 2).collect(Collectors.toList());
-    List<Menu> mv3s = menus.stream().filter(menu -> menu.getLevel() == 3).collect(Collectors.toList());
-    List<Menu> mv4s = menus.stream().filter(menu -> menu.getLevel() == 4).collect(Collectors.toList());
-    List<Menu> mv5s = menus.stream().filter(menu -> menu.getLevel() == 5).collect(Collectors.toList());
+    List<Menu> mv1s = menus.stream().filter(menu -> menu.getLevel() == 1).sorted(Comparator.comparing(Menu::getSort))
+        .collect(Collectors.toList());
+    List<Menu> mv2s = menus.stream().filter(menu -> menu.getLevel() == 2).sorted(Comparator.comparing(Menu::getSort))
+        .collect(Collectors.toList());
+    List<Menu> mv3s = menus.stream().filter(menu -> menu.getLevel() == 3).sorted(Comparator.comparing(Menu::getSort))
+        .collect(Collectors.toList());
+    List<Menu> mv4s = menus.stream().filter(menu -> menu.getLevel() == 4).sorted(Comparator.comparing(Menu::getSort))
+        .collect(Collectors.toList());
+    List<Menu> mv5s = menus.stream().filter(menu -> menu.getLevel() == 5).sorted(Comparator.comparing(Menu::getSort))
+        .collect(Collectors.toList());
     mv5s.stream().forEach(mv5 -> {
       mv4s.stream().forEach(mv4 -> {
         if (mv5.getParentMenuName().equals(mv4.getMenuName())) {

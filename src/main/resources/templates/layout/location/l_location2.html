@@ -3,6 +3,11 @@
 
 <body layout:fragment="content">
   <script type="text/javascript">
+
+    $(function () {
+        $("#myDataTalbe").DataTable();
+    });
+  
   	delete_location = function(id,name){
 
   	  showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 據點嗎?',function(){
@@ -31,7 +36,7 @@
               </a>
 	      </div>
 		  <div class="card-body" toggleId="l-location-toggle">
-            <table class="table table-hover table-responsive-sm table-striped hide-in-phone">
+            <table id="myDataTalbe" class="table table-hover table-responsive-sm table-striped">
                <thead class="center">
                  <tr>
                    <th scope="col">操作</th>
@@ -64,43 +69,6 @@
                  </tr>
                </tbody>
              </table>
-            <table class="table-hover show-on-phone rwd-table">
-              <thead>
-               <tr>
-                 <th>操作</th>
-                 <th>名稱</th>
-                 <th>地址</th>
-                 <th>負責人</th>
-               </tr>
-              </thead>
-              <tbody>
-               <tr th:if="${locations.empty}">
-                 <td colspan="4">沒有資料</td>
-               </tr>
-               <tr th:unless="${locations.empty}" th:each="location:${locations}" th:object="${location}">
-                 <td class="td-first">
-                       <a th:href="@{/location/view/__*{id}__}" class="btn btn-sm btn-secondary">
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
-                       </a>
-                   <a th:href="@{/location/edit/__*{id}__}" class="btn btn-sm btn-success">
-                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-               </a>
-               <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_location(*{id})|">
-               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
-               </a>
-                 </td>
-                 <td data-th="名稱：">
-                   <span th:text="*{name}"></span>
-                 </td>
-                 <td data-th="地址：" class="td-last">
-                   <span th:text="*{address}"></span>
-                 </td>
-               </tr>
-              </tbody>
-            </table>
-            <div th:if="${locations.totalPages ge 1}" >
-              <div th:replace="~{comm/page :: page01(entity=${locations})}"></div>
-            </div>
            </div>
          </div>
        </div>

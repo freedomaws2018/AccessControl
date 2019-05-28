@@ -2,6 +2,112 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-
+  <script>
+  	$().ready(function(){
+  	  $("#submit_btn").click(function(){
+  	    var data = $("#employee_form").toJson();
+  	    console.log(data);
+		$.ajax({
+		  method: 'post',
+          url: '/employee/save',
+          data: data,
+          dataType: 'json',
+          success: function(result){
+          	console.log(result);
+          }
+		});
+  	  });
+  	});
+  </script>
+  <script th:inline="javascript">
+//   	console.log([[${employee}]])
+  </script>
+  <div class="row"> <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-11"> <div class="card">
+    <div class="card-header" toggleId="u_employee">
+      <span class="glyphicon glyphicon-align-justify"></span>員工管理
+    </div>
+    <div class="card-body" toggleId="u_employee">
+      <div th:if="|${info_status ne null}|" class="alert alert-success" role="alert" th:text="${info_status}"></div>
+      <div th:if="|${error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
+      <form id="employee_form" >
+        <div class="row col-12" th:object="${employee}">
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3" style="display: none;">
+            <label class="font-weight-bold">ID</label>
+            <input type="text" class="form-control" name="id" th:value="*{id}" />
+          </div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
+            <label class="font-weight-bold">登入帳號</label>
+            <input type="text" class="form-control" name="account" th:value="*{account}" fdc-not-null="true" />
+          </div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+            <label class="font-weight-bold">姓</label>
+            <input type="text" class="form-control" name="firstName" th:value="*{firstName}" fdc-not-null="true" />
+          </div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+            <label class="font-weight-bold">名</label>
+            <input type="text" class="form-control" name="lastName" th:value="*{lastName}" />
+          </div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+            <label class="font-weight-bold">職稱</label>
+            <div>
+              <select class="form-control" name="positionId">
+                <option value="">請選擇職稱</option>
+                <option th:each="pos:${positions}" th:value="${pos.id}" th:text="${pos.name}" th:selected="|${pos.id} == *{positionId}|"></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+            <label class="font-weight-bold">在職狀態</label>
+            <select class="form-control" name="positionStatus">
+              <option value="0">在職</option>
+              <option value="1">離職</option>
+              <option value="2">留停</option>
+            </select>
+          </div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+            <label class="font-weight-bold">是否啟用</label>
+            <div>
+              <label><input type="radio" name="isUse" value="true" th:checked="*{isUse}">是</label>
+              <label><input type="radio" name="isUse" value="false" th:checked="not *{isUse}">否</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+              <table class="table table-responsive-sm">
+                <thead>
+                  <tr class="center">
+                    <th>選單名稱</th>
+                    <th>權限分置</th>
+                  </tr>
+                </thead>
+                <tr th:each="permission,iter1:${permissions}" th:object="${permission}">
+                  <th nowrap class="center" th:text="*{menu.name}"></th>
+                  <td>
+                    <label th:each="detail,iter2:*{details}" th:object="${detail}">
+                      <input type="checkbox"  th:value="*{type}" name="mepps"/><span th:text="*{name}"></span>
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row col justify-content-center">
+        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+          <span th:text="|建立時間：  ${#temporals.format(employee.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+        </div>&emsp;
+        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+          <span th:text="|修改時間：  ${#temporals.format(employee.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+        </div>
+      </div>
+      <div class="row col justify-content-center">
+        <button type="button" id="submit_btn" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+        </button>
+      </div>
+      
+    </div>
+  </div> </div> </div>
 </body>
 </html>

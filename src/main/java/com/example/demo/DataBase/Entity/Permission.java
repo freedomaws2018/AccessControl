@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -41,6 +42,13 @@ public class Permission {
 
   @Column(name = "name")
   private String name;
+
+  @Column(name = "menu_name")
+  private String menuName;
+
+  @OneToOne(fetch = FetchType.LAZY )
+  @JoinColumn(name = "menu_name", referencedColumnName = "menu_name" , insertable = false , updatable = false , nullable = true)
+  private Menu menu;
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "permission_id")

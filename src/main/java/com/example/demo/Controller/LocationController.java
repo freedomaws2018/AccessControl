@@ -51,6 +51,14 @@ public class LocationController {
     return model;
   }
 
+  @GetMapping(value = "/list2")
+  private ModelAndView list2(ModelAndView model) {
+    model = new ModelAndView("layout/location/l_location2");
+    List<Location> locations = locationService.getAll();
+    model.addObject("locations", locations);
+    return model;
+  }
+
   @GetMapping(value = "/add")
   private ModelAndView add(ModelAndView model) {
     model = new ModelAndView("layout/location/u_location");
