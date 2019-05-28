@@ -151,120 +151,161 @@
     });
   });
   </script>
-  <div class="card border-info col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" style="border:3px #DCDCDC solid;">
-    <div class="card-body text-info">
-      <h5 class="card-text">
-      1. 圖片大小，小於 1Mb。<br>
-      2. 沒有功能的視窗，就不選擇。<br>
-      3. 選單名稱不得重複。<br>
-      4. 選單圖片尺寸必須為 (2500*843或2500*1686)<br>
-      5. 動作->切換頁面，轉跳的頁面，是以選單名稱切換，若找不到頁面，則切換無效。
-      </h5>
-    </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+      <div class="col">
+        <div class="card border-info" style="border:3px #DCDCDC solid;">
+	  	  <div class="card-header text-info" toggleId="u-rich-menu-notice-toggle">
+	  	    <span class="glyphicon glyphicon-align-justify"></span>
+	        <span th:if="${funcType eq 'add'}">注意事項</span>
+	        <span th:if="${funcType eq 'edit'}">注意事項</span>
+	        <span th:if="${funcType eq 'view'}">注意事項</span>
+	  	  </div>
+	      <div class="card-body text-info" toggleId="u-rich-menu-notice-toggle">
+	        <h5 class="card-text">
+		      1. 圖片大小，小於 1Mb。<br>
+		      2. 沒有功能的視窗，就不選擇。<br>
+		      3. 選單名稱不得重複。<br>
+		      4. 選單圖片尺寸必須為 (2500*843或2500*1686)<br>
+		      5. 動作->切換頁面，轉跳的頁面，是以選單名稱切換，若找不到頁面，則切換無效。
+	        </h5>
+	      </div>
+	    </div>
+	  </div>
+	</div>
   </div>
 
   <form th:action="@{/line/rich_menu/save}" enctype="Multipart/Form-Data" method="post">
     <input th:if="${funcType eq 'edit'}" type="hidden" name="oldRichMenuId" th:value="${richMenu.richMenuId}" />
-    <div class="card-body">
-      <div class="row">
-        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
-          <label class="font-weight-bold"><span class="req-field">*</span>選單名稱</label><br>
-          <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" required/>
-          <input th:if="${funcType eq 'edit'}" class="form-control" id="name" name="name" th:value="*{id}" />
-        </div>
+	<div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+        <div class="col">
+          <div class="card">    
+		    <div class="card-header">
+		      <span class="glyphicon glyphicon-align-justify"></span>
+		      <span th:if="${funcType eq 'add'}">LineRichMenu - 新增</span>
+		      <span th:if="${funcType eq 'edit'}">LineRichMenu - 修改</span>
+		      <span th:if="${funcType eq 'view'}">LineRichMenu - 檢視</span>
+		    </div>
+		    <div class="card-body">
+		      <div class="row">
+		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
+		          <label class="font-weight-bold"><span class="req-field">*</span>選單名稱</label><br>
+		          <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" required/>
+		          <input th:if="${funcType eq 'edit'}" class="form-control" id="name" name="name" th:value="*{id}" />
+		          <input th:if="${funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{id}" disabled/>
+		        </div>
+			  </div>
+			  <div class="row">
+		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
+		          <label class="font-weight-bold"><span class="req-field">*</span>選單版型</label>
+		          <div th:if="${funcType eq 'add'}">
+		            <select class="form-control" name="templateId" required >
+		              <option value="" size="0">請選擇</option>
+		              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
+		            </select>
+		          </div>  
+		          <div class="select-sm" th:if="${funcType eq 'edit'}"><br>
+		            <select class="form-control" name="templateId">
+		              <option value="" size="0">請選擇</option>
+		              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
+		            </select>
+		          </div>
+		          <div class="select-sm" th:if="${funcType eq 'view'}"><br>
+		            <select class="form-control" name="templateId" disabled >
+		              <option value="" size="0">請選擇</option>
+		              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
+		            </select>
+		          </div>
+		        </div> 
+		      </div>
+		      <div class="row">
+		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12">
+		          <label class="font-weight-bold"><span class="req-field">*</span>使用據點</label><br>
+		          <div th:if="${funcType eq 'add'}">
+		            <input type="hidden" class="form-control" id="locationId" name="locationId" required />
+		          	<input type="text" size="8" id="auto_location" ></input>
+		          	<span id="location_address" ></span>
+		          </div>
+		          <div th:if="${funcType eq 'edit' && wf8266?.location == null}">
+		            <input type="hidden" id="locationId" name="locationId" ></input>
+		            <input type="text" size="8" id="auto_location" ></input>
+		            <span id="location_address" ></span>
+		          </div>
+		          <div th:if="${funcType eq 'edit' && wf8266?.location != null}">
+		            <input type="hidden" id="locationId" name="locationId" th:value="${wf8266.location.id}" ></input>
+		            <input type="text" size="8" id="auto_location" th:value="${wf8266.location.name}" ></input>
+		            <span id="location_address" th:value="${wf8266.location.address}" ></span>
+		          </div>
+		          <div th:if="${funcType eq 'view'}">
+		            <input class="form-control" id="locationId" name="locationId" disabled/>
+		            <span th:text="${wf8266.location?.name}" ></span>
+		          </div>
+		        </div>         
+		      </div>  
+		      <div class="row">
+		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
+		          <label class="font-weight-bold"><span class="req-field">*</span>選單圖片</label><br>
+		          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" required>
+		        </div>
+		      </div>
+			</div>
+		  </div>
+		</div>
 	  </div>
-	  <div class="row">
-        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-          <label class="font-weight-bold"><span class="req-field">*</span>選單版型</label>
-          <div th:if="${funcType eq 'add'}">
-            <span class="form-control select-bcolor" ></span>
-          </div>  
-          <div class="select-sm" th:if="${funcType eq 'edit'}"><br>
-            <select class="form-control" name="richMenuId">
-              <option value="">請選擇</option>
-              <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${richMenu.richMenuId}"></option>
-            </select>
-          </div>
-        </div> 
-      </div>
-      <div class="row">
-        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-          <label class="font-weight-bold"><span class="req-field">*</span>使用據點</label><br>
-          <input th:if="${funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{name}" disabled/>
-          <input th:if="${funcType eq 'edit'}" class="form-control" id="name" name="name" th:value="*{name}"/>
-        </div>         
-      </div>  
-    
- 
-	  <table class="table table-responsive-sm">
-      <tbody>
-        <tr>
-          <th><span class="req-field">*</span>選單名稱：</th>
-          <td th:if="${funcType eq 'add'}"><input name="name" required /></td>
-          <td th:if="${funcType eq 'edit'}"><input type="hidden" name="name" th:value="${richMenu.name}" /><span th:text="${richMenu.name}"></span></td>
-        </tr>
-        <tr>
-          <th><span class="req-field">*</span>選單版型：</th>
-          <td>
-            <select name="templateId" required >
-              <option value="" size="0">請選擇</option>
-              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
-            </select>
-          </td>
-        </tr>
-        
-        <tr>
-          <th><span class="req-field">*</span>使用據點：</th>
-          <td th:if="${funcType eq 'add'}">
-            <input type="hidden" id="locationId" name="locationId" ></input>
-            <input type="text" size="10" id="auto_location" ></input>
-            <span id="location_address" ></span>
-          </td>
-          <td th:if="${funcType eq 'view' }">
-            <span th:text="${wf8266.location?.name}" ></span>
-          </td>
-          <td th:if="${funcType eq 'edit' && wf8266?.location == null}">
-              <input type="hidden" id="locationId" name="locationId" ></input>
-              <input type="text" size="10" id="auto_location" ></input>
-              <span id="location_address" ></span>
-          </td>
-          <td th:if="${funcType eq 'edit' && wf8266?.location != null}">
-              <input type="hidden" id="locationId" name="locationId" th:value="${wf8266.location.id}" ></input>
-              <input type="text" size="10" id="auto_location" th:value="${wf8266.location.name}" ></input>
-              <span id="location_address" th:value="${wf8266.location.address}" ></span>
-          </td>
-        </tr>
-        
-        <tr>
-          <th><span class="req-field">*</span>選單圖片：</th>
-          <td>
-            <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" required>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <table id="richMenuActionTable"  class="table table-bordered">
-             <thead class="thead-light">
-               <tr>
-                 <th width="100px">序號</th>
-                 <th width="200px">動作</th>
-                 <th>行為</th>
-               </tr>
-             </thead>
-             <tbody>
-             </tbody>
-            </table>
-          </td>
-        </tr>
-	  
-	    </tbody>
-	  </table>
+	  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+        <div class="col">
+          <div class="card">    
+		    <div class="card-header">
+		      <span class="glyphicon glyphicon-align-justify"></span>
+		      <span th:if="${funcType eq 'add'}">LineRichMenu - 選單圖片</span>
+		      <span th:if="${funcType eq 'edit'}">LineRichMenu - 選單圖片</span>
+		      <span th:if="${funcType eq 'view'}">LineRichMenu - 選單圖片</span>
+		    </div>
+		    <div class="card-body">
+		    <div class="row">
+		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
+		          <div id="template_image_view" style="height:250px;">
+				    <img style=" position:absolute; top:10px; width:350px; " id="image_output" />
+				    <img style=" position:absolute; top:10px; width:350px;" id="image_style" />
+				  </div>
+		        </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
 	  </div>
-	  <input type="submit" />
+	</div>
+	<div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+        <div class="col">
+          <div class="card">    
+		    <div class="card-header">
+		      <span class="glyphicon glyphicon-align-justify"></span>
+		      <span th:if="${funcType eq 'add'}">LineRichMenu - 功能新增</span>
+		      <span th:if="${funcType eq 'edit'}">LineRichMenu - 功能修改</span>
+		      <span th:if="${funcType eq 'view'}">LineRichMenu - 功能檢視</span>
+		    </div>
+		    <div class="card-body">
+			  <table id="richMenuActionTable"  class="table table-bordered">
+		        <thead class="thead-light">
+		          <tr>
+		            <th width="100px">序號</th>
+		            <th width="200px">動作</th>
+		            <th>行為</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		        </tbody>
+		      </table>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<input type="submit" />
   </form>
-  <div id="template_image_view" style="height:200px;">
-    <img style=" position:absolute; bottom:10px; width:500px; " id="image_output" />
-    <img style=" position:absolute; bottom:10px; width:500px;" id="image_style" />
-  </div>
+
 </body>
 </html>
