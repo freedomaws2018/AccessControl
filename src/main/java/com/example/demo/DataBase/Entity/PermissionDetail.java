@@ -2,12 +2,17 @@ package com.example.demo.DataBase.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "tbl_permission_detail")
 public class PermissionDetail {
@@ -18,6 +23,10 @@ public class PermissionDetail {
 
 	@Column(name = "permission_id")
 	private Long permissionId;
+
+  @OneToOne(fetch = FetchType.LAZY )
+  @JoinColumn(name = "permission_id", referencedColumnName = "id" , insertable = false , updatable = false , nullable = true)
+  private Permission permission;
 
 	@Column(name = "name")
 	private String name;

@@ -30,8 +30,6 @@ import com.example.demo.DataBase.Repository.MappingWf8266LineuserRepository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.LineModel.RichMenu.LineRichMenu;
-import com.linecorp.bot.model.richmenu.RichMenuListResponse;
-import com.linecorp.bot.model.richmenu.RichMenuResponse;
 
 @Controller
 @RequestMapping(value = "/line/user")
@@ -83,18 +81,18 @@ public class LineUserController {
 
     /** 詢問當前使用者對應的頁面 **/
     try {
-      String richMenuId = this.lineRichMenuService.getRichMenuIdLinkToUser(userId);
-      LineRichMenu richMenu = this.lineRichMenuService.getRichMenu(richMenuId);
-      model.addObject("richMenu", richMenu);
+//      RichMenuIdResponse richMenuId = this.lineRichMenuService.getRichMenuIdLinkToUser(userId);
+//      LineRichMenu richMenu = this.lineRichMenuService.getRichMenu(richMenuId);
+//      model.addObject("richMenu", richMenu);
     } catch (Exception ex) {
       model.addObject("richMenu", new LineRichMenu());
     }
 
     /** 修改時 取得所有選單 **/
     if ("edit".equals(funcType)) {
-      RichMenuListResponse response = lineRichMenuService.getRichMenuList();
-      List<RichMenuResponse> RichMenuResponses = response.getRichMenus();
-      model.addObject("allRichMenu", RichMenuResponses);
+//      RichMenuListResponse response = lineRichMenuService.getRichMenuList();
+//      List<RichMenuResponse> RichMenuResponses = response.getRichMenus();
+//      model.addObject("allRichMenu", RichMenuResponses);
     }
 
     return model;

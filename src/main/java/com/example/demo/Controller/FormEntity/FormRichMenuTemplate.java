@@ -4,35 +4,38 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.DataBase.Entity.RichMenuTemplate;
 import com.example.demo.LineModel.RichMenu.LineRichMenu;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Data;
 
 @Data
 public class FormRichMenuTemplate {
 
-	String name;
+  Long id;
 
-	Integer size;
+  String name;
 
-	MultipartFile jsonFile;
+  Integer size;
 
-	MultipartFile imageFile;
+  MultipartFile jsonFile;
 
-	public RichMenuTemplate toRichMenuTemplate() {
-		RichMenuTemplate template = null;
-		try {
-			template = new RichMenuTemplate();
-			template.setName(this.getName());
-			template.setSize(this.getSize());
-			template.setImage(this.imageFile.getBytes());
-			String jsonTemplate = new String(this.jsonFile.getBytes(), "UTF-8");
-			template.setTemplate(new Gson().fromJson(jsonTemplate, LineRichMenu.class));
-		} catch (Exception ex) {
+  MultipartFile imageFile;
 
-		}
-		return template;
+  public RichMenuTemplate toRichMenuTemplate() {
+    RichMenuTemplate template = null;
+    try {
+      template = new RichMenuTemplate();
+      template.setId(this.id);
+      template.setName(this.getName());
+      template.setSize(this.getSize());
+      template.setImage(this.imageFile.getBytes());
+      String jsonTemplate = new String(this.jsonFile.getBytes(), "UTF-8");
+      template.setTemplate(new ObjectMapper().readValue(jsonTemplate, LineRichMenu.class));
+    } catch (Exception ex) {
 
-	}
+    }
+    return template;
+
+  }
 
 }

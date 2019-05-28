@@ -11,6 +11,6 @@ public class LineRichMenuArea implements Serializable{
 
 	private LineRichMenuBounds bounds;
 
-	private LineRichMenuActoin action;
+	private LineRichMenuAction action;
 
 }

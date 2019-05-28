@@ -9,40 +9,44 @@
 </style>
 <body layout:fragment="content">
   <script type="text/javascript">
+  
   var loadFile = function(event,id) {
     var output = document.getElementById(id);
     output.src = URL.createObjectURL(event.target.files[0]);
   }
+  
   $().ready(function(){
+    
 	  $("select[name='templateId']").change(function(){
-      var imageBase64 = $(this).find(":selected").attr('image');
-      var size = $(this).find(":selected").attr('size');
-      if(imageBase64){
-			  $("#image_style").attr("src","data:image/png;base64," + imageBase64);
-        testtesttest(size);
-      }else{
-        $("#image_style").removeAttr('src').replaceWith($("#image_style").clone());
-        testtesttest(size);
-      }
+        var imageBase64 = $(this).find(":selected").attr('image');
+        var size = $(this).find(":selected").attr('size');
+        if(imageBase64){
+          $("#image_style").attr("src","data:image/png;base64," + imageBase64);
+          CreateActionTable(size);
+        }else{
+          $("#image_style").removeAttr('src').replaceWith($("#image_style").clone());
+          CreateActionTable(size);
+        }
 	  });
 	  
-	  var testtesttest = function(size){
-		  $("#richMenuActionTable").find("tbody").find("tr").remove();
-		  for(i=0 ; i < size ; i++){
-			  $("#richMenuActionTable tbody").append(`
-					  <tr>
-			        <td> ${i + 1} </td>
-              <td>
-                <select id="action[${i}]" name="actions[${i}].type" index="${i}">
-                  <option value="">請選擇</option>
-                  <option value="change_view">切換頁面</option>
-                  <option value="trigger_iot">觸發Iot</option>
-                </select>
-              </td>
-              <td id="detail_${i}"></td>
-			      </tr>
-			  `);
-		  }
+	  var CreateActionTable = function(size){
+        $("#richMenuActionTable").find("tbody").find("tr").remove();
+          for(i=0 ; i < size ; i++){
+            $("#richMenuActionTable tbody").append(`
+              <tr>
+                <td> ${i + 1} </td>
+                <td>
+                  <select id="action[${i}]" name="actions[${i}].type" index="${i}">
+                    <option value="">請選擇</option>
+                    <option value="change_view">切換頁面</option>
+                    <option value="trigger_iot">觸發Iot</option>
+                  </select>
+                </td>
+                <td id="detail_${i}"></td>
+              </tr>
+            `);
+          }
+          
 		  $("select[id^='action']").change(function(){
 			  var index = $(this).attr("index");
 			  var value= this.value;
@@ -50,10 +54,10 @@
 			  detail.html('');
 			  switch(value){
 			  case 'change_view':
-                var change_view_str = `<p>`;
-                change_view_str += `至 `;
-                change_view_str += `<input type="text" id="action_${index}" name="actions[${index}].data" required />`;
-                change_view_str += `</p>`;
+                var change_view_str = `
+                <p>至
+                  <input type="text" id="action_${index}" name="actions[${index}].data" required /> 
+                </p>`;
                 detail.html(change_view_str);
 
                 $("#action_" + index).autocomplete({
@@ -73,20 +77,17 @@
                     });
                   }
                 })
-                .blur(function(){
-                    $(this).autocomplete('enable');
-                })
-                .focus(function () {
-                    $(this).autocomplete('search', '');
-                });
+                .blur(function(){ $(this).autocomplete('enable'); })
+                .focus(function () { $(this).autocomplete('search', ''); });  
                 break;
 			  case 'trigger_iot':
- 				var trigger_iot_str = `<p>`;
- 				trigger_iot_str += `至 `;
- 				trigger_iot_str += `<input type="text" id="action_${index}" name="actions[${index}].data" required />`;
- 				trigger_iot_str += `</p>`;
+ 				var trigger_iot_str = `
+ 				<p>觸發：
+				  <input type="text" id="action_${index}" />
+ 				  <input type="hidden" id="action_data_${index}" name="actions[${index}].data" />
+ 				  <input type="hidden" id="action_text_${index}" name="actions[${index}].text" />
+ 				</p>`;
                 detail.html(trigger_iot_str);
-
 
                 $("#action_" + index).autocomplete({
                   minLength: 0,
@@ -100,22 +101,20 @@
                       success: function(result){
                         var data = [];
                         result.forEach((d) => {
-                          data.push({ label: d.name, value: d.name });
+                          data.push({ label: d.name, value: d.name , obj: d });
                         });
                         response(data);
                       }
                     });
                   },
                   select: function(event , ui){
-                	  console.log(ui)
+                    var obj = ui.item.obj;
+                    $("#action_text_" + index).val(obj.reply1);
+                    $("#action_data_" + index).val(obj.id);
                   }
                 })
-                .blur(function(){
-                    $(this).autocomplete('enable');
-                })
-                .focus(function () {
-                    $(this).autocomplete('search', '');
-                });  
+                .blur(function(){ $(this).autocomplete('enable'); })
+                .focus(function () { $(this).autocomplete('search', ''); });  
 				break;
 			  }
 		  });

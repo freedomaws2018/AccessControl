@@ -1,6 +1,9 @@
 package com.example.demo.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +27,10 @@ import com.example.demo.Controller.FormEntity.FormEmployeeChangePassword;
 import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Permission;
 import com.example.demo.DataBase.Entity.Position;
+import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeMenu;
+import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissondetailPosition;
+import com.example.demo.DataBase.Repository.MappingEmployeeMenuRepository;
+import com.example.demo.DataBase.Repository.MappingEmployeePermissondetailPositionRepository;
 import com.example.demo.DataBase.Service.EmployeeService;
 import com.example.demo.DataBase.Service.PermissionService;
 import com.example.demo.DataBase.Service.PositionService;
@@ -40,6 +47,12 @@ public class EmployeeController {
 
   @Autowired
   private PermissionService permissionService;
+
+  @Autowired
+  private MappingEmployeePermissondetailPositionRepository mappingEmployeePermissondetailPositionRepository;
+
+  @Autowired
+  private MappingEmployeeMenuRepository mappingEmployeeMenuRepository;
 
   @GetMapping(value = "/list")
   private ModelAndView list(ModelAndView model,
@@ -67,13 +80,45 @@ public class EmployeeController {
     model.addObject("positions", positions);
     List<Permission> permissions = permissionService.getAllPermission();
     model.addObject("permissions", permissions);
+    List<String> mappingPermissions = mappingEmployeePermissondetailPositionRepository
+        .findByEmployeeIdAndPositionIdAndIsUseTrue(employee.getId(), employee.getPositionId()).stream()
+        .map(MappingEmployeePermissondetailPosition::getPermissionDetailType).collect(Collectors.toList());
+    model.addObject("mappingPermissions", mappingPermissions);
     return model;
   }
 
   @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> save(FormEmployee form) {
-    System.err.println(form);
-    return new ResponseEntity(null, HttpStatus.OK);
+    Map<String, Object> map = new HashMap<>();
+    try {
+      employeeService.save(form.getEmployee());
+
+      // 權限設定
+      mappingEmployeePermissondetailPositionRepository.updateAllIsUseFalseWithEmployeeId(form.getId());
+      mappingEmployeePermissondetailPositionRepository.saveAll(form.getMappingEmployeePermissondetailPosition());
+
+      // 選單設定
+      mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(form.getId());
+      List<Permission> permission = permissionService
+          .getPermissionByPermissionDetailType(form.getPermissionDetailType());
+      List<String> menuName = permission.stream().map(Permission::getMenuName).collect(Collectors.toList());
+      List<MappingEmployeeMenu> mems = menuName.stream().map(mn -> {
+        MappingEmployeeMenu mem = new MappingEmployeeMenu();
+        mem.setMenuName(mn);
+        mem.setEmployeeId(form.getId());
+        return mem;
+      }).collect(Collectors.toList());
+      mappingEmployeeMenuRepository.saveAll(mems);
+
+      map.put("status", "success");
+      return new ResponseEntity<>(map, HttpStatus.OK);
+    } catch (Exception ex) {
+      map.put("status", "error");
+      map.put("msg", ex.getMessage());
+      map.put("stackTrace", ex.getStackTrace());
+      ex.printStackTrace();
+      return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @GetMapping(value = "/changePassword")

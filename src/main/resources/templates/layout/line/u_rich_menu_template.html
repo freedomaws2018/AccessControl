@@ -9,7 +9,7 @@
 </style>
 <body layout:fragment="content">
   <form th:action="@{/line/rich_menu/template/save}" enctype="Multipart/Form-Data" method="post" >
-    <input th:if="${funcType eq 'edit'}" type="" th:value="${rmt.id}" />
+    <input th:if="${funcType eq 'edit'}" type="hidden" name="id" th:value="${rmt.id}" />
     <table>
       <tr>
         <td>樣板名稱：</td>
