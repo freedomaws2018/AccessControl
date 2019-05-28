@@ -263,13 +263,11 @@
 		      <span th:if="${funcType eq 'edit'}">LineRichMenu - 選單圖片</span>
 		      <span th:if="${funcType eq 'view'}">LineRichMenu - 選單圖片</span>
 		    </div>
-		    <div class="card-body">
-		    <div class="row">
-		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
-		          <div id="template_image_view" style="height:250px;">
-				    <img style=" position:absolute; top:10px; width:350px; " id="image_output" />
-				    <img style=" position:absolute; top:10px; width:350px;" id="image_style" />
-				  </div>
+		    <div class="card-body card-img">
+		      <div class="row justify-content-md-center">
+		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11" id="template_image_view">
+			      <img class="card-img-set" id="image_output" />
+			      <img class="card-img-set" id="image_style" />
 		        </div>
 			  </div>
 			</div>

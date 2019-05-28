@@ -8,6 +8,15 @@
 	margin-bottom:20px;
 }
 
+.card-img{
+	height:328px;
+}
+
+.card-img-set{
+	position:absolute;
+	width:300px;	
+}
+
 .card-header{
 	background-color:#F7F3F7;
 }
