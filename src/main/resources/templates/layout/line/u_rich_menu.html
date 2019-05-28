@@ -167,6 +167,36 @@
   <form th:action="@{/line/rich_menu/save}" enctype="Multipart/Form-Data" method="post">
     <input th:if="${funcType eq 'edit'}" type="hidden" name="oldRichMenuId" th:value="${richMenu.richMenuId}" />
     <div class="card-body">
+      <div class="row">
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+          <label class="font-weight-bold"><span class="req-field">*</span>選單名稱</label><br>
+          <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" required/>
+          <input th:if="${funcType eq 'edit'}" class="form-control" id="name" name="name" th:value="*{id}" />
+        </div>
+	  </div>
+	  <div class="row">
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+          <label class="font-weight-bold"><span class="req-field">*</span>選單版型</label>
+          <div th:if="${funcType eq 'add'}">
+            <span class="form-control select-bcolor" ></span>
+          </div>  
+          <div class="select-sm" th:if="${funcType eq 'edit'}"><br>
+            <select class="form-control" name="richMenuId">
+              <option value="">請選擇</option>
+              <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${richMenu.richMenuId}"></option>
+            </select>
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+          <label class="font-weight-bold"><span class="req-field">*</span>使用據點</label><br>
+          <input th:if="${funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{name}" disabled/>
+          <input th:if="${funcType eq 'edit'}" class="form-control" id="name" name="name" th:value="*{name}"/>
+        </div>         
+      </div>  
+    
+ 
 	  <table class="table table-responsive-sm">
       <tbody>
         <tr>
