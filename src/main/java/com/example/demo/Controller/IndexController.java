@@ -1,7 +1,5 @@
 package com.example.demo.Controller;
 
-import java.util.Arrays;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +51,7 @@ public class IndexController {
       session.setAttribute("employee", employee);
       session.setAttribute("password", employee.getPassword());
 
-      String uri = (String) session.getAttribute("URI");
-      if (Arrays.asList("/error", "/login" , "/logout" , "/employee/changePassword").contains(uri)) {
-        uri = "/index";
-      }
-      return new ModelAndView(new RedirectView(uri));
-
+      return new ModelAndView(new RedirectView("/index"));
     } catch (RuntimeException re) {
       attr.addFlashAttribute("err_msg", re.getMessage());
       return new ModelAndView(new RedirectView("/login"));

@@ -57,7 +57,7 @@ public class Wf8266Service {
   public List<Map<String, Object>> getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(Long locationId, String name) {
     StringBuffer sb = new StringBuffer();
     List<Object> attr = new ArrayList<>();
-    sb.append(" SELECT detail.id AS triggerText , detail.name ");
+    sb.append(" SELECT detail.* ");
     sb.append(" FROM tbl_wf8266 wf8266 , tbl_wf8266_detail detail , tbl_location location ");
     sb.append(" WHERE 1 = 1 ");
     sb.append(" AND wf8266.location_id = location.id ");

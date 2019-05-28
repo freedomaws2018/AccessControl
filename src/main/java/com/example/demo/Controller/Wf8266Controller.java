@@ -87,8 +87,7 @@ public class Wf8266Controller {
   /** Autocomplete **/
   @PostMapping(value = "/autocomplete/getAllWf8266DetailWithLocationIdAndName", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> getAllWf8266DetailWithLocationIdAndName(Long locationId, String name) {
-    List<Map<String, Object>> wf8266detail = this.wf8266Service
-        .getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(locationId, name);
+    List<Map<String, Object>> wf8266detail = wf8266Service.getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(locationId, name);
 
     return new ResponseEntity<>(wf8266detail, HttpStatus.OK);
   }

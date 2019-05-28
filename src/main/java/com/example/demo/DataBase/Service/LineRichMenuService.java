@@ -1,7 +1,7 @@
 package com.example.demo.DataBase.Service;
 
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.Common.HttpUtils;
 import com.example.demo.DataBase.Repository.RichMenuRepository;
 import com.example.demo.DataBase.Repository.RichMenuTemplateRepository;
-import com.example.demo.LineModel.RichMenu.LineRichMenu;
-import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingClient;
+import com.linecorp.bot.model.response.BotApiResponse;
+import com.linecorp.bot.model.richmenu.RichMenu;
+import com.linecorp.bot.model.richmenu.RichMenuIdResponse;
 import com.linecorp.bot.model.richmenu.RichMenuListResponse;
+import com.linecorp.bot.model.richmenu.RichMenuResponse;
 
 @Service
 //@PropertySource("classpath:config/linebot.yml")
@@ -33,44 +35,33 @@ public class LineRichMenuService {
     return richMenuRepository.save(richMenu);
   }
 
-  public List<com.example.demo.DataBase.Entity.RichMenu> save(List<com.example.demo.DataBase.Entity.RichMenu> richMenus) {
+  public List<com.example.demo.DataBase.Entity.RichMenu> save(
+      List<com.example.demo.DataBase.Entity.RichMenu> richMenus) {
     return richMenuRepository.saveAll(richMenus);
   }
 
-  private final static String getRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
+//  private final static String getRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
 
-  public LineRichMenu getRichMenu(String richMenuId) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-    LineRichMenu response = HttpUtils.doGet(headers, getRichMenuUrl.replace(":richMenuId", richMenuId),
-        LineRichMenu.class);
-    return response;
+  public RichMenuResponse getRichMenu(String richMenuId) throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    RichMenuResponse richMenuResponse = client.getRichMenu(richMenuId).get();
+    return richMenuResponse;
   }
 
-  private final static String getRichMenuIdLinkToUserUrl = "https://api.line.me/v2/bot/user/:userId/richmenu";
+//  private final static String getRichMenuIdLinkToUserUrl = "https://api.line.me/v2/bot/user/:userId/richmenu";
 
-  public String getRichMenuIdLinkToUser(String userId) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-    String responseJson = HttpUtils.doGet(headers, getRichMenuIdLinkToUserUrl.replace(":userId", userId), String.class);
-    Map<String, String> responseMap = new Gson().fromJson(responseJson, Map.class);
-    String result = responseMap.get("richMenuId");
-
-    return result;
+  public RichMenuIdResponse getRichMenuIdLinkToUser(String userId) throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    RichMenuIdResponse richMenuIdResponse = client.getRichMenuIdOfUser(userId).get();
+    return richMenuIdResponse;
   }
 
-  private final static String getRichMenuListUrl = "https://api.line.me/v2/bot/richmenu/list";
+//  private final static String getRichMenuListUrl = "https://api.line.me/v2/bot/richmenu/list";
 
-  public RichMenuListResponse getRichMenuList() {
-    try {
-      LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
-      RichMenuListResponse richMenuResponse = client.getRichMenuList().get();
-      System.err.println(richMenuResponse);
-      return richMenuResponse;
-    } catch (Exception ex) {
-      System.err.println(ex.getMessage());
-      return null;
-    }
+  public RichMenuListResponse getRichMenuList() throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    RichMenuListResponse richMenuResponse = client.getRichMenuList().get();
+    return richMenuResponse;
 //    HttpHeaders headers = new HttpHeaders();
 //    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
 //    LineRichMenuResponse response = HttpUtils.doGet(headers, getRichMenuListUrl, LineRichMenuResponse.class);
@@ -115,25 +106,26 @@ public class LineRichMenuService {
     return imageBase64;
   }
 
-  private final static String createRichMenuUrl = "https://api.line.me/v2/bot/richmenu";
+//  private final static String createRichMenuUrl = "https://api.line.me/v2/bot/richmenu";
 
-  public String createRichMenu(String richMenuJson) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-    headers.add("Content-Type", "application/json");
-    Map responseMap = HttpUtils.doPostWithBody(headers, createRichMenuUrl, richMenuJson, Map.class);
-    String richMenuId = responseMap.get("richMenuId").toString();
-    return richMenuId;
+  public RichMenuIdResponse createRichMenu(RichMenu richMenu) throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    RichMenuIdResponse response = client.createRichMenu(richMenu).get();
+    return response;
   }
 
-  private final static String uploadRichMenuImageUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId/content";
+//  private final static String uploadRichMenuImageUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId/content";
 
-  public Boolean uploadRichMenuImage(String richMenuId, byte[] image) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-    headers.add("Content-Type", "image/png");
-
-    return HttpUtils.doPostWithImage(headers, uploadRichMenuImageUrl.replace(":richMenuId", richMenuId), image);
+  public BotApiResponse uploadRichMenuImage(String richMenuId, byte[] image)
+      throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    BotApiResponse response = client.setRichMenuImage(richMenuId, "image/png", image).get();
+    return response;
+//    HttpHeaders headers = new HttpHeaders();
+//    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
+//    headers.add("Content-Type", "image/png");
+//
+//    return HttpUtils.doPostWithImage(headers, uploadRichMenuImageUrl.replace(":richMenuId", richMenuId), image);
   }
 
   private final static String linkRichMenuToUserUrl = "https://api.line.me/v2/bot/user/:lineUserId/richmenu/:richMenuId";

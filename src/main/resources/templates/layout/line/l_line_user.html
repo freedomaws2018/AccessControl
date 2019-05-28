@@ -8,7 +8,7 @@
   $().ready(function(){
 	  $("a[id^='delete_user']").click(function(){
 		  var lineUserId = $(this).attr("lineUserId");
-		  $.ajax({
+	  $.ajax({
         type: 'DELETE',
         url: `/line/user/delete/${lineUserId}`,
         dataType: 'json',
