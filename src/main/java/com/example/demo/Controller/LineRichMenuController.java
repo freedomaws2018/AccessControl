@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,15 +38,17 @@ import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.RichMenuRepository;
 import com.example.demo.DataBase.Repository.RichMenuTemplateRepository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
-import com.example.demo.LineModel.RichMenu.LineRichMenu;
 import com.example.demo.LineModel.RichMenu.LineRichMenuAction;
 import com.example.demo.LineModel.RichMenu.LineRichMenuBounds;
-import com.google.gson.Gson;
-import com.linecorp.bot.model.response.BotApiResponse;
+import com.example.demo.LineModel.RichMenu.LineRichMenuSize;
+import com.linecorp.bot.model.action.PostbackAction;
 import com.linecorp.bot.model.richmenu.RichMenu.RichMenuBuilder;
+import com.linecorp.bot.model.richmenu.RichMenuArea;
+import com.linecorp.bot.model.richmenu.RichMenuBounds;
 import com.linecorp.bot.model.richmenu.RichMenuIdResponse;
 import com.linecorp.bot.model.richmenu.RichMenuListResponse;
 import com.linecorp.bot.model.richmenu.RichMenuResponse;
+import com.linecorp.bot.model.richmenu.RichMenuSize;
 
 @Controller
 @RequestMapping(value = "/line/rich_menu")
@@ -74,7 +77,8 @@ public class LineRichMenuController {
   }
 
   @DeleteMapping(value = "/delete/{richMenuId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  public ResponseEntity<Object> delete(@PathVariable String richMenuId) {
+  public ResponseEntity<Object> delete(@PathVariable String richMenuId)
+      throws InterruptedException, ExecutionException {
     lineRichMenuService.deleteRichMenu(richMenuId);
     return new ResponseEntity<>("success", HttpStatus.OK);
   }
@@ -88,10 +92,10 @@ public class LineRichMenuController {
     return model;
   }
 
-  @GetMapping("/edit/{richMenuId}")
-  public ModelAndView edit(ModelAndView model, @PathVariable String richMenuId) {
+  @GetMapping("/{funcType:view|edit}/{richMenuId}")
+  public ModelAndView edit(ModelAndView model, @PathVariable String funcType, @PathVariable String richMenuId) {
     model = new ModelAndView("layout/line/u_rich_menu");
-    model.addObject("funcType", "edit");
+    model.addObject("funcType", funcType);
 
     com.example.demo.DataBase.Entity.RichMenu richMenu = this.richMenuRepository.findById(richMenuId).orElse(null);
     model.addObject("richMenu", richMenu);
@@ -117,85 +121,84 @@ public class LineRichMenuController {
     }
 
     // 0.2 獲取所有 form 表單的訊息
-    String name = form.getName();
-//		String chatBarText = form.getChatBarText();
     String oldRichMenuId = form.getOldRichMenuId();
+    String name = form.getName();
     Long templateId = form.getTemplateId();
+    Long locationId = form.getLocationId();
     MultipartFile image = form.getImage();
+    LineRichMenuSize size = form.getSize();
     List<LineRichMenuBounds> bounds = form.getBounds();
     List<LineRichMenuAction> actions = form.getActions();
-    Long locationId = form.getLocationId();
-
-    RichMenuTemplate template = richMenuTemplateRepository.findById(templateId).orElse(null);
-
-    if (template == null) {
-      // TODO exception
-    }
-
-    String tempJson = template.getTemplateJson();
-
-    /** 1. 發送資料至 LINE Service 建立 RichMenu **/
-    // 1.1 寫入名稱
-    tempJson = tempJson.replace(":name", name).replace(":chatBarText", name);
-
-    // 1.2 寫入按鈕功能
-    for (int i = 0; i < actions.size(); i++) {
-      LineRichMenuBounds bound = bounds.get(i);
-      LineRichMenuAction action = actions.get(i);
-      String type = action.getType() != null ? action.getType() : "";
-      String text = action.getText() != null ? action.getText() : "";
-      String data = action.getData() != null ? action.getData() : "";
-      switch (type) {
-      case "change_view":
-        tempJson = tempJson.replace(String.format(":text%02d", i + 1), text);
-        tempJson = tempJson.replace(String.format(":data%02d", i + 1), "#>" + data);
-        break;
-      case "trigger_iot":
-        tempJson = tempJson.replace(String.format(":text%02d", i + 1), text);
-        tempJson = tempJson.replace(String.format(":data%02d", i + 1), "##" + data);
-        break;
-      default:
-        tempJson = tempJson.replace(String.format(":data%02d", i + 1), "");
-        tempJson = tempJson.replace(String.format(":text%02d", i + 1), "");
-      }
-    }
-
-    LineRichMenu lineRichMenu = new Gson().fromJson(tempJson, LineRichMenu.class);
-    System.err.println(lineRichMenu);
 
     RichMenuBuilder richMenuBuilder = com.linecorp.bot.model.richmenu.RichMenu.builder();
+    richMenuBuilder.name(name);
+    richMenuBuilder.chatBarText(name);
+    richMenuBuilder.selected(false);
+    if (size.getWidth() == 2500) {
+      richMenuBuilder.size(size.getHeight() == 1686 ? RichMenuSize.FULL : RichMenuSize.HALF);
+    }
 
-//    lineRichMenu.setAreas(lineRichMenu.getAreas().stream()
-//        .filter(lineRichMenuArea -> StringUtils.isNotBlank(lineRichMenuArea.getAction().getData()))
-//        .collect(Collectors.toList()));
-//    Gson gson = new Gson();
+    List<RichMenuArea> areas = new ArrayList<>();
+    for (int i = 0; i < bounds.size(); i++) {
+      LineRichMenuBounds bound = bounds.get(i);
+      LineRichMenuAction action = actions.get(i);
+      RichMenuArea area = null;
+      if (StringUtils.isNotBlank(action.getType())) {
+        switch (action.getType()) {
+        case "change_view":
+          area = new RichMenuArea( //
+              new RichMenuBounds(bound.getX(), bound.getY(), bound.getWidth(), bound.getHeight()),
+              new PostbackAction("", "#>" + action.getData(), action.getText()));
+          break;
+        case "trigger_iot":
+          area = new RichMenuArea( //
+              new RichMenuBounds(bound.getX(), bound.getY(), bound.getWidth(), bound.getHeight()),
+              new PostbackAction("", "##" + action.getData(), action.getText()));
+          break;
+        }
+        areas.add(area);
+      }
+    }
+    if (!areas.isEmpty()) {
+      richMenuBuilder.areas(areas);
+    }
 
     // 1.3 建立新的選單
-    RichMenuIdResponse richMenuIdResponse = lineRichMenuService.createRichMenu(null);
+    RichMenuIdResponse richMenuIdResponse = lineRichMenuService.createRichMenu(richMenuBuilder.build());
     // 1.4 上傳新選單圖片
-    BotApiResponse botApiResponse = lineRichMenuService.uploadRichMenuImage(richMenuIdResponse.getRichMenuId(),
-        image.getBytes());
+    lineRichMenuService.uploadRichMenuImage(richMenuIdResponse.getRichMenuId(), image.getBytes());
 
     // 2. 存入 RichMenu 資料表
     com.example.demo.DataBase.Entity.RichMenu dbRichMenu = new com.example.demo.DataBase.Entity.RichMenu();
     dbRichMenu.setRichMenuId(richMenuIdResponse.getRichMenuId());
+    dbRichMenu.setName(name);
     dbRichMenu.setImage(image.getBytes());
     dbRichMenu.setLocationId(locationId);
+    dbRichMenu.setTemplateId(templateId);
     dbRichMenu.setRichMenuResponse(lineRichMenuService.getRichMenu(richMenuIdResponse.getRichMenuId()));
     dbRichMenu = richMenuRepository.save(dbRichMenu);
 
     // 3. 是否有舊版型
     if (StringUtils.isNotBlank(oldRichMenuId)) {
-      // 3.1 刪除 已被覆蓋的模型
-      lineRichMenuService.deleteRichMenu(oldRichMenuId);
-      // 3.2 重新推送 更新後的版型給 當前使用中的所有人 (Thread)
-      List<LineUser> users = lineUserRepository.findAll();
+      // 3.1 重新推送 更新後的版型給 當前使用中的所有人 (Thread)
+      List<LineUser> users = lineUserRepository.getAllAndRichMenuIdIsNotNullAndisUseTrueAndEffective();
       for (LineUser user : users) {
-        String userRichMenuId = lineRichMenuService.getRichMenuIdLinkToUser(user.getUserId()).getRichMenuId();
-        if (userRichMenuId.equals(oldRichMenuId)) {
-          lineRichMenuService.linkRichMenuToUser(user.getUserId(), richMenuIdResponse.getRichMenuId());
+        try {
+          if (StringUtils.isNotBlank(user.getRichMenuId())) {
+            RichMenuIdResponse rmir = lineRichMenuService.getRichMenuIdLinkToUser(user.getUserId());
+            System.err.printf("%s , %s", rmir.getRichMenuId(), oldRichMenuId);
+            if (rmir.getRichMenuId().equals(oldRichMenuId)) {
+              // 推送新選單
+              lineRichMenuService.linkRichMenuToUser(user.getUserId(), richMenuIdResponse.getRichMenuId());
+            }
+          }
+        } catch (Exception ex) {
+          System.err.println(ex.getMessage());
         }
       }
+
+      // 3.2 刪除 已被覆蓋的模型
+      lineRichMenuService.deleteRichMenu(oldRichMenuId);
     }
 
     return model;

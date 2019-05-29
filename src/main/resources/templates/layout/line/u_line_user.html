@@ -4,7 +4,6 @@
 <body layout:fragment="content">
   <title th:if="${funcType eq 'view' }">LineUser - 檢視</title>
   <title th:if="${funcType eq 'edit' }">LineUser - 修改</title>
-  
   <script type="text/javascript">
   $().ready(function(){
   	dateTimePicke("datetimePicker","begDt","endDt");
@@ -16,6 +15,7 @@
   <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
   </div>
   </div>
+
   <form th:action="@{/line/user/save}" method="post">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
@@ -46,13 +46,14 @@
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
                 <label class="font-weight-bold">當前使用選單</label>
                 <div th:if="${funcType eq 'view'}">
-                  <span class="form-control select-bcolor" th:unless="${richMenu.richMenuId == null}" th:text="${richMenu.name}" ></span>
-                  <span class="form-control" th:if="${richMenu.richMenuId == null}" >無</span>
+<!--                   <span class="form-control select-bcolor" th:each="menu:${allRichMenu}" th:if="${menu.richMenuId} == ${user.richMenuId}" th:text="${menu.name}"></span> -->
+                  <span class="form-control select-bcolor" th:each="menu:${allRichMenu}" th:if="${menu.richMenuId} == ${user.richMenuId}" th:text="${menu.name}"></span>
+                  <span class="form-control select-bcolor" th:if="${#strings.isEmpty(user.richMenuId)}" >無</span>
                 </div>  
                 <div class="select-sm" th:if="${funcType eq 'edit'}"><br>
                   <select class="form-control" name="richMenuId">
                     <option value="">請選擇</option>
-                    <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${richMenu.richMenuId}"></option>
+                    <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${user.richMenuId}"></option>
                   </select>
                 </div>
               </div>                
@@ -68,7 +69,7 @@
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
                 <label class="font-weight-bold">是否啟用</label><br>
                 <div th:if="${funcType eq 'view'}">
-                  <span class="span-margin" th:text="${user.isUse ? '是' : '否' }"></span>
+                  <span class="form-control select-bcolor" th:text="${user.isUse ? '是' : '否' }"></span>
                 </div>  
                 <div th:if="${funcType eq 'edit'}">
                   <label><input type="radio" id="isUseTrue" name="isUse" value="true" th:checked="${user.isUse}" />是</label>

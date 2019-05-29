@@ -39,6 +39,7 @@ public class FormLineUser {
 		lineUser.setIsUse(this.isUse);
 		lineUser.setBegDt(this.begDt);
 		lineUser.setEndDt(this.endDt);
+		lineUser.setRichMenuId(this.richMenuId);
 		return lineUser;
 	}
 

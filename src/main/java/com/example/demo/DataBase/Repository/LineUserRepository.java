@@ -18,6 +18,9 @@ public interface LineUserRepository extends JpaRepository<LineUser, String> {
 
 	List<LineUser> getByUserIdIn(List<String> userIds);
 
+  @Query(value = "SELECT * FROM tbl_line_user WHERE rich_menu_id is not null AND is_use = true AND NOW() BETWEEN beg_dt AND end_dt ;", nativeQuery = true)
+	List<LineUser> getAllAndRichMenuIdIsNotNullAndisUseTrueAndEffective();
+
   @Query(value = "SELECT * FROM tbl_line_user WHERE 1 = 1 AND user_name LIKE ?1 ;", nativeQuery = true)
 	List<LineUser> getByUserNameLike(String userName);
 

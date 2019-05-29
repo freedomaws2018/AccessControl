@@ -14,8 +14,10 @@ import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Service.LineBotService;
 import com.linecorp.bot.model.event.BeaconEvent;
 import com.linecorp.bot.model.event.FollowEvent;
+import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.PostbackEvent;
 import com.linecorp.bot.model.event.UnfollowEvent;
+import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
@@ -74,6 +76,11 @@ public class LineBotApplication {
       logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
     }
 
+  }
+
+  /** MessageEvent 不處理任何事物  **/
+  @EventMapping
+  public void handleMessageEvent(MessageEvent<MessageContent> event) {
   }
 
   /** PostBack 時 **/

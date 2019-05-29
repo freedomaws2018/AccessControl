@@ -2,6 +2,10 @@ server:
   https-port: 443
   http-port: 80
   port: ${server.https-port}
+  
+  max-http-header-size: 4096
+  connection-timeout: 20000
+  
   ssl:
     key-store: file:config/sslca.jks
     key-store-password: 123456
@@ -10,8 +14,8 @@ server:
     session:
       timeout: 20m
   tomcat:
-    max-threads: 100
-        
+    max-threads: 50
+    
 spring:
   jpa:
     open-in-view: true

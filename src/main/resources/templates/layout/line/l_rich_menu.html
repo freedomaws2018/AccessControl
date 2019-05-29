@@ -76,6 +76,9 @@ $().ready(()=>{
           <tr th:unless="${richMenus.empty}" th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
             <th scope="row" th:richMenu="*{richMenuId}">
               <span style="display: none;"  th:text="*{richMenuId}">richMenuId</span>
+              <a th:href="@{/line/rich_menu/view/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>檢視
+              </a>
               <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success btn-sm">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
               </a>

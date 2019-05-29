@@ -2,12 +2,20 @@
 <head>
 <meta charset="UTF-8">
 <title th:if="${funcType eq 'add'}">LineRichMenu - 新增</title>
-<title th:if="${funcType} == view">LineRichMenu - 檢視</title>
-<title th:if="${funcType} == edit">LineRichMenu - 修改</title>
+<title th:if="${funcType eq 'view'}">LineRichMenu - 檢視</title>
+<title th:if="${funcType eq 'edit'}">LineRichMenu - 修改</title>
 </head>
 <style>
 </style>
 <body layout:fragment="content">
+  <script th:inline="javascript">
+  	var templateMap = {};
+  	var templates = [[${templates}]];
+  	templates.forEach(function(template){
+  	  templateMap[template.id] = template;
+  	})
+  </script>
+
   <script type="text/javascript">
   
   var loadFile = function(event,id) {
@@ -15,111 +23,122 @@
     output.src = URL.createObjectURL(event.target.files[0]);
   }
   
+  var create_rich_menu_list = function(select){
+	var id = select.value;
+	var template = templateMap[id];
+	
+	// 顯示選中的樣板圖片
+  	if(template){
+  	  var imageBase64 = template.image;
+      $("#image_style").attr("src","data:image/png;base64," + imageBase64);
+      create_rich_menu_action_table(template.template);
+    }else{
+      $("#image_style").removeAttr('src').replaceWith($("#image_style").clone());
+    }
+  	
+  }
+  
+  var create_rich_menu_action_table = function(actionJson){
+    $("#richMenuActionTable").find("tbody").find("tr").remove();
+    console.log(actionJson);
+    
+    if(actionJson && actionJson.areas){
+      var size = actionJson.size;
+      $("#menuSizeWidth").val(size.width);
+      $("#menuSizeHeight").val(size.height);
+      var areas = actionJson.areas;
+      areas.forEach(function(area , index){
+        $("#richMenuActionTable tbody").append(`
+          <tr>
+            <td  class="center">
+              <input type="hidden" size="4" name="bounds[${index}].x" value="${area.bounds.x}" />
+              <input type="hidden" size="4" name="bounds[${index}].y" value="${area.bounds.y}" />
+              <input type="hidden" size="4" name="bounds[${index}].width" value="${area.bounds.width}" />
+              <input type="hidden" size="4" name="bounds[${index}].height" value="${area.bounds.height}" />
+              ${index + 1} 
+            </td>
+            <td  class="center">
+              <select name="actions[${index}].type" onchange="change_action_detail(this,${index})">
+                <option value="">請選擇</option>
+                <option value="change_view">切換頁面</option>
+                <option value="trigger_iot">觸發Iot</option>
+              </select>
+            </td>
+            <td id="detail_${index}"></td>
+          </tr>
+        `);
+      })
+    }
+  }
+  
+  var change_action_detail = function(event ,index){
+    console.log(event,index);
+    var detail = $("#detail_" + index);
+    detail.html('');
+    switch(event.value){
+    case 'change_view':
+      var change_view_str = `至<input type="text" id="action_${index}" name="actions[${index}].data" />`;
+      detail.html(change_view_str);
+    
+      $("#action_" + index).autocomplete({
+        minLength: 0,
+        source: function(request,response){
+          $.ajax({
+            url: '/line/rich_menu/autocomplete/getRichMenu', data: request, dataType: 'json',
+            success: function(result){
+              var data = [];
+              result.forEach(function(d){ data.push({ label: d.name, value: d.name }); });
+              response(data);
+            }
+          });
+        }
+      })
+      .blur(function(){ $(this).autocomplete('enable'); })
+      .focus(function () { $(this).autocomplete('search', ''); });  
+            
+      break;
+    case 'trigger_iot':
+     var trigger_iot_str = `觸發：
+       <input type="text" id="action_${index}" />
+       <input type="hidden" id="action_data_${index}" name="actions[${index}].data" />
+       <input type="hidden" id="action_text_${index}" name="actions[${index}].text" />
+     `;
+     detail.html(trigger_iot_str);
+    
+      $("#action_" + index).autocomplete({
+        minLength: 0,
+        source: function(request,response){
+      	var locationId = $("#locationId").val();
+          $.ajax({
+            method: 'post',
+            url: '/wf8266/autocomplete/getAllWf8266DetailWithLocationIdAndName',
+            data: {locationId:locationId, name: request.term},
+            dataType: 'json',
+            success: function(result){
+              var data = [];
+              result.forEach(function(d){ data.push({ label: d.name, value: d.name , obj: d }); });
+              response(data);
+            }
+          });
+        },
+        select: function(event , ui){
+          var obj = ui.item.obj;
+          $("#action_text_" + index).val(obj.reply1);
+          $("#action_data_" + index).val(obj.id);
+        }
+      })
+      .blur(function(){ $(this).autocomplete('enable'); })
+      .focus(function () { $(this).autocomplete('search', ''); });  
+      break;
+    }
+  }
+  
   $().ready(function(){
     
-	  $("select[name='templateId']").change(function(){
-        var imageBase64 = $(this).find(":selected").attr('image');
-        var size = $(this).find(":selected").attr('size');
-        if(imageBase64){
-          $("#image_style").attr("src","data:image/png;base64," + imageBase64);
-          CreateActionTable(size);
-        }else{
-          $("#image_style").removeAttr('src').replaceWith($("#image_style").clone());
-          CreateActionTable(size);
-        }
-	  });
-	  
-	  var CreateActionTable = function(size){
-        $("#richMenuActionTable").find("tbody").find("tr").remove();
-          for(i=0 ; i < size ; i++){
-            $("#richMenuActionTable tbody").append(`
-              <tr>
-                <td> ${i + 1} </td>
-                <td>
-                  <select id="action[${i}]" name="actions[${i}].type" index="${i}">
-                    <option value="">請選擇</option>
-                    <option value="change_view">切換頁面</option>
-                    <option value="trigger_iot">觸發Iot</option>
-                  </select>
-                </td>
-                <td id="detail_${i}"></td>
-              </tr>
-            `);
-          }
-          
-		  $("select[id^='action']").change(function(){
-			  var index = $(this).attr("index");
-			  var value= this.value;
-			  var detail = $("#detail_" + index);
-			  detail.html('');
-			  switch(value){
-			  case 'change_view':
-                var change_view_str = `
-                <p>至
-                  <input type="text" id="action_${index}" name="actions[${index}].data" required /> 
-                </p>`;
-                detail.html(change_view_str);
-
-                $("#action_" + index).autocomplete({
-                  minLength: 0,
-                  source: function(request,response){
-                    $.ajax({
-                      url: '/line/rich_menu/autocomplete/getRichMenu',
-                      data: request,
-                      dataType: 'json',
-                      success: function(result){
-                        var data = [];
-                        result.forEach((d) => {
-                          data.push({ label: d.name, value: d.name });
-                        });
-                        response(data);
-                      }
-                    });
-                  }
-                })
-                .blur(function(){ $(this).autocomplete('enable'); })
-                .focus(function () { $(this).autocomplete('search', ''); });  
-                break;
-			  case 'trigger_iot':
- 				var trigger_iot_str = `
- 				<p>觸發：
-				  <input type="text" id="action_${index}" />
- 				  <input type="hidden" id="action_data_${index}" name="actions[${index}].data" />
- 				  <input type="hidden" id="action_text_${index}" name="actions[${index}].text" />
- 				</p>`;
-                detail.html(trigger_iot_str);
-
-                $("#action_" + index).autocomplete({
-                  minLength: 0,
-                  source: function(request,response){
-                	var locationId = $("#locationId").val();
-                    $.ajax({
-                      method: 'post',
-                      url: '/wf8266/autocomplete/getAllWf8266DetailWithLocationIdAndName',
-                      data: {locationId:locationId, name: request.term},
-                      dataType: 'json',
-                      success: function(result){
-                        var data = [];
-                        result.forEach((d) => {
-                          data.push({ label: d.name, value: d.name , obj: d });
-                        });
-                        response(data);
-                      }
-                    });
-                  },
-                  select: function(event , ui){
-                    var obj = ui.item.obj;
-                    $("#action_text_" + index).val(obj.reply1);
-                    $("#action_data_" + index).val(obj.id);
-                  }
-                })
-                .blur(function(){ $(this).autocomplete('enable'); })
-                .focus(function () { $(this).autocomplete('search', ''); });  
-				break;
-			  }
-		  });
-	  }
-	
+    $("#rich_menu_submit").click(function(){
+      $("#rich_menu_form").submit();
+    });
+    
     $("#auto_location").autocomplete({
       minLength: 0,
       source: function(request,response){
@@ -130,9 +149,7 @@
           dataType: 'json',
           success: function(result){
           	var data = [];
-          	result.forEach((d) => {
-              data.push({ label: d.name, value: d.name, object: d });
-          	});
+          	result.forEach(function(d){ data.push({ label: d.name, value: d.name, object: d }); });
             response(data);
           }
         });
@@ -143,12 +160,8 @@
     	  $("#location_address").text(obj.address);
       }
     })
-    .blur(function(){
-        $(this).autocomplete('enable');
-    })
-    .focus(function () {
-        $(this).autocomplete('search', '');
-    });
+    .blur(function(){ $(this).autocomplete('enable'); })
+    .focus(function () { $(this).autocomplete('search', ''); });  
   });
   </script>
 
@@ -160,7 +173,6 @@
 	  	    <span class="glyphicon glyphicon-align-justify"></span>
 	        <span th:if="${funcType eq 'add'}">注意事項</span>
 	        <span th:if="${funcType eq 'edit'}">注意事項</span>
-	        <span th:if="${funcType eq 'view'}">注意事項</span>
 	  	  </div>
 	      <div class="card-body text-info" toggleId="u-rich-menu-notice-toggle">
 	        <h5 class="card-text">
@@ -176,9 +188,10 @@
 	</div>
   </div>
 
-  <form th:action="@{/line/rich_menu/save}" enctype="Multipart/Form-Data" method="post">
+  <form id="rich_menu_form" method="post" th:action="@{/line/rich_menu/save}" enctype="multipart/form-data">
     <input th:if="${funcType eq 'edit'}" type="hidden" name="oldRichMenuId" th:value="${richMenu.richMenuId}" />
 	<div class="row">
+
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
         <div class="col">
           <div class="card">    
@@ -192,7 +205,7 @@
 		      <div class="row">
 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>選單名稱</label><br>
-		          <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" required/>
+		          <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" />
 		          <input th:if="${funcType eq 'edit'}" class="form-control" id="name" name="name" th:value="*{id}" />
 		          <input th:if="${funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{id}" disabled/>
 		        </div>
@@ -201,67 +214,66 @@
 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>選單版型</label>
 		          <div th:if="${funcType eq 'add'}">
-		            <select class="form-control" name="templateId" required >
-		              <option value="" size="0">請選擇</option>
-		              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
+		            <select class="form-control" name="templateId" th:onchange="|create_rich_menu_list(this)|"  >
+		              <option value="">請選擇</option>
+		              <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" />
 		            </select>
 		          </div>  
 		          <div class="select-sm" th:if="${funcType eq 'edit'}"><br>
-		            <select class="form-control" name="templateId">
-		              <option value="" size="0">請選擇</option>
-		              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
+		            <select class="form-control" name="templateId"  th:onchange="|create_rich_menu_list(this)|">
+		              <option value="">請選擇</option>
+		              <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" />
 		            </select>
 		          </div>
 		          <div class="select-sm" th:if="${funcType eq 'view'}"><br>
 		            <select class="form-control" name="templateId" disabled >
-		              <option value="" size="0">請選擇</option>
-		              <option th:each="temp:${templates}" th:object="${temp}"  th:value="*{id}" th:text="*{name}" th:size="*{size}" th:image="*{image}"/>
+		              <option value="">請選擇</option>
+		              <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" />
 		            </select>
 		          </div>
 		        </div> 
 		      </div>
 		      <div class="row">
-		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12">
+		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>使用據點</label><br>
 		          <div th:if="${funcType eq 'add'}">
-		            <input type="hidden" class="form-control" id="locationId" name="locationId" required />
-		          	<input type="text" size="8" id="auto_location" ></input>
+		            <input type="hidden" id="locationId" name="locationId" required />
+		          	<input type="text" class="form-control" id="auto_location" ></input>
 		          	<span id="location_address" ></span>
 		          </div>
 		          <div th:if="${funcType eq 'edit' && wf8266?.location == null}">
 		            <input type="hidden" id="locationId" name="locationId" ></input>
-		            <input type="text" size="8" id="auto_location" ></input>
+		            <input type="text" class="form-control" id="auto_location" ></input>
 		            <span id="location_address" ></span>
 		          </div>
 		          <div th:if="${funcType eq 'edit' && wf8266?.location != null}">
 		            <input type="hidden" id="locationId" name="locationId" th:value="${wf8266.location.id}" ></input>
-		            <input type="text" size="8" id="auto_location" th:value="${wf8266.location.name}" ></input>
+		            <input type="text" class="form-control" id="auto_location" th:value="${wf8266.location.name}" ></input>
 		            <span id="location_address" th:value="${wf8266.location.address}" ></span>
 		          </div>
 		          <div th:if="${funcType eq 'view'}">
 		            <input class="form-control" id="locationId" name="locationId" disabled/>
-		            <span th:text="${wf8266.location?.name}" ></span>
+<!-- 		            <span th:text="${wf8266.location?.name}" ></span> -->
 		          </div>
 		        </div>         
 		      </div>  
 		      <div class="row">
 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>選單圖片</label><br>
-		          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" required>
+		          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" multiple>
 		        </div>
 		      </div>
 			</div>
 		  </div>
 		</div>
 	  </div>
+    
 	  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
         <div class="col">
           <div class="card">    
 		    <div class="card-header">
 		      <span class="glyphicon glyphicon-align-justify"></span>
-		      <span th:if="${funcType eq 'add'}">LineRichMenu - 選單圖片</span>
-		      <span th:if="${funcType eq 'edit'}">LineRichMenu - 選單圖片</span>
-		      <span th:if="${funcType eq 'view'}">LineRichMenu - 選單圖片</span>
+		      <span>LineRichMenu - 選單圖片</span>
 		    </div>
 		    <div class="card-body card-img">
 		      <div class="row justify-content-md-center">
@@ -274,6 +286,7 @@
 		  </div>
 		</div>
 	  </div>
+
 	</div>
 	<div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
@@ -281,14 +294,14 @@
           <div class="card">    
 		    <div class="card-header">
 		      <span class="glyphicon glyphicon-align-justify"></span>
-		      <span th:if="${funcType eq 'add'}">LineRichMenu - 功能新增</span>
-		      <span th:if="${funcType eq 'edit'}">LineRichMenu - 功能修改</span>
-		      <span th:if="${funcType eq 'view'}">LineRichMenu - 功能檢視</span>
+		      <span>LineRichMenu - 功能新增</span>
 		    </div>
 		    <div class="card-body">
+              <input type="hidden" id="menuSizeWidth" name="size.width" />
+              <input type="hidden" id="menuSizeHeight" name="size.height" />
 			  <table id="richMenuActionTable"  class="table table-bordered">
 		        <thead class="thead-light">
-		          <tr>
+		          <tr class="center">
 		            <th width="100px">序號</th>
 		            <th width="200px">動作</th>
 		            <th>行為</th>
@@ -302,7 +315,7 @@
 		</div>
 	  </div>
 	</div>
-	<input type="submit" />
+    <input type="button" id="rich_menu_submit" value="送出" />
   </form>
 
 </body>

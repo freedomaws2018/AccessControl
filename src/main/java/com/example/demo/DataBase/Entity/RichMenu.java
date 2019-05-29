@@ -45,6 +45,8 @@ public class RichMenu {
   @Column(name = "location_id")
   private Long locationId;
 
+  private Long templateId;
+
   @Type(type = "jsonb")
   @Column(name = "rich_menu_json", columnDefinition = "jsonb")
   private RichMenuResponse richMenuResponse;

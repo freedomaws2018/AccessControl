@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +30,8 @@ import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.MappingWf8266LineuserRepository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
-import com.example.demo.LineModel.RichMenu.LineRichMenu;
+import com.linecorp.bot.model.richmenu.RichMenuListResponse;
+import com.linecorp.bot.model.richmenu.RichMenuResponse;
 
 @Controller
 @RequestMapping(value = "/line/user")
@@ -58,7 +60,7 @@ public class LineUserController {
 
   @GetMapping(value = "/{funcType:view|edit}/{userId}")
   public ModelAndView viewAndEdit(ModelAndView model, RedirectAttributes attr, @PathVariable String funcType,
-      @PathVariable String userId) {
+      @PathVariable String userId) throws InterruptedException, ExecutionException {
 
     if (StringUtils.isBlank(userId)) {
       attr.addFlashAttribute("error_status", "找不到對應資料");
@@ -68,8 +70,7 @@ public class LineUserController {
     model = new ModelAndView("layout/line/u_line_user");
 
     List<String> allTriggerTexts = mappingWf8266LineuserRepository.getByLineUserId(userId).stream()
-        .filter(MappingWf8266Lineuser::getIsUse).map(MappingWf8266Lineuser::getWf8266Id)
-        .collect(Collectors.toList());
+        .filter(MappingWf8266Lineuser::getIsUse).map(MappingWf8266Lineuser::getWf8266Id).collect(Collectors.toList());
 
     LineUser user = this.lineUserRepository.findById(userId).orElse(null);
     if (user == null) {
@@ -79,21 +80,15 @@ public class LineUserController {
     model.addObject("funcType", funcType);
     model.addObject("user", user);
 
-    /** 詢問當前使用者對應的頁面 **/
-    try {
-//      RichMenuIdResponse richMenuId = this.lineRichMenuService.getRichMenuIdLinkToUser(userId);
-//      LineRichMenu richMenu = this.lineRichMenuService.getRichMenu(richMenuId);
-//      model.addObject("richMenu", richMenu);
-    } catch (Exception ex) {
-      model.addObject("richMenu", new LineRichMenu());
-    }
+//    /** 詢問當前使用者對應的頁面 **/
+//    RichMenuIdResponse richMenuIdResponse = lineRichMenuService.getRichMenuIdLinkToUser(userId);
+//    RichMenuResponse richMenu = lineRichMenuService.getRichMenu(richMenuIdResponse.getRichMenuId());
+//    model.addObject("richMenu", richMenu);
 
     /** 修改時 取得所有選單 **/
-    if ("edit".equals(funcType)) {
-//      RichMenuListResponse response = lineRichMenuService.getRichMenuList();
-//      List<RichMenuResponse> RichMenuResponses = response.getRichMenus();
-//      model.addObject("allRichMenu", RichMenuResponses);
-    }
+    RichMenuListResponse response = lineRichMenuService.getRichMenuList();
+    List<RichMenuResponse> RichMenuResponses = response.getRichMenus();
+    model.addObject("allRichMenu", RichMenuResponses);
 
     return model;
   }
@@ -116,7 +111,7 @@ public class LineUserController {
 
     String lineUserId = form.getUserId();
     try {
-      LineUser lineUser = this.lineUserRepository.save(form.toLineUser());
+      LineUser lineUser = lineUserRepository.save(form.toLineUser());
 //			this.mappingWf8266AndLineUserRepository.updateAllIsUseFalseByLineUserId(form.getUserId());
 //			this.mappingWf8266AndLineUserRepository.saveAll(form.toMappingWf8266DetailAndUser());
 

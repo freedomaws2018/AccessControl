@@ -62,22 +62,17 @@ public class LineRichMenuService {
     LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
     RichMenuListResponse richMenuResponse = client.getRichMenuList().get();
     return richMenuResponse;
-//    HttpHeaders headers = new HttpHeaders();
-//    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-//    LineRichMenuResponse response = HttpUtils.doGet(headers, getRichMenuListUrl, LineRichMenuResponse.class);
-//    return response;
   }
 
-  private final static String deleteRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
+//  private final static String deleteRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
 
-  public void deleteRichMenu(String richMenuId) {
-    /** 刪除 LineServer 資料 **/
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-    HttpUtils.doDelete(headers, deleteRichMenuUrl.replace(":richMenuId", richMenuId));
+  public BotApiResponse deleteRichMenu(String richMenuId) throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    BotApiResponse botApiResponse = client.deleteRichMenu(richMenuId).get();
 
     /** 刪除 資料庫 資料 **/
     this.richMenuRepository.deleteById(richMenuId);
+    return botApiResponse;
   }
 
   private final static String downloadImageUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId/content";
@@ -121,31 +116,24 @@ public class LineRichMenuService {
     LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
     BotApiResponse response = client.setRichMenuImage(richMenuId, "image/png", image).get();
     return response;
-//    HttpHeaders headers = new HttpHeaders();
-//    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-//    headers.add("Content-Type", "image/png");
-//
-//    return HttpUtils.doPostWithImage(headers, uploadRichMenuImageUrl.replace(":richMenuId", richMenuId), image);
   }
 
-  private final static String linkRichMenuToUserUrl = "https://api.line.me/v2/bot/user/:lineUserId/richmenu/:richMenuId";
+//  private final static String linkRichMenuToUserUrl = "https://api.line.me/v2/bot/user/:lineUserId/richmenu/:richMenuId";
 
-  public Boolean linkRichMenuToUser(String lineUserId, String richMenuId) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-    int statusCode = HttpUtils.doPost(headers,
-        linkRichMenuToUserUrl.replace(":lineUserId", lineUserId).replace(":richMenuId", richMenuId));
-    return statusCode == 200;
+  public BotApiResponse linkRichMenuToUser(String lineUserId, String richMenuId)
+      throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    BotApiResponse botApiResponse = client.linkRichMenuIdToUser(lineUserId, richMenuId).get();
+    return botApiResponse;
   }
 
 //	Unlink rich menu from user
-  private final static String unlinkRichMenuToUserUrl = "https://api.line.me/v2/bot/user/:lineUserId/richmenu";
+//  private final static String unlinkRichMenuToUserUrl = "https://api.line.me/v2/bot/user/:lineUserId/richmenu";
 
-  public Boolean unlinkRichMenuToUser(String lineUserId) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("Authorization", String.format("Bearer %s", this.channelAccessToken));
-    int statusCode = HttpUtils.doDelete(headers, unlinkRichMenuToUserUrl.replace(":lineUserId", lineUserId));
-    return statusCode == 200;
+  public BotApiResponse unlinkRichMenuToUser(String lineUserId) throws InterruptedException, ExecutionException {
+    LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
+    BotApiResponse botApiResponse = client.unlinkRichMenuIdFromUser(lineUserId).get();
+    return botApiResponse;
   }
 
 }

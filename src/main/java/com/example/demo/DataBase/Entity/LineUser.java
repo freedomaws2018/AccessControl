@@ -44,5 +44,8 @@ public class LineUser {
 	@Column(name = "end_dt")
 	private LocalDateTime endDt;
 
+	@Column(name = "rich_menu_id")
+	private String richMenuId;
+
 
 }

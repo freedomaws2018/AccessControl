@@ -34,7 +34,10 @@
 <title>登入</title>
 </head>
 <body>
-  <p th:text="${err_msg}"></p>
+  <script th:inline="javascript">
+    if([[${err_msg}]])
+      alert([[${err_msg}]]);
+  </script>
   <form method="POST" th:action="@{/login}">
   <div class="container-fluid">
 	<div class="row justify-content-center">
@@ -69,9 +72,9 @@
 			<div class="col-6">
 			  <button class="btn btn-primary px-4" type="submit">登入</button>
 			</div>
-			<div class="col-6 text-right">
-			  <button class="btn btn-link px-0" type="button">忘記密碼?</button>
-			</div>
+<!-- 			<div class="col-6 text-right"> -->
+<!-- 			  <button class="btn btn-link px-0" type="button">忘記密碼?</button> -->
+<!-- 			</div> -->
 		  </div>
 		</div>
 	  </div>
