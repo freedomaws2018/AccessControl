@@ -58,15 +58,16 @@ public class LineUserController {
     return model;
   }
 
+  @GetMapping(value = "/add")
+  public ModelAndView add(ModelAndView model) {
+    model = new ModelAndView("layout/line/u_line_user");
+    model.addObject("funcType", "add");
+    return model;
+  }
+
   @GetMapping(value = "/{funcType:view|edit}/{userId}")
   public ModelAndView viewAndEdit(ModelAndView model, RedirectAttributes attr, @PathVariable String funcType,
       @PathVariable String userId) throws InterruptedException, ExecutionException {
-
-    if (StringUtils.isBlank(userId)) {
-      attr.addFlashAttribute("error_status", "找不到對應資料");
-      return new ModelAndView("redirect:/line/user/list");
-    }
-
     model = new ModelAndView("layout/line/u_line_user");
 
     List<String> allTriggerTexts = mappingWf8266LineuserRepository.getByLineUserId(userId).stream()

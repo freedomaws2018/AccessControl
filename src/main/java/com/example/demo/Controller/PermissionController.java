@@ -1,5 +1,8 @@
 package com.example.demo.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,14 +60,15 @@ public class PermissionController {
   }
 
   @DeleteMapping(value = "/delete/{permissionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  public ResponseEntity<Object> delete(@PathVariable String permissionId) {
-
-    return new ResponseEntity(null, HttpStatus.OK);
+  public ResponseEntity<Object> delete(@PathVariable Long permissionId) {
+    Map<String, Object> result = new HashMap<>();
+    permissionService.delete(permissionId);
+    result.put("status", "success");
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   @PostMapping(value = "/save")
   public ModelAndView save(ModelAndView model, FormPermission form) {
-    System.err.println(form.getPermission());
     permissionService.save(form.getPermission());
     return new ModelAndView(new RedirectView("/permission/list"));
   }

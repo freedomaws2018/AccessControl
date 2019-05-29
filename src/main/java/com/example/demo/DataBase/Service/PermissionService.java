@@ -38,6 +38,10 @@ public class PermissionService {
     return permissionRepository.findById(id).orElse(null);
   }
 
+  public void delete(Long permissionId) {
+    permissionRepository.deleteById(permissionId);
+  }
+
   public List<Permission> getPermissionByPermissionDetailType(List<String> premissionDetailType){
     List<PermissionDetail> detail = permissionDetailRepository.findAllById(premissionDetailType);
     List<Long> pid = detail.stream().map(PermissionDetail::getPermissionId).collect(Collectors.toList());

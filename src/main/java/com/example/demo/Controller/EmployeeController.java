@@ -16,10 +16,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Controller.FormEntity.FormEmployee;
@@ -34,6 +36,7 @@ import com.example.demo.DataBase.Repository.MappingEmployeePermissondetailPositi
 import com.example.demo.DataBase.Service.EmployeeService;
 import com.example.demo.DataBase.Service.PermissionService;
 import com.example.demo.DataBase.Service.PositionService;
+import com.google.common.base.Functions;
 
 @Controller
 @RequestMapping(value = "/employee")
@@ -60,6 +63,9 @@ public class EmployeeController {
     model = new ModelAndView("layout/employee/l_employee");
     Page<Employee> employees = employeeService.getAll(pageable);
     model.addObject("employees", employees);
+    Map<Long, Position> mPosition = positionService.getAll().stream()
+        .collect(Collectors.toMap(Position::getId, Functions.identity()));
+    model.addObject("mPosition", mPosition);
     return model;
   }
 
@@ -67,6 +73,10 @@ public class EmployeeController {
   private ModelAndView add(ModelAndView model) {
     model = new ModelAndView("layout/employee/u_employee");
     model.addObject("funcType", "add");
+    List<Position> positions = positionService.getAll();
+    model.addObject("positions", positions);
+    List<Permission> permissions = permissionService.getAllPermission();
+    model.addObject("permissions", permissions);
     return model;
   }
 
@@ -106,6 +116,7 @@ public class EmployeeController {
         MappingEmployeeMenu mem = new MappingEmployeeMenu();
         mem.setMenuName(mn);
         mem.setEmployeeId(form.getId());
+        mem.setIsUse(true);
         return mem;
       }).collect(Collectors.toList());
       mappingEmployeeMenuRepository.saveAll(mems);
@@ -119,6 +130,14 @@ public class EmployeeController {
       ex.printStackTrace();
       return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  @DeleteMapping(value = "/delete/{id}")
+  public ResponseEntity<Object> delect(@PathVariable Long id) {
+    Map<String, Object> map = new HashMap<>();
+    employeeService.delete(id);
+    map.put("status", "success");
+    return new ResponseEntity<>(map, HttpStatus.OK);
   }
 
   @GetMapping(value = "/changePassword")
@@ -148,6 +167,20 @@ public class EmployeeController {
     employeeService.save(employee);
     model = new ModelAndView("redirect:/login");
     return model;
+  }
+
+  @PostMapping("/resetPassword")
+  public ResponseEntity<Object> resetPasswrod(@RequestParam Long id, @RequestParam String account) {
+    Map<String, Object> result = new HashMap<>();
+    Employee employee = employeeService.getByIdAndAccount(id, account);
+    if (employee != null) {
+      employee.setPassword(account, true);
+      employeeService.save(employee);
+      result.put("status", "success");
+    } else {
+      result.put("status", "error");
+    }
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
 }

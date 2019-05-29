@@ -3,31 +3,45 @@
 
 <body layout:fragment="content">
   <script th:inline="javascript">
-  	$().ready(function(){
-  	  $("#submit_btn").click(function(){
-  	    var data = $("#employee_form").toJson();
-  	    console.log(data);
-		$.ajax({
-		  method: 'post',
-          url: '/employee/save',
-          data: data,
-          dataType: 'json',
-          success: function(result){
-			if(result.status === 'success'){
-			  window.location.replace("/employee/view/" + [[${employee.id}]]);
-			}else{
-			  console.log(result);
-			}
-          },
-          error: function(error){
-            console.log(a,b,c)
+
+	var reset_password = function(id,account){
+      $.ajax({
+        type: 'POST',
+        url: `/employee/resetPassword`,
+        data: {id:id,account:account},
+        dataType: 'json',
+        success: (result) => {
+          console.log(result);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        
+        }
+      });
+	}
+	
+	var submin_form = function(){
+      var data = $("#employee_form").toJson();
+      $.ajax({
+        method: 'post',
+        url: '/employee/save',
+        data: data,
+        dataType: 'json',
+        success: function(result){
+          if(result.status === 'success'){
+            window.location.replace("/employee/view/" + [[${employee?.id}]]);
+          }else{
+            console.log(result);
           }
-		});
-  	  });
+        },
+        error: function(error){
+          console.log(a,b,c)
+        }
+      });
+	}
+  
+  	$().ready(function(){
+  	  
   	});
-  </script>
-  <script th:inline="javascript">
-//   	console.log([[${employee}]])
   </script>
   <div class="row"> <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-11"> <div class="card">
     <div th:if="${funcType eq 'add'}" class="card-header" toggleId="u_employee">
@@ -51,17 +65,18 @@
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
             <label class="font-weight-bold">登入帳號</label>
             <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="account" th:value="*{account}" fdc-not-null="true" />
-            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="account" th:value="*{account}" fdc-not-null="true" />
+            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="account" />
+            <input th:if="${funcType eq 'edit'}" type="button" th:onclick="|reset_password(__*{id}__,'__*{account}__')|" value="重置密碼" />
           </div>
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
             <label class="font-weight-bold">姓</label>
             <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="firstName" th:value="*{firstName}" fdc-not-null="true" />
-            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="firstName" th:value="*{firstName}" fdc-not-null="true" />
+            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="firstName" />
           </div>
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
             <label class="font-weight-bold">名</label>
             <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="lastName" th:value="*{lastName}" />
-            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="lastName" th:value="*{lastName}" />
+            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="lastName" />
           </div>
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
             <label class="font-weight-bold">職稱</label>
@@ -134,7 +149,7 @@
         </div>
       </div>
       <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="row col justify-content-center">
-        <button type="button" id="submit_btn" class="btn btn-primary btn-sm">
+        <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
         </button>
       </div>

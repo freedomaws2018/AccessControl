@@ -27,6 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
             "/js/**", // JavaScript 檔案
             "/images/**", // 圖片 檔案
             "/login", // 登入器
+            "/registered" , // 登入器
             "/linebot/**" // Line Bot 免驗證
         );
 

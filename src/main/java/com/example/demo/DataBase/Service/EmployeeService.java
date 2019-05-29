@@ -1,8 +1,6 @@
 package com.example.demo.DataBase.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Repository.EmployeeRepository;
-import com.google.common.hash.Hashing;
 
 @Service
 public class EmployeeService {
@@ -31,8 +28,25 @@ public class EmployeeService {
     return employeeRepository.findById(id).orElse(null);
   }
 
-  public List<Employee> getByIdIn(List<Long> ids){
+  public List<Employee> getByIdIn(List<Long> ids) {
     return employeeRepository.findAllById(ids);
+  }
+
+  public Employee getAccount(String account) {
+    return employeeRepository.findByAccount(account).orElse(null);
+  }
+
+  public void delete(Long id) {
+    employeeRepository.deleteById(id);
+  }
+
+  public Employee getByIdAndAccount(Long id, String account) {
+    Employee employee = employeeRepository.findById(id).orElse(null);
+    if (employee != null && employee.getAccount().equals(account)) {
+      return employee;
+    } else {
+      return null;
+    }
   }
 
   public Employee loginVerification(String account, String passwd) {
@@ -44,15 +58,13 @@ public class EmployeeService {
     if (employee == null) {
       throw new LoginException("找不到該用戶");
     }
-    String passwd_sha256 = Hashing.sha256()
-        .hashString(String.format("%s-%s-%s", "FDCe&9WY@EzVp^D99m", account, passwd), StandardCharsets.UTF_8).toString()
-        .toUpperCase(Locale.US);
-
+    String passwd_sha256 = employee.hashPassword(account, passwd);
+    System.err.printf("%s , %s \n", employee.getPassword(), passwd_sha256);
     if (!employee.getPassword().equals(passwd_sha256)) {
       throw new LoginException("用戶密碼錯誤");
     }
 
-    if(employee.getPositionStatus() != 0) {
+    if (employee.getPositionStatus() != 0) {
       throw new LoginException("該用戶非在職狀態");
     }
 

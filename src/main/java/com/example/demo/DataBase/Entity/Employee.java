@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -57,6 +58,8 @@ public class Employee {
   /** 職位 ID **/
   @Column(name = "position_id")
   private Long positionId;
+  @Transient
+  private Position position;
 
   @Column(name = "is_use")
   private Boolean isUse;
@@ -92,6 +95,11 @@ public class Employee {
     } else {
       this.password = password;
     }
+  }
+
+  public String hashPassword(String account, String password) {
+    String sha256_str = String.format("%s-%s-%s", "FDCe&9WY@EzVp^D99m", account, password);
+    return Hashing.sha256().hashString(sha256_str, StandardCharsets.UTF_8).toString().toUpperCase(Locale.US);
   }
 
   public String hashPassword(String password) {

@@ -50,6 +50,7 @@ public class Permission {
   @JoinColumn(name = "menu_name", referencedColumnName = "menu_name" , insertable = false , updatable = false , nullable = true)
   private Menu menu;
 
+
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "permission_id")
   @OrderBy

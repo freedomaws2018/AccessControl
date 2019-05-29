@@ -38,13 +38,13 @@
     if([[${err_msg}]])
       alert([[${err_msg}]]);
   </script>
-  <form method="POST" th:action="@{/login}">
+  <form method="POST" th:action="@{/registered}">
   <div class="container-fluid">
 	<div class="row justify-content-center">
 	  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-8 col-12">
 	  <div class="card">
 		<div class="card-body">
-		  <h1>登入</h1>
+		  <h1>首次登入</h1>
 		  <p class="text-muted">Sign In to your account</p>
 		  <div class="input-box">
 			<label class="sr-only" for="inlineFormInputGroup">Account</label>
@@ -70,11 +70,8 @@
 		  </div>		    
 		  <div class="row">
 			<div class="col-6">
-			  <button class="btn btn-primary px-4" type="submit">登入</button>
+			  <button class="btn btn-primary px-4" type="submit">註冊</button>
 			</div>
-<!-- 			<div class="col-6 text-right"> -->
-<!-- 			  <button class="btn btn-link px-0" type="button">忘記密碼?</button> -->
-<!-- 			</div> -->
 		  </div>
 		</div>
 	  </div>

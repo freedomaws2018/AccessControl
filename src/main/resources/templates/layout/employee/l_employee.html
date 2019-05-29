@@ -2,6 +2,24 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
+  <script>
+  	delete_employee = function(id,name){
+
+	  showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 員工嗎?',function(){
+      $.ajax({
+        type: 'DELETE',
+        url: `/employee/delete/${id}`,
+        dataType: 'json',
+        success: (result) =>{
+          location.reload();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          
+        }
+      });
+	  });
+	}
+  </script>
   <div class="row"> <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-6"> <div class="card">
     <div class="card-header" toggleId="l-line-user-toggle">
       <span class="glyphicon glyphicon-align-justify"></span>Employee - 列表
@@ -28,18 +46,18 @@
               <a class="btn btn-success btn-sm" th:href="@{/employee/edit/{empId}(empId=*{id})}" >
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
               </a>
-              <a class="btn btn-danger btn-sm" th:id="|delete_employee_*{id}|" th:employeeId="*{id}" href="javascript:;" >
+              <a class="btn btn-danger btn-sm" th:onclick="|delete_employee(__*{id}__,'__*{name}__')|" href="javascript:;" >
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
             </td>
             <td>
-              <span th:text="${emp.name}" ></span>
+              <span th:text="*{name}" ></span>
             </td>
             <td>
-              <span th:text="${emp.positionId}" ></span>
+              <span th:if="!${#strings.isEmpty(emp.positionId)}" th:text="${mPosition[emp.positionId].name}" ></span>
             </td>
             <td>
-              <span th:text="${emp.positionStatusTw}" ></span>
+              <span th:text="*{positionStatusTw}" ></span>
             </td>
           </tr>
         </tbody>

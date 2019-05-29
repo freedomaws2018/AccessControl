@@ -28,8 +28,9 @@ public class IndexController {
   }
 
   @GetMapping(value = "/login")
-  public ModelAndView login(ModelAndView model) {
+  public ModelAndView login(ModelAndView model, HttpSession session) {
     model = new ModelAndView("comm/login");
+    session.removeAttribute("employee");
     return model;
   }
 
@@ -57,6 +58,39 @@ public class IndexController {
       return new ModelAndView(new RedirectView("/login"));
     }
   }
+
+//  @GetMapping(value = "/registered")
+//  public ModelAndView reg(ModelAndView model, HttpSession session) {
+//    model = new ModelAndView("comm/registered");
+//    session.removeAttribute("employee");
+//    return model;
+//  }
+//
+//  /** 首次登入 **/
+//  @PostMapping(value = "/registered")
+//  public ModelAndView registered(@RequestParam String account, @RequestParam String passwd, ModelAndView model,
+//      RedirectAttributes attr, HttpSession session) {
+//    try {
+//      Employee employee = employeeService.getAccount(account);
+//
+//      if (employee.hashPassword("").equals(employee.getPassword())) {
+//        employee.setPassword(employee.hashPassword(account, passwd));
+//        employee = employeeService.save(employee);
+//
+//        session.setAttribute("employee", employee);
+//        session.setAttribute("password", employee.getPassword());
+//      } else {
+//        attr.addFlashAttribute("err_msg", "非首次登入");
+//        return new ModelAndView(new RedirectView("/login"));
+//      }
+//
+//      return new ModelAndView(new RedirectView("/index"));
+//    } catch (RuntimeException re) {
+//      attr.addFlashAttribute("err_msg", re.getMessage());
+//      return new ModelAndView(new RedirectView("/registered"));
+//    }
+//
+//  }
 
   @GetMapping(value = "/404")
   public ModelAndView v404(ModelAndView model) {

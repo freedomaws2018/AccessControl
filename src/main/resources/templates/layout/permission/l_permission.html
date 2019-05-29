@@ -13,13 +13,12 @@
 	  showConfirmDialog('確認刪除','確定要刪除 ' + permissionName + ' 的權限嗎?',function(){
         $.ajax({
           type: 'DELETE',
-          url: `/permission/delete/${permissionId}`,
+          url: "/permission/delete/" + permissionId,
           dataType: 'json',
-          success: (result) =>{
-            
+          success: function(result){
+            location.reload();
           }
         });
-        location.reload();
       });
   	});
 	
