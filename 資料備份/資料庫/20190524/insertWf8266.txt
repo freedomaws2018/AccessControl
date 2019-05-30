@@ -6,7 +6,7 @@
 SELECT * FROM tbl_wf8266;
 
 INSERT INTO public.tbl_wf8266_detail(id, cmd, is_use, name, relay, reply1, reply2, value, wf8266_sn) VALUES 
-('b4d46b20-2db4-4feb-b819-3ddc54b61eb9','Relay',true,'開啟大門',1,'開門','已開啟',4,'3213790'),
+('b4d46b20-2db4-4feb-b819-3ddc54b61eb9','Relay',true,'開啟大門',1,'#開門','已開啟',4,'3213790'),
 ('52a47eb6-fadf-4db1-9561-469a77384f98','Relay',true,'一樓大門',3,'#開門','一樓大門已開啟',4,'15738184'),
 ('afe47c53-305d-47d3-9ede-39ef43f70a93','Relay',true,'二樓大門',2,'#開門','二樓大門已開啟',4,'15738184'),
 ('7eaf914b-cfb7-4a94-a790-c929ede19f07','Relay',true,'A室大門',4,'#開門','A室門已開啟',4,'15738184'),

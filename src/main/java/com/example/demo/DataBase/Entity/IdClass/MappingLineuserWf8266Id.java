@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class MappingWf8266LineuserId implements Serializable {
+public class MappingLineuserWf8266Id implements Serializable {
 
 	private static final long serialVersionUID = -4781425387685569479L;
 

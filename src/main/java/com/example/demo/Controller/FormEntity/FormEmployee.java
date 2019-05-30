@@ -47,11 +47,11 @@ public class FormEmployee {
     return employee;
   }
 
-  public List<MappingEmployeePermissondetailPosition> getMappingEmployeePermissondetailPosition() {
+  public List<MappingEmployeePermissondetailPosition> getMappingEPP(Employee employee) {
     return permissionDetailType.stream().map(mepp -> {
       MappingEmployeePermissondetailPosition meppt = new MappingEmployeePermissondetailPosition();
-      meppt.setEmployeeId(this.id);
-      meppt.setPositionId(this.positionId);
+      meppt.setEmployeeId(employee.getId());
+      meppt.setPositionId(employee.getPositionId());
       meppt.setPermissionDetailType(mepp);
       meppt.setIsUse(true);
       return meppt;

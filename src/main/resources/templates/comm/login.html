@@ -37,6 +37,7 @@
   <script th:inline="javascript">
     if([[${err_msg}]])
       alert([[${err_msg}]]);
+    console.log([[${err_msg}]]);
   </script>
   <form method="POST" th:action="@{/login}">
   <div class="container-fluid">

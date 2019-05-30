@@ -1,17 +1,96 @@
-﻿INSERT INTO tbl_permission (id , create_date , modify_date ,  name , remarks)
-VALUES 
-( 1 , '2019-05-01 00:01:00' , now() , 'WF8266' , 'WF8266權限');
+﻿INSERT INTO public.tbl_permission( id, create_date, modify_date, name, menu_name) VALUES 
+( 1  , '2019-05-01 00:00:00' , now() , 'IOT設備管理' , '#05'), --
+( 2  , '2019-05-01 00:00:00' , now() , '權限管理' , '#00'), -- 
+( 3  , '2019-05-01 00:00:00' , now() , '選單管理' , '#01'), -- 
+( 4  , '2019-05-01 00:00:00' , now() , '據點管理' , '#03'),
+( 5  , '2019-05-01 00:00:00' , now() , '人事員工管理' , '#0201'),
+( 6  , '2019-05-01 00:00:00' , now() , '人事職階管理' , '#0202'),
+( 7  , '2019-05-01 00:00:00' , now() , 'LINE@會員管理' , '#0401'),
+( 8  , '2019-05-01 00:00:00' , now() , 'LINE@紀錄管理' , '#0403'),
+( 9  , '2019-05-01 00:00:00' , now() , 'LINE@選單列表' , '#040201'),
+( 10 , '2019-05-01 00:00:00' , now() , 'LINE@樣式列表' , '#040202');
 
 SELECT * FROM public.tbl_permission;
 	
 INSERT INTO tbl_permission_detail (type, is_super_admin, permission_id, name, remarks) VALUES
-('WF8266_MENU'      , false , 1 , 'WF8266選單' , 'WF8266選單權限'),
-('WF8266_ADD'       , false , 1 ,'WF8266新增' , 'WF8266新增權限'),
-('WF8266_DELETE_ALL', false , 1 ,'WF8266刪除全部' , 'WF8266刪除全部權限'),
-('WF8266_DELETE_OWN', false , 1 ,'WF8266刪除個人' , 'WF8266刪除個人權限'),
-('WF8266_EDIT_ALL'  , false , 1 ,'WF8266修改全部' , 'WF8266修改全部權限'),
-('WF8266_EDIT_OWN'  , false , 1 ,'WF8266修改個人' , 'WF8266修改個人權限'),
-('WF8266_VIEW_ALL'  , false , 1 ,'WF8266檢視全部' , 'WF8266檢視全部權限'),
-('WF8266_VIEW_OWN'  , false , 1 ,'WF8266檢視個人' , 'WF8266檢視個人權限');
+('ADD'       , true , 1 ,'新增' , 'WF8266新增權限'),
+('DELETE_ALL', true , 1 ,'刪除全部' , 'WF8266刪除全部權限'),
+('DELETE_OWN', true , 1 ,'刪除個人' , 'WF8266刪除個人權限'),
+('EDIT_ALL'  , true , 1 ,'修改全部' , 'WF8266修改全部權限'),
+('EDIT_OWN'  , true , 1 ,'修改個人' , 'WF8266修改個人權限'),
+('VIEW_ALL'  , true , 1 ,'檢視全部' , 'WF8266檢視全部權限'),
+('VIEW_OWN'  , true , 1 ,'檢視個人' , 'WF8266檢視個人權限'),
+
+('ADD'       , true , 2 ,'新增' , ''),
+('DELETE_ALL', true , 2 ,'刪除全部' , ''),
+('DELETE_OWN', true , 2 ,'刪除個人' , ''),
+('EDIT_ALL'  , true , 2 ,'修改全部' , ''),
+('EDIT_OWN'  , true , 2 ,'修改個人' , ''),
+('VIEW_ALL'  , true , 2 ,'檢視全部' , ''),
+('VIEW_OWN'  , true , 2 ,'檢視個人' , ''),
+
+('ADD'       , true , 3 ,'新增' , ''),  
+('DELETE_ALL', true , 3 ,'刪除全部' , ''),
+('DELETE_OWN', true , 3 ,'刪除個人' , ''),
+('EDIT_ALL'  , true , 3 ,'修改全部' , ''),
+('EDIT_OWN'  , true , 3 ,'修改個人' , ''),
+('VIEW_ALL'  , true , 3 ,'檢視全部' , ''),
+('VIEW_OWN'  , true , 3 ,'檢視個人' , ''),
+
+('ADD'       , false , 4 ,'新增' , ''),    
+('DELETE_ALL', false , 4 ,'刪除全部' , ''),  
+('DELETE_OWN', false , 4 ,'刪除個人' , ''),  
+('EDIT_ALL'  , false , 4 ,'修改全部' , ''),  
+('EDIT_OWN'  , false , 4 ,'修改個人' , ''),  
+('VIEW_ALL'  , false , 4 ,'檢視全部' , ''),  
+('VIEW_OWN'  , false , 4 ,'檢視個人' , ''),
+
+('ADD'       , false , 5 ,'新增' , ''),  
+('DELETE_ALL', false , 5 ,'刪除全部' , ''),
+('DELETE_OWN', false , 5 ,'刪除個人' , ''),
+('EDIT_ALL'  , false , 5 ,'修改全部' , ''),
+('EDIT_OWN'  , false , 5 ,'修改個人' , ''),
+('VIEW_ALL'  , false , 5 ,'檢視全部' , ''),
+('VIEW_OWN'  , false , 5 ,'檢視個人' , ''),
+
+('ADD'       , false , 6 ,'新增' , ''),  
+('DELETE_ALL', false , 6 ,'刪除全部' , ''),
+('DELETE_OWN', false , 6 ,'刪除個人' , ''),
+('EDIT_ALL'  , false , 6 ,'修改全部' , ''),
+('EDIT_OWN'  , false , 6 ,'修改個人' , ''),
+('VIEW_ALL'  , false , 6 ,'檢視全部' , ''),
+('VIEW_OWN'  , false , 6 ,'檢視個人' , ''),
+
+('ADD'       , false , 7 ,'新增' , ''),  
+('DELETE_ALL', false , 7 ,'刪除全部' , ''),
+('DELETE_OWN', false , 7 ,'刪除個人' , ''),
+('EDIT_ALL'  , false , 7 ,'修改全部' , ''),
+('EDIT_OWN'  , false , 7 ,'修改個人' , ''),
+('VIEW_ALL'  , false , 7 ,'檢視全部' , ''),
+('VIEW_OWN'  , false , 7 ,'檢視個人' , ''),
+
+('ADD'       , false , 8 ,'新增' , ''),  
+('DELETE_ALL', false , 8 ,'刪除全部' , ''),
+('DELETE_OWN', false , 8 ,'刪除個人' , ''),
+('EDIT_ALL'  , false , 8 ,'修改全部' , ''),
+('EDIT_OWN'  , false , 8 ,'修改個人' , ''),
+('VIEW_ALL'  , false , 8 ,'檢視全部' , ''),
+('VIEW_OWN'  , false , 8 ,'檢視個人' , ''),
+  
+('ADD'       , false , 9 ,'新增' , ''),  
+('DELETE_ALL', false , 9 ,'刪除全部' , ''),
+('DELETE_OWN', false , 9 ,'刪除個人' , ''),
+('EDIT_ALL'  , false , 9 ,'修改全部' , ''),
+('EDIT_OWN'  , false , 9 ,'修改個人' , ''),
+('VIEW_ALL'  , false , 9 ,'檢視全部' , ''),
+('VIEW_OWN'  , false , 9 ,'檢視個人' , ''),
+
+('ADD'       , false , 10 ,'新增' , ''),  
+('DELETE_ALL', false , 10 ,'刪除全部' , ''),
+('DELETE_OWN', false , 10 ,'刪除個人' , ''),
+('EDIT_ALL'  , false , 10 ,'修改全部' , ''),
+('EDIT_OWN'  , false , 10 ,'修改個人' , ''),
+('VIEW_ALL'  , false , 10 ,'檢視全部' , ''),
+('VIEW_OWN'  , false , 10 ,'檢視個人' , '');
 
 SELECT * FROM public.tbl_permission_detail;

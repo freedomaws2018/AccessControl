@@ -8,4 +8,6 @@ import com.example.demo.DataBase.Entity.Position;
 @Repository
 public interface PositionRepository extends JpaRepository<Position, Long> {
 
+  Integer countByName(String name);
+
 }

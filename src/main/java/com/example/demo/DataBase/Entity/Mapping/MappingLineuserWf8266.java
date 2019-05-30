@@ -10,15 +10,15 @@ import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import com.example.demo.DataBase.Entity.IdClass.MappingWf8266LineuserId;
+import com.example.demo.DataBase.Entity.IdClass.MappingLineuserWf8266Id;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "mapping_wf8266_lineuser")
-@IdClass(MappingWf8266LineuserId.class)
-public class MappingWf8266Lineuser {
+@Table(name = "mapping_lineuser_wf8266")
+@IdClass(MappingLineuserWf8266Id.class)
+public class MappingLineuserWf8266 {
 
   @Id
   @Column(name = "wf8266_id")

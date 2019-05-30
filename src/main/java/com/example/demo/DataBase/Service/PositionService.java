@@ -18,11 +18,28 @@ public class PositionService {
   @Autowired
   private PositionRepository positionRepository;
 
-  public List<Position> getAll(){
+  public List<Position> getAll() {
     return positionRepository.findAll(Sort.by(Order.asc("id")));
   }
 
-  public Page<Position> getAll(Pageable pageable){
+  public Page<Position> getAll(Pageable pageable) {
     return positionRepository.findAll(pageable);
   }
+
+  public Position getById(Long id) {
+    return positionRepository.findById(id).orElse(null);
+  }
+
+  public Boolean existByName(String name) {
+    return positionRepository.countByName(name) > 0 ? true : false;
+  }
+
+  public Position save(Position position) {
+    return positionRepository.saveAndFlush(position);
+  }
+
+  public void deleteById(Long positionId) {
+    positionRepository.deleteById(positionId);
+  }
+
 }

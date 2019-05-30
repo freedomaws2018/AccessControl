@@ -44,8 +44,15 @@
     });
 
     $.each(checkboxs, function(index,data){
-      if( data.name){
-        obj[data.name + "[" + index + "]"] = data.value;
+      if( data.name ){
+        if($(data).attr("JsonValue")){
+          var jd = JSON.parse(data.value);
+          $.each(jd,function(key, value) {
+            obj[data.name + "[" + index + "]." + key] = value;
+          });
+        }else{
+          obj[data.name + "[" + index + "]"] = data.value;
+        }
       }
     });
 

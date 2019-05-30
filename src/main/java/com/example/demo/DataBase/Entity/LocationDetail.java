@@ -27,4 +27,7 @@ public class LocationDetail {
   @Column(name = "name")
   private String name;
 
+  @Column(name = "rich_menu_id")
+  private String richMenuId;
+
 }

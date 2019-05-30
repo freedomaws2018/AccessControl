@@ -25,9 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Controller.FormEntity.FormLineUser;
 import com.example.demo.DataBase.Entity.LineUser;
-import com.example.demo.DataBase.Entity.Mapping.MappingWf8266Lineuser;
+import com.example.demo.DataBase.Entity.Mapping.MappingLineuserWf8266;
 import com.example.demo.DataBase.Repository.LineUserRepository;
-import com.example.demo.DataBase.Repository.MappingWf8266LineuserRepository;
+import com.example.demo.DataBase.Repository.MappingLineuserWf8266Repository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.linecorp.bot.model.richmenu.RichMenuListResponse;
@@ -44,7 +44,7 @@ public class LineUserController {
   private Wf8266Repository wf8266Repository;
 
   @Autowired
-  private MappingWf8266LineuserRepository mappingWf8266LineuserRepository;
+  private MappingLineuserWf8266Repository mappingLineuserWf8266Repository;
 
   @Autowired
   private LineRichMenuService lineRichMenuService;
@@ -70,8 +70,8 @@ public class LineUserController {
       @PathVariable String userId) throws InterruptedException, ExecutionException {
     model = new ModelAndView("layout/line/u_line_user");
 
-    List<String> allTriggerTexts = mappingWf8266LineuserRepository.getByLineUserId(userId).stream()
-        .filter(MappingWf8266Lineuser::getIsUse).map(MappingWf8266Lineuser::getWf8266Id).collect(Collectors.toList());
+    List<String> allTriggerTexts = mappingLineuserWf8266Repository.getByLineUserId(userId).stream()
+        .filter(MappingLineuserWf8266::getIsUse).map(MappingLineuserWf8266::getWf8266Id).collect(Collectors.toList());
 
     LineUser user = this.lineUserRepository.findById(userId).orElse(null);
     if (user == null) {
@@ -98,9 +98,9 @@ public class LineUserController {
   public ResponseEntity<Object> delete(@PathVariable String lineUserId) {
     this.lineUserRepository.deleteById(lineUserId);
 
-    List<MappingWf8266Lineuser> allMapping = mappingWf8266LineuserRepository.getByLineUserId(lineUserId);
+    List<MappingLineuserWf8266> allMapping = mappingLineuserWf8266Repository.getByLineUserId(lineUserId);
     if (allMapping != null && !allMapping.isEmpty()) {
-      mappingWf8266LineuserRepository.deleteAll(allMapping);
+      mappingLineuserWf8266Repository.deleteAll(allMapping);
     }
 
     return new ResponseEntity<>(null, HttpStatus.OK);

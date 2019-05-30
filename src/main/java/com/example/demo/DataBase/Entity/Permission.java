@@ -46,14 +46,13 @@ public class Permission {
   @Column(name = "menu_name")
   private String menuName;
 
-  @OneToOne(fetch = FetchType.LAZY )
-  @JoinColumn(name = "menu_name", referencedColumnName = "menu_name" , insertable = false , updatable = false , nullable = true)
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "menu_name", referencedColumnName = "menu_name", insertable = false, updatable = false, nullable = true)
   private Menu menu;
-
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "permission_id")
-  @OrderBy
+  @OrderBy(value = "type")
   private List<PermissionDetail> details = new ArrayList<>();
 
 }

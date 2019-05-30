@@ -1,16 +1,16 @@
 INSERT INTO public.tbl_menu( menu_name, name, level, main_menu_name, parent_menu_name, sort, url) VALUES 
-( 'PERMISSION'                , '權限管理'    , 1 , ''          , ''                 , 1 , '/permission/list'),
-( 'MENU'                      , '選單管理'    , 1 , ''          , ''                 , 2 , '/menu/list'),
-( 'PERSONNEL'                 , '人事管理'    , 1 , ''          , ''                 , 3 , ''),
-( 'LOCATION'                  , '據點管理'    , 1 , ''          , ''                 , 4 , '/location/list'),
-( 'LINEBOT'                   , 'LINE@管理'   , 1 , ''          , ''                 , 5 , ''),
-( 'IOT'                       , 'IOT設備管理' , 1 , ''          , ''                 , 6 , '/wf8266/list'),
-( 'PERSONNEL_EMPLOYEE'        , '員工管理'    , 2 , 'PERSONNEL' , 'PERSONNEL'        , 1 , '/employee/list'),
-( 'PERSONNEL_POSITION'        , '職階管理'    , 2 , 'PERSONNEL' , 'PERSONNEL'        , 2 , '/position/list'),
-( 'LINEBOT_LINEUSER'          , '會員管理'    , 2 , 'LINEBOT'   , 'LINEBOT'          , 1 , '/line/user/list'),
-( 'LINEBOT_RICHMENU'          , '選單管理'    , 2 , 'LINEBOT'   , 'LINEBOT'          , 2 , ''),
-( 'LINEBOT_Record'            , '紀錄管理'    , 2 , 'LINEBOT'   , 'LINEBOT'          , 3 , '/line/user/list'),
-( 'LINEBOT_RICHMENU_MAIN'     , '選單列表'    , 3 , 'LINEBOT'   , 'LINEBOT_RICHMENU' , 1 , '/line/rich_menu/list'),
-( 'LINEBOT_RICHMENU_TEMPLATE' , '樣式列表'    , 3 , 'LINEBOT'   , 'LINEBOT_RICHMENU' , 2 , '/line/rich_menu/template/list');
+( '#00'     , '權限管理'    , 1 , null  , null    , 1 , '/permission/list'),
+( '#01'     , '選單管理'    , 1 , null  , null    , 2 , '/menu/list'),
+( '#02'     , '人事管理'    , 1 , null  , null    , 3 , '#'),
+( '#03'     , '據點管理'    , 1 , null  , null    , 4 , '/location/list'),
+( '#04'     , 'LINE@管理'   , 1 , null  , null    , 5 , '#'),
+( '#05'     , 'IOT設備管理' , 1 , null  , null    , 6 , '/wf8266/list'),
+( '#0201'   , '員工管理'    , 2 , '#02' , '#02'   , 1 , '/employee/list'),
+( '#0202'   , '職階管理'    , 2 , '#02' , '#02'   , 2 , '/position/list'),
+( '#0401'   , '會員管理'    , 2 , '#04' , '#04'   , 1 , '/line/user/list'),
+( '#0402'   , '選單管理'    , 2 , '#04' , '#04'   , 2 , '#'),
+( '#0403'   , '紀錄管理'    , 2 , '#04' , '#04'   , 3 , '/line/user/list'),
+( '#040201' , '選單列表'    , 3 , '#04' , '#0402' , 1 , '/line/rich_menu/list'),
+( '#040202' , '樣式列表'    , 3 , '#04' , '#0402' , 2 , '/line/rich_menu/template/list');
 
 SELECT * FROM tbl_menu;

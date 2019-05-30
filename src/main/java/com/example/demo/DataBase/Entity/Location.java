@@ -12,7 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -42,9 +41,9 @@ public class Location {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @OneToMany(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id")
-  private List<LocationDetail> details = new ArrayList<>();
+//  @OneToMany(fetch = FetchType.LAZY)
+//  @JoinColumn(name = "location_id")
+//  private List<LocationDetail> details = new ArrayList<>();
 
   @CreatedDate
   @Column(name = "create_date", nullable = false, updatable = false)

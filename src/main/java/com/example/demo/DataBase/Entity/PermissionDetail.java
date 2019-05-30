@@ -4,9 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.example.demo.DataBase.Entity.IdClass.PermissionDetailId;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,23 +18,28 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "tbl_permission_detail")
+@IdClass(PermissionDetailId.class)
 public class PermissionDetail {
 
-	@Id
-	@Column(name = "type", nullable = false, updatable = false)
-	private String type;
+  @Id
+  @Column(name = "type", nullable = false, updatable = false)
+  private String type;
 
-	@Column(name = "permission_id")
-	private Long permissionId;
+  @Id
+  @Column(name = "permission_id")
+  private Long permissionId;
 
-  @OneToOne(fetch = FetchType.LAZY )
-  @JoinColumn(name = "permission_id", referencedColumnName = "id" , insertable = false , updatable = false , nullable = true)
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "permission_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
   private Permission permission;
 
-	@Column(name = "name")
-	private String name;
+  @Column(name = "name")
+  private String name;
 
-  @Column(name = "is_super_admin" ,columnDefinition = "bool DEFAULT FALSE")
+  @Column(name = "remarks")
+  private String remarks;
+
+  @Column(name = "is_super_admin", columnDefinition = "bool DEFAULT FALSE")
   private Boolean isSuperAdmin;
 
 }

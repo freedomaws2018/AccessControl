@@ -101,11 +101,11 @@ public class EmployeeController {
   public ResponseEntity<Object> save(FormEmployee form) {
     Map<String, Object> map = new HashMap<>();
     try {
-      employeeService.save(form.getEmployee());
+      Employee employee = employeeService.save(form.getEmployee());
 
       // 權限設定
       mappingEmployeePermissondetailPositionRepository.updateAllIsUseFalseWithEmployeeId(form.getId());
-      mappingEmployeePermissondetailPositionRepository.saveAll(form.getMappingEmployeePermissondetailPosition());
+      mappingEmployeePermissondetailPositionRepository.saveAll(form.getMappingEPP(employee));
 
       // 選單設定
       mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(form.getId());

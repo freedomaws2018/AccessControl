@@ -50,7 +50,7 @@ public class EmployeeService {
   }
 
   public Employee loginVerification(String account, String passwd) {
-    System.err.println(account + " : " + passwd);
+//    System.err.println(account + " : " + passwd);
     Employee employee = null;
 
     employee = employeeRepository.findByAccount(account).orElse(null);
@@ -59,7 +59,7 @@ public class EmployeeService {
       throw new LoginException("找不到該用戶");
     }
     String passwd_sha256 = employee.hashPassword(account, passwd);
-    System.err.printf("%s , %s \n", employee.getPassword(), passwd_sha256);
+//    System.err.printf("%s , %s \n", employee.getPassword(), passwd_sha256);
     if (!employee.getPassword().equals(passwd_sha256)) {
       throw new LoginException("用戶密碼錯誤");
     }
@@ -72,7 +72,7 @@ public class EmployeeService {
   }
 
   public Employee save(Employee employee) {
-    return employeeRepository.save(employee);
+    return employeeRepository.saveAndFlush(employee);
   }
 
   private class LoginException extends RuntimeException {

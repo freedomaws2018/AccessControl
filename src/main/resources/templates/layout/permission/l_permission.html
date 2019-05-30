@@ -39,6 +39,7 @@
               <tr>
                 <th scope="col">操作</th>
                 <th scope="col">權限名稱</th>
+                <th scope="col">對應選單</th>
               </tr>
             </thead>
             <tbody class="center">
@@ -58,6 +59,7 @@
                   </a>
                 </td>
                 <td th:text="*{name}"></td>
+                <td th:text="*{menu.name}"></td>
               </tr>
             </tbody>
           </table>

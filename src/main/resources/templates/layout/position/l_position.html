@@ -2,10 +2,24 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
+  <script>
+  delete_position = function(positionId , positionName){
+    showConfirmDialog('確認刪除','確定要刪除 ' + positionName + ' 的職位嗎?',function(){
+      $.ajax({
+        type: 'DELETE',
+        url: "/position/delete/" + positionId,
+        dataType: 'json',
+        success: function(result){
+          location.reload();
+        }
+      });
+    });
+  }
+  </script>
   <div class="row"> <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-6"> <div class="card">
     <div class="card-header" toggleId="l-line-user-toggle">
       <span class="glyphicon glyphicon-align-justify"></span>Position - 列表
-      <a th:href="@{/employee/add}" class="btn btn-primary a-btn-second btn-sm">
+      <a th:href="@{/position/add}" class="btn btn-primary a-btn-second btn-sm">
         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
       </a>
     </div>
@@ -26,15 +40,12 @@
               <a class="btn btn-success btn-sm" th:href="@{/position/edit/{empId}(empId=*{id})}" >
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
               </a>
-              <a class="btn btn-danger btn-sm" th:id="|delete_position_*{id}|" th:employeeId="*{id}" href="javascript:;" >
+              <a class="btn btn-danger btn-sm" th:onclick="|delete_position(__*{id}__,'__*{name}__')|" href="javascript:;" >
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
             </td>
             <td>
               <span th:text="*{name}" ></span>
-            </td>
-            <td>
-              <span th:text="*{remarks}" ></span>
             </td>
           </tr>
         </tbody>

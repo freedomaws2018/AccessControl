@@ -50,10 +50,12 @@ public class LineBotApplication {
         lineUser.setUserName(userName);
         lineUser.setUserId(userId);
         lineUser.setBegDt(LocalDateTime.now());
-        lineUser.setEndDt(LocalDateTime.now().plusYears(1l));
-        lineUser.setIsUse(true);
+        lineUser.setEndDt(LocalDateTime.now());
+        lineUser.setIsUse(false);
+        lineUser.setRichMenuId("");
       } else {
-        lineUser.setIsUse(true);
+        lineUser.setIsUse(false);
+        lineUser.setRichMenuId("");
       }
       lineUserRepository.save(lineUser);
       logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
@@ -72,6 +74,7 @@ public class LineBotApplication {
 
     if (lineUser != null) {
       lineUser.setIsUse(false);
+      lineUser.setRichMenuId("");
       this.lineUserRepository.save(lineUser);
       logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
     }
