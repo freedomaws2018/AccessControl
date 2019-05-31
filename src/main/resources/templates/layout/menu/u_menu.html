@@ -4,7 +4,7 @@
 <body layout:fragment="content">
   <style>
   .input-group-addon {
-    padding: 6px 12px;
+    /*padding: 6px 12px;
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
@@ -12,7 +12,7 @@
     text-align: center;
     background-color: #eee;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 4px;*/
   }
   </style>
   <script th:inline="javascript">
@@ -78,9 +78,9 @@
         <div class="row col-12">
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
             <label class="font-weight-bold">ID</label>
-            <div class="input-group">
+            <div class="input-group input-group-mg-l">
               <div class="input-group-prepend">
-                <div class="input-group-text" id="afterMenuName">#</div>
+                <div class="input-group-text input-group-mg-r" id="afterMenuName">#</div>
               </div>
               <input type="text" class="form-control" name="menuName" placeholder="Username">
             </div>
@@ -95,7 +95,7 @@
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
             <label class="font-weight-bold">排序</label><br>
             <input type="number" class="form-control" name="sort" value="0"/>
-          </div>   
+          </div>
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-9">
             <label class="font-weight-bold">URL</label><br>
             <input type="text" class="form-control" name="url" value=""/>
@@ -188,7 +188,7 @@
   	})
 
   </script>
-  <div class="row"> <div class="col-12 "> <div class="card">
+  <div class="row"> <div class="col-8 "> <div class="card">
     <div class="card-header" toggleId="l_menu">
       <span class="glyphicon glyphicon-align-justify"></span>選單管理
     </div>
@@ -197,25 +197,24 @@
       <input type="hidden" id="level2_selected"/>
       <input type="hidden" id="level3_selected"/>
       
-      <select class="custom-select" size="10" id="level1" style="width:200px;" >
+      <select class="custom-select" size="10" id="level1" >
       </select>
     
-      <select class="custom-select" size="10" id="level2" style="width:200px;" disabled>
+      <select class="custom-select" size="10" id="level2" disabled>
       </select>
       
-      <select class="custom-select" size="10" id="level3" style="width:200px;" disabled>
+      <select class="custom-select" size="10" id="level3" disabled>
       </select>
       
     </div>
   </div> </div> </div>
   
-  <div class="row"> <div class="col-12"> <div class="card">
+  <div class="row"> <div class="col-8"> <div class="card">
     <div class="card-header" toggleId="u_menu">
       <span class="glyphicon glyphicon-align-justify"></span>選單管理
     </div>
     <div class="card-body" toggleId="u_menu" id="edit_menu_body">
       <form id="menu_form" ></form>
-        
       <div class="row justify-content-center">
         <button type="button" id="submit_btn" class="btn btn-primary btn-sm" style="display: none;">
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
