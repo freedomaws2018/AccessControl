@@ -30,7 +30,6 @@ import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Permission;
 import com.example.demo.DataBase.Entity.Position;
 import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeMenu;
-import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissondetailPosition;
 import com.example.demo.DataBase.Repository.MappingEmployeeMenuRepository;
 import com.example.demo.DataBase.Repository.MappingEmployeePermissondetailPositionRepository;
 import com.example.demo.DataBase.Service.EmployeeService;
@@ -92,7 +91,7 @@ public class EmployeeController {
     model.addObject("permissions", permissions);
     List<String> mappingPermissions = mappingEmployeePermissondetailPositionRepository
         .findByEmployeeIdAndPositionIdAndIsUseTrue(employee.getId(), employee.getPositionId()).stream()
-        .map(MappingEmployeePermissondetailPosition::getPermissionDetailType).collect(Collectors.toList());
+        .map(m -> m.getPermissionId() + ":" + m.getPermissionDetailType()).collect(Collectors.toList());
     model.addObject("mappingPermissions", mappingPermissions);
     return model;
   }
@@ -110,18 +109,19 @@ public class EmployeeController {
       // 選單設定
       mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(employee.getId());
       List<Permission> permission = permissionService
-          .getPermissionByPermissionDetailType(form.getPermissionDetailType());
+          .getPermissionByPermissionIdAndPermissionDetailType(form.getPositionId(), form.getPermissionDetailType());
       List<String> menuName = permission.stream().map(Permission::getMenuName).collect(Collectors.toList());
       List<MappingEmployeeMenu> mems = menuName.stream().map(mn -> {
         MappingEmployeeMenu mem = new MappingEmployeeMenu();
+        mem.setEmployeeId(employee.getId());
         mem.setMenuName(mn);
-        mem.setEmployeeId(form.getId());
         mem.setIsUse(true);
         return mem;
       }).collect(Collectors.toList());
       mappingEmployeeMenuRepository.saveAll(mems);
 
       map.put("status", "success");
+      map.put("data", employee);
       return new ResponseEntity<>(map, HttpStatus.OK);
     } catch (Exception ex) {
       map.put("status", "error");

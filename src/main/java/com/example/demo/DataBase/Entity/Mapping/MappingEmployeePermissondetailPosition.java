@@ -28,6 +28,10 @@ public class MappingEmployeePermissondetailPosition {
   private Long employeeId;
 
   @Id
+  @Column(name = "permission_id")
+  private Long permissionId;
+
+  @Id
   @Column(name = "permission_detail_type")
   private String permissionDetailType;
 

@@ -25,91 +25,130 @@
     	$(`[class='card-body'][toggleId='${toggleId}']`).slideToggle('active');
     });
   });
+  
+  var toggle_next_menu = function(next_menu_id){
+    $(next_menu_id).toggle(300);
+  }
   </script>
   
+  <script th:inline="javascript">
+    var menu1s = [[${session.menu}]];
+    var URI = [[${session.URI}]];
+	var currentMenuName ;
+    $.each(menu1s , function(index ,menu1){
+      // 確認第一層網址
+      if(URI == menu1.url){
+//         console.log(menu1.menuName , URI);
+        currentMenuName = menu1.menuName;
+      }
+      // 查詢是否有第二層
+      var menu2s = menu1.childMenus;
+      if( menu2s != null && menu2s.length > 0 ){
+        $.each(menu2s , function(index ,menu2){
+          // 確認第二層網址
+          if(URI == menu2.url){
+//             console.log(menu2.menuName , URI);
+            currentMenuName = menu2.menuName;
+          }
+          // 查詢是否有第三層
+          var menu3s = menu2.childMenus;
+          if( menu3s != null && menu3s.length > 0 ){
+            $.each(menu3s , function(index ,menu3){
+              // 確認第三層網址
+              if(URI == menu3.url){
+//                 console.log(menu3.menuName , URI);
+                currentMenuName = menu3.menuName;
+              }
+            })
+          }
+        });
+      }
+    });
+    if(currentMenuName){
+      var menuNameList = [ currentMenuName.substring(0,3) , currentMenuName.substring(0,5) , currentMenuName.substring(0,7) ];
+    }
+
+//     console.log(currentMenuName , menuNameList);
+  </script>
+   
   <div class="wrapper">
     <nav id="sidebar">
       <ul class="list-unstyled components">
         <p>測試區</p>
-
-        <li>
-          <div class="row">
-            <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-            <a th:href="@{/permission/list}">權限管理(X)</a>
-          </div>
-        </li>
         
-        <li>
-          <div class="row">
-            <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-            <a th:href="@{/menu/list}">選單管理(X)</a>
-          </div>
-        </li>
-        
-        <li class="active">
-          <div class="row">
-            <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png">
-            <a href="#PERSONNEL" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">人事管理</a>
-          </div>
-          <ul class="collapse list-unstyled" id="PERSONNEL">
-            <li>
-              <div class="row">
-                <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-                <a th:href="@{/employee/list}">員工管理</a>
-              </div>
-            </li>
-    
-            <li>
-              <div class="row">
-                <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-                <a th:href="@{/position/list}">職階管理</a>
-              </div>
-            </li>
-          </ul>
-        </li>
+        <script th:inline="javascript">
+          var menu1s = [[${session.menu}]];
+          for(i in menu1s){
+            var html_write = "";
+            var menu1 = menu1s[i];
+//             console.log(menu1);
+            if( !( menu1.url == '#' || menu1.url == '' ) && menuNameList != null && menuNameList.includes(menu1.menuName) ){
+              html_write += "<li class='active selected'>";
+            }else{             
+              html_write += "<li class='active'>";
+            }
             
-        
-        <li>
-          <div class="row">
-            <img th:src="@{/images/icon/admin.png}" src="../static/images/icon/admin.png">
-            <a th:href="@{/location/list}">據點管理</a>
-          </div>
-        </li>
-
-        <li class="active">
-          <div class="row">
-            <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png">
-            <a href="#LineManage" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">1. Line@管理</a>
-          </div>
-          <ul class="collapse list-unstyled" id="LineManage">
-            <li>
-              <div class="row">
-                <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a th:href="@{/line/user/list}">1-1. 會員管理</a>
-              </div>
-            </li>
-            <li>
-              <div class="row">
-                <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a th:href="@{/line/rich_menu/list}">1-2-1. 選單列表</a>
-              </div>
-            </li>
-            <li>
-              <div class="row">
-                <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a th:href="@{/line/rich_menu/template/list}">1-2-2. 樣式列表</a>
-              </div>
-            </li>
-            <li>
-              <div class="row">
-                <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a th:href="@{/line/log/list}">1-3. 紀錄管理</a>
-              </div>
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <div class="row">
-          <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a th:href="@{/wf8266/list}">WF8266管理(X)</a>
-          </div>
-        </li>
+            html_write += "<div class='row'>";
+            
+            if(menu1.url == '#' || menu1.url == ''){
+              html_write += "<a href='javascript:;' class='dropdown-toggle' onclick='toggle_next_menu(\"" + menu1.menuName + "\")' >" + menu1.name + "</a>";
+            }else{
+              html_write += "<a href='" + menu1.url + "'>" + menu1.name + "</a>";
+            }
+            
+            html_write += "</div>";
+            
+            var menu2s = menu1.childMenus;
+            if( menu2s != null && menu2s.length > 0 ){
+              if(menuNameList != null && menuNameList.includes(menu1.menuName)){
+                html_write += "<ul class='collapse list-unstyled show' id='" + menu1.menuName.substring(1) + "'>";
+              }else{
+              	html_write += "<ul class='collapse list-unstyled' id='" + menu1.menuName.substring(1) + "'>";
+              }
+              for(j in menu2s){
+                var menu2 = menu2s[j];
+                if( menuNameList != null && menuNameList.includes(menu2.menuName) ){
+                  html_write += "<li class='active selected'>";
+                }else{             
+                  html_write += "<li class='active'>";
+                }
+                html_write += "<div class='row'>";
+                if(menu2.url == '#' || menu2.url == ''){
+                  html_write += "<a href='javascript:;' class='dropdown-toggle' onclick='toggle_next_menu(\"" + menu2.menuName + "\")' >" + menu2.name + "</a>";
+                }else{
+                  html_write += "<a href='" + menu2.url + "'>" + menu2.name + "</a>";
+                }
+                html_write += "</div>";
+                
+                var menu3s = menu2.childMenus;
+                if( menu3s != null && menu3s.length > 0 ){
+                  
+                  html_write += "<ul class='collapse list-unstyled' id='" + menu2.menuName.substring(1) +"'>";
+                  
+                  for(j in menu3s){
+                    var menu3 = menu3s[j];
+                    html_write += "<li class='active'>";
+                    html_write += "<div class='row'>";
+                    if(menu3.url == '#' || menu3.url == ''){
+                      html_write += "<a href='javascript:;' class='dropdown-toggle' onclick='toggle_next_menu(\"" + menu3.menuName + "\")' >" + menu3.name + "</a>";
+                    }else{
+                      html_write += "<a href='" + menu3.url + "'>" + menu3.name + "</a>";
+                    }
+                    html_write += "</div>";
+                  html_write += "</li>";
+                  }
+                  html_write += "</ul>";
+                }
+                
+              html_write += "</li>";
+              }
+              html_write += "</ul>";
+            }
+            html_write += "</li>";
+            
+            document.write(html_write);
+          }
+        </script>
         
       </ul>
     </nav>

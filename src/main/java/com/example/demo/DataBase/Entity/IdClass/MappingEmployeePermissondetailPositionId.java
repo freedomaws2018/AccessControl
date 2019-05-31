@@ -14,6 +14,8 @@ public class MappingEmployeePermissondetailPositionId implements Serializable {
 
   private Long employeeId;
 
+  private Long permissionId;
+
   private String permissionDetailType;
 
   private Long positionId;

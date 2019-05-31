@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -76,6 +77,11 @@ public class Location {
   /** 據點的Beacon 對應值 **/
   @Column(name = "beacon_key")
   private String beaconKey;
+
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "location_id")
+  @OrderBy(value = "id")
+  private List<LocationDetail> details = new ArrayList<>();
 
   /** 據點負責人 **/
   @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

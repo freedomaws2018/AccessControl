@@ -11,8 +11,8 @@ import com.example.demo.DataBase.Entity.IdClass.PermissionDetailId;
 @Repository
 public interface PermissionDetailRepository extends JpaRepository<PermissionDetail, PermissionDetailId> {
 
-  List<PermissionDetail> findByTypeIn(List<String> types);
+  List<PermissionDetail> findByPermissionIdAndTypeIn(Long permissionId, List<String> types);
 
-	List<PermissionDetail> findByPermissionId(Long id);
+  List<PermissionDetail> findByPermissionId(Long id);
 
 }

@@ -13,17 +13,19 @@
       var str = '';
       str +="<tr id='tr_detail_" + index + "'>";
       str +="  <td>";
-      str +="    <a herf='javascript:;' onclick='delete_detail(this,\"detail_" + index + "\","+index+")' > 刪除 </a>";
+      str +="    <a herf='javascript:;' class='btn btn-danger btn-sm' onClick='delete_detail(this,\"detail_" + index + "\","+index+")' >"
+      str +="      <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>刪除";
+      str +="    </a>";
       str +="    <input type='hidden' id='detail_" + index + "' name='detail[" + index + "].status' value='A' />";
       str +="  </td>";
       str +="  <td>";
-      str +="    <input name='detail[" + index + "].type' />";
+      str +="    <input type='text' class='form-control' name='detail[" + index + "].type' />";
       str +="  </td>";
       str +="  <td>";
-      str +="    <input name='detail[" + index + "].name' />";
+      str +="    <input type='text' class='form-control' name='detail[" + index + "].name' />";
       str +="  </td>";
       str +="  <td>";
-      str +="    <input name='detail[" + index + "].remarks' />";
+      str +="    <input type='text' class='form-control' name='detail[" + index + "].remarks' />";
       str +="  </td>";      
       str +="  <td>";
       str +="    <label><input type='radio' value='true' name='detail[" + index + "].isSuperAdmin' />是</label>";
@@ -76,20 +78,21 @@
     }
   
   	submin_form = function(){
-  	  var jsonData = $("#permission_form").toJson();
-  	  $.ajax({
-        type: 'POST',
-        url: "/permission/save",
-        data: jsonData,
-        dataType: 'json',
-        success: (result) => {
-          if(result.status == 'success'){
-            window.location.replace("/permission/view/" + result.data.id);
-          }else{
-            alert(result.msg);
-          }
-        }
-      });
+  	  var jsonData = $("#permission_form").toJson()
+  	  console.log(jsonData);
+//   	  $.ajax({
+//         type: 'POST',
+//         url: "/permission/save",
+//         data: jsonData,
+//         dataType: 'json',
+//         success: (result) => {
+//           if(result.status == 'success'){
+//             window.location.replace("/permission/view/" + result.data.id);
+//           }else{
+//             alert(result.msg);
+//           }
+//         }
+//       });
   	}
   </script>
   <form id="permission_form" th:action="@{/permission/save}" method="post" th:object="${permission}">
@@ -129,19 +132,21 @@
                 <input type="text" class="form-control" id="menuName_auto" />
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
-                <input type="hidden" class="form-control" id="menuName" name="menuName" value="*{menuName}" />
+                <input type="hidden" class="form-control" id="menuName" name="menuName" th:value="*{menuName}" />
                 <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="*{menu.name}"/>
               </div>
               
               
             </div>
             
-            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11" >
+            <div class="col-12" >
               <label class="font-weight-bold">細項</label>
               <table class="table" >
                <tr>
                 <td>
-                  <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" id="add_permission_detail" > 新增 </a>
+                  <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" class="btn btn-info btn-sm" id="add_permission_detail" >
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增 
+                  </a>
                   <table id="detail_table">
                     <thead>
                       <tr>
@@ -154,37 +159,31 @@
                     </thead>
                     <tbody th:if="${funcType ne 'add'}">
                       <tr  th:each="detail,iter:*{details}" th:object="${detail}" th:id="|tr_detail_${iter.index}|">
+                      
                         <td th:if="${funcType eq 'edit'}">
-                          <a href="javascript:;" th:onclick="|delete_detail(this,'detail_${iter.index}',${iter.index})|" > 刪除 </a>
+                          <a href="javascript:;" class="btn btn-danger btn-sm" th:onclick="|delete_detail(this,'detail_${iter.index}',${iter.index})|" >
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除 
+                          </a>
                           <input type="hidden" th:id="|detail_${iter.index}|" th:name="|detail[${iter.index}].status|" value="U" />
                         </td>
                         
-                        <td th:if="${funcType eq 'edit'}">
-                          <input th:value="*{type}" th:name="|detail[${iter.index}].type|" readonly />
-                        </td>
-                        <td th:if="${funcType eq 'edit'}">
-                          <input th:value="*{name}" th:name="|detail[${iter.index}].name|" />
-                        </td>
-                        <td th:if="${funcType eq 'edit' }">
-                          <input th:value="*{remarks}" th:name="|detail[${iter.index}].remarks|" />
-                        </td>
-                        <td th:if="${funcType eq 'edit'}">
-                          <label><input type='radio' value='true' th:name='|detail[${iter.index}].isSuperAdmin|' th:checked="*{isSuperAdmin}" />是</label>
-                          <label><input type='radio' value='false' th:name='|detail[${iter.index}].isSuperAdmin|' th:checked="*{not isSuperAdmin}" />否</label>
+                        <td>
+                          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{type}" th:name="|detail[${iter.index}].type|" readonly />
                         </td>
                         
-                        <td th:if="${funcType eq 'view'}">
-                          <span th:text="*{type}"></span>
+                        <td>
+                          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{name}" th:name="|detail[${iter.index}].name|" />
                         </td>
-                        <td th:if="${funcType eq 'view'}">
-                          <span th:text="*{name}"></span>
+                        
+                        <td>
+                          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{remarks}" th:name="|detail[${iter.index}].remarks|" />
                         </td>
-                        <td th:if="${funcType eq 'view' }">
-                          <span th:text="*{remarks}" ></span>
+                        
+                        <td th:if="${funcType eq 'edit' || funcType eq 'view'}">
+                          <label><input type='radio' value='true' th:disabled="${funcType eq 'view'}" th:name='|detail[${iter.index}].isSuperAdmin|' th:checked="*{isSuperAdmin}" />是</label>
+                          <label><input type='radio' value='false' th:disabled="${funcType eq 'view'}" th:name='|detail[${iter.index}].isSuperAdmin|' th:checked="*{not isSuperAdmin}" />否</label>
                         </td>
-                        <td th:if="${funcType eq 'view'}">
-                          <span th:text="*{isSuperAdmin}?'是' :'否'"></span>
-                        </td>
+                        
                       </tr>
                     </tbody>
                   </table>
@@ -203,7 +202,7 @@
           </div>
           
           <div th:if="${ funcType eq 'edit' || funcType eq 'add'}" class="badge text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
-            <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
+            <button type="button" onClick="submin_form()" class="btn btn-primary btn-sm">
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
             </button>
           </div>

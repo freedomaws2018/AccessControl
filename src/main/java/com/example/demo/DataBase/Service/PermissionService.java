@@ -42,8 +42,10 @@ public class PermissionService {
     permissionRepository.deleteById(permissionId);
   }
 
-  public List<Permission> getPermissionByPermissionDetailType(List<String> premissionDetailType) {
-    List<PermissionDetail> detail = permissionDetailRepository.findByTypeIn(premissionDetailType);
+  public List<Permission> getPermissionByPermissionIdAndPermissionDetailType(Long permissionId,
+      List<String> premissionDetailType) {
+    List<PermissionDetail> detail = permissionDetailRepository.findByPermissionIdAndTypeIn(permissionId,
+        premissionDetailType);
     List<Long> pid = detail.stream().map(PermissionDetail::getPermissionId).collect(Collectors.toList());
     return permissionRepository.findAllById(pid);
   }

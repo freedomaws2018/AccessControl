@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Menu;
 import com.example.demo.DataBase.Entity.MenuTemporary;
 import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeMenu;
@@ -18,6 +19,9 @@ import com.example.demo.DataBase.Repository.MenuTemporaryRepository;
 
 @Service
 public class MenuService {
+
+  @Autowired
+  private EmployeeService employeeService;
 
   @Autowired
   private MenuRepository menuRepository;
@@ -85,10 +89,13 @@ public class MenuService {
   }
 
   public List<Menu> getWithChildAndPermission(Long employeeId) {
+    Employee employee = employeeService.getById(employeeId);
+    Boolean isAdmin = employee.getAccount().equals("admin");
     List<MappingEmployeeMenu> mappingEM = mappingEmployeeMenuRepository.findByEmployeeIdAndIsUseTrue(employeeId);
     List<String> employeeHaveMenuList = mappingEM.stream().map(MappingEmployeeMenu::getMenuName)
         .collect(Collectors.toList());
-    List<Menu> menus = menuRepository.findByMenuNameIn(employeeHaveMenuList);
+
+    List<Menu> menus = menuRepository.findAll();
     List<Menu> mv1s = menus.stream().filter(menu -> menu.getLevel() == 1).collect(Collectors.toList());
     List<Menu> mv2s = menus.stream().filter(menu -> menu.getLevel() == 2).collect(Collectors.toList());
     List<Menu> mv3s = menus.stream().filter(menu -> menu.getLevel() == 3).collect(Collectors.toList());
@@ -97,33 +104,43 @@ public class MenuService {
     mv5s.stream().forEach(mv5 -> {
       mv4s.stream().forEach(mv4 -> {
         if (mv5.getParentMenuName().equals(mv4.getMenuName())) {
-          mv4.getChildMenus().add(mv5);
+          if (employeeHaveMenuList.contains(mv5.getMenuName()) || isAdmin) {
+            mv4.getChildMenus().add(mv5);
+          }
         }
       });
     });
     mv4s.stream().forEach(mv4 -> {
       mv3s.stream().forEach(mv3 -> {
         if (mv4.getParentMenuName().equals(mv3.getMenuName())) {
-          mv3.getChildMenus().add(mv4);
+          if (employeeHaveMenuList.contains(mv4.getMenuName()) || isAdmin) {
+            mv3.getChildMenus().add(mv4);
+          }
         }
       });
     });
     mv3s.stream().forEach(mv3 -> {
       mv2s.stream().forEach(mv2 -> {
         if (mv3.getParentMenuName().equals(mv2.getMenuName())) {
-          mv2.getChildMenus().add(mv3);
+
+          if (employeeHaveMenuList.contains(mv3.getMenuName()) || isAdmin) {
+            mv2.getChildMenus().add(mv3);
+          }
         }
       });
     });
     mv2s.stream().forEach(mv2 -> {
       mv1s.stream().forEach(mv1 -> {
         if (mv2.getParentMenuName().equals(mv1.getMenuName())) {
-          mv1.getChildMenus().add(mv2);
+          if (employeeHaveMenuList.contains(mv2.getMenuName()) || isAdmin) {
+            mv1.getChildMenus().add(mv2);
+          }
         }
       });
     });
 
-    return mv1s;
+    return mv1s.stream().filter(mv1 -> isAdmin || !(mv1.getChildMenus().isEmpty() && mv1.getUrl().equals("#")))
+        .collect(Collectors.toList());
   }
 
   public List<Menu> getByEmployeeId(Long employeeId) {

@@ -52,7 +52,8 @@ public class FormEmployee {
       MappingEmployeePermissondetailPosition meppt = new MappingEmployeePermissondetailPosition();
       meppt.setEmployeeId(employee.getId());
       meppt.setPositionId(employee.getPositionId());
-      meppt.setPermissionDetailType(mepp);
+      meppt.setPermissionId(Long.parseLong(mepp.split(":")[0]));
+      meppt.setPermissionDetailType(mepp.split(":")[1]);
       meppt.setIsUse(true);
       return meppt;
     }).collect(Collectors.toList());

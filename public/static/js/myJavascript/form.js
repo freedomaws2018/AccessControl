@@ -15,13 +15,17 @@
     return o;
   };
 
-  $.fn.verification = function(){
-    $(".input_error_msg").remove();
-    var inputs = $(this).find("input[type!='radio']");
-    var radios = $(this).find("input[type='radio']:checked");
-    var selects = $(this).find("select");
-
-    return true;
+  $.fn.form_verification = function(){
+    $(".verification_msg").remove();
+    var objects = $(this[0]).find("input,select");
+    $.each(objects, function(index,obj){
+      
+      if($(obj).is("[FDC-Verification]")){
+        console.log(index, obj);
+      }
+      
+    });
+    return false;
   }
 
   $.fn.toJson = function(){
@@ -30,13 +34,13 @@
     var radios = $(this).find("input[type='radio']:checked");
     var checkboxs = $(this).find("input[type='checkbox']:checked");
     var selects = $(this).find("select");// .find(":selected")
-    
+
     $.each(inputs, function(index,data){
-      if( data.name ){
+      if( data.name){
         obj[data.name] = data.value;
       }
     });
-    
+
     $.each(radios, function(index,data){
       if( data.name){
         obj[data.name] = data.value;
@@ -44,13 +48,13 @@
     });
 
     $.each(checkboxs, function(index,data){
-      if( data.name ){
-        if($(data).attr("JsonValue")){
+      if( data.name){
+        if( $(data).attr("JsonValue")){
           var jd = JSON.parse(data.value);
-          $.each(jd,function(key, value) {
+          $.each(jd, function(key,value){
             obj[data.name + "[" + index + "]." + key] = value;
           });
-        }else{
+        } else{
           obj[data.name + "[" + index + "]"] = data.value;
         }
       }
