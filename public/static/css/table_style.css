@@ -63,6 +63,7 @@
 
 .card-body{
 	padding-bottom:5px;
+	margin-right:15px;
 	margin-bottom:10px;
 }
 
@@ -135,6 +136,10 @@
 	color:red;
 }
 
+.btn-detail{
+	margin-left:15px;
+	margin-bottom:10px;
+}
 @media (max-width: 720px) {
 	
 	.hide-in-phone{

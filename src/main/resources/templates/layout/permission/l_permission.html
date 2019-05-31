@@ -21,7 +21,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header" toggleId="l-permission-toggle">
-          <span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
+          <span class="glyphicon glyphicon-align-justify"></span>權限 - 列表
           <a th:href="@{/permission/add}" id="rich_menu_synchronize" class="btn btn-primary btn-sm a-btn-second">
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
               </a>
@@ -41,7 +41,7 @@
               </tr>
               <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
                 <td>
-                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-info btn-sm">
+                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-secondary btn-sm">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
                   </a>
                   <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm">
