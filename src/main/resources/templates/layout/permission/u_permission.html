@@ -79,20 +79,20 @@
   
   	submin_form = function(){
   	  var jsonData = $("#permission_form").toJson()
-  	  console.log(jsonData);
-//   	  $.ajax({
-//         type: 'POST',
-//         url: "/permission/save",
-//         data: jsonData,
-//         dataType: 'json',
-//         success: (result) => {
-//           if(result.status == 'success'){
-//             window.location.replace("/permission/view/" + result.data.id);
-//           }else{
-//             alert(result.msg);
-//           }
-//         }
-//       });
+//   	  console.log(jsonData);
+  	  $.ajax({
+        type: 'POST',
+        url: "/permission/save",
+        data: jsonData,
+        dataType: 'json',
+        success: (result) => {
+          if(result.status == 'success'){
+            window.location.replace("/permission/view/" + result.data.id);
+          }else{
+            alert(result.msg);
+          }
+        }
+      });
   	}
   </script>
   <form id="permission_form" th:action="@{/permission/save}" method="post" th:object="${permission}">
