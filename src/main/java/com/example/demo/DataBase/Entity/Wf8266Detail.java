@@ -3,36 +3,34 @@ package com.example.demo.DataBase.Entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.example.demo.DataBase.Entity.IdClass.Wf8266DetailId;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "tbl_wf8266_detail")
+@IdClass(Wf8266DetailId.class)
 public class Wf8266Detail {
 
-  @Id
-  @GeneratedValue(generator = "uuid")
-  @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-  @Column(name = "id")
-  private String triggerText;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "wf8266_sn")
-  private Wf8266 wf8266;
-
   /** 執行動作名稱 **/
+  @Id
   @Column(name = "name")
   private String name;
+
+  @Id
+  @Column(name = "wf8266_sn")
+  private String wf8266Sn;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "wf8266_sn", referencedColumnName = "sn", insertable = false, updatable = false, nullable = true)
+  private Wf8266 wf8266;
 
   /** 是否啟用 **/
   @Column(name = "is_use", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
@@ -67,8 +65,12 @@ public class Wf8266Detail {
 
   public String getTriggerUrl() {
 //		 https://service.wf8266.com/api/mqtt/SN/CMD/KEY/Value
-    return String.format("https://service.wf8266.com/api/mqtt/%s/%s/%s/%s", this.wf8266.getSn(),
-        this.getCmd() + this.getRelay(), this.wf8266.getKey(), this.getValue());
+    if (wf8266 != null) {
+      return String.format("https://service.wf8266.com/api/mqtt/%s/%s/%s/%s", wf8266Sn, cmd + relay, wf8266.getKey(),
+          value);
+    } else {
+      return null;
+    }
   }
 
 }

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.Controller.FormEntity.FormPermission;
 import com.example.demo.DataBase.Entity.Permission;
@@ -68,9 +67,12 @@ public class PermissionController {
   }
 
   @PostMapping(value = "/save")
-  public ModelAndView save(ModelAndView model, FormPermission form) {
-    permissionService.save(form.getPermission());
-    return new ModelAndView(new RedirectView("/permission/list"));
+  public ResponseEntity<Object> save( FormPermission form) {
+    Map<String, Object> result = new HashMap<>();
+    Permission permission = permissionService.save(form.getPermission());
+    result.put("status", "success");
+    result.put("data", permission);
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   /** Redirect **/

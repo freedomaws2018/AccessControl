@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Controller.FormEntity.FormWf8266;
 import com.example.demo.DataBase.Entity.Wf8266;
-import com.example.demo.DataBase.Entity.Wf8266Detail;
 import com.example.demo.DataBase.Service.LocationService;
 import com.example.demo.DataBase.Service.Wf8266Service;
 
@@ -36,18 +36,15 @@ public class Wf8266Controller {
 
   @GetMapping("/list")
   public ModelAndView list(ModelAndView model, @PageableDefault(page = 0, size = 10) Pageable pageable) {
-    Page<Wf8266> wf8266s = this.wf8266Service.getAll(pageable);
-    wf8266s.stream().forEach(wf8266 -> {
-      if (wf8266.getLocationId() != null) {
-        wf8266.setLocation(this.locationService.getById(wf8266.getLocationId()));
-      }
-    });
+    Page<Wf8266> wf8266s = this.wf8266Service.getWf8266All(pageable);
     return new ModelAndView("layout/wf8266/l_wf8266").addObject("wf8266s", wf8266s);
   }
 
   @GetMapping("/add")
   public ModelAndView add(ModelAndView model) {
-    return new ModelAndView("layout/wf8266/u_wf8266").addObject("funcType", "add");
+    model = new ModelAndView("layout/wf8266/u_wf8266");
+    model.addObject("funcType", "add");
+    return model;
   }
 
   @GetMapping("/{funcType:view|edit}/{sn}")
@@ -66,29 +63,23 @@ public class Wf8266Controller {
   }
 
   /** Redirect **/
-  @RequestMapping("/save")
-  public ModelAndView save(ModelAndView model, FormWf8266 form, RedirectAttributes attr) {
+  @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Object> save(FormWf8266 form) {
+    Map<String, Object> result = new HashMap<>();
 
-    // 刪除
-    List<Wf8266Detail> deleteWf8266Detail = form.toDeleteEntity();
-    if (deleteWf8266Detail != null && !deleteWf8266Detail.isEmpty()) {
-      this.wf8266Service.deleteDetails(deleteWf8266Detail);
-    }
+    result.put("status", "success");
+    System.err.println(form.getWf8266WithDetail());
+    Wf8266 wf8266 = wf8266Service.save(form.getWf8266WithDetail());
+    result.put("data", wf8266);
 
-    // 更新
-    Wf8266 updateWf8266 = form.toEntity();
-    if (updateWf8266 != null) {
-      this.wf8266Service.save(updateWf8266);
-    }
-
-    return new ModelAndView(String.format("redirect:/wf8266/view/%s", form.getSn()));
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   /** Autocomplete **/
   @PostMapping(value = "/autocomplete/getAllWf8266DetailWithLocationIdAndName", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> getAllWf8266DetailWithLocationIdAndName(Long locationId, String name) {
-    List<Map<String, Object>> wf8266detail = wf8266Service.getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(locationId, name);
-
+    List<Map<String, Object>> wf8266detail = wf8266Service
+        .getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(locationId, name);
     return new ResponseEntity<>(wf8266detail, HttpStatus.OK);
   }
 

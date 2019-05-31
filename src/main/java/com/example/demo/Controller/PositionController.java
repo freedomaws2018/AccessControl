@@ -3,7 +3,6 @@ package com.example.demo.Controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.Controller.FormEntity.FormPosition;
 import com.example.demo.DataBase.Entity.Permission;
 import com.example.demo.DataBase.Entity.Position;
-import com.example.demo.DataBase.Repository.MappingPositionPermissionPermissiondetailRepository;
 import com.example.demo.DataBase.Service.PermissionService;
 import com.example.demo.DataBase.Service.PositionService;
 
@@ -37,9 +36,6 @@ public class PositionController {
 
   @Autowired
   private PermissionService permissionService;
-
-  @Autowired
-  private MappingPositionPermissionPermissiondetailRepository mappingPositionPermissionPermissiondetailRepository;
 
   @GetMapping(value = "/list")
   private ModelAndView list(ModelAndView model,
@@ -68,9 +64,7 @@ public class PositionController {
     model.addObject("position", position);
     List<Permission> permissions = permissionService.getAllPermission();
     model.addObject("permissions", permissions);
-    List<String> mappingDetail = mappingPositionPermissionPermissiondetailRepository
-        .findByPositionIdAndIsUseTrue(positionId).stream().map(m -> m.getPermissionId() + m.getPermissionDetailType())
-        .collect(Collectors.toList());
+    List<String> mappingDetail = positionService.findMappingPPPByPositionIdAndIsUseTrue(positionId);
     model.addObject("mappingDetail", mappingDetail);
     return model;
   }
@@ -83,9 +77,10 @@ public class PositionController {
       result.put("msg", "職稱已存在");
       return new ResponseEntity<>(result, HttpStatus.OK);
     } else {
+      positionService.updateAllIsUseFalseWithPositionId(form.getId());
       Position position = positionService.save(form.getPosition());
-      mappingPositionPermissionPermissiondetailRepository.updateAllIsUseFalseWithPositionId(position.getId());
-      mappingPositionPermissionPermissiondetailRepository.saveAll(form.getMappingPPP(position.getId()));
+      positionService.saveAllMappingPPP(form.getMappingPPP(form.getId()));
+
       result.put("status", "success");
       result.put("data", position);
       return new ResponseEntity<>(result, HttpStatus.OK);
@@ -98,6 +93,12 @@ public class PositionController {
     result.put("status", "success");
     positionService.deleteById(positionId);
     return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/getPositionById", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Position> getPositionById(Long positionId) {
+    Position position = positionService.getById(positionId);
+    return new ResponseEntity<>(position, HttpStatus.OK);
   }
 
 }

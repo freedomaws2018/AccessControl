@@ -5,11 +5,9 @@ import lombok.Data;
 @Data
 public class FormWf8266Detail {
 
-	private String status;
-
-	private String triggerText;
-
 	private String name;
+
+	private String wf8266Sn;
 
 	private Boolean isUse;
 

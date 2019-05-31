@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "mapping_position_permissionid_permissiondetail")
+@Table(name = "mapping_position_permission_permissiondetail")
 @IdClass(MappingPositionPermissionPermissiondetailId.class)
 public class MappingPositionPermissionPermissiondetail {
 

@@ -16,7 +16,7 @@ public interface MappingPositionPermissionPermissiondetailRepository
 
   @Modifying
   @Transactional
-  @Query(value = "UPDATE mapping_position_permissionid_permissiondetail SET is_use = false WHERE position_id = :positionId ;", nativeQuery = true)
+  @Query(value = "UPDATE mapping_position_permission_permissiondetail SET is_use = false WHERE position_id = :positionId ;", nativeQuery = true)
   void updateAllIsUseFalseWithPositionId(@Param("positionId") Long positionId);
 
   List<MappingPositionPermissionPermissiondetail> findByPositionIdAndIsUseTrue(Long positionId);

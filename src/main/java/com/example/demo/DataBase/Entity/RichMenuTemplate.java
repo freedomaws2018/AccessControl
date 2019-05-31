@@ -46,9 +46,6 @@ public class RichMenuTemplate {
 	@Column(name = "template", columnDefinition = "jsonb")
 	private LineRichMenu template;
 
-//	@Column(name = "size")
-//	private Integer size;
-
 	public String getTemplateJson() {
 		return new Gson().toJson(this.template);
 	}

@@ -79,8 +79,10 @@
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
             <label class="font-weight-bold">ID</label>
             <div class="input-group">
-              <span class="input-group-addon" id="afterMenuName">${lastLevelId}</span>
-              <input type="text" class="form-control" name="menuName" />
+              <div class="input-group-prepend">
+                <div class="input-group-text" id="afterMenuName">@</div>
+              </div>
+              <input type="text" class="form-control" name="menuName" placeholder="Username">
             </div>
             <input type="hidden" class="form-control" name="level" value="${level}" />
             <input type="hidden" class="form-control" name="mainMenuName" value="${mainMenuName}" />

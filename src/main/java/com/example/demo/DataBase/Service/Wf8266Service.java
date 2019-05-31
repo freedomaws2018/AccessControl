@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Common.FunctionUtils;
 import com.example.demo.DataBase.Entity.Wf8266;
-import com.example.demo.DataBase.Entity.Wf8266Detail;
 import com.example.demo.DataBase.Repository.Wf8266DetailRepository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 
@@ -30,12 +29,12 @@ public class Wf8266Service {
   @Autowired
   private Wf8266DetailRepository wf8266DetailRepository;
 
-  public List<Wf8266> getAll() {
+  public List<Wf8266> getWf8266All() {
     return this.wf8266Repository.findAll();
   }
 
-  public Page<Wf8266> getAll(Pageable pageable) {
-    List<Wf8266> wf8266s = this.getAll();
+  public Page<Wf8266> getWf8266All(Pageable pageable) {
+    List<Wf8266> wf8266s = this.getWf8266All();
     wf8266s = wf8266s.stream().filter(FunctionUtils.distinctByKey(Wf8266::getSn)).collect(Collectors.toList());
     int start = (int) pageable.getOffset();
     int end = start + pageable.getPageSize() > wf8266s.size() ? wf8266s.size() : (start + pageable.getPageSize());
@@ -46,12 +45,12 @@ public class Wf8266Service {
     return this.wf8266Repository.getBySnOrderByLocationIdAsc(sn).orElse(null);
   }
 
-  public void deleteDetails(List<Wf8266Detail> details) {
-    this.wf8266DetailRepository.deleteAll(details);
+  public void deleteAllDetailBySn(String wf8266Sn) {
+    wf8266DetailRepository.deleteDetailByWf8266Sn(wf8266Sn);
   }
 
   public Wf8266 save(Wf8266 wf8266) {
-    return this.wf8266Repository.save(wf8266);
+    return wf8266Repository.saveAndFlush(wf8266);
   }
 
   public List<Map<String, Object>> getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(Long locationId, String name) {

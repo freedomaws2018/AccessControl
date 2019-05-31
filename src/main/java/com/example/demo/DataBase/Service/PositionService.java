@@ -1,6 +1,7 @@
 package com.example.demo.DataBase.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,8 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.DataBase.Entity.Position;
+import com.example.demo.DataBase.Entity.Mapping.MappingPositionPermissionPermissiondetail;
+import com.example.demo.DataBase.Repository.MappingPositionPermissionPermissiondetailRepository;
 import com.example.demo.DataBase.Repository.PositionRepository;
 
 @Service
@@ -17,6 +21,9 @@ public class PositionService {
 
   @Autowired
   private PositionRepository positionRepository;
+
+  @Autowired
+  private MappingPositionPermissionPermissiondetailRepository mappingPositionPermissionPermissiondetailRepository;
 
   public List<Position> getAll() {
     return positionRepository.findAll(Sort.by(Order.asc("id")));
@@ -40,6 +47,24 @@ public class PositionService {
 
   public void deleteById(Long positionId) {
     positionRepository.deleteById(positionId);
+  }
+
+  public List<String> findMappingPPPByPositionIdAndIsUseTrue(Long positionId) {
+    List<MappingPositionPermissionPermissiondetail> mappingPPPs = mappingPositionPermissionPermissiondetailRepository
+        .findByPositionIdAndIsUseTrue(positionId);
+    return mappingPPPs.stream().map(m -> m.getPermissionId() + m.getPermissionDetailType())
+        .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public void updateAllIsUseFalseWithPositionId(Long positionId) {
+    mappingPositionPermissionPermissiondetailRepository.updateAllIsUseFalseWithPositionId(positionId);
+  }
+
+  @Transactional
+  public List<MappingPositionPermissionPermissiondetail> saveAllMappingPPP(
+      List<MappingPositionPermissionPermissiondetail> list) {
+    return mappingPositionPermissionPermissiondetailRepository.saveAll(list);
   }
 
 }

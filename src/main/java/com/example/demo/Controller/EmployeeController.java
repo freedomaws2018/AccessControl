@@ -104,11 +104,11 @@ public class EmployeeController {
       Employee employee = employeeService.save(form.getEmployee());
 
       // 權限設定
-      mappingEmployeePermissondetailPositionRepository.updateAllIsUseFalseWithEmployeeId(form.getId());
+      mappingEmployeePermissondetailPositionRepository.updateAllIsUseFalseWithEmployeeId(employee.getId());
       mappingEmployeePermissondetailPositionRepository.saveAll(form.getMappingEPP(employee));
 
       // 選單設定
-      mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(form.getId());
+      mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(employee.getId());
       List<Permission> permission = permissionService
           .getPermissionByPermissionDetailType(form.getPermissionDetailType());
       List<String> menuName = permission.stream().map(Permission::getMenuName).collect(Collectors.toList());

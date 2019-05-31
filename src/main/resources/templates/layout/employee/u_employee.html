@@ -21,6 +21,7 @@
 	
 	var submin_form = function(){
       var data = $("#employee_form").toJson();
+      console.log(data)
       $.ajax({
         method: 'post',
         url: '/employee/save',
@@ -37,6 +38,18 @@
           console.log(a,b,c)
         }
       });
+	}
+	
+	var reload_position = function(){
+	  var positionId = $("select[name='positionId']").find(":selected").val();
+// 	  console.log(positionId);
+	  $.post("/position/getPositionById",{positionId:positionId},function(data){
+	    var mappings = data.mappings;
+	    $.each(mappings , function(index,mapping){
+// 	      console.log(mapping.permissionId , mapping.permissionDetailType);
+	      $("label[permissionid='" + mapping.permissionId + "'][permissionDetailType='" + mapping.permissionDetailType + "']").css({"font-weight":"600"})
+	    });
+	  });
 	}
   
   	$().ready(function(){
@@ -67,7 +80,6 @@
             <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reset_password(__*{id}__,'__*{account}__')|" value="重置密碼" />
             <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="account" th:value="*{account}" fdc-not-null="true" />
             <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="account" />
-            
           </div>
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
             <label class="font-weight-bold">姓</label>
@@ -81,6 +93,8 @@
           </div>
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
             <label class="font-weight-bold">職稱</label>
+            
+            <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reload_position()|" value="重置權限" />
             <div>
               <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="positionId">
                 <option value="">請選擇職稱</option>
@@ -128,11 +142,11 @@
               <tr th:each="permission,iter1:${permissions}" th:object="${permission}">
                 <th nowrap class="center" th:text="*{menu.name}"></th>
                 <td>
-                  <label th:if="${funcType eq 'edit' || funcType eq 'view'}" th:each="detail,iter2:*{details}" th:object="${detail}">
-                    <input type="checkbox" th:value="*{type}" name="permissionDetailType" th:disabled="${funcType eq 'view'}" th:checked="${#lists.contains(mappingPermissions,detail.type)}" /><span th:text="*{name}"></span>
+                  <label th:if="${ funcType eq 'edit' || funcType eq 'view' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:permissionId="${permission.id}" th:permissionDetailType="*{type}">
+                    <input type="checkbox" th:value="*{type}" name="permissionDetailType" th:disabled="${funcType eq 'view'}" th:checked="${#lists.contains(mappingPermissions,detail.type)}" />[[*{name}]]
                   </label>
-                  <label th:if="${funcType eq 'add' }" th:each="detail,iter2:*{details}" th:object="${detail}">
-                    <input type="checkbox" th:value="*{type}" name="permissionDetailType"  />[[*{name}]]</span>
+                  <label th:if="${ funcType eq 'add' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:permissionId="${permission.id}" th:permissionDetailType="*{type}">
+                    <input type="checkbox" th:value="*{type}" name="permissionDetailType" />[[*{name}]]
                   </label>
                 </td>
               </tr>

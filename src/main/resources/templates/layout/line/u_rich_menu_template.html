@@ -19,13 +19,6 @@
       </tr>
     
       <tr>
-        <td>按鍵數量：</td>
-        <td th:if="${funcType eq 'add'}"><input type="number" min="1" max="20" name="size"/></td>
-        <td th:if="${funcType eq 'view'}"><input type="number" min="1" max="20" name="size" th:value="${rmt.size}" readonly/></td>
-        <td th:if="${funcType eq 'edit'}"><input type="number" min="1" max="20" name="size" th:value="${rmt.size}"/></td>
-      </tr>
-    
-      <tr>
         <td>樣板遮設片：</td>
         <td th:if="${funcType eq 'add' || funcType eq 'edit' }"><input type="file" accept="image/png" name="imageFile"/></td>
         <td th:if="${funcType eq 'view'}"><img width="300" th:src="@{|data:image/jpeg;base64,${rmt.image}|}" /></td>

@@ -40,6 +40,7 @@ public class FormPermission {
       detail.setPermissionId(this.id);
       detail.setType(fpd.getType());
       detail.setName(fpd.getName());
+      detail.setRemarks(fpd.getRemarks());
       detail.setIsSuperAdmin(fpd.getIsSuperAdmin());
       return detail;
     }).collect(Collectors.toList());

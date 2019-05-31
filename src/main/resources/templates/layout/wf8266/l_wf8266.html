@@ -2,7 +2,11 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-  <!-- <h1>WF8266 - 列表</h1> -->
+  <script>
+  delete_wf8266 = function(sn){
+    console.log(sn)
+  }
+  </script>
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
       <div class="card">
@@ -35,8 +39,8 @@
                   <a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-success btn-sm">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
                   </a>
-                  <a href="javascript:;" class="btn btn-danger btn-sm ">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除X
+                  <a href="javascript:;" class="btn btn-danger btn-sm " th:onclick="|delete_wf8266('__${wf8266.sn}__')|">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>
                 </th>
                 <th>

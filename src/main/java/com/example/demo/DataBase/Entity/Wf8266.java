@@ -9,27 +9,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
 
-//@EqualsAndHashCode(callSuper = false)
-//public class Wf8266 extends BaseEntity {
 @Data
 @Entity
 @Table(name = "tbl_wf8266")
 public class Wf8266 {
 
-	/** wf8266 編號 **/
-	@Id
-	@Column(name = "sn", updatable = false)
-	private String sn;
+  /** wf8266 編號 **/
+  @Id
+  @Column(name = "sn", updatable = false)
+  private String sn;
 
   @CreatedDate
   @Column(name = "create_date", nullable = false, updatable = false)
@@ -39,27 +38,29 @@ public class Wf8266 {
   @Column(name = "modify_date", nullable = false)
   private LocalDateTime modifyDate = LocalDateTime.now();
 
-	/** 區域編號 - 對應 Location **/
-	@Transient
-	private Location location;
-	@Column(name = "location_id")
-	private Long locationId;
+  /** 區域編號 - 對應 Location **/
+  @Column(name = "location_id")
+  private Long locationId;
 
-	/** wf8266 線上金鑰 **/
-	@Column(name = "key", updatable = false)
-	private String key;
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
+  private Location location;
 
-	/** 是否啟用 **/
-	@Column(name = "is_use", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-	private Boolean isUse = new Boolean(false);
+  /** wf8266 線上金鑰 **/
+  @Column(name = "key", updatable = false)
+  private String key;
 
-	@OneToMany(mappedBy = "wf8266", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@OrderBy("relay ASC")
-	private List<Wf8266Detail> details = new ArrayList<>();
+  /** 是否啟用 **/
+  @Column(name = "is_use", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+  private Boolean isUse = new Boolean(false);
 
-	public String getStatusUrl() {
-		// https://service.wf8266.com/api/mqtt/SN/RequestState/key
-		return String.format("https://service.wf8266.com/api/mqtt/%s/RequestState/%s", this.getSn(), this.getKey());
-	}
+  @OneToMany(mappedBy = "wf8266", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OrderBy("relay ASC")
+  private List<Wf8266Detail> details = new ArrayList<>();
+
+  public String getStatusUrl() {
+    // https://service.wf8266.com/api/mqtt/SN/RequestState/key
+    return String.format("https://service.wf8266.com/api/mqtt/%s/RequestState/%s", this.getSn(), this.getKey());
+  }
 
 }

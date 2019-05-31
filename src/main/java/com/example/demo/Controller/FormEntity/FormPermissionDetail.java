@@ -11,6 +11,8 @@ public class FormPermissionDetail {
 
   private String name;
 
+  private String remarks;
+
   private Boolean isSuperAdmin;
 
 }

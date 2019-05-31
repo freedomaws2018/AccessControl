@@ -124,7 +124,7 @@
         select: function(event , ui){
           var obj = ui.item.obj;
           $("#action_text_" + index).val(obj.reply1);
-          $("#action_data_" + index).val(obj.id);
+          $("#action_data_" + index).val(obj.wf8266_sn + "_" + obj.name);
         }
       })
       .blur(function(){ $(this).autocomplete('enable'); })

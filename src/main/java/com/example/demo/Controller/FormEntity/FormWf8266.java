@@ -1,9 +1,7 @@
 package com.example.demo.Controller.FormEntity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
@@ -15,50 +13,30 @@ import lombok.Data;
 @Data
 public class FormWf8266 {
 
-	private String sn;
+  private String sn;
 
-	private String key;
+  private String key;
 
-	private Boolean isUse;
+  private Boolean isUse;
 
-	private Long locationId;
+  private Long locationId;
 
-	private List<FormWf8266Detail> detail;
+  private List<FormWf8266Detail> detail = new ArrayList<>();
 
-	public List<Wf8266Detail> toDeleteEntity() {
-		List<Wf8266Detail> details = new ArrayList<>();
-		if (this.detail != null) {
-			List<FormWf8266Detail> deleteList = this.detail.stream().filter(detail -> "D".equals(detail.getStatus()))
-					.collect(Collectors.toList());
-			deleteList.forEach(dl -> {
-				Wf8266Detail temp = new Wf8266Detail();
-				BeanUtils.copyProperties(dl, temp);
-				details.add(temp);
-			});
-			return details;
-		} else {
-			return null;
-		}
-	}
-
-	public Wf8266 toEntity() {
-		Wf8266 wf8266 = new Wf8266();
-		List<Wf8266Detail> list = wf8266.getDetails();
-
-		BeanUtils.copyProperties(this, wf8266);
-		if (this.detail != null) {
-			List<FormWf8266Detail> updateList = this.detail.stream()
-					.filter(detail -> Arrays.asList("N", "U").contains(detail.getStatus()))
-					.collect(Collectors.toList());
-			updateList.forEach(dl -> {
-				Wf8266Detail temp = new Wf8266Detail();
-				BeanUtils.copyProperties(dl, temp);
-				temp.setWf8266(wf8266);
-				list.add(temp);
-			});
-		}
-
-		return wf8266;
-	}
+  public Wf8266 getWf8266WithDetail() {
+    Wf8266 wf8266 = new Wf8266();
+    wf8266.setSn(sn);
+    wf8266.setKey(key);
+    wf8266.setIsUse(isUse);
+    wf8266.setLocationId(locationId);
+    List<Wf8266Detail> ds = wf8266.getDetails();
+    detail.forEach(d -> {
+      Wf8266Detail td = new Wf8266Detail();
+      BeanUtils.copyProperties(d, td);
+      td.setWf8266Sn(sn);
+      ds.add(td);
+    });
+    return wf8266;
+  }
 
 }

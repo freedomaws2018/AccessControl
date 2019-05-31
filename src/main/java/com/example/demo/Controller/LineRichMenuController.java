@@ -233,10 +233,10 @@ public class LineRichMenuController {
   }
 
   @PostMapping("/template/save")
-  public ModelAndView templateSave(ModelAndView model, FormRichMenuTemplate form) {
+  public ModelAndView templateSave(ModelAndView model, FormRichMenuTemplate form) throws IOException {
     model = new ModelAndView("redirect:/line/rich_menu/template/list");
     RichMenuTemplate template = form.toRichMenuTemplate();
-    this.richMenuTemplateRepository.save(template);
+    richMenuTemplateRepository.save(template);
     return model;
   }
 
