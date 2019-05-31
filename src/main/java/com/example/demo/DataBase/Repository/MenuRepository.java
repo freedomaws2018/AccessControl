@@ -14,4 +14,6 @@ public interface MenuRepository extends JpaRepository<Menu, String> {
 
   List<Menu> findByMenuNameIn(List<String> menuNames);
 
+  List<Menu> findByNameLike(String name);
+
 }

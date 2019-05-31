@@ -6,9 +6,9 @@
 ( 5  , '2019-05-01 00:00:00' , now() , '人事員工管理' , '#0201'),
 ( 6  , '2019-05-01 00:00:00' , now() , '人事職階管理' , '#0202'),
 ( 7  , '2019-05-01 00:00:00' , now() , 'LINE@會員管理' , '#0401'),
-( 8  , '2019-05-01 00:00:00' , now() , 'LINE@紀錄管理' , '#0403'),
-( 9  , '2019-05-01 00:00:00' , now() , 'LINE@選單列表' , '#040201'),
-( 10 , '2019-05-01 00:00:00' , now() , 'LINE@樣式列表' , '#040202');
+( 8  , '2019-05-01 00:00:00' , now() , 'LINE@選單列表' , '#0402'),
+( 9  , '2019-05-01 00:00:00' , now() , 'LINE@樣式列表' , '#0403'), --
+( 10 , '2019-05-01 00:00:00' , now() , 'LINE@紀錄管理' , '#0404');
 
 SELECT * FROM public.tbl_permission;
 	
@@ -77,13 +77,13 @@ INSERT INTO tbl_permission_detail (type, is_super_admin, permission_id, name, re
 ('VIEW_ALL'  , false , 8 ,'檢視全部' , ''),
 ('VIEW_OWN'  , false , 8 ,'檢視個人' , ''),
   
-('ADD'       , false , 9 ,'新增' , ''),  
-('DELETE_ALL', false , 9 ,'刪除全部' , ''),
-('DELETE_OWN', false , 9 ,'刪除個人' , ''),
-('EDIT_ALL'  , false , 9 ,'修改全部' , ''),
-('EDIT_OWN'  , false , 9 ,'修改個人' , ''),
-('VIEW_ALL'  , false , 9 ,'檢視全部' , ''),
-('VIEW_OWN'  , false , 9 ,'檢視個人' , ''),
+('ADD'       , true  , 9 ,'新增' , ''),  
+('DELETE_ALL', true  , 9 ,'刪除全部' , ''),
+('DELETE_OWN', true  , 9 ,'刪除個人' , ''),
+('EDIT_ALL'  , true  , 9 ,'修改全部' , ''),
+('EDIT_OWN'  , true  , 9 ,'修改個人' , ''),
+('VIEW_ALL'  , true  , 9 ,'檢視全部' , ''),
+('VIEW_OWN'  , true  , 9 ,'檢視個人' , ''),
 
 ('ADD'       , false , 10 ,'新增' , ''),  
 ('DELETE_ALL', false , 10 ,'刪除全部' , ''),

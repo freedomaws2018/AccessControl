@@ -45,6 +45,10 @@ public class Wf8266Service {
     return this.wf8266Repository.getBySnOrderByLocationIdAsc(sn).orElse(null);
   }
 
+  public void delete(String sn) {
+    wf8266Repository.deleteById(sn);
+  }
+
   public void deleteAllDetailBySn(String wf8266Sn) {
     wf8266DetailRepository.deleteDetailByWf8266Sn(wf8266Sn);
   }

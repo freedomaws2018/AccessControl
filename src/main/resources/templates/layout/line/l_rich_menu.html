@@ -6,55 +6,49 @@
 <body layout:fragment="content">
   
 <script th:inline="javascript">
-"use strict";
-$().ready(()=>{
-	
-  /** 刪除單筆 RichMenu **/
-  $(".rich_menu_delete").click(function(event){
-    // TODO: dialog 確認執行
-    var richMenuId = $(event.currentTarget).attr("richMenuId")
-    $.ajax({
-      type: 'DELETE',
-      url: `/line/rich_menu/delete/${richMenuId}`,
-      dataType: 'json',
-      success: (result) =>{
-        
-      },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        
-      }
+  "use strict";
+
+  var rich_menu_delete = function(id,name){
+    showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 選單嗎?',function(){
+      $.ajax({
+        type: 'DELETE',
+        url: "/line/rich_menu/delete/" + id,
+        dataType: 'json',
+        success: (result) =>{
+          location.reload();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          location.reload();
+        }
+      });
     });
-  });
+  }
   
   /** 同步 Line Server 資料庫 **/ // /line/rich_menu/ajaxGetRichMenuDataOnLineServer
-  $("#rich_menu_synchronize").click(function(){
-    // TODO: dialog 確認執行
-    $.ajax({
-      type: 'POST',
-      url: '/line/rich_menu/ajax/getRichMenuDataOnLineServer',
-      dataType: 'json',
-      success: (result) =>{
-        location.reload();
-      },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        
-      }
+  var rich_menu_synchronize = function(){
+    showConfirmDialog('確定','確定後，刷新選單',function(){
+      $.ajax({
+        type: 'POST',
+        url: '/line/rich_menu/ajax/getRichMenuDataOnLineServer',
+        dataType: 'json',
+        success: (result) =>{
+          location.reload();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          location.reload();
+        }
+      });
     });
-  });
-  
-});
+  }
 
 </script>
-  <script th:inline="javascript">
-	console.log([[${richMenus}]]);
-  </script>
-  <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> <div class="card">
+  <div class="row"> <div class="col-12"> <div class="card">
     <div class="card-header">
       <span class="glyphicon glyphicon-align-justify"></span>LineRichMenu - 列表
       <a th:href="@{/line/rich_menu/add}" class="btn btn-primary a-btn-first btn-sm">
         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
       </a>
-      <a href="javascript:;" id="rich_menu_synchronize" class="btn btn-warning a-btn-second btn-sm">
+      <a href="javascript:;" th:onclick="rich_menu_synchronize()" class="btn btn-warning a-btn-second btn-sm">
         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>更新
       </a>
     </div>
@@ -64,8 +58,8 @@ $().ready(()=>{
           <tr>
             <th scope="col">操作</th>
             <th scope="col">名稱</th>
+            <th scope="col">據點</th>
             <th scope="col">圖片</th>
-            <th scope="col">建立時間</th>
           </tr>
         </thead>
         <tbody class="center">
@@ -76,22 +70,17 @@ $().ready(()=>{
           <tr th:unless="${richMenus.empty}" th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
             <th scope="row" th:richMenu="*{richMenuId}">
               <span style="display: none;"  th:text="*{richMenuId}">richMenuId</span>
-<!--               <a th:href="@{/line/rich_menu/view/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-info btn-sm"> -->
-<!--                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>檢視 -->
-<!--               </a> -->
               <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success btn-sm">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
               </a>
-              <a class="btn btn-danger rich_menu_delete btn-sm" href="javascript:;" th:richMenuId="*{richMenuId}">
+              <a class="btn btn-danger btn-sm" href="javascript:;" th:onclick="|rich_menu_delete('__*{richMenuId}__','__*{name}__')|" th:richMenuId="*{richMenuId}">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
             </th>
             <td th:text="*{name}">name</td>
+            <td>[[*{location?.name}]]</td>
             <td>
-              <img th:if="|*{image ne null }|" width="300px" th:src="@{|data:image/png;base64,*{image}|}" />
-            </td>
-            <td>
-              <span th:text="*{#temporals.format(createDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+              <img th:if="|*{image ne null }|" width="150px" th:src="@{|data:image/png;base64,*{image}|}" />
             </td>
             <td style="display: none;">
               <span th:each="area:*{richMenuResponse.areas}" th:object="${area.action}" th:utext="|*{data}<BR>|"></span>

@@ -37,18 +37,24 @@ public class MenuController {
   @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   private ResponseEntity<Object> save(FormMenu form) {
     Menu menu = menuService.save(form.getMenu());
-    Map<String , Object> result = new HashMap<>();
+    Map<String, Object> result = new HashMap<>();
     result.put("menu", menu);
     result.put("status", "success");
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  private ResponseEntity<Object> delete(String menuName){
+  private ResponseEntity<Object> delete(String menuName) {
     menuService.deleteMenuWithMenuName(menuName);
-    Map<String , Object> result = new HashMap<>();
+    Map<String, Object> result = new HashMap<>();
     result.put("status", "success");
     return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/autocomplete/getMenu", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  private ResponseEntity<Object> getMenu(String term) {
+    List<Menu> menus = menuService.getAllByNameLike(term);
+    return new ResponseEntity<>(menus, HttpStatus.OK);
   }
 
 }

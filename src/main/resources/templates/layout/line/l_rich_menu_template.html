@@ -28,7 +28,7 @@
        
   </script>
 
-  <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8"> <div class="card">
+  <div class="row"> <div class="col-12"> <div class="card">
     <div class="card-header" toggleId='l_rich_menu_template'>
       <span class="glyphicon glyphicon-align-justify"></span>LineRichMenuTemplate - 列表
       <a th:href="@{/line/rich_menu/template/add}" class="btn btn-primary a-btn-second btn-sm">
@@ -58,7 +58,7 @@
               </a>
             </th>
             <td th:text="*{name}">姓名</td>
-            <td><img height="100px" th:src="@{|data:image/jpeg;base64,*{image}|}" /></td>
+            <td><img width="150px" th:src="@{|data:image/jpeg;base64,*{image}|}" /></td>
           </tr>
         </tbody>
       </table>

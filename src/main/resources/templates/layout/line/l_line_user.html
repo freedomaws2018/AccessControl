@@ -5,20 +5,28 @@
 </head>
 <body layout:fragment="content">
   <script type="text/javascript">
+
+  var delete_user = function(id,name){
+    showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 嗎?',function(){
+      $.ajax({
+        type: 'DELETE',
+        url: "/line/user/delete/" + id,
+        dataType: 'json',
+        success: (result) =>{
+          location.reload();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          location.reload();
+        }
+      });
+    });
+    
+  }
+  
   $().ready(function(){
 	  $("a[id^='delete_user']").click(function(){
 		  var lineUserId = $(this).attr("lineUserId");
-	  $.ajax({
-        type: 'DELETE',
-        url: `/line/user/delete/${lineUserId}`,
-        dataType: 'json',
-        success: (result) =>{
-          
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-          
-        }
-      });
+	  
 	  });
   });
   
@@ -26,7 +34,7 @@
   <div th:if="|${funcType eq 'view' and info_status ne null}|" class="alert alert-success" role="alert" th:text="${info_status}"></div>
   <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
   <div class="row">
-  	<div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+  	<div class="col-12">
   		<div class="card">
   			<div class="card-header" toggleId="l-line-user-toggle">
   				<span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
@@ -52,7 +60,7 @@
   					          <a class="btn btn-success btn-sm" th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" >
   					          	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
   					          </a>
-  					          <a class="btn btn-danger btn-sm" th:id="|delete_user_${itemStar.index}|" th:lineUserId="${user.userId}" href="javascript:;" >
+  					          <a class="btn btn-danger btn-sm" th:onclick="|delete_user('__${user.userId}__','__${user.userName}__')|" th:lineUserId="${user.userId}" href="javascript:;" >
   					          	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
   					          </a>
   							</th>

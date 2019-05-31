@@ -28,6 +28,10 @@ public class MenuService {
   @Autowired
   private MappingEmployeeMenuRepository mappingEmployeeMenuRepository;
 
+  public List<Menu> getAllByNameLike(String name) {
+    return menuRepository.findByNameLike("%" + name + "%");
+  }
+
   public Menu save(Menu menu) {
     return menuRepository.save(menu);
   }

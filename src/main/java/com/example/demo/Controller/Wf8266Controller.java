@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,7 +63,14 @@ public class Wf8266Controller {
     return new ModelAndView("layout/wf8266/u_wf8266").addObject("funcType", funcType).addObject("wf8266", wf8266);
   }
 
-  /** Redirect **/
+  @DeleteMapping(value = "/delete/{sn}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Object> delete(@PathVariable String sn) {
+    Map<String, Object> result = new HashMap<>();
+    wf8266Service.delete(sn);
+    result.put("status", "success");
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
   @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> save(FormWf8266 form) {
     Map<String, Object> result = new HashMap<>();

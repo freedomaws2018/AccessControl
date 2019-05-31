@@ -3,8 +3,21 @@
 
 <body layout:fragment="content">
   <script>
-  delete_wf8266 = function(sn){
+  delete_wf8266 = function(sn,name){
     console.log(sn)
+    showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 的IoT晶片嗎?',function(){
+      $.ajax({
+        type: 'DELETE',
+        url: `/wf8266/delete/${sn}`,
+        dataType: 'json',
+        success: (result) =>{
+          location.reload();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          
+        }
+      });
+    });
   }
   </script>
   <div class="row">
@@ -39,7 +52,7 @@
                   <a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-success btn-sm">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
                   </a>
-                  <a href="javascript:;" class="btn btn-danger btn-sm " th:onclick="|delete_wf8266('__${wf8266.sn}__')|">
+                  <a href="javascript:;" class="btn btn-danger btn-sm " th:onclick="|delete_wf8266('__${wf8266.sn}__','__${wf8266.sn}__')|">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>
                 </th>
@@ -47,20 +60,20 @@
                   <span th:text="${wf8266.location.name}"></span>
                 </th>                
                 <td>
-                      <span th:text="${wf8266.sn}"></span>
-                    </td>
-                    <td>
-                      <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
-                    </td>
-                        <th> 
-                      <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
-                      <div class="row">
-                      <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-warning btn-sm">
-                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
-                      </a>
-                      <!-- <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> 到時候再重畫按鈕 -->
-                      <div th:id="|status_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
-                      <script th:inline="javascript">
+                  <span th:text="${wf8266.sn}"></span>
+                </td>
+                <td>
+                  <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
+                </td>
+                    <th> 
+                  <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
+                  <div class="row">
+                  <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-warning btn-sm">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
+                  </a>
+                  <!-- <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> 到時候再重畫按鈕 -->
+                  <div th:id="|status_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
+                  <script th:inline="javascript">
                         reload_[[${iterStat.index}]]();
                         function reload_[[${iterStat.index}]](){
                           var url = $("#url" + '_' + [[${iterStat.index}]]).val() ;
@@ -89,8 +102,8 @@
                           });
                         }
                       </script>
-                      </div>
-                    </th>
+                  </div>
+                </th>
               </tr>
             </tbody>
           </table>

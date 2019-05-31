@@ -12,3 +12,5 @@ INSERT INTO public.tbl_wf8266_detail( name, wf8266_sn, cmd, is_use,  relay, repl
 ('A室大門'  , '15738184' , 'Relay' , true , 4 , '#開門' , 'A室門已開啟'    ,4),
 ('A室開燈'  , '15738184' , 'Relay' , true , 1 , '#開燈' , 'A室燈已開啟'    ,0),
 ('A室關燈'  , '15738184' , 'Relay' , true , 1 , '#關燈' , 'A室燈已關閉'    ,1);
+
+SELECT * FROM tbl_wf8266_detail;

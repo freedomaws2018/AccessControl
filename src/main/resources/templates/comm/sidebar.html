@@ -89,21 +89,13 @@
             </li>
             <li>
               <div class="row">
-                <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a href="#LineManage_A" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">1-2.
-                  Line選單管理</a>
+                <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a th:href="@{/line/rich_menu/list}">1-2-1. 選單列表</a>
               </div>
-              <ul class="collapse list-unstyled" id="LineManage_A">
-                <li>
-                  <div class="row">
-                    <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a id="multi" th:href="@{/line/rich_menu/list}">1-2-1. 選單列表</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="row">
-                    <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a id="multi" th:href="@{/line/rich_menu/template/list}">1-2-2. 樣式列表</a>
-                  </div>
-                </li>
-              </ul>
+            </li>
+            <li>
+              <div class="row">
+                <img th:src="@{/images/icon/line.png}" src="../static/images/icon/line.png" style="visibility:hidden;"> <a th:href="@{/line/rich_menu/template/list}">1-2-2. 樣式列表</a>
+              </div>
             </li>
             <li>
               <div class="row">

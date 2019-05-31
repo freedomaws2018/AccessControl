@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -257,8 +258,12 @@ public class LineRichMenuController {
     RichMenuListResponse response = lineRichMenuService.getRichMenuList();
     List<RichMenuResponse> richMenuResponses = response.getRichMenus();
     List<com.example.demo.DataBase.Entity.RichMenu> richMenus = richMenuResponses.stream().map(richMenu -> {
-      com.example.demo.DataBase.Entity.RichMenu menu = new com.example.demo.DataBase.Entity.RichMenu();
+      com.example.demo.DataBase.Entity.RichMenu menu = richMenuRepository.findById(richMenu.getRichMenuId()).orElse(null);
+      if(menu == null) {
+        menu = new com.example.demo.DataBase.Entity.RichMenu();
+      }
       menu.setRichMenuId(richMenu.getRichMenuId());
+      menu.setName(richMenu.getName());
       menu.setRichMenuResponse(richMenu);
       menu.setImage(lineRichMenuService.downloadImage(richMenu.getRichMenuId()));
       return menu;
@@ -268,11 +273,11 @@ public class LineRichMenuController {
     return new ResponseEntity<>(richMenus, HttpStatus.OK);
   }
 
-//  /** autocomplete **/
-//  @GetMapping(value = "/autocomplete/getRichMenu", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//  public ResponseEntity<Object> getRichMenuList(@RequestParam("term") String term) {
-//    List<RichMenu> richMenus = this.richMenuRepository.getByNameLike(term);
-//    return new ResponseEntity<>(richMenus, HttpStatus.OK);
-//  }
+  /** autocomplete **/
+  @GetMapping(value = "/autocomplete/getRichMenu", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Object> getRichMenuList(@RequestParam("term") String term) {
+    List<com.example.demo.DataBase.Entity.RichMenu> richMenus = richMenuRepository.getByNameLike(term);
+    return new ResponseEntity<>(richMenus, HttpStatus.OK);
+  }
 
 }

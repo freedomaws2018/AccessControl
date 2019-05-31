@@ -4,28 +4,21 @@
 <body layout:fragment="content">
 
   <script type="text/javascript">
-  $().ready(function(){
-    
-	$("a[id^='delete_permission_']").click(function(){
-	  var permissionId = $(this).attr("permissionId");
-	  var permissionName = $(this).attr("permissionName");
-
-	  showConfirmDialog('確認刪除','確定要刪除 ' + permissionName + ' 的權限嗎?',function(){
-        $.ajax({
-          type: 'DELETE',
-          url: "/permission/delete/" + permissionId,
-          dataType: 'json',
-          success: function(result){
-            location.reload();
-          }
-        });
+  var delete_permission = function(id,name){
+    showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 的權限嗎?',function(){
+      $.ajax({
+        type: 'DELETE',
+        url: "/permission/delete/" + id,
+        dataType: 'json',
+        success: function(result){
+          location.reload();
+        }
       });
-  	});
-	
-  });
+    });
+  }
   </script>
   <div class="row">
-    <div class="col-12 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+    <div class="col-12">
       <div class="card">
         <div class="card-header" toggleId="l-permission-toggle">
           <span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
@@ -37,7 +30,7 @@
           <table class="table table-hover table-responsive-sm">
             <thead class="center">
               <tr>
-                <th scope="col">操作</th>
+                <th scope="col">#</th>
                 <th scope="col">權限名稱</th>
                 <th scope="col">對應選單</th>
               </tr>
@@ -54,7 +47,7 @@
                   <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm ">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
                   </a>
-                  <a th:id="|delete_permission_${iterStar.index}|" th:permissionId="*{id}" th:permissionName="*{name}" href="javascript:;" class="btn btn-danger btn-sm ">
+                  <a th:onclick="|delete_permission(__*{id}__,'__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>
                 </td>

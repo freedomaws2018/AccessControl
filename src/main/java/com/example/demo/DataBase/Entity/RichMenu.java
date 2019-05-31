@@ -8,9 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -40,10 +41,11 @@ public class RichMenu {
   private String name;
 
   /** 區域編號 - 對應 Location **/
-  @Transient
-  private Location location;
   @Column(name = "location_id")
   private Long locationId;
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
+  private Location location;
 
   private Long templateId;
 

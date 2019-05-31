@@ -23,6 +23,9 @@
       str +="    <input name='detail[" + index + "].name' />";
       str +="  </td>";
       str +="  <td>";
+      str +="    <input name='detail[" + index + "].remarks' />";
+      str +="  </td>";      
+      str +="  <td>";
       str +="    <label><input type='radio' value='true' name='detail[" + index + "].isSuperAdmin' />是</label>";
       str +="    <label><input type='radio' value='false' name='detail[" + index + "].isSuperAdmin' />否</label>";
       str +="  </td>";
@@ -30,6 +33,27 @@
       $("#detail_table").append(str);
       index++;
     });
+    
+    $("#menuName_auto").autocomplete({
+      minLength: 0,
+      source: function(request,response){
+        $.ajax({
+          method: 'POST',
+          url: '/menu/autocomplete/getMenu', data: request, dataType: 'json',
+          success: function(result){
+            var data = [];
+            result.forEach(function(d){ data.push({ label: d.name, value: d.name , obj: d}); });
+            response(data);
+          }
+        });
+      },
+      select: function(event, ui){
+        $("#menuName").val(ui.item.obj.menuName);
+      }
+    })
+    .blur(function(){ $(this).autocomplete('enable'); })
+    .focus(function () { $(this).autocomplete('search', ''); });  
+    
   });
   	
   	delete_detail = function(btnEvent, statusId , index){
@@ -73,13 +97,13 @@
     <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"> <div class="col">
       <div class="card">
         <div th:if="${funcType eq 'add'}" class="card-header" toggleId="u_employee">
-          <span class="glyphicon glyphicon-align-justify"></span>員工管理 - 新增
+          <span class="glyphicon glyphicon-align-justify"></span>權限 - 新增
         </div>
         <div th:if="${funcType eq 'edit'}" class="card-header" toggleId="u_employee">
-          <span class="glyphicon glyphicon-align-justify"></span>員工管理 - 修改
+          <span class="glyphicon glyphicon-align-justify"></span>權限 - 修改
         </div>
         <div th:if="${funcType eq 'view'}" class="card-header" toggleId="u_employee">
-          <span class="glyphicon glyphicon-align-justify"></span>員工管理 - 檢視
+          <span class="glyphicon glyphicon-align-justify"></span>權限 - 檢視
           <a class="btn btn-success a-btn-second btn-sm" th:href="@{/permission/edit/{id}(id=*{id})}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
         </div> 
         <div class="card-body" toggleId="l-location-toggle">
@@ -87,21 +111,35 @@
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
               <label class="font-weight-bold">權限名稱</label>
-              <input type="hidden" th:value="*{id}" name="id" />
-              <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="name" />
-              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}" />
+              <div th:if="${funcType eq 'add'}">
+                <input type="hidden" name="id" />
+                <input type="text" class="form-control" name="name" />
+              </div>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
+                <input type="hidden" th:value="*{id}" name="id" />
+                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}" />
+              </div>
+              
             </div>
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
               <label class="font-weight-bold">對應選單</label>
-              <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="menuName" />
-              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="menuName" th:value="*{menuName}"/>
+              <div th:if="${funcType eq 'add'}">
+                <input type="hidden" class="form-control" id="menuName" name="menuName" />
+                <input type="text" class="form-control" id="menuName_auto" />
+              </div>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
+                <input type="hidden" class="form-control" id="menuName" name="menuName" value="*{menuName}" />
+                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="*{menu.name}"/>
+              </div>
+              
+              
             </div>
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11" >
-              <table class="table">
+              <label class="font-weight-bold">細項</label>
+              <table class="table" >
                <tr>
-                <th>細項</th>
                 <td>
                   <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" id="add_permission_detail" > 新增 </a>
                   <table id="detail_table">
@@ -155,18 +193,19 @@
               </table>
             </div>
           </div>
-          <div class="row badge-margin justify-content-center">
+          <div th:if="${ funcType eq 'edit' || funcType eq 'view'}" class="row badge-margin justify-content-center">
             <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
               <span th:text="|建立時間：  *{#temporals.format(createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
             </div>&emsp;
             <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
               <span th:text="|修改時間：  *{#temporals.format(modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
             </div>
-            <div class="badge text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
-              <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
-              </button>
-            </div>
+          </div>
+          
+          <div th:if="${ funcType eq 'edit' || funcType eq 'add'}" class="badge text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+            <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+            </button>
           </div>
           
           
