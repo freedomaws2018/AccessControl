@@ -148,6 +148,11 @@
 	width:200px;
 }
 
+.btn-detail{
+	margin-left:15px;
+	margin-bottom:10px;
+}
+
 @media (max-width: 720px) {
 	
 	.hide-in-phone{
