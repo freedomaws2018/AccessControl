@@ -230,11 +230,11 @@
 		          <div th:if="${funcType eq 'add' || funcType eq 'edit'}">
 		            <input type="hidden" id="locationId" name="locationId" required />
 		          	<input type="text" class="form-control" id="auto_location" ></input>
-		          	<span id="location_address" ></span>
+		          	<span id="location_address" class="location_address" ></span>
 		          </div>
 		          <div th:if="${ funcType eq 'view'}">
 		            <input type="hidden" id="locationId" name="locationId" ></input>
-		            <span id="location_address" th:text="|*{location?.name}:*{location?.address}|" ></span>
+		            <span id="location_address" class="location_address" th:text="|*{location?.name}:*{location?.address}|" ></span>
 		          </div>
 		        </div>         
 		      </div>  
@@ -296,7 +296,9 @@
 		</div>
 	  </div>
 	</div>
-    <input type="button" id="rich_menu_submit" value="送出" />
+	<button type="button" id="rich_menu_submit" class="btn btn-primary btn-sm">
+      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+    </button>
   </form>
 
 </body>

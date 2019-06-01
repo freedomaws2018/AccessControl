@@ -148,10 +148,25 @@
 	width:200px;
 }
 
+.select2-container--default .select2-selection--multiple{
+	margin-top:-20px;
+	margin-left: 0px;
+    border: 1px solid #ced4da!important;
+    padding: 5px 5px 10px 5px;
+}
+
+
 .btn-detail{
 	margin-left:15px;
 	margin-bottom:10px;
 }
+
+.location_address{
+	position: relative;
+    top: 5px;
+    padding-left: 15px;
+}	
+
 
 @media (max-width: 720px) {
 	
@@ -168,6 +183,7 @@
 	.rwd-table tr {
 		border:1px solid #DCDCDC;
 		width:100%;
+		margin-bottom:10px;
 	}
  
 	.rwd-table th {
@@ -177,6 +193,7 @@
 	.rwd-table td {
 		display: block;
 		border: none;
+		position:relative;
 	}
  
 	.rwd-table td:before {
@@ -189,7 +206,7 @@
 	}
 	
 	.td-last{
-		margin-bottom:10px;
+		margin-bottom:30px;
 	}
 	
 	.row .badge{
@@ -204,6 +221,10 @@
 	.td-first .btn{
 		padding-bottom: 7px;
 	    padding-right: 4px;
+	}
+	
+	.rwd-tbody{
+	
 	}
 	
 }

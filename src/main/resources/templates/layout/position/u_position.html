@@ -25,13 +25,13 @@
   <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"> <div class="col">
     <div class="card">
       <div th:if="${funcType eq 'add'}" class="card-header" toggleId="u_position">
-        <span class="glyphicon glyphicon-align-justify"></span>職位管理 - 新增
+        <span class="glyphicon glyphicon-align-justify"></span>職階管理 - 新增
       </div>
       <div th:if="${funcType eq 'edit'}" class="card-header" toggleId="u_position">
-        <span class="glyphicon glyphicon-align-justify"></span>職位管理 - 新增
+        <span class="glyphicon glyphicon-align-justify"></span>職階管理 - 編輯
       </div>
       <div th:if="${funcType eq 'view'}" class="card-header" toggleId="u_position">
-        <span class="glyphicon glyphicon-align-justify"></span>職位管理 - 新增
+        <span class="glyphicon glyphicon-align-justify"></span>職階管理 - 檢視
         <a class="btn btn-success a-btn-second btn-sm" th:href="@{/position/edit/{id}(id=*{id})}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
       </div> 
       <div class="card-body" toggleId="u_position">
@@ -55,8 +55,8 @@
                 <label><input type="radio" name="isDefault" value="false" th:disabled="${funcType eq 'view'}" th:checked="!*{isDefault}">否</label>
               </div>
             </div>
-            
-            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12">
+            </div>
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 m-4">
               <table class="table table-responsive-sm">
                 <thead>
                   <tr class="center">
@@ -77,19 +77,18 @@
                       <input type="checkbox" th:value='|{"permissionId":${permission.id},"permissionDetailType":"*{type}"}|' 
                         th:disabled="${funcType eq 'view'}" th:checked="${#lists.contains(mappingDetail,permission.id + detail.type)}"
                         JsonValue="true" name="permission" />[[*{name}]] 
-                        <!--   -->
                     </label>
                   </td>
                 </tr>
               </table>
             </div>
             
+            <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="line"></div>
             <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="row col justify-content-center">
               <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
               </button>
             </div>
-          </div>
         </form>
       </div>
     </div>

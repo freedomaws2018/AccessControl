@@ -120,8 +120,8 @@
                 <input th:if="${funcType eq 'view'}" class="form-control" id="beaconKey" name="beaconKey" th:value="*{beaconKey}" disabled/>
                 <input th:if="${funcType eq 'edit'}" class="form-control" id="beaconKey" name="beaconKey" th:value="*{beaconKey}"/>
               </div> 
-                    
-              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              </div>      
+              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
                 <label class="font-weight-bold">負責人</label>
                 <div th:if="${funcType eq 'edit'}">
 	              <select multiple id="keepers" name="keepers" class="js-example-basic-multiple js-states form-control" >
@@ -140,10 +140,10 @@
                 <table class="table" >
                  <tr>
                   <td>
-                    <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" class="btn btn-info btn-sm" id="add_location_detail" >
-                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增 
+                    <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" class="btn btn-primary btn-sm btn-detail" id="add_location_detail" >
+                      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增 
                     </a>
-                    <table id="detail_table">
+                    <table id="detail_table" class="table table-hover table-responsive-sm">
                       <thead>
                         <tr>
                           <th th:if="${funcType eq 'edit' || funcType eq 'add'}">#</th>
@@ -199,8 +199,6 @@
                 </table>
               </div>
 
-            </div>
-            
             <div class="row badge-margin justify-content-center hide-in-phone">
               <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
                 <span th:text="|建立時間：  *{#temporals.format(createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>

@@ -100,7 +100,7 @@
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
             <label class="font-weight-bold">職稱</label>
-            <input type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reload_position()|" value="重置權限" />
+            <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reload_position()|" value="重置權限" />
             <div>
               <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="positionId">
                 <option value="">請選擇職稱</option>
@@ -171,6 +171,7 @@
           <span th:text="|修改時間：  ${#temporals.format(employee.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
         </div>
       </div>
+      <div th:if="${funcType eq 'edit' || funcType eq 'add'}"><div class="line"></div></div>
       <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="row col justify-content-center">
         <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
