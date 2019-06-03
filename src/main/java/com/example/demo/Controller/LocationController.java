@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,14 +17,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Controller.FormEntity.FormLocation;
 import com.example.demo.DataBase.Entity.Employee;
@@ -62,10 +61,10 @@ public class LocationController {
   @GetMapping(value = "/add")
   private ModelAndView add(ModelAndView model) {
     model = new ModelAndView("layout/location/u_location");
-    model.addObject("funcType", "edit");
-//		Location location = this.locationService.getById(id);
-    model.addObject("location", new Location());
-
+    model.addObject("funcType", "add");
+    Map<Integer, Employee> empMap = employeeService.getAll().stream()
+        .collect(Collectors.toMap(e -> Math.toIntExact(e.getId()), Functions.identity()));
+    model.addObject("mappingEmp", empMap);
     return model;
   }
 
@@ -83,23 +82,25 @@ public class LocationController {
     return model;
   }
 
-  @PostMapping(value = "/save")
-  private ModelAndView save(ModelAndView model, RedirectAttributes attr, @Valid FormLocation form,
-      BindingResult result) {
+  @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  private ResponseEntity<Object> save(ModelAndView model, @Valid FormLocation form, BindingResult bindingResult) {
+    Map<String, Object> result = new HashMap<>();
 
-    if (result.hasErrors()) {
-      List<FieldError> fieldErrors = result.getFieldErrors();
-      for (FieldError error : fieldErrors) {
-        System.err.printf("%s:%s:%s\n", error.getField(), error.getDefaultMessage(), error.getCode());
-      }
-      return new ModelAndView("redirect:/location/edit/" + form.getId());
-    }
+//    if (result.hasErrors()) {
+//      List<FieldError> fieldErrors = result.getFieldErrors();
+//      for (FieldError error : fieldErrors) {
+//        System.err.printf("%s:%s:%s\n", error.getField(), error.getDefaultMessage(), error.getCode());
+//      }
+//    }
 
     Location location = form.getLocaiton();
-    locationService.removeAllMappingWithLocationId(form.getId());
+    locationService.removeAllMappingWithLocationId(location.getId());
     location = locationService.save(location);
 
-    return new ModelAndView("redirect:/location/view/" + location.getId());
+    result.put("status", "success");
+    result.put("data", location);
+
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

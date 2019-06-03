@@ -73,6 +73,7 @@
         var parentMenuName = $("#level" + (level - 1) + "_selected").val() ? $("#level" + (level - 1) + "_selected").val() : '';
         var lastLevelId = $("#level" + i + "_selected").val() ? $("#level" + i + "_selected").val() : '';
         var html_str = "";
+        console.log(parentMenuName)
         html_str += 
         `
         <div class="row col-12">
@@ -80,9 +81,11 @@
             <label class="font-weight-bold">ID</label>
             <div class="input-group input-group-mg-l">
               <div class="input-group-prepend">
-                <div class="input-group-text input-group-mg-r" id="afterMenuName">#</div>
+                <div class="input-group-text input-group-mg-r" id="afterMenuName">
+                ${ parentMenuName ? parentMenuName : '#' }
+                </div>
               </div>
-              <input type="text" class="form-control" name="menuName" placeholder="Username">
+              <input type="NUMBER" class="form-control" min="0" max="99" name="menuName" placeholder="00" />
             </div>
             <input type="hidden" class="form-control" name="level" value="${level}" />
             <input type="hidden" class="form-control" name="mainMenuName" value="${mainMenuName}" />
@@ -98,7 +101,7 @@
           </div>
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-9">
             <label class="font-weight-bold">URL</label><br>
-            <input type="text" class="form-control" name="url" value=""/>
+            <input type="text" class="form-control" name="url" value="#" />
           </div>      
         </div>
         `;

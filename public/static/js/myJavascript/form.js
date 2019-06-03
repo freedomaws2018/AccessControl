@@ -19,11 +19,11 @@
     $(".verification_msg").remove();
     var objects = $(this[0]).find("input,select");
     $.each(objects, function(index,obj){
-      
-      if($(obj).is("[FDC-Verification]")){
+
+      if( $(obj).is("[FDC-Verification]")){
         console.log(index, obj);
       }
-      
+
     });
     return false;
   }
@@ -61,8 +61,15 @@
     });
 
     $.each(selects, function(index,data){
-      if( data.name){
+      // 單選
+      if( data.name && $(data).find(":selected").length == 1){
         obj[data.name] = $(data).find(":selected").val();
+      }
+      // 多選
+      else if( data.name && $(data).find(":selected").length > 1){
+        $.each($(data).find(":selected"), function(index,data2){
+          obj[data.name + "[" + index + "]"] = data2.value;
+        });
       }
     });
 

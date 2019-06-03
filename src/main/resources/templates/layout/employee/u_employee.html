@@ -151,7 +151,9 @@
                 <th nowrap class="center" th:text="*{menu.name}"></th>
                 <td>
                   <label th:if="${ funcType eq 'edit' || funcType eq 'view' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.id+':'+detail.type}" >
-                    <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" th:disabled="${funcType eq 'view'}" th:checked="${#lists.contains(mappingPermissions,permission.id+':'+detail.type)}" />[[*{name}]]
+                    <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" th:disabled="${funcType eq 'view'}"  
+                      th:checked="${#lists.contains(mappingPermissions,permission.id+':'+detail.type)}"/>
+                      <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                   </label>
                   <label th:if="${ funcType eq 'add' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.id+':'+detail.type}" >
                     <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" />[[*{name}]]

@@ -108,8 +108,7 @@ public class EmployeeController {
 
       // 選單設定
       mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(employee.getId());
-      List<Permission> permission = permissionService
-          .getPermissionByPermissionIdAndPermissionDetailType(form.getPositionId(), form.getPermissionDetailType());
+      List<Permission> permission = permissionService.getPermissionByPermissionIdAndPermissionDetailType(form.getPermissionDetailType());
       List<String> menuName = permission.stream().map(Permission::getMenuName).collect(Collectors.toList());
       List<MappingEmployeeMenu> mems = menuName.stream().map(mn -> {
         MappingEmployeeMenu mem = new MappingEmployeeMenu();
@@ -163,7 +162,7 @@ public class EmployeeController {
       model.addObject("error_status", "新密碼與確認密碼 不相同");
       return model;
     }
-    employee.setPassword(pw1);
+    employee.setPassword(pw1, true);
     employeeService.save(employee);
     model = new ModelAndView("redirect:/login");
     return model;

@@ -1,7 +1,6 @@
 package com.example.demo.DataBase.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Permission;
-import com.example.demo.DataBase.Entity.PermissionDetail;
 import com.example.demo.DataBase.Repository.PermissionDetailRepository;
 import com.example.demo.DataBase.Repository.PermissionRepository;
 
@@ -42,12 +40,8 @@ public class PermissionService {
     permissionRepository.deleteById(permissionId);
   }
 
-  public List<Permission> getPermissionByPermissionIdAndPermissionDetailType(Long permissionId,
-      List<String> premissionDetailType) {
-    List<PermissionDetail> detail = permissionDetailRepository.findByPermissionIdAndTypeIn(permissionId,
-        premissionDetailType);
-    List<Long> pid = detail.stream().map(PermissionDetail::getPermissionId).collect(Collectors.toList());
-    return permissionRepository.findAllById(pid);
+  public List<Permission> getPermissionByPermissionIdAndPermissionDetailType(List<String> permissionIdAndPermissionDetailTyle) {
+    return permissionRepository.findByPermissionIdAndTypeIn(permissionIdAndPermissionDetailTyle);
   }
 
 }
