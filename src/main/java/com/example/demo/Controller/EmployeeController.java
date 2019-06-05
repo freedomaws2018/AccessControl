@@ -30,6 +30,7 @@ import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Permission;
 import com.example.demo.DataBase.Entity.Position;
 import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeMenu;
+import com.example.demo.DataBase.Entity.Mapping.MappingPositionPermissionPermissiondetail;
 import com.example.demo.DataBase.Repository.MappingEmployeeMenuRepository;
 import com.example.demo.DataBase.Repository.MappingEmployeePermissondetailPositionRepository;
 import com.example.demo.DataBase.Service.EmployeeService;
@@ -179,6 +180,19 @@ public class EmployeeController {
       employee.setPassword(account, true);
       employeeService.save(employee);
       result.put("status", "success");
+    } else {
+      result.put("status", "error");
+    }
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @PostMapping(value="/getMappingPPPWithPositionId", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Object> getMappingPPPWithPersitionId(@RequestParam Long positionId) {
+    Map<String, Object> result = new HashMap<>();
+    List<MappingPositionPermissionPermissiondetail> mappingPPPs = positionService.getMappingPPPWithPersitionId(positionId);
+    if (mappingPPPs != null && !mappingPPPs.isEmpty()) {
+      result.put("status", "success");
+      result.put("data", mappingPPPs);
     } else {
       result.put("status", "error");
     }

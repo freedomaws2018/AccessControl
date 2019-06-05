@@ -42,13 +42,13 @@
           <input type="hidden" th:if="${funcType eq 'edit' || funcType eq 'view'}" name="id" th:value="*{id}" />
           <div class="row" >
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
-              <label class="font-weight-bold">職稱</label>
-              <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="name" />
+              <label class="font-weight-bold"><span class="req-field">*</span>職稱</label>
+              <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="name" FDCV='not-blank' />
               <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}" FDCV='not-blank' />
             </div>
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
-              <label class="font-weight-bold">預設</label>
+              <label class="font-weight-bold"><span class="req-field">*</span>預設</label>
               <div th:if="${funcType eq 'add'}">
                 <label><input type="radio" name="isDefault" value="true" >是</label>
                 <label><input type="radio" name="isDefault" value="false" checked>否</label>

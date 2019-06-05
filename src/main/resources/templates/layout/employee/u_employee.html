@@ -55,9 +55,37 @@
 	    });
 	  });
 	}
+	
+	var change_position = function(){
+      var positionId = $("select[name='positionId']").find(":selected").val();
+
+      $("input[type='checkbox'][name='permissionDetailType']").each(function(index,data){
+        $(data).prop("checked", false);
+      });
+      if(positionId){
+        console.log(positionId);
+        $.ajax({
+          method: 'post',
+          url: '/employee/getMappingPPPWithPositionId',
+          data: { positionId : positionId },
+          dataType: 'json',
+          success: function(result){
+            if(result.status === 'success'){
+              $.each(result.data,function(index,data){
+                var checkbox_vaule = data.permissionId + ":" + data.permissionDetailType;
+                $("input[type='checkbox'][name='permissionDetailType'][value='" + checkbox_vaule +"']").prop("checked",true);
+              });
+            }else{
+              console.log(result);
+            }
+          }
+        });
+      }
+	}
   
   	$(function(){
-  	  
+  	  // 首次觸發
+  	  change_position();
   	});
   </script>
   <div class="row"> <div class="col-12"> <div class="card">
@@ -106,13 +134,13 @@
             <label class="font-weight-bold"><span class="req-field">*</span>職稱</label>
             <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reload_position()|" value="重置權限" />
             <div>
+              <select th:if="${funcType eq 'add'}" class="form-control" name="positionId" onchange="change_position()" FDCV="not-blank">
+                <option value="">請選擇職稱</option>
+                <option th:each="pos:${positions}" th:value="${pos.id}" th:text="${pos.name}" th:selected="${pos.isDefault}" ></option>
+              </select>
               <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="positionId" FDCV="not-blank">
                 <option value="">請選擇職稱</option>
                 <option th:each="pos:${positions}" th:value="${pos.id}" th:text="${pos.name}" th:selected="|${pos.id} == *{positionId}|"></option>
-              </select>
-              <select th:if="${funcType eq 'add'}" class="form-control" name="positionId">
-                <option value="">請選擇職稱</option>
-                <option th:each="pos:${positions}" th:value="${pos.id}" th:text="${pos.name}" th:selected="${pos.isDefault}" ></option>
               </select>
             </div>
           </div>

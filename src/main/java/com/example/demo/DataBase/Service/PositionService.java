@@ -40,6 +40,10 @@ public class PositionService {
     return positionRepository.countByName(name) > 0 ? true : false;
   }
 
+  public List<MappingPositionPermissionPermissiondetail> getMappingPPPWithPersitionId(Long persitionId){
+    return mappingPositionPermissionPermissiondetailRepository.findByPositionIdAndIsUseTrue(persitionId);
+  }
+
   public Position save(Position position) {
     return positionRepository.saveAndFlush(position);
   }
