@@ -2,7 +2,8 @@
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
-  <script type="text/javascript">
+  <script  th:inline="javascript" type="text/javascript">
+  var richMenus = [[${richMenus}]];
   	$(function(){
   	  
   	  $('#keepers').select2(
@@ -15,34 +16,42 @@
       $("#add_location_detail").click(function(){
         var str = '';
         str +="<tr id='tr_detail_" + index + "'>";
+        
         str +="  <td>";
         str +="    <a href='javascript:;' class='btn btn-danger btn-sm' onclick='delete_detail(" + index + ")' >";
         str +="      <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>刪除";
         str +="    </a>";
         str +="  </td>";
+        
         str +="  <td>";
-        str +="    <input type='text' class='form-control' name='detail[" + index + "].name' />";
+        str +="    <input type='text' class='form-control' name='detail[" + index + "].name' FDCV='not-blank' />";
         str +="  </td>";   
+        
         str +="  <td>";
-        str +="    <label><input type='radio' value='true' name='detail[" + index + "].isSuperAdmin' />是</label>";
-        str +="    <label><input type='radio' value='false' name='detail[" + index + "].isSuperAdmin' />否</label>";
+        str +="    <label><input type='radio' value='true' name='detail[" + index + "].isSpace'  />是</label>";
+        str +="    <label><input type='radio' value='false' name='detail[" + index + "].isSpace' checked />否</label>";
         str +="  </td>";
 
         str +="  <td>";
-        str +="    <input type='text' class='form-control' name='detail[" + index + "].rentMonth' />";
+        str +="    <input type='number' class='form-control' name='detail[" + index + "].rentMonth' FDCV='not-blank,is-positive-integer' />";
         str +="  </td>";
 
         str +="  <td>";
-        str +="    <input type='text' class='form-control' name='detail[" + index + "].taxMonth' />";
+        str +="    <input type='number' class='form-control' name='detail[" + index + "].taxMonth' FDCV='not-blank,is-positive-integer' />";
         str +="  </td>";
 
         str +="  <td>";
-        str +="    <input type='text' class='form-control' name='detail[" + index + "].electricityFeeDegree' />";
+        str +="    <input type='number' step='0.1' class='form-control' name='detail[" + index + "].electricityFeeDegree' FDCV='not-blank,is-numeric'/>";
         str +="  </td>";
-
+        
         str +="  <td>";
-        str +="    <input type='text' class='form-control' name='detail[" + index + "].richMenu' />";
-        str +="  </td>";        
+        str +="    <select class='form-control' name='detail[" + index + "].richMenuId' >";
+        str +="    <option value>--請選擇--</option>";
+        $.each(richMenus , function(index , richMenu){
+          str +="    <option value='" + richMenu.richMenuId + "'>" + richMenu.name +"</option>";
+        })
+        str +="    </select>";
+        str +="  </td>";
         
         str +="</tr>"
         $("#detail_table").append(str);
@@ -50,8 +59,11 @@
       });
       
       $("#submit_btn").click(function(){
+        if($("#location_form").form_verification()){
+          return;
+        }
         var jsonData = $("#location_form").toJson();
-
+// 		console.log(jsonData)
         $.ajax({
           method: 'post',
           url: '/location/save',
@@ -98,20 +110,19 @@
             
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" style="display: none;">
                 <label class="font-weight-bold">編號</label><br>
-                <input th:if="${funcType eq 'view'}" class="form-control" id="userId" name="id" th:value="*{id}" disabled/>
-                <input th:if="${funcType eq 'edit'}" class="form-control" id="userId" name="id" th:value="*{id}" />
+                <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="userId" name="id" th:value="*{id}" />
               </div>
               
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
-                <label class="font-weight-bold">別名</label><br>
-                <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" />
-                <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{name}"/>
+                <label class="font-weight-bold"><span class="req-field">*</span>別名</label><br>
+                <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" FDCV="not-blank" />
+                <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{name}" FDCV="not-blank"/>
               </div>
               
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
-                <label class="font-weight-bold">地址</label><br>
-                <input th:if="${funcType eq 'add'}" class="form-control" id="address" name="address" />
-                <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="address" name="address" th:value="*{address}"/>
+                <label class="font-weight-bold"><span class="req-field">*</span>地址</label><br>
+                <input th:if="${funcType eq 'add'}" class="form-control" id="address" name="address" FDCV="not-blank" />
+                <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="address" name="address" th:value="*{address}" FDCV="not-blank"/>
               </div>
               
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
@@ -138,11 +149,13 @@
               </div>     
               
               <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
-                <label class="font-weight-bold">負責人</label>
-                <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" id="keepers" name="keepers" class="js-example-basic-multiple js-states form-control" multiple>
+                <label class="font-weight-bold"><span class="req-field">*</span>負責人</label>
+<!--                 [[${location}]] -->
+<!--                 <sapn th:each="emp:${mappingEmp}" th:value="${emp.value.id}" th:text="|${emp.value.name},${emp.value.isUse}|" ></span> -->
+                <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" id="keepers" name="keepers" class="js-example-basic-multiple js-states form-control" multiple FDCV="not-blank">
                   <option th:each="emp:${mappingEmp}" th:value="${emp.value.id}" th:text="${emp.value.name}" th:selected="${#lists.contains(location.employeeIds, emp.value.id)}" ></option>
                 </select>
-                <select th:if="${funcType eq 'add'}" id="keepers" name="keepers" class="form-control" size="5" multiple>
+                <select th:if="${funcType eq 'add'}" id="keepers" name="keepers" class="form-control" size="5" multiple FDCV="not-blank">
                   <option th:each="emp:${mappingEmp}" th:value="${emp.value.id}" th:text="${emp.value.name}" ></option>
                 </select>
               </div>
@@ -156,7 +169,7 @@
                       <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增 
                     </a>
                     <table id="detail_table" class="table table-hover table-responsive-sm">
-                      <thead>
+                      <thead class="center">
                         <tr>
                           <th th:if="${funcType eq 'edit' || funcType eq 'add'}">#</th>
                           <th>名稱</th>
@@ -169,8 +182,8 @@
                       </thead>
                       <tbody th:if="${funcType ne 'add'}">
                         <tr th:each="detail,iter:*{details}" th:object="${detail}" th:id="|tr_detail_${iter.index}|">
-                          <td>
-                            <input type="hidden" th:name="|detail[${iter.index}].id|" th:value="*{id}" />
+                          <td th:if="${funcType eq 'edit' || funcType eq 'add'}">
+<!--                             <input type="hidden" th:name="|detail[${iter.index}].id|" th:value="*{id}" /> -->
                             <a href="javascript:;" class="btn btn-danger btn-sm" th:onclick="|delete_detail(${iter.index})|" >
                               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                             </a>
@@ -179,29 +192,31 @@
                             <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" th:name="|detail[${iter.index}].name|" th:value="*{name}" />
                           </td>
                           
-                          <td th:if="${funcType eq 'edit'}">
-                            <label><input type='radio' value='true' th:name='|detail[${iter.index}].isSpace|' th:checked="*{isSpace}" />是</label>
-                            <label><input type='radio' value='false' th:name='|detail[${iter.index}].isSpace|' th:checked="!*{isSpace}" />否</label>
+                          <td th:if="${funcType eq 'edit' || funcType eq 'view'}">
+                            <label><input type='radio' value='true' th:disabled="${funcType eq 'view'}" th:name='|detail[${iter.index}].isSpace|' th:checked="*{isSpace}" />是</label>
+                            <label><input type='radio' value='false' th:disabled="${funcType eq 'view'}" th:name='|detail[${iter.index}].isSpace|' th:checked="!*{isSpace}" />否</label>
                           </td>
                           
                           <td>
-                            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" 
-                              type="text" class="form-control" th:name="|detail[${iter.index}].rentMonth|" th:value="*{rentMonth}" />
+                            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}"  type='number'
+                               class="form-control" th:name="|detail[${iter.index}].rentMonth|" th:value="*{rentMonth}" />
                           </td>
                           
                           <td>
-                            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" 
-                              type="text" class="form-control" th:name="|detail[${iter.index}].taxMonth|" th:value="*{taxMonth}" />
+                            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}"  type='number'
+                               class="form-control" th:name="|detail[${iter.index}].taxMonth|" th:value="*{taxMonth}" />
                           </td>
                           
                           <td>
-                            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" 
-                              type="text" class="form-control" th:name="|detail[${iter.index}].electricityFeeDegree|" th:value="*{electricityFeeDegree}" />
+                            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}"  type='number' step='0.1'
+                               class="form-control" th:name="|detail[${iter.index}].electricityFeeDegree|" th:value="*{electricityFeeDegree}" />
                           </td>
                           
                           <td>
-                            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" 
-                              type="text" class="form-control" th:name="|detail[${iter.index}].richMenu|" th:value="*{richMenu}" />
+                            <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].richMenuId|" class="form-control">
+                              <option value>--請選擇--</option>
+                              <option th:each="rm:${richMenus}" th:value="${rm.richMenuId}">[[${rm.name}]]</option>
+                            </select>
                           </td>
                         </tr>
                       </tbody>

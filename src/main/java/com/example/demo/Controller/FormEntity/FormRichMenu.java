@@ -23,7 +23,7 @@ public class FormRichMenu {
 
   private Long templateId;
 
-  private Long locationId;
+//  private Long locationId;
 
   private MultipartFile image;
 

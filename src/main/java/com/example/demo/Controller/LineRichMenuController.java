@@ -33,7 +33,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Controller.FormEntity.FormRichMenu;
 import com.example.demo.Controller.FormEntity.FormRichMenuTemplate;
-import com.example.demo.DataBase.Entity.LineUser;
 import com.example.demo.DataBase.Entity.RichMenuTemplate;
 import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.RichMenuRepository;
@@ -125,7 +124,7 @@ public class LineRichMenuController {
     String oldRichMenuId = form.getOldRichMenuId();
     String name = form.getName();
     Long templateId = form.getTemplateId();
-    Long locationId = form.getLocationId();
+//    Long locationId = form.getLocationId();
     MultipartFile image = form.getImage();
     LineRichMenuSize size = form.getSize();
     List<LineRichMenuBounds> bounds = form.getBounds();
@@ -174,33 +173,33 @@ public class LineRichMenuController {
     dbRichMenu.setRichMenuId(richMenuIdResponse.getRichMenuId());
     dbRichMenu.setName(name);
     dbRichMenu.setImage(image.getBytes());
-    dbRichMenu.setLocationId(locationId);
+//    dbRichMenu.setLocationId(locationId);
     dbRichMenu.setTemplateId(templateId);
     dbRichMenu.setRichMenuResponse(lineRichMenuService.getRichMenu(richMenuIdResponse.getRichMenuId()));
     dbRichMenu = richMenuRepository.save(dbRichMenu);
 
-    // 3. 是否有舊版型
-    if (StringUtils.isNotBlank(oldRichMenuId)) {
-      // 3.1 重新推送 更新後的版型給 當前使用中的所有人 (Thread)
-      List<LineUser> users = lineUserRepository.getAllAndRichMenuIdIsNotNullAndisUseTrueAndEffective();
-      for (LineUser user : users) {
-        try {
-          if (StringUtils.isNotBlank(user.getRichMenuId())) {
-            RichMenuIdResponse rmir = lineRichMenuService.getRichMenuIdLinkToUser(user.getUserId());
-            System.err.printf("%s , %s", rmir.getRichMenuId(), oldRichMenuId);
-            if (rmir.getRichMenuId().equals(oldRichMenuId)) {
-              // 推送新選單
-              lineRichMenuService.linkRichMenuToUser(user.getUserId(), richMenuIdResponse.getRichMenuId());
-            }
-          }
-        } catch (Exception ex) {
-          System.err.println(ex.getMessage());
-        }
-      }
-
-      // 3.2 刪除 已被覆蓋的模型
-      lineRichMenuService.deleteRichMenu(oldRichMenuId);
-    }
+//    // 3. 是否有舊版型
+//    if (StringUtils.isNotBlank(oldRichMenuId)) {
+//      // 3.1 重新推送 更新後的版型給 當前使用中的所有人 (Thread)
+//      List<LineUser> users = lineUserRepository.getAllAndRichMenuIdIsNotNullAndisUseTrueAndEffective();
+//      for (LineUser user : users) {
+//        try {
+//          if (StringUtils.isNotBlank(user.getRichMenuId())) {
+//            RichMenuIdResponse rmir = lineRichMenuService.getRichMenuIdLinkToUser(user.getUserId());
+//            System.err.printf("%s , %s", rmir.getRichMenuId(), oldRichMenuId);
+//            if (rmir.getRichMenuId().equals(oldRichMenuId)) {
+//              // 推送新選單
+//              lineRichMenuService.linkRichMenuToUser(user.getUserId(), richMenuIdResponse.getRichMenuId());
+//            }
+//          }
+//        } catch (Exception ex) {
+//          System.err.println(ex.getMessage());
+//        }
+//      }
+//
+//      // 3.2 刪除 已被覆蓋的模型
+//      lineRichMenuService.deleteRichMenu(oldRichMenuId);
+//    }
 
     return model;
   }

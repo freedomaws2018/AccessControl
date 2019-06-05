@@ -224,20 +224,22 @@
 		          </div>
 		        </div> 
 		      </div>
-		      <div class="row">
-		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
-		          <label class="font-weight-bold"><span class="req-field">*</span>使用據點</label><br>
-		          <div th:if="${funcType eq 'add' || funcType eq 'edit'}">
-		            <input type="hidden" id="locationId" name="locationId" required />
-		          	<input type="text" class="form-control" id="auto_location" ></input>
-		          	<span id="location_address" class="location_address" ></span>
-		          </div>
-		          <div th:if="${ funcType eq 'view'}">
-		            <input type="hidden" id="locationId" name="locationId" ></input>
-		            <span id="location_address" class="location_address" th:text="|*{location?.name}:*{location?.address}|" ></span>
-		          </div>
-		        </div>         
-		      </div>  
+          
+<!-- 		      <div class="row"> -->
+<!-- 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10"> -->
+<!-- 		          <label class="font-weight-bold"><span class="req-field">*</span>使用據點</label><br> -->
+<!-- 		          <div th:if="${funcType eq 'add' || funcType eq 'edit'}"> -->
+<!-- 		            <input type="hidden" id="locationId" name="locationId" required /> -->
+<!-- 		          	<input type="text" class="form-control" id="auto_location" ></input> -->
+<!-- 		          	<span id="location_address" class="location_address" ></span> -->
+<!-- 		          </div> -->
+<!-- 		          <div th:if="${ funcType eq 'view'}"> -->
+<!-- 		            <input type="hidden" id="locationId" name="locationId" ></input> -->
+<!-- 		            <span id="location_address" class="location_address" th:text="|*{location?.name}:*{location?.address}|" ></span> -->
+<!-- 		          </div> -->
+<!-- 		        </div>          -->
+<!-- 		      </div>   -->
+          
 		      <div th:if="${funcType eq 'add' || funcType eq 'edit'}" class="row">
 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>選單圖片</label><br>

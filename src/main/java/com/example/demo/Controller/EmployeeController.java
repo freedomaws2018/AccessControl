@@ -108,16 +108,19 @@ public class EmployeeController {
 
       // 選單設定
       mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(employee.getId());
-      List<Permission> permission = permissionService.getPermissionByPermissionIdAndPermissionDetailType(form.getPermissionDetailType());
-      List<String> menuName = permission.stream().map(Permission::getMenuName).collect(Collectors.toList());
-      List<MappingEmployeeMenu> mems = menuName.stream().map(mn -> {
-        MappingEmployeeMenu mem = new MappingEmployeeMenu();
-        mem.setEmployeeId(employee.getId());
-        mem.setMenuName(mn);
-        mem.setIsUse(true);
-        return mem;
-      }).collect(Collectors.toList());
-      mappingEmployeeMenuRepository.saveAll(mems);
+      if (!form.getPermissionDetailType().isEmpty()) {
+        List<Permission> permission = permissionService
+            .getPermissionByPermissionIdAndPermissionDetailType(form.getPermissionDetailType());
+        List<String> menuName = permission.stream().map(Permission::getMenuName).collect(Collectors.toList());
+        List<MappingEmployeeMenu> mems = menuName.stream().map(mn -> {
+          MappingEmployeeMenu mem = new MappingEmployeeMenu();
+          mem.setEmployeeId(employee.getId());
+          mem.setMenuName(mn);
+          mem.setIsUse(true);
+          return mem;
+        }).collect(Collectors.toList());
+        mappingEmployeeMenuRepository.saveAll(mems);
+      }
 
       map.put("status", "success");
       map.put("data", employee);

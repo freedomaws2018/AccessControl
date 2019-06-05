@@ -41,9 +41,11 @@ public class Employee {
   @Column(name = "modify_date", nullable = false)
   private LocalDateTime modifyDate = LocalDateTime.now();
 
+  /** 姓 **/
   @Column(name = "first_name")
   private String firstName;
 
+  /** 名 **/
   @Column(name = "last_name")
   private String lastName;
 

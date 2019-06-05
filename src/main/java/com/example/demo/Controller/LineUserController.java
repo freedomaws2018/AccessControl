@@ -1,10 +1,10 @@
 package com.example.demo.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,8 +30,6 @@ import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.MappingLineuserWf8266Repository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
-import com.linecorp.bot.model.richmenu.RichMenuListResponse;
-import com.linecorp.bot.model.richmenu.RichMenuResponse;
 
 @Controller
 @RequestMapping(value = "/line/user")
@@ -69,28 +67,11 @@ public class LineUserController {
   public ModelAndView viewAndEdit(ModelAndView model, RedirectAttributes attr, @PathVariable String funcType,
       @PathVariable String userId) throws InterruptedException, ExecutionException {
     model = new ModelAndView("layout/line/u_line_user");
-
-    List<String> allTriggerTexts = mappingLineuserWf8266Repository.getByLineUserId(userId).stream()
-        .filter(MappingLineuserWf8266::getIsUse).map(MappingLineuserWf8266::getWf8266Id).collect(Collectors.toList());
-
-    LineUser user = this.lineUserRepository.findById(userId).orElse(null);
-    if (user == null) {
-      this.lineUserRepository.findById(userId).orElse(null);
-    }
-
     model.addObject("funcType", funcType);
+
+    LineUser user = lineUserRepository.findById(userId).orElse(null);
+
     model.addObject("user", user);
-
-//    /** 詢問當前使用者對應的頁面 **/
-//    RichMenuIdResponse richMenuIdResponse = lineRichMenuService.getRichMenuIdLinkToUser(userId);
-//    RichMenuResponse richMenu = lineRichMenuService.getRichMenu(richMenuIdResponse.getRichMenuId());
-//    model.addObject("richMenu", richMenu);
-
-    /** 修改時 取得所有選單 **/
-    RichMenuListResponse response = lineRichMenuService.getRichMenuList();
-    List<RichMenuResponse> RichMenuResponses = response.getRichMenus();
-    model.addObject("allRichMenu", RichMenuResponses);
-
     return model;
   }
 
@@ -107,27 +88,13 @@ public class LineUserController {
   }
 
   /** Redirect **/
-  @RequestMapping(value = "/save")
-  public ModelAndView save(ModelAndView model, RedirectAttributes attr, FormLineUser form, BindingResult result) {
-
-    String lineUserId = form.getUserId();
-    try {
-      LineUser lineUser = lineUserRepository.save(form.toLineUser());
-//			this.mappingWf8266AndLineUserRepository.updateAllIsUseFalseByLineUserId(form.getUserId());
-//			this.mappingWf8266AndLineUserRepository.saveAll(form.toMappingWf8266DetailAndUser());
-
-      if (StringUtils.isNotBlank(form.getRichMenuId())) {
-        this.lineRichMenuService.linkRichMenuToUser(form.getUserId(), form.getRichMenuId());
-      } else {
-        this.lineRichMenuService.unlinkRichMenuToUser(form.getUserId());
-      }
-
-      attr.addFlashAttribute("info_status", String.format("%s 的資料異動成功", lineUser.getUserName()));
-      return new ModelAndView(String.format("redirect:/line/user/view/%s", lineUserId));
-    } catch (Exception ex) {
-      attr.addFlashAttribute("error_status", String.format("資料異動時發生錯誤 : %s", ex.getMessage()));
-      return new ModelAndView(String.format("redirect:/line/user/edit/%s", lineUserId));
-    }
+  @RequestMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Object> save(FormLineUser form, BindingResult bindingResult) {
+    Map<String, Object> result = new HashMap<>();
+    LineUser lineUser = lineUserRepository.save(form.toLineUser());
+    result.put("status", "success");
+    result.put("data", lineUser);
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   /** autocomplete **/

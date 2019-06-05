@@ -12,7 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -22,16 +21,11 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeLocation;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-//@EqualsAndHashCode(callSuper = false)
-//public class Location extends BaseEntity {
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "tbl_location")
-//@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 /**
  * 據點 資料表
  */
@@ -41,10 +35,6 @@ public class Location {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-
-//  @OneToMany(fetch = FetchType.LAZY)
-//  @JoinColumn(name = "location_id")
-//  private List<LocationDetail> details = new ArrayList<>();
 
   @CreatedDate
   @Column(name = "create_date", nullable = false, updatable = false)
@@ -78,18 +68,19 @@ public class Location {
   @Column(name = "beacon_key")
   private String beaconKey;
 
-  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinColumn(name = "location_id")
-  @OrderBy(value = "id")
+  @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//  @JoinColumn(name = "location_id")
+  @OrderBy(value = "name")
   private List<LocationDetail> details = new ArrayList<>();
 
   /** 據點負責人 **/
-  @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @OrderBy("employeeId ASC")
   private List<MappingEmployeeLocation> mappingEL = new ArrayList<>();
 
   public List<Long> getEmployeeIds() {
-    return mappingEL.stream().map(MappingEmployeeLocation::getEmployeeId).collect(Collectors.toList());
+    return mappingEL.stream().filter(MappingEmployeeLocation::getIsUse).map(MappingEmployeeLocation::getEmployeeId)
+        .collect(Collectors.toList());
   }
 
 }

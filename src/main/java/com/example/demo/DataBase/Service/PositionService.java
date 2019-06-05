@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.DataBase.Entity.Position;
 import com.example.demo.DataBase.Entity.Mapping.MappingPositionPermissionPermissiondetail;
@@ -56,14 +55,13 @@ public class PositionService {
         .collect(Collectors.toList());
   }
 
-  @Transactional
   public void updateAllIsUseFalseWithPositionId(Long positionId) {
     mappingPositionPermissionPermissiondetailRepository.updateAllIsUseFalseWithPositionId(positionId);
   }
 
-  @Transactional
-  public List<MappingPositionPermissionPermissiondetail> saveAllMappingPPP(
+  public List<MappingPositionPermissionPermissiondetail> saveAllMappingPPP(Long positionId,
       List<MappingPositionPermissionPermissiondetail> list) {
+    this.updateAllIsUseFalseWithPositionId(positionId);
     return mappingPositionPermissionPermissiondetailRepository.saveAll(list);
   }
 

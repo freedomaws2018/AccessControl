@@ -19,17 +19,17 @@
       str +="    <input type='hidden' id='detail_" + index + "' name='detail[" + index + "].status' value='A' />";
       str +="  </td>";
       str +="  <td>";
-      str +="    <input type='text' class='form-control' name='detail[" + index + "].type' />";
+      str +="    <input type='text' class='form-control' name='detail[" + index + "].type' FDCV='not-blank' />";
       str +="  </td>";
       str +="  <td>";
-      str +="    <input type='text' class='form-control' name='detail[" + index + "].name' />";
+      str +="    <input type='text' class='form-control' name='detail[" + index + "].name' FDCV='not-blank' />";
       str +="  </td>";
       str +="  <td>";
-      str +="    <input type='text' class='form-control' name='detail[" + index + "].remarks' />";
+      str +="    <input type='text' class='form-control' name='detail[" + index + "].remarks'  />";
       str +="  </td>";      
       str +="  <td>";
       str +="    <label><input type='radio' value='true' name='detail[" + index + "].isSuperAdmin' />是</label>";
-      str +="    <label><input type='radio' value='false' name='detail[" + index + "].isSuperAdmin' />否</label>";
+      str +="    <label><input type='radio' value='false' name='detail[" + index + "].isSuperAdmin' checked />否</label>";
       str +="  </td>";
       str +="</tr>"
       $("#detail_table").append(str);
@@ -71,15 +71,17 @@
           statusEvnet.val("D");
           break;
         case "D":
-          $(btnEvent).text("刪除");
+          $(btnEvent).html("<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>刪除");
           statusEvnet.val("U");
           break;
       }
     }
   
   	submin_form = function(){
+  	  if($("#permission_form").form_verification()){
+  	    return;
+  	  }
   	  var jsonData = $("#permission_form").toJson()
-//   	  console.log(jsonData);
   	  $.ajax({
         type: 'POST',
         url: "/permission/save",
@@ -120,7 +122,7 @@
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
                 <input type="hidden" th:value="*{id}" name="id" />
-                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}" />
+                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}" placeholder="請輸入權限名稱" FDCV="not-blank" />
               </div>
               
             </div>
@@ -133,9 +135,8 @@
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
                 <input type="hidden" class="form-control" id="menuName" name="menuName" th:value="*{menuName}" />
-                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="*{menu.name}"/>
+                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="*{menu.name}" FDCV="not-blank" />
               </div>
-              
               
             </div>
             
@@ -172,11 +173,11 @@
                         </td>
                         
                         <td>
-                          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{name}" th:name="|detail[${iter.index}].name|" />
+                          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{name}" th:name="|detail[${iter.index}].name|" FDCV="not-blank" />
                         </td>
                         
                         <td>
-                          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{remarks}" th:name="|detail[${iter.index}].remarks|" />
+                          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{remarks}" th:name="|detail[${iter.index}].remarks|"  />
                         </td>
                         
                         <td th:if="${funcType eq 'edit' || funcType eq 'view'}">

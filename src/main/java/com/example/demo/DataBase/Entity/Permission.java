@@ -40,18 +40,19 @@ public class Permission {
   @Column(name = "modify_date", nullable = false)
   private LocalDateTime modifyDate = LocalDateTime.now();
 
+  /** 權限名稱 **/
   @Column(name = "name")
   private String name;
 
+  /** 權限對應選單 **/
   @Column(name = "menu_name")
   private String menuName;
-
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "menu_name", referencedColumnName = "menu_name", insertable = false, updatable = false, nullable = true)
   private Menu menu;
 
-  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinColumn(name = "permission_id")
+  /** 權限細節 ( 新刪改查...權限 ) **/
+  @OneToMany(mappedBy = "permissionId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @OrderBy(value = "type")
   private List<PermissionDetail> details = new ArrayList<>();
 

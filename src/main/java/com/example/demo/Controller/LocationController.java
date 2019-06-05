@@ -27,8 +27,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.Controller.FormEntity.FormLocation;
 import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Location;
+import com.example.demo.DataBase.Entity.RichMenu;
 import com.example.demo.DataBase.Service.EmployeeService;
 import com.example.demo.DataBase.Service.LocationService;
+import com.example.demo.DataBase.Service.RichMenuService;
 import com.google.common.base.Functions;
 
 @Controller
@@ -40,6 +42,9 @@ public class LocationController {
 
   @Autowired
   private EmployeeService employeeService;
+
+  @Autowired
+  private RichMenuService richMenuService;
 
   @GetMapping(value = "/list")
   private ModelAndView list(ModelAndView model,
@@ -65,6 +70,8 @@ public class LocationController {
     Map<Integer, Employee> empMap = employeeService.getAll().stream()
         .collect(Collectors.toMap(e -> Math.toIntExact(e.getId()), Functions.identity()));
     model.addObject("mappingEmp", empMap);
+    List<RichMenu> richMenus = richMenuService.getAllRichMenu();
+    model.addObject("richMenus", richMenus);
     return model;
   }
 
@@ -78,6 +85,8 @@ public class LocationController {
     Map<Integer, Employee> empMap = employeeService.getAll().stream()
         .collect(Collectors.toMap(e -> Math.toIntExact(e.getId()), Functions.identity()));
     model.addObject("mappingEmp", empMap);
+    List<RichMenu> richMenus = richMenuService.getAllRichMenu();
+    model.addObject("richMenus", richMenus);
 
     return model;
   }
@@ -86,16 +95,23 @@ public class LocationController {
   private ResponseEntity<Object> save(ModelAndView model, @Valid FormLocation form, BindingResult bindingResult) {
     Map<String, Object> result = new HashMap<>();
 
-//    if (result.hasErrors()) {
-//      List<FieldError> fieldErrors = result.getFieldErrors();
-//      for (FieldError error : fieldErrors) {
-//        System.err.printf("%s:%s:%s\n", error.getField(), error.getDefaultMessage(), error.getCode());
-//      }
+//  if (bindingResult.hasErrors()) {
+//    List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+//    for (FieldError error : fieldErrors) {
+//      System.err.printf("%s:%s:%s\n", error.getField(), error.getDefaultMessage(), error.getCode());
 //    }
+//  }
 
-    Location location = form.getLocaiton();
-    locationService.removeAllMappingWithLocationId(location.getId());
-    location = locationService.save(location);
+    Location location = null;
+    if (form.getId() == null) {
+      location = locationService.save(form.getLocaiton());
+    } else {
+      locationService.updateAllIsUseFalseByLoctionId(form.getId());
+      locationService.deleteAlLocationDetailByLocationId(form.getId());
+      location = locationService.save(form.getLocaitonWithId());
+      locationService.saveMappingEL(form.getMappingEL(location));
+      locationService.saveLocationDetails(form.getLocationDetails(location));
+    }
 
     result.put("status", "success");
     result.put("data", location);

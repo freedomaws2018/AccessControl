@@ -7,9 +7,9 @@ showConfirmDialog = function(titleText,bodyText,okFunction){
     show : false
   });
   var title = $('#dialog_default #dialog_default_title');
-  title.text(titleText);
+  title.html(titleText);
   var body = $('#dialog_default #dialog_default_body');
-  body.text(bodyText);
+  body.html(bodyText);
   var okBtn = $('#dialog_default #dialog_default_ok');
   okBtn.unbind("click");
   okBtn.click(okFunction);

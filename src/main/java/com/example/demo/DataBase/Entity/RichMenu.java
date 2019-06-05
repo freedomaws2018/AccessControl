@@ -8,9 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -21,9 +19,11 @@ import org.springframework.util.Base64Utils;
 import com.linecorp.bot.model.richmenu.RichMenuResponse;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "tbl_rich_menu")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
@@ -40,12 +40,21 @@ public class RichMenu {
   @Column(name = "name")
   private String name;
 
-  /** 區域編號 - 對應 Location **/
-  @Column(name = "location_id")
-  private Long locationId;
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
-  private Location location;
+//  /** 區域編號 - 對應 Location **/
+//  @Column(name = "location_id")
+//  private Long locationId;
+//  @Column(name = "location_detail_name")
+//  private String locationDetailName;
+//
+//  @OneToOne(fetch = FetchType.EAGER)
+//  @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
+//  private Location location;
+//
+//  @OneToOne(fetch = FetchType.EAGER)
+//  @JoinColumns({
+//      @JoinColumn(name = "location_id", referencedColumnName = "location_id", insertable = false, updatable = false, nullable = true),
+//      @JoinColumn(name = "location_detail_name", referencedColumnName = "name", insertable = false, updatable = false, nullable = true) })
+//  private LocationDetail locationDetail;
 
   private Long templateId;
 

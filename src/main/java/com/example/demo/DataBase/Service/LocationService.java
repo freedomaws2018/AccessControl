@@ -8,7 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Location;
+import com.example.demo.DataBase.Entity.LocationDetail;
 import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeLocation;
+import com.example.demo.DataBase.Repository.LocationDetailRepository;
 import com.example.demo.DataBase.Repository.LocationRepository;
 import com.example.demo.DataBase.Repository.MappingEmployeeLocationRepository;
 
@@ -19,11 +21,17 @@ public class LocationService {
   private LocationRepository locationRepository;
 
   @Autowired
+  private LocationDetailRepository locationDetailRepository;
+
+  @Autowired
   private MappingEmployeeLocationRepository mappingEmployeeLocationRepository;
 
-  public void removeAllMappingWithLocationId(Long locationId) {
-    List<MappingEmployeeLocation> mels= mappingEmployeeLocationRepository.findByLocationId(locationId);
-    mappingEmployeeLocationRepository.deleteAll(mels);
+  public void updateAllIsUseFalseByLoctionId(Long locationId) {
+    mappingEmployeeLocationRepository.updateAllIsUseFalseByLoctionId(locationId);
+  }
+
+  public void deleteAlLocationDetailByLocationId(Long locationId) {
+    locationDetailRepository.deleteAlLocationDetailByLocationId(locationId);
   }
 
   public List<Location> getAll() {
@@ -39,7 +47,15 @@ public class LocationService {
   }
 
   public Location save(Location location) {
-    return this.locationRepository.save(location);
+    return locationRepository.saveAndFlush(location);
+  }
+
+  public List<LocationDetail> saveLocationDetails(List<LocationDetail> details) {
+    return locationDetailRepository.saveAll(details);
+  }
+
+  public List<MappingEmployeeLocation> saveMappingEL(List<MappingEmployeeLocation> mappings) {
+    return mappingEmployeeLocationRepository.saveAll(mappings);
   }
 
   public void delete(Location location) {

@@ -77,9 +77,8 @@ public class PositionController {
       result.put("msg", "職稱已存在");
       return new ResponseEntity<>(result, HttpStatus.OK);
     } else {
-      positionService.updateAllIsUseFalseWithPositionId(form.getId());
       Position position = positionService.save(form.getPosition());
-      positionService.saveAllMappingPPP(form.getMappingPPP(form.getId()));
+      positionService.saveAllMappingPPP(position.getId(),form.getMappingPPP(position.getId()));
 
       result.put("status", "success");
       result.put("data", position);

@@ -5,25 +5,29 @@
   <script th:inline="javascript">
 
 	var reset_password = function(id,account){
-      $.ajax({
-        type: 'POST',
-        url: `/employee/resetPassword`,
-        data: {id:id,account:account},
-        dataType: 'json',
-        success: (result) => {
-          console.log(result);
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-        
-        }
-      });
+	  showConfirmDialog('確認刪除','確定要重置 ' + account + ' 的密碼嗎？<BR>重置後帳號與密碼相同。',function(){
+        $.ajax({
+          type: 'POST',
+          url: `/employee/resetPassword`,
+          data: {id:id,account:account},
+          dataType: 'json',
+          success: (result) => {
+            console.log(result);
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+          
+          }
+        });
+	  });
 	}
 	
 	var submin_form = function(){
-// 	    $("#employee_form").form_verification()
+	  if($("#employee_form").form_verification()){
+	    return;
+	  }
 	  
       var data = $("#employee_form").toJson();
-      console.log(data);
+      // console.log(data);
       $.ajax({
         method: 'post',
         url: '/employee/save',
@@ -80,29 +84,29 @@
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
-            <label class="font-weight-bold">登入帳號</label>
-            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="account" FDC-Verification="NotNull," />
+            <label class="font-weight-bold"><span class="req-field">*</span>登入帳號</label>
+            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="account" FDCV="not-blank" />
             <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reset_password(__*{id}__,'__*{account}__')|" value="重置密碼" />
-            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="account" th:value="*{account}" />
+            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="account" th:value="*{account}" FDCV="not-blank" />
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-            <label class="font-weight-bold">姓</label>
-            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="firstName" FDC-Verification="" />
-            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="firstName" th:value="*{firstName}" fdc-not-null="true" />
+            <label class="font-weight-bold"><span class="req-field">*</span>姓</label>
+            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="firstName" FDCV="not-blank" />
+            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="firstName" th:value="*{firstName}" FDCV="not-blank" />
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-            <label class="font-weight-bold">名</label>
-            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="lastName" th:value="*{lastName}" />
-            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="lastName" />
+            <label class="font-weight-bold"><span class="req-field">*</span>名</label>
+            <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="lastName" FDCV="not-blank" />
+            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="lastName" th:value="*{lastName}" FDCV="not-blank" />
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-            <label class="font-weight-bold">職稱</label>
+            <label class="font-weight-bold"><span class="req-field">*</span>職稱</label>
             <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reload_position()|" value="重置權限" />
             <div>
-              <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="positionId">
+              <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="positionId" FDCV="not-blank">
                 <option value="">請選擇職稱</option>
                 <option th:each="pos:${positions}" th:value="${pos.id}" th:text="${pos.name}" th:selected="|${pos.id} == *{positionId}|"></option>
               </select>
@@ -114,7 +118,7 @@
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-            <label class="font-weight-bold">在職狀態</label>
+            <label class="font-weight-bold"><span class="req-field">*</span>在職狀態</label>
             <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="positionStatus">
               <option value="0" th:selected="*{positionStatus} == 0">在職</option>
               <option value="1" th:selected="*{positionStatus} == 1">離職</option>
@@ -128,7 +132,7 @@
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-            <label class="font-weight-bold">是否啟用</label>
+            <label class="font-weight-bold"><span class="req-field">*</span>是否啟用</label>
             <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
               <label><input type="radio" name="isUse" value="true" th:disabled="${funcType eq 'view'}" th:checked="*{isUse}">是</label>
               <label><input type="radio" name="isUse" value="false" th:disabled="${funcType eq 'view'}" th:checked="!*{isUse}">否</label>
@@ -156,7 +160,8 @@
                       <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                   </label>
                   <label th:if="${ funcType eq 'add' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.id+':'+detail.type}" >
-                    <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" />[[*{name}]]
+                    <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" />
+                      <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                   </label>
                 </td>
               </tr>

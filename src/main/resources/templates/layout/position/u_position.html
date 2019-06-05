@@ -4,6 +4,9 @@
 <body layout:fragment="content" th:object="${position}">
   <script>
   submin_form = function(){
+    if($("#position_form").form_verification()){
+      return;
+    }
     var jsonData = $("#position_form").toJson();
     console.log(jsonData)
     $.ajax({
@@ -41,13 +44,13 @@
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
               <label class="font-weight-bold">職稱</label>
               <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="name" />
-              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}"/>
+              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}" FDCV='not-blank' />
             </div>
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
               <label class="font-weight-bold">預設</label>
               <div th:if="${funcType eq 'add'}">
-                <label><input type="radio" name="isDefault" value="true"  >是</label>
+                <label><input type="radio" name="isDefault" value="true" >是</label>
                 <label><input type="radio" name="isDefault" value="false" checked>否</label>
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
@@ -69,14 +72,16 @@
                   <td th:if="${funcType eq 'add'}">
                     <label th:each="detail:*{details}" th:object="${detail}">
                       <input type="checkbox" th:value='|{"permissionId":${permission.id},"permissionDetailType":"*{type}"}|' 
-                        JsonValue="true" name="permission" />[[*{name}]]
+                        JsonValue="true" name="permission" />
+                        <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                     </label>
                   </td>
                   <td th:if="${funcType eq 'edit' || funcType eq 'view'}">
                     <label th:each="detail:*{details}" th:object="${detail}">
                       <input type="checkbox" th:value='|{"permissionId":${permission.id},"permissionDetailType":"*{type}"}|' 
                         th:disabled="${funcType eq 'view'}" th:checked="${#lists.contains(mappingDetail,permission.id + detail.type)}"
-                        JsonValue="true" name="permission" />[[*{name}]] 
+                        JsonValue="true" name="permission" />
+                        <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                     </label>
                   </td>
                 </tr>

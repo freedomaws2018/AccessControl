@@ -115,11 +115,14 @@ public class MenuService {
 
     List<Menu> menus = menuRepository.findAll();
     List<Menu> mv1s = menus.stream().filter(menu -> menu.getLevel() == 1)
-        .filter(menu -> isAdmin || employeeHaveMenuList.contains(menu.getMenuName())).collect(Collectors.toList());
+        .filter(menu -> isAdmin || employeeHaveMenuList.contains(menu.getMenuName()))
+        .sorted(Comparator.comparing(Menu::getSort)).collect(Collectors.toList());
     List<Menu> mv2s = menus.stream().filter(menu -> menu.getLevel() == 2)
-        .filter(menu -> isAdmin || employeeHaveMenuList.contains(menu.getMenuName())).collect(Collectors.toList());
+        .filter(menu -> isAdmin || employeeHaveMenuList.contains(menu.getMenuName()))
+        .sorted(Comparator.comparing(Menu::getSort)).collect(Collectors.toList());
     List<Menu> mv3s = menus.stream().filter(menu -> menu.getLevel() == 3)
-        .filter(menu -> isAdmin || employeeHaveMenuList.contains(menu.getMenuName())).collect(Collectors.toList());
+        .filter(menu -> isAdmin || employeeHaveMenuList.contains(menu.getMenuName()))
+        .sorted(Comparator.comparing(Menu::getSort)).collect(Collectors.toList());
 
     mv3s.stream().forEach(mv3 -> {
       mv2s.stream().forEach(mv2 -> {
@@ -128,6 +131,7 @@ public class MenuService {
         }
       });
     });
+
     mv2s.stream().forEach(mv2 -> {
       mv1s.stream().forEach(mv1 -> {
         if (mv2.getParentMenuName().equals(mv1.getMenuName())) {
