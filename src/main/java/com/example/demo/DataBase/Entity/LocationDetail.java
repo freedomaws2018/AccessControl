@@ -51,6 +51,6 @@ public class LocationDetail {
   private String richMenuId;
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "rich_menu_id", referencedColumnName = "rich_menu_id", insertable = false, updatable = false, nullable = true)
-  private RichMenu richMenu = null;
+  private RichMenu richMenu;
 
 }

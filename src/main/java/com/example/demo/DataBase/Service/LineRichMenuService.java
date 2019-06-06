@@ -40,6 +40,10 @@ public class LineRichMenuService {
     return richMenuRepository.saveAll(richMenus);
   }
 
+  public List<com.example.demo.DataBase.Entity.RichMenu> getAll(){
+    return richMenuRepository.findAll();
+  }
+
 //  private final static String getRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
 
   public RichMenuResponse getRichMenu(String richMenuId) throws InterruptedException, ExecutionException {

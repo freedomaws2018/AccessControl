@@ -8,38 +8,66 @@
 <style>
 </style>
 <body layout:fragment="content">
-  <form th:action="@{/line/rich_menu/template/save}" enctype="Multipart/Form-Data" method="post" >
-    <input th:if="${funcType eq 'edit'}" type="hidden" name="id" th:value="${rmt.id}" />
-    <table>
-      <tr>
-        <td>樣板名稱：</td>
-        <td th:if="${funcType eq 'add'}"><input type="text" name="name"/></td>
-        <td th:if="${funcType eq 'view'}"><input type="text" name="name" th:value="${rmt.name}" readonly/></td>
-        <td th:if="${funcType eq 'edit'}"><input type="text" name="name" th:value="${rmt.name}"/></td>
-      </tr>
-    
-      <tr>
-        <td>樣板遮設片：</td>
-        <td th:if="${funcType eq 'add' || funcType eq 'edit' }"><input type="file" accept="image/png" name="imageFile"/></td>
-        <td th:if="${funcType eq 'view'}"><img width="300" th:src="@{|data:image/jpeg;base64,${rmt.image}|}" /></td>
-      </tr>
-    
-      <tr>
-        <td>樣板格式語法：</td>
-        <td th:if="${funcType eq 'add' || funcType eq 'edit' }"><input type="file" accept=".json" name="jsonFile"/></td>
-        <td th:if="${funcType eq 'view'}">
-          <textarea id="myTextArea" cols=50 rows=20 th:text="${rmt.getTemplateJson()}" readonly></textarea>
-          <script th:inline="javascript">
-            var ugly = document.getElementById('myTextArea').value;
-            var obj = JSON.parse([[${rmt.getTemplateJson()}]]);
-            var pretty = JSON.stringify(obj, undefined, 4);
-            document.getElementById('myTextArea').value = pretty;
-          </script>
-        </td>
-      </tr>
-    
-    </table>
-    <input th:if="${funcType eq 'add' || funcType eq 'edit' }" type="submit" />
+  <script>
+  $(function(){
+    $("#submit_form").click(function(){
+      if($("#rich_menu_template_form").form_verification()){
+  	    return;
+  	  }
+      $("#rich_menu_template_form").submit();
+    });
+  })
+  </script>
+  <form id="rich_menu_template_form" th:action="@{/line/rich_menu/template/save}" enctype="Multipart/Form-Data" method="post" >
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4"> <div class="col"> <div class="card">    
+      <div class="card-header">
+        <span class="glyphicon glyphicon-align-justify"></span>
+        <span th:if="${funcType eq 'add'}">Line@RichMenu樣板 - 新增</span>
+        <span th:if="${funcType eq 'edit'}">Line@RichMenu樣板 - 修改</span>
+        <span th:if="${funcType eq 'view'}">Line@RichMenu樣板 - 檢視</span>
+      </div>
+      <div class="card-body" th:object="${richMenu}">
+        <input th:if="${funcType eq 'edit'}" type="hidden" name="id" th:value="${rmt.id}" />
+        <div class="row">
+        
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+            <label class="font-weight-bold"><span class="req-field">*</span>選單名稱</label>
+            <input type="text"  th:if="${funcType eq 'add'}" class="form-control" name="name" FDCV="not-blank"/>
+            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" class="form-control" th:disabled="${funcType eq 'view'}" type="text" name="name" th:value="${rmt.name}" FDCV="not-blank" />
+          </div>
+          
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+            <label class="font-weight-bold"><span class="req-field">*</span>樣板遮設片</label>
+            <input type="file" th:if="${funcType eq 'add' || funcType eq 'edit' }" accept="image/png" name="imageFile" FDCV="not-blank"/>
+            <img width="300" th:if="${funcType eq 'view'}" th:src="@{|data:image/jpeg;base64,${rmt.image}|}" />
+          </div>
+          
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+            <label class="font-weight-bold"><span class="req-field">*</span>樣板格式語法</label>
+            <input type="file" th:if="${funcType eq 'add' || funcType eq 'edit' }" accept=".json" name="jsonFile"  FDCV="not-blank"/>
+            <div th:if="${funcType eq 'view'}">
+              <textarea id="myTextArea" cols=50 rows=20 th:text="${rmt.getTemplateJson()}" readonly></textarea>
+              <script th:inline="javascript">
+                var ugly = document.getElementById('myTextArea').value;
+                var obj = JSON.parse([[${rmt.getTemplateJson()}]]);
+                var pretty = JSON.stringify(obj, undefined, 4);
+                document.getElementById('myTextArea').value = pretty;
+              </script>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="row justify-content-center">
+          <a th:if="${funcType eq 'edit' || funcType eq 'add'}">
+            <button type="button" id="submit_form" class="btn btn-primary btn-sm">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+            </button>
+          </a>
+        </div> 
+        
+      </div>
+    </div> </div> </div>
   </form>
 </body>
 </html>

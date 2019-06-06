@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,6 +54,7 @@ public class LineUserController {
     model = new ModelAndView("layout/line/l_line_user");
     Page<LineUser> users = this.lineUserRepository.findAll(pageable);
     model.addObject("users", users);
+    model.addObject("allRichMenu", lineRichMenuService.getAll());
     return model;
   }
 
@@ -60,6 +62,7 @@ public class LineUserController {
   public ModelAndView add(ModelAndView model) {
     model = new ModelAndView("layout/line/u_line_user");
     model.addObject("funcType", "add");
+    model.addObject("allRichMenu", lineRichMenuService.getAll());
     return model;
   }
 
@@ -72,6 +75,7 @@ public class LineUserController {
     LineUser user = lineUserRepository.findById(userId).orElse(null);
 
     model.addObject("user", user);
+    model.addObject("allRichMenu", lineRichMenuService.getAll());
     return model;
   }
 
@@ -91,9 +95,19 @@ public class LineUserController {
   @RequestMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> save(FormLineUser form, BindingResult bindingResult) {
     Map<String, Object> result = new HashMap<>();
-    LineUser lineUser = lineUserRepository.save(form.toLineUser());
+    LineUser lineUser = lineUserRepository.saveAndFlush(form.toLineUser());
     result.put("status", "success");
     result.put("data", lineUser);
+    try {
+      if (StringUtils.isBlank(form.getRichMenuId())) {
+        lineRichMenuService.unlinkRichMenuToUser(lineUser.getUserId());
+      } else {
+        lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), lineUser.getRichMenuId());
+      }
+    } catch (Exception ex) {
+      result.put("status", "error");
+      result.put("err_msg", ex.getMessage());
+    }
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 

@@ -30,7 +30,7 @@ public class FormLineUser {
 
 //	private List<MappingWf8266AndLineUser> mappings;
 
-//	private String richMenuId;
+	private String richMenuId;
 
 	public LineUser toLineUser() {
 		LineUser lineUser = new LineUser();
@@ -39,7 +39,7 @@ public class FormLineUser {
 		lineUser.setIsUse(this.isUse);
 		lineUser.setBegDt(this.begDt);
 		lineUser.setEndDt(this.endDt);
-//		lineUser.setRichMenuId(this.richMenuId);
+		lineUser.setRichMenuId(this.richMenuId);
 		return lineUser;
 	}
 

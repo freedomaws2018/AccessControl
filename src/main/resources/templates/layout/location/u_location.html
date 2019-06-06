@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+\<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
 <head> <meta charset="UTF-8" > </head>
 
 <body layout:fragment="content">
@@ -28,7 +28,7 @@
         str +="  </td>";   
         
         str +="  <td>";
-        str +="    <label><input type='radio' value='true' name='detail[" + index + "].isSpace'  />是</label>";
+        str +="    <label><input type='radio' value='true' name='detail[" + index + "].isSpace' />是</label>";
         str +="    <label><input type='radio' value='false' name='detail[" + index + "].isSpace' checked />否</label>";
         str +="  </td>";
 
@@ -49,7 +49,7 @@
         str +="    <option value>--請選擇--</option>";
         $.each(richMenus , function(index , richMenu){
           str +="    <option value='" + richMenu.richMenuId + "'>" + richMenu.name +"</option>";
-        })
+        });
         str +="    </select>";
         str +="  </td>";
         
@@ -63,7 +63,7 @@
           return;
         }
         var jsonData = $("#location_form").toJson();
-// 		console.log(jsonData)
+		console.log(jsonData)
         $.ajax({
           method: 'post',
           url: '/location/save',
@@ -72,8 +72,9 @@
           success: function(result){
             if(result.status === 'success'){
               window.location.replace("/location/view/" + result.data.id);
-            }else{
-              console.log(result);
+            }
+            if(result.status === 'error'){
+              alert(result.err_msg);
             }
           },
           error: function(error){
@@ -148,7 +149,7 @@
                 <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="beaconKey" name="beaconKey" th:value="*{beaconKey}"/>
               </div>     
               
-              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12">
                 <label class="font-weight-bold"><span class="req-field">*</span>負責人</label>
 <!--                 [[${location}]] -->
 <!--                 <sapn th:each="emp:${mappingEmp}" th:value="${emp.value.id}" th:text="|${emp.value.name},${emp.value.isUse}|" ></span> -->
@@ -160,7 +161,7 @@
                 </select>
               </div>
               
-              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+              <div class="col-12">
                 <label class="font-weight-bold">細項：</label>
                 <table class="table" >
                  <tr>
@@ -215,7 +216,7 @@
                           <td>
                             <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].richMenuId|" class="form-control">
                               <option value>--請選擇--</option>
-                              <option th:each="rm:${richMenus}" th:value="${rm.richMenuId}">[[${rm.name}]]</option>
+                              <option th:each="rm:${richMenus}" th:value="${rm.richMenuId}" th:selected="${rm.richMenuId} == *{richMenuId}">[[${rm.name}]]</option>
                             </select>
                           </td>
                         </tr>

@@ -40,7 +40,7 @@
   
   var create_rich_menu_action_table = function(actionJson){
     $("#richMenuActionTable").find("tbody").find("tr").remove();
-    console.log(actionJson);
+    // console.log(actionJson);
     
     if(actionJson && actionJson.areas){
       var size = actionJson.size;
@@ -72,12 +72,15 @@
   }
   
   var change_action_detail = function(event ,index){
-    console.log(event,index);
+    // console.log(event,index);
     var detail = $("#detail_" + index);
     detail.html('');
     switch(event.value){
     case 'change_view':
-      var change_view_str = `至<input type="text" id="action_${index}" name="actions[${index}].data" />`;
+      var change_view_str = `至
+      <input type="text" id="action_${index}" name="actions[${index}].data" FDCV="not-blank"/>
+      
+      `;
       detail.html(change_view_str);
     
       $("#action_" + index).autocomplete({
@@ -98,8 +101,16 @@
             
       break;
     case 'trigger_iot':
-     var trigger_iot_str = `觸發：
-       <input type="text" id="action_${index}" />
+     var trigger_iot_str = `
+       <div class="row">
+         <div class="col-5">觸發
+        	<input type="hidden" id="locationId_${index}" />
+         	<input type="text" class="form-control" id="location_${index}" />
+         </div>
+         <div class="col-5">的
+         	<input type="text" class="form-control" id="action_${index}" FDCV="not-blank" />
+         </div>
+       </div>
        <input type="hidden" id="action_data_${index}" name="actions[${index}].data" />
        <input type="hidden" id="action_text_${index}" name="actions[${index}].text" />
      `;
@@ -108,7 +119,7 @@
       $("#action_" + index).autocomplete({
         minLength: 0,
         source: function(request,response){
-      	var locationId = $("#locationId").val();
+      	  var locationId = $("#locationId_" + index).val();
           $.ajax({
             method: 'post',
             url: '/wf8266/autocomplete/getAllWf8266DetailWithLocationIdAndName',
@@ -129,6 +140,31 @@
       })
       .blur(function(){ $(this).autocomplete('enable'); })
       .focus(function () { $(this).autocomplete('search', ''); });  
+      
+      $("#location_" + index).autocomplete({
+        minLength: 0,
+        source: function(request,response){
+        	$.ajax({
+        	  method: 'post',
+            url: '/location/autocomplete/getAll',
+            data: request,
+            dataType: 'json',
+            success: function(result){
+            	var data = [];
+            	result.forEach(function(d){ data.push({ label: d.name, value: d.name, object: d }); });
+              response(data);
+            }
+          });
+        },
+        select: function(event,ui){
+          var index = this.id.split("_")[1];
+          console.log(ui.item.object)
+          $("#locationId_" + index).val(ui.item.object.id);
+        }
+      })
+      .blur(function(){ $(this).autocomplete('enable'); })
+      .focus(function () { $(this).autocomplete('search', ''); });  
+      
       break;
     }
   }
@@ -136,32 +172,12 @@
   $().ready(function(){
     
     $("#rich_menu_submit").click(function(){
+      if($("#rich_menu_form").form_verification()){
+  	    return;
+  	  }
       $("#rich_menu_form").submit();
     });
     
-    $("#auto_location").autocomplete({
-      minLength: 0,
-      source: function(request,response){
-      	$.ajax({
-      	  method: 'post',
-          url: '/location/autocomplete/getAll',
-          data: request,
-          dataType: 'json',
-          success: function(result){
-          	var data = [];
-          	result.forEach(function(d){ data.push({ label: d.name, value: d.name, object: d }); });
-            response(data);
-          }
-        });
-      },
-      select: function(event,ui){
-    	  var obj = ui.item.object;
-    	  $("#locationId").val(obj.id);
-    	  $("#location_address").text(obj.address);
-      }
-    })
-    .blur(function(){ $(this).autocomplete('enable'); })
-    .focus(function () { $(this).autocomplete('search', ''); });  
   });
   </script>
 
@@ -203,21 +219,21 @@
 		      <div class="row">
 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>選單名稱</label><br>
-		          <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" />
-		          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{name}"  th:disabled="${funcType eq 'view'}"/>
+		          <input th:if="${funcType eq 'add'}" class="form-control" id="name" name="name" FDCV="not-blank" />
+		          <input th:if="${funcType eq 'edit' || funcType eq 'view'}" class="form-control" id="name" name="name" th:value="*{name}"  th:disabled="${funcType eq 'view'}" FDCV="not-blank" />
 		        </div>
 			  </div>
 			  <div class="row">
 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>選單版型</label>
 		          <div th:if="${funcType eq 'add'}">
-		            <select class="form-control" name="templateId" th:onchange="|create_rich_menu_list(this)|"  >
+		            <select class="form-control" name="templateId" th:onchange="|create_rich_menu_list(this)|" FDCV="not-blank" >
 		              <option value="">請選擇</option>
 		              <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" />
 		            </select>
 		          </div>  
 		          <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
-		            <select class="form-control" name="templateId" th:onchange="|create_rich_menu_list(this)|">
+		            <select class="form-control" name="templateId" th:onchange="|create_rich_menu_list(this)|" FDCV="not-blank">
 		              <option value="">請選擇</option>
 		              <option th:each="temp:${templates}" th:object="${temp}" th:value="*{id}" th:text="*{name}" />
 		            </select>
@@ -225,25 +241,10 @@
 		        </div> 
 		      </div>
           
-<!-- 		      <div class="row"> -->
-<!-- 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10"> -->
-<!-- 		          <label class="font-weight-bold"><span class="req-field">*</span>使用據點</label><br> -->
-<!-- 		          <div th:if="${funcType eq 'add' || funcType eq 'edit'}"> -->
-<!-- 		            <input type="hidden" id="locationId" name="locationId" required /> -->
-<!-- 		          	<input type="text" class="form-control" id="auto_location" ></input> -->
-<!-- 		          	<span id="location_address" class="location_address" ></span> -->
-<!-- 		          </div> -->
-<!-- 		          <div th:if="${ funcType eq 'view'}"> -->
-<!-- 		            <input type="hidden" id="locationId" name="locationId" ></input> -->
-<!-- 		            <span id="location_address" class="location_address" th:text="|*{location?.name}:*{location?.address}|" ></span> -->
-<!-- 		          </div> -->
-<!-- 		        </div>          -->
-<!-- 		      </div>   -->
-          
 		      <div th:if="${funcType eq 'add' || funcType eq 'edit'}" class="row">
 		        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-10">
 		          <label class="font-weight-bold"><span class="req-field">*</span>選單圖片</label><br>
-		          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" multiple>
+		          <input type="file" name="image" accept="image/*" onchange="loadFile(event,'image_output')" FDCV="not-blank">
 		        </div>
 		      </div>
 			</div>

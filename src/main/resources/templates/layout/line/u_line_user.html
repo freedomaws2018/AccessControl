@@ -61,15 +61,15 @@
               <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="userName" name="userName" th:value="${user.userName}"/>
             </div>
   
-<!--             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5"> -->
-<!--               <label class="font-weight-bold">當前使用選單</label> -->
-<!--               <div th:if="${funcType eq 'edit' || funcType eq 'view'}" > -->
-<!--                 <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" name="richMenuId"> -->
-<!--                   <option value="">請選擇</option> -->
-<!--                   <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${user.richMenuId}"></option> -->
-<!--                 </select> -->
-<!--               </div> -->
-<!--             </div>       -->
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+              <label class="font-weight-bold">當前使用選單</label>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
+                <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" name="richMenuId">
+                  <option value="">請選擇</option>
+                  <option th:each="menu:${allRichMenu}" th:object="${menu}" th:value="*{richMenuId}" th:text="*{name}" th:selected="*{richMenuId} == ${user.richMenuId}"></option>
+                </select>
+              </div>
+            </div>
                       
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
               <label class="font-weight-bold">有效時限</label><br>
