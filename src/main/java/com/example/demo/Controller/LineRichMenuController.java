@@ -174,32 +174,9 @@ public class LineRichMenuController {
     dbRichMenu.setName(name);
     dbRichMenu.setImage(image.getBytes());
 //    dbRichMenu.setLocationId(locationId);
-    dbRichMenu.setTemplateId(templateId);
+//    dbRichMenu.setTemplateId(templateId);
     dbRichMenu.setRichMenuResponse(lineRichMenuService.getRichMenu(richMenuIdResponse.getRichMenuId()));
     dbRichMenu = richMenuRepository.save(dbRichMenu);
-
-//    // 3. 是否有舊版型
-//    if (StringUtils.isNotBlank(oldRichMenuId)) {
-//      // 3.1 重新推送 更新後的版型給 當前使用中的所有人 (Thread)
-//      List<LineUser> users = lineUserRepository.getAllAndRichMenuIdIsNotNullAndisUseTrueAndEffective();
-//      for (LineUser user : users) {
-//        try {
-//          if (StringUtils.isNotBlank(user.getRichMenuId())) {
-//            RichMenuIdResponse rmir = lineRichMenuService.getRichMenuIdLinkToUser(user.getUserId());
-//            System.err.printf("%s , %s", rmir.getRichMenuId(), oldRichMenuId);
-//            if (rmir.getRichMenuId().equals(oldRichMenuId)) {
-//              // 推送新選單
-//              lineRichMenuService.linkRichMenuToUser(user.getUserId(), richMenuIdResponse.getRichMenuId());
-//            }
-//          }
-//        } catch (Exception ex) {
-//          System.err.println(ex.getMessage());
-//        }
-//      }
-//
-//      // 3.2 刪除 已被覆蓋的模型
-//      lineRichMenuService.deleteRichMenu(oldRichMenuId);
-//    }
 
     return model;
   }
@@ -254,6 +231,7 @@ public class LineRichMenuController {
   /** getRichMenuList & downloadImage 寫入資料庫 **/
   @PostMapping(value = "/ajax/getRichMenuDataOnLineServer", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> ajaxGetRichMenuDataOnLineServer() throws InterruptedException, ExecutionException {
+    richMenuRepository.deleteAll();
     RichMenuListResponse response = lineRichMenuService.getRichMenuList();
     List<RichMenuResponse> richMenuResponses = response.getRichMenus();
     List<com.example.demo.DataBase.Entity.RichMenu> richMenus = richMenuResponses.stream().map(richMenu -> {

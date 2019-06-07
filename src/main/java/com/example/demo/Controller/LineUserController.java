@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,11 +29,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Controller.FormEntity.FormLineUser;
 import com.example.demo.DataBase.Entity.LineUser;
+import com.example.demo.DataBase.Entity.LocationDetail;
 import com.example.demo.DataBase.Entity.Mapping.MappingLineuserWf8266;
 import com.example.demo.DataBase.Repository.LineUserRepository;
 import com.example.demo.DataBase.Repository.MappingLineuserWf8266Repository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 import com.example.demo.DataBase.Service.LineRichMenuService;
+import com.example.demo.DataBase.Service.LocationService;
+import com.linecorp.bot.model.action.PostbackAction;
 
 @Controller
 @RequestMapping(value = "/line/user")
@@ -48,6 +54,9 @@ public class LineUserController {
   @Autowired
   private LineRichMenuService lineRichMenuService;
 
+  @Autowired
+  private LocationService locationService;
+
   @GetMapping(value = "/list")
   public ModelAndView list(ModelAndView model,
       @PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.ASC) Pageable pageable) {
@@ -63,6 +72,7 @@ public class LineUserController {
     model = new ModelAndView("layout/line/u_line_user");
     model.addObject("funcType", "add");
     model.addObject("allRichMenu", lineRichMenuService.getAll());
+    model.addObject("allLocation", locationService.getAll(Sort.by(Order.asc("id"))));
     return model;
   }
 
@@ -76,6 +86,7 @@ public class LineUserController {
 
     model.addObject("user", user);
     model.addObject("allRichMenu", lineRichMenuService.getAll());
+    model.addObject("allLocation", locationService.getAll(Sort.by(Order.asc("id"))));
     return model;
   }
 
@@ -95,15 +106,32 @@ public class LineUserController {
   @RequestMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> save(FormLineUser form, BindingResult bindingResult) {
     Map<String, Object> result = new HashMap<>();
-    LineUser lineUser = lineUserRepository.saveAndFlush(form.toLineUser());
-    result.put("status", "success");
-    result.put("data", lineUser);
     try {
+      LineUser lineUser = lineUserRepository.saveAndFlush(form.toLineUser());
+      result.put("status", "success");
+      result.put("data", lineUser);
+
       if (StringUtils.isBlank(form.getRichMenuId())) {
         lineRichMenuService.unlinkRichMenuToUser(lineUser.getUserId());
       } else {
         lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), lineUser.getRichMenuId());
       }
+
+      mappingLineuserWf8266Repository.updateAllIsUseFalseByLineUserId(lineUser.getUserId());
+      LocationDetail ld = locationService.getLocationDetailByLocationIdAndLocationDetailName(lineUser.getLocationId(), lineUser.getLocationDetailName());
+      com.example.demo.DataBase.Entity.RichMenu richMenu  = lineRichMenuService.getByRichMenuId(ld.getRichMenuId());
+      List<MappingLineuserWf8266> mappingLWs = richMenu.getRichMenuResponse().getAreas().stream()
+          .map(area -> {
+            MappingLineuserWf8266 mappingLW = new MappingLineuserWf8266();
+            PostbackAction pa = (PostbackAction) area.getAction();
+            String data = pa.getData(); // ##15738184_一樓大門
+            mappingLW.setIsUse(true);
+            mappingLW.setLineUserId(lineUser.getUserId());
+            mappingLW.setWf8266Sn(data.substring(2).split("_")[0]);
+            mappingLW.setWf8266DetailName(data.substring(2).split("_")[1]);
+            return mappingLW;
+          }).collect(Collectors.toList());
+      mappingLineuserWf8266Repository.saveAll(mappingLWs);
     } catch (Exception ex) {
       result.put("status", "error");
       result.put("err_msg", ex.getMessage());

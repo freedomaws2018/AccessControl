@@ -44,7 +44,10 @@
           url: '/menu/autocomplete/getMenu', data: request, dataType: 'json',
           success: function(result){
             var data = [];
-            result.forEach(function(d){ data.push({ label: d.name, value: d.name , obj: d}); });
+            result.forEach(function(d){ 
+              var label = d.menuName + " : " + d.name;
+              data.push({ label: label, value:label , obj: d}); 
+            });
             response(data);
           }
         });
@@ -135,7 +138,7 @@
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
                 <input type="hidden" class="form-control" id="menuName" name="menuName" th:value="*{menuName}" />
-                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="*{menu.name}" FDCV="not-blank" />
+                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="|*{menuName} : *{menu.name}|" FDCV="not-blank" />
               </div>
               
             </div>

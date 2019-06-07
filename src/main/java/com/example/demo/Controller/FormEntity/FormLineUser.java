@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.demo.DataBase.Entity.LineUser;
@@ -13,38 +14,42 @@ import lombok.Data;
 @Data
 public class FormLineUser {
 
-	@NotNull
-	private String userId;
+  @NotNull
+  private String userId;
 
-	@NotNull
-	private String userName;
+  @NotNull
+  private String userName;
 
-	@NotNull
-	private Boolean isUse;
+  @NotNull
+  private Boolean isUse;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	private LocalDateTime begDt;
+  @NotNull
+  private Boolean isAdmin;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	private LocalDateTime endDt;
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+  private LocalDateTime begDt;
 
-//	private List<MappingWf8266AndLineUser> mappings;
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+  private LocalDateTime endDt;
 
-	private String richMenuId;
+  private Long locationId;
 
-	public LineUser toLineUser() {
-		LineUser lineUser = new LineUser();
-		lineUser.setUserId(this.userId);
-		lineUser.setUserName(this.userName);
-		lineUser.setIsUse(this.isUse);
-		lineUser.setBegDt(this.begDt);
-		lineUser.setEndDt(this.endDt);
-		lineUser.setRichMenuId(this.richMenuId);
-		return lineUser;
-	}
+  private String locationDetailName;
 
-//	public List<MappingWf8266AndLineUser> toMappingWf8266DetailAndUser() {
-//		return this.mappings.stream().filter(entity -> entity.getIsUse() != null).collect(Collectors.toList());
-//	}
+  private String richMenuId;
+
+  public LineUser toLineUser() {
+    LineUser lineUser = new LineUser();
+    lineUser.setUserId(this.userId);
+    lineUser.setUserName(this.userName);
+    lineUser.setIsUse(this.isUse);
+    lineUser.setIsAdmin(this.isAdmin);
+    lineUser.setBegDt(this.begDt);
+    lineUser.setEndDt(this.endDt);
+    lineUser.setLocationId(this.locationId);
+    lineUser.setLocationDetailName(StringUtils.isNotBlank(this.locationDetailName) ? this.locationDetailName : null);
+    lineUser.setRichMenuId(StringUtils.isNotBlank(this.richMenuId) ? this.richMenuId : null);
+    return lineUser;
+  }
 
 }

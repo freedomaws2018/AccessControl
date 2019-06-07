@@ -1,0 +1,37 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 843
+  },
+  "selected": false,
+  "name": ":name",
+  "chatBarText": ":chatBarText",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1250,
+        "height": 843
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text01",
+        "data": ":data01"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1276,
+        "y": 0,
+        "width": 2500,
+        "height": 843
+      },
+      "action": {
+        "type": "postback",
+        "text": ":text02",
+        "data": ":data02"
+      }
+    }
+  ]
+}

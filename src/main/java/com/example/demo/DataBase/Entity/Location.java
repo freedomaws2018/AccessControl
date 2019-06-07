@@ -20,10 +20,13 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeLocation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "tbl_location")
 /**
@@ -68,12 +71,13 @@ public class Location {
   @Column(name = "beacon_key")
   private String beaconKey;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//  @JoinColumn(name = "location_id")
-  @OrderBy(value = "name")
+  @OrderBy(value = "name ASC")
   private List<LocationDetail> details = new ArrayList<>();
 
   /** 據點負責人 **/
+  @JsonIgnore
   @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @OrderBy("employeeId ASC")
   private List<MappingEmployeeLocation> mappingEL = new ArrayList<>();

@@ -44,6 +44,10 @@ public class LineRichMenuService {
     return richMenuRepository.findAll();
   }
 
+  public com.example.demo.DataBase.Entity.RichMenu getByRichMenuId(String richMneuId){
+    return richMenuRepository.findById(richMneuId).orElse(null);
+  }
+
 //  private final static String getRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
 
   public RichMenuResponse getRichMenu(String richMenuId) throws InterruptedException, ExecutionException {

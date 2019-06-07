@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Location;
@@ -38,12 +39,24 @@ public class LocationService {
     return this.locationRepository.findAll();
   }
 
+  public List<Location> getAll(Sort sort) {
+    return this.locationRepository.findAll(sort);
+  }
+
   public Page<Location> getAll(Pageable pageable) {
     return this.locationRepository.findAll(pageable);
   }
 
   public Location getById(Long id) {
     return this.locationRepository.findById(id).orElse(null);
+  }
+
+  public List<LocationDetail> getLocationDetailByLocationId(Long locationId){
+    return locationDetailRepository.findByLocationId(locationId);
+  }
+
+  public LocationDetail getLocationDetailByLocationIdAndLocationDetailName(Long locationId,String locationDetailName) {
+    return locationDetailRepository.findByLocationIdAndName(locationId, locationDetailName).orElse(null);
   }
 
   public Location save(Location location) {
@@ -63,6 +76,6 @@ public class LocationService {
   }
 
   public List<Location> getByNameLike(String name) {
-    return this.locationRepository.getByNameLikeOrderByLenNameAndNameLimit10(name);
+    return this.locationRepository.getByNameLikeOrderByLenNameAndNameLimit10("%" + name + "%");
   }
 }

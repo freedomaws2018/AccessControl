@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.Controller.FormEntity.FormLocation;
 import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Location;
+import com.example.demo.DataBase.Entity.LocationDetail;
 import com.example.demo.DataBase.Entity.RichMenu;
 import com.example.demo.DataBase.Service.EmployeeService;
 import com.example.demo.DataBase.Service.LocationService;
@@ -131,9 +133,19 @@ public class LocationController {
   /** autocomplete **/
   @PostMapping(value = "/autocomplete/getAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   private ResponseEntity<Object> getAll(String term) {
-    List<Location> location = this.locationService.getByNameLike(term);
+    List<Location> locations;
+    if (StringUtils.isNotBlank(term)) {
+      locations = locationService.getByNameLike(term);
+    } else {
+      locations = locationService.getByNameLike("");
+    }
+    return new ResponseEntity<>(locations, HttpStatus.OK);
+  }
 
-    return new ResponseEntity<>(location, HttpStatus.OK);
+  @PostMapping(value = "/getLocationDetailByLocationId", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  private ResponseEntity<Object> getLocationDetailByLocationId(Long locationId){
+    List<LocationDetail> details = locationService.getLocationDetailByLocationId(locationId);
+    return new ResponseEntity<>(details, HttpStatus.OK);
   }
 
 }

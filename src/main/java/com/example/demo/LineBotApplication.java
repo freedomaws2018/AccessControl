@@ -4,14 +4,18 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.DataBase.Entity.LineUser;
-import com.example.demo.DataBase.Repository.LineUserRepository;
+import com.example.demo.DataBase.Entity.LocationDetail;
 import com.example.demo.DataBase.Service.LineBotService;
+import com.example.demo.DataBase.Service.LineRichMenuService;
+import com.example.demo.DataBase.Service.LineUserService;
+import com.example.demo.DataBase.Service.LocationService;
 import com.linecorp.bot.model.event.BeaconEvent;
 import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.event.MessageEvent;
@@ -33,7 +37,13 @@ public class LineBotApplication {
   private LineBotService lineBotService;
 
   @Autowired
-  private LineUserRepository lineUserRepository;
+  private LineUserService lineUserService;
+
+  @Autowired
+  private LocationService locationService;
+
+  @Autowired
+  private LineRichMenuService lineRichMenuService;
 
   /** 加入/解除封鎖 時 **/
   @EventMapping
@@ -43,7 +53,7 @@ public class LineBotApplication {
       UserProfileResponse userProfile = lineBotService.getProfileByUserId(userId);
       String userName = userProfile.getDisplayName();
 
-      LineUser lineUser = lineUserRepository.getByUserId(userId).orElse(null);
+      LineUser lineUser = lineUserService.getByUserId(userId);
       if (lineUser == null) {
         lineUser = new LineUser();
         lineUser.setCreateDate(LocalDateTime.now(ZoneId.of("UTC+8")));
@@ -55,7 +65,7 @@ public class LineBotApplication {
       } else {
         lineUser.setIsUse(false);
       }
-      lineUserRepository.save(lineUser);
+      lineUserService.save(lineUser);
       logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
       return new TextMessage(userProfile.getDisplayName() + " - 註冊成功");
     } catch (Exception ex) {
@@ -68,17 +78,17 @@ public class LineBotApplication {
   @EventMapping
   public void handleUnfollowEvent(UnfollowEvent event) {
     String userId = event.getSource().getUserId();
-    LineUser lineUser = this.lineUserRepository.getByUserIdAndIsUseTrue(userId).orElse(null);
+    LineUser lineUser = lineUserService.getByUserIdAndIsUseTrue(userId);
 
     if (lineUser != null) {
       lineUser.setIsUse(false);
-      this.lineUserRepository.save(lineUser);
+      lineUserService.save(lineUser);
       logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
     }
 
   }
 
-  /** MessageEvent 不處理任何事物  **/
+  /** MessageEvent 不處理任何事物 **/
   @EventMapping
   public void handleMessageEvent(MessageEvent<MessageContent> event) {
   }
@@ -91,7 +101,7 @@ public class LineBotApplication {
       String text = event.getPostbackContent().getData();
       List<String> triggerTexts = Arrays.asList(text.split(","));
       String replyStr = lineBotService.wf8266Handle(userId, triggerTexts);
-      if (replyStr != null) {
+      if (replyStr != null && replyStr.length() > 0) {
         return new TextMessage(replyStr);
       }
     } catch (Exception ex) {
@@ -100,11 +110,32 @@ public class LineBotApplication {
     return null;
   }
 
-  /** Beacon 觸發時 **/
+  /**
+   * Beacon 觸發時
+   *
+   * @throws ExecutionException
+   * @throws InterruptedException
+   **/
   @EventMapping
-  public TextMessage handleBeaconEvent(BeaconEvent event) {
-    String text = event.getBeacon().getType();
-    return new TextMessage(text);
+  public TextMessage handleBeaconEvent(BeaconEvent event) throws InterruptedException, ExecutionException {
+    String userId = event.getSource().getUserId();
+    String senderId = event.getSource().getSenderId();
+    String type = event.getBeacon().getType();
+    String hwid = event.getBeacon().getHwid();
+    String deviceMessageAsHex = event.getBeacon().getDeviceMessageAsHex();
+    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", userId,
+        senderId, type, hwid, deviceMessageAsHex);
+    if ("enter".equals(type)) {
+      LineUser lineUser = lineUserService.getByIsUseTrueAndEffectiveAndUserId(userId);
+      if (lineUser != null) {
+        LocationDetail ld = locationService.getLocationDetailByLocationIdAndLocationDetailName(lineUser.getLocationId(),
+            lineUser.getLocationDetailName());
+        com.example.demo.DataBase.Entity.RichMenu richMenu = lineRichMenuService.getByRichMenuId(ld.getRichMenuId());
+        lineRichMenuService.linkRichMenuToUser(userId, richMenu.getRichMenuId());
+        lineUserService.setRichMenuIdByUserId(userId, richMenu.getRichMenuId());
+      }
+    }
+    return new TextMessage(textMessage);
   }
 
 }

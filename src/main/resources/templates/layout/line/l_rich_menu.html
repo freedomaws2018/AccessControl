@@ -63,15 +63,18 @@
         </thead>
         <tbody class="center">
           <tr th:if="${richMenus.empty}">
-            <th colspan="4">沒有資料</th>
+            <th colspan="3">沒有資料</th>
           </tr>
         
           <tr th:unless="${richMenus.empty}" th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
             <th scope="row" th:richMenu="*{richMenuId}">
               <span style="display: none;"  th:text="*{richMenuId}">richMenuId</span>
-              <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success btn-sm">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+              <a class="btn btn-sm btn-secondary" th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" >
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
               </a>
+<!--               <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success btn-sm"> -->
+<!--                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 -->
+<!--               </a> -->
               <a class="btn btn-danger btn-sm" href="javascript:;" th:onclick="|rich_menu_delete('__*{richMenuId}__','__*{name}__')|" th:richMenuId="*{richMenuId}">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>

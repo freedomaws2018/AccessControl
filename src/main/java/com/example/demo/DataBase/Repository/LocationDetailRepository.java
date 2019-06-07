@@ -1,5 +1,8 @@
 package com.example.demo.DataBase.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,5 +20,9 @@ public interface LocationDetailRepository extends JpaRepository<LocationDetail, 
   @Transactional
   @Query(value = "DELETE FROM tbl_location_detail WHERE location_id = :locationId ; ", nativeQuery = true)
   void deleteAlLocationDetailByLocationId(@Param("locationId") Long locationId);
+
+  List<LocationDetail> findByLocationId(Long locationId);
+
+  Optional<LocationDetail> findByLocationIdAndName(Long locationId , String name);
 
 }

@@ -153,6 +153,21 @@
       $("#delete_btn").show();
   	}
   	
+  	var menu_synchronize = function(){
+      showConfirmDialog('確認','確認要重製選單?',function(){
+        $.ajax({
+          type: 'DELETE',
+          url: "/menu/menuSynchronize",
+          dataType: 'json',
+          success: function(result){
+            if(result.status = 'success'){
+              alert("更新完成，請重新登入");
+            }
+          }
+        });
+      });
+    }
+  	
   	$().ready(function(){
   	  
   	  $("#submit_btn").click(function(){
@@ -191,14 +206,17 @@
   	    })
   	  });
   	  
-  	})
+  	});
 
   </script>
   <div class="row"> <div class="col-8 "> <div class="card">
-    <div class="card-header" toggleId="l_menu">
+    <div class="card-header" >
       <span class="glyphicon glyphicon-align-justify"></span>選單管理
+      <a href="javascript:;" onclick="menu_synchronize()" class="btn btn-warning btn-sm">
+        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>選單重置
+      </a>
     </div>
-    <div class="card-body" toggleId="l_menu">
+    <div class="card-body" >
       <input type="hidden" id="level1_selected"/>
       <input type="hidden" id="level2_selected"/>
       <input type="hidden" id="level3_selected"/>

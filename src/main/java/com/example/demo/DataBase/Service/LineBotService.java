@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DataBase.Entity.LineUser;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
@@ -21,6 +22,9 @@ import com.linecorp.bot.model.response.BotApiResponse;
 public class LineBotService {
 
   private static Logger logger = LoggerFactory.getLogger(LineBotService.class);
+
+  @Autowired
+  private LineUserService lineUserService;
 
   @Autowired
   private LineRichMenuService lineRichMenuService;
@@ -101,33 +105,46 @@ public class LineBotService {
   public String wf8266Handle(String userId, List<String> triggerTexts) {
     System.err.println("triggerTexts1" + triggerTexts);
     // 指令開頭過濾，指令開頭均為 #
-    List<String> triggerTexts1 = triggerTexts.stream().filter(triggerText -> triggerText.matches("^#.*"))
-        .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
+    List<String> triggerTexts1 = triggerTexts.stream() //
+        .filter(triggerText -> triggerText.matches("^#.*")) // 單個#號開頭
+        .map(triggerText -> triggerText.substring(1)) // 去除第一個#
+        .collect(Collectors.toList());
 
     if (triggerTexts1 == null || triggerTexts1.isEmpty()) {
       return null;
     }
 
-    // 觸動指令
+    // 觸動指令 ( 雙#開頭 )
     List<String> triggerTexts2 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^#.*"))
         .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
 
-    // 換頁指令
+    // 換頁指令 ( #>開頭 )
     List<String> triggerTexts3 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^>.*"))
         .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
     System.err.println("triggerTexts2" + triggerTexts2);
     System.err.println("triggerTexts3" + triggerTexts3);
-    return null;
+//    return null;
 
-//  LineUser lineUser = null;
-//  if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
-//    // 1. 有指令需要執行前 先確認使用者權限
-//    lineUser = this.lineUserRepository.getEffectiveUser(userId).orElse(null);
-//    if (lineUser == null) {
-//      this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("使用者沒有權限")));
-//      return;
-//    }
-//  }
+    LineUser lineUser = null;
+    // 1. 判斷指令存在
+    if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
+      lineUser = lineUserService.getByIsUseTrueAndEffectiveAndUserId(userId);
+      // 2. 判斷使用者存在
+      if (lineUser == null) {
+        return "使用者沒有權限";
+      }
+    }
+
+    if (!triggerTexts2.isEmpty()) {
+
+    }
+
+    if (!triggerTexts3.isEmpty()) {
+
+    }
+
+    return null;
+  }
 
 //  if (!triggerTexts2.isEmpty()) {
 //    List<Wf8266Detail> wDetails = this.wf8266DetailRepository.getByTriggerTextInAndIsUseTrue(triggerTexts2);
@@ -170,6 +187,6 @@ public class LineBotService {
 //    return;
 //  }
 
-  }
+//  }
 
 }

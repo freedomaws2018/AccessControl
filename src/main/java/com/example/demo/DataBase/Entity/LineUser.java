@@ -40,11 +40,20 @@ public class LineUser {
   @Column(name = "is_use", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
   private Boolean isUse = new Boolean(false);
 
+  @Column(name = "is_admin", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+  private Boolean isAdmin;
+
   @Column(name = "beg_dt")
   private LocalDateTime begDt;
 
   @Column(name = "end_dt")
   private LocalDateTime endDt;
+
+  @Column(name = "location_id")
+  private Long locationId;
+
+  @Column(name = "location_detail_name")
+  private String locationDetailName;
 
   @Column(name = "rich_menu_id")
   private String richMenuId;

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Controller.FormEntity.FormMenu;
 import com.example.demo.DataBase.Entity.Menu;
+import com.example.demo.DataBase.Repository.MenuTemporaryRepository;
 import com.example.demo.DataBase.Service.MenuService;
 
 @Controller
@@ -25,6 +26,9 @@ public class MenuController {
 
   @Autowired
   private MenuService menuService;
+
+  @Autowired
+  public MenuTemporaryRepository menuTemporaryRepository;
 
   @GetMapping(value = "/list")
   private ModelAndView list(ModelAndView model) {
@@ -36,17 +40,17 @@ public class MenuController {
 
   @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   private ResponseEntity<Object> save(FormMenu form) {
-    Menu menu = menuService.save(form.getMenu());
     Map<String, Object> result = new HashMap<>();
-    result.put("menu", menu);
+    Menu menu = menuService.save(form.getMenu());
     result.put("status", "success");
+    result.put("menu", menu);
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   private ResponseEntity<Object> delete(String menuName) {
-    menuService.deleteMenuWithMenuName(menuName);
     Map<String, Object> result = new HashMap<>();
+    menuService.deleteMenuWithMenuName(menuName);
     result.put("status", "success");
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
@@ -55,6 +59,14 @@ public class MenuController {
   private ResponseEntity<Object> getMenu(String term) {
     List<Menu> menus = menuService.getAllByNameLike(term);
     return new ResponseEntity<>(menus, HttpStatus.OK);
+  }
+
+  @DeleteMapping(value = "/menuSynchronize", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  private ResponseEntity<Object> menuSynchronize() {
+    Map<String, Object> result = new HashMap<>();
+    menuTemporaryRepository.deleteAll();
+    result.put("status", "success");
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
 }
