@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Common.HttpUtils;
 import com.example.demo.DataBase.Entity.LineUser;
+import com.example.demo.DataBase.Entity.Wf8266Detail;
+import com.example.demo.DataBase.Repository.MappingLineuserWf8266Repository;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
@@ -28,6 +31,12 @@ public class LineBotService {
 
   @Autowired
   private LineRichMenuService lineRichMenuService;
+
+  @Autowired
+  private Wf8266Service wf8266Service;
+
+  @Autowired
+  private MappingLineuserWf8266Repository mappingLineuserWf8266Repository;
 
   @Value("${line.bot.channelToken}")
   private String channelAccessToken;
@@ -136,7 +145,16 @@ public class LineBotService {
     }
 
     if (!triggerTexts2.isEmpty()) {
-
+      String UI = lineUser.getUserId();
+      String SN = triggerTexts2.get(0).split("_")[0];
+      String WDN = triggerTexts2.get(0).split("_")[1];
+      Integer size = mappingLineuserWf8266Repository.countByLineUserIdAndWf8266SnAndWf8266DetailName(UI, SN, WDN);
+      if (size >= 0) {
+        Wf8266Detail detail = wf8266Service.getWf8266DetailBySnAndName(SN, WDN);
+        String url = detail.getTriggerUrl();
+        HttpUtils.doGet(url);
+        return detail.getReply2();
+      }
     }
 
     if (!triggerTexts3.isEmpty()) {

@@ -21,12 +21,12 @@ import lombok.Data;
 public class MappingLineuserWf8266 {
 
   @Id
-  @Column(name = "wf8266_sn")
-  private String wf8266Sn;
-
-  @Id
   @Column(name = "line_user_id")
   private String lineUserId;
+
+  @Id
+  @Column(name = "wf8266_sn")
+  private String wf8266Sn;
 
   @Id
   @Column(name = "wf8266_detail_name")

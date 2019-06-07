@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Common.FunctionUtils;
 import com.example.demo.DataBase.Entity.Wf8266;
+import com.example.demo.DataBase.Entity.Wf8266Detail;
 import com.example.demo.DataBase.Repository.Wf8266DetailRepository;
 import com.example.demo.DataBase.Repository.Wf8266Repository;
 
@@ -43,6 +44,10 @@ public class Wf8266Service {
 
   public Wf8266 getBySn(String sn) {
     return this.wf8266Repository.getBySnOrderByLocationIdAsc(sn).orElse(null);
+  }
+
+  public Wf8266Detail getWf8266DetailBySnAndName(String sn, String name) {
+    return wf8266DetailRepository.findByWf8266SnAndName(sn, name).orElse(null);
   }
 
   public void delete(String sn) {
