@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.DataBase.Entity.LineUser;
-import com.example.demo.DataBase.Entity.LocationDetail;
 import com.example.demo.DataBase.Service.LineBotService;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.DataBase.Service.LineUserService;
@@ -126,13 +125,22 @@ public class LineBotApplication {
     String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", userId,
         senderId, type, hwid, deviceMessageAsHex);
     if ("enter".equals(type)) {
+      // 獲取 LineUser 信息 並判斷是否存在
       LineUser lineUser = lineUserService.getByIsUseTrueAndEffectiveAndUserId(userId);
       if (lineUser != null) {
-        LocationDetail ld = locationService.getLocationDetailByLocationIdAndLocationDetailName(lineUser.getLocationId(),
-            lineUser.getLocationDetailName());
-        com.example.demo.DataBase.Entity.RichMenu richMenu = lineRichMenuService.getByRichMenuId(ld.getRichMenuId());
-        lineRichMenuService.linkRichMenuToUser(userId, richMenu.getRichMenuId());
-        lineUserService.setRichMenuIdByUserId(userId, richMenu.getRichMenuId());
+        // 不為管理員
+        if( !lineUser.getIsAdmin() ) {
+          lineUserService.setRichMneuByUserId(userId);
+        }
+
+//        LocationDetail ld = locationService.getLocationDetailByLocationIdAndLocationDetailName(lineUser.getLocationId(),
+//            lineUser.getLocationDetailName());
+//        if (ld != null) {
+//          com.example.demo.DataBase.Entity.RichMenu richMenu = lineRichMenuService.getByRichMenuId(ld.getRichMenuId());
+//          if (richMenu != null) {
+//            lineUserService.setRichMneuByUserId(userId);
+//          }
+//        }
       }
     }
     return new TextMessage(textMessage);

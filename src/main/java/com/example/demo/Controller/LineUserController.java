@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -111,17 +110,22 @@ public class LineUserController {
       result.put("status", "success");
       result.put("data", lineUser);
 
-      if (StringUtils.isBlank(form.getRichMenuId())) {
-        lineRichMenuService.unlinkRichMenuToUser(lineUser.getUserId());
-      } else {
-        lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), lineUser.getRichMenuId());
-      }
+      /** 推送當前使用選單 **/
+//      if (StringUtils.isBlank(form.getRichMenuId())) {
+//        lineRichMenuService.unlinkRichMenuToUser(lineUser.getUserId());
+//      } else {
+//        lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), lineUser.getRichMenuId());
+//      }
 
+      /** 移除所有使用者控制物聯網權限 **/
       mappingLineuserWf8266Repository.updateAllIsUseFalseByLineUserId(lineUser.getUserId());
-      LocationDetail ld = locationService.getLocationDetailByLocationIdAndLocationDetailName(lineUser.getLocationId(), lineUser.getLocationDetailName());
-      com.example.demo.DataBase.Entity.RichMenu richMenu  = lineRichMenuService.getByRichMenuId(ld.getRichMenuId());
-      List<MappingLineuserWf8266> mappingLWs = richMenu.getRichMenuResponse().getAreas().stream()
-          .map(area -> {
+      /** 獲取詳細據點 **/
+      LocationDetail ld = locationService.getLocationDetailByLocationIdAndLocationDetailName(lineUser.getLocationId(),
+          lineUser.getLocationDetailName());
+      if (ld != null) {
+        com.example.demo.DataBase.Entity.RichMenu richMenu = lineRichMenuService.getByRichMenuId(ld.getRichMenuId());
+        if (richMenu != null) {
+          List<MappingLineuserWf8266> mappingLWs = richMenu.getRichMenuResponse().getAreas().stream().map(area -> {
             MappingLineuserWf8266 mappingLW = new MappingLineuserWf8266();
             PostbackAction pa = (PostbackAction) area.getAction();
             String data = pa.getData(); // ##15738184_一樓大門
@@ -131,7 +135,9 @@ public class LineUserController {
             mappingLW.setWf8266DetailName(data.substring(2).split("_")[1]);
             return mappingLW;
           }).collect(Collectors.toList());
-      mappingLineuserWf8266Repository.saveAll(mappingLWs);
+          mappingLineuserWf8266Repository.saveAll(mappingLWs);
+        }
+      }
     } catch (Exception ex) {
       result.put("status", "error");
       result.put("err_msg", ex.getMessage());

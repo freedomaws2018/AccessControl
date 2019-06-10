@@ -55,6 +55,10 @@ public class LineUser {
   @Column(name = "location_detail_name")
   private String locationDetailName;
 
+  /** RichMenu 最後發送時間 **/
+  @Column(name = "rich_menu_link_datetime")
+  private LocalDateTime richMenuLinkDateTime;
+  /** RichMenu 當前使用頁面 **/
   @Column(name = "rich_menu_id")
   private String richMenuId;
   @OneToOne(fetch = FetchType.LAZY)

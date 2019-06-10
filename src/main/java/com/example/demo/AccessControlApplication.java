@@ -19,46 +19,51 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @EnableScheduling
 public class AccessControlApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AccessControlApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(AccessControlApplication.class, args);
 
-	@Bean
-	public ServletWebServerFactory servletContainer() {
-		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
-			@Override
-			protected void postProcessContext(Context context) {
-				SecurityConstraint securityConstraint = new SecurityConstraint();
-				securityConstraint.setUserConstraint("CONFIDENTIAL");
-				SecurityCollection collection = new SecurityCollection();
-				collection.addPattern("/*");
-				securityConstraint.addCollection(collection);
-				context.addConstraint(securityConstraint);
-			}
-		};
-		tomcat.addAdditionalTomcatConnectors(this.httpConnector());
-		return tomcat;
-	}
+//    ApplicationContext applicationContext = SpringApplication.run(AccessControlApplication.class, args);
+//    for (String name : applicationContext.getBeanDefinitionNames()) {
+//      System.out.println(name);
+//    }
+  }
 
-	@Value("${server.https-port}")
-	private Integer httpsPort;
+  @Bean
+  public ServletWebServerFactory servletContainer() {
+    TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+      @Override
+      protected void postProcessContext(Context context) {
+        SecurityConstraint securityConstraint = new SecurityConstraint();
+        securityConstraint.setUserConstraint("CONFIDENTIAL");
+        SecurityCollection collection = new SecurityCollection();
+        collection.addPattern("/*");
+        securityConstraint.addCollection(collection);
+        context.addConstraint(securityConstraint);
+      }
+    };
+    tomcat.addAdditionalTomcatConnectors(this.httpConnector());
+    return tomcat;
+  }
 
-	@Value("${server.http-port}")
-	private Integer httpPort;
+  @Value("${server.https-port}")
+  private Integer httpsPort;
 
-	@Bean
-	public Connector httpConnector() {
-		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-		connector.setScheme("http");
-		connector.setPort(this.httpPort);
-		connector.setSecure(false);
-		connector.setRedirectPort(this.httpsPort);
-		return connector;
-	}
+  @Value("${server.http-port}")
+  private Integer httpPort;
+
+  @Bean
+  public Connector httpConnector() {
+    Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+    connector.setScheme("http");
+    connector.setPort(this.httpPort);
+    connector.setSecure(false);
+    connector.setRedirectPort(this.httpsPort);
+    return connector;
+  }
 
   @Bean
   public ObjectMapper objectMapper() {
-      return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+    return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
   }
 
 }

@@ -41,7 +41,7 @@
       data: { locationId : locationId },
       dataType: 'json',
       success: function(details){
-        console.log(details)
+//         console.log(details)
         $("#locationDetailName option").remove();
         $("#locationDetailName").append(new Option("請選擇",''));
         $.each(details,function(index,detail) {
@@ -57,8 +57,6 @@
   </script>
   <div class="row">
   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
-  <div th:if="|${funcType eq 'view' and info_status ne null}|" class="alert alert-success" role="alert" th:text="${info_status}"></div>
-  <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
   </div>
   </div>
 <!--  th:action="@{/line/user/save}" method="post" -->
