@@ -38,18 +38,20 @@
         $("#detail_table").append(`
           <tr id="tr_detail_${index}">
             <td>
-              <a href="javascript:;" onClick="javascript:remove_detail(${index});" >移除</a>
+              <a href="javascript:;" class="btn btn-danger btn-sm" onClick="javascript:remove_detail(${index});" >
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>移除
+              </a>
               <input type="hidden" name="detail[${index}].cmd" value="Relay" />
             </td>
-            <td> <input size="10" name="detail[${index}].name"></input> </td>
+            <td> <input size="10" class="form-control" name="detail[${index}].name"></input> </td>
             <td> 
               <input type="radio" name="detail[${index}].isUse" vlaue="true" checked="true">是</input>
               <input type="radio" name="detail[${index}].isUse" vlaue="false">否</input>
             </td>
-            <td> <input size="15" name="detail[${index}].reply1"></input> </td>
-            <td> <input size="15" name="detail[${index}].reply2"></input> </td>
+            <td> <input size="15" class="form-control" name="detail[${index}].reply1"></input> </td>
+            <td> <input size="15" class="form-control" name="detail[${index}].reply2"></input> </td>
             <td> 
-            <select name="detail[${index}].relay">
+            <select class="form-control" name="detail[${index}].relay">
              <option selected="selected" value="" >請選擇</option>
              <option value="1" >1</option>
              <option value="2" >2</option>
@@ -58,7 +60,7 @@
             </select>
            </td>
            <td> 
-            <select name="detail[${index}].value">
+            <select class="form-control" name="detail[${index}].value">
              <option selected="selected" value="" >請選擇</option>
              <option value="0" > 開啟 </option>
              <option value="1" > 關閉 </option>
@@ -160,70 +162,82 @@
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
               <label class="font-weight-bold">細項</label>
-              <a href="javascript:;" id="add_detail">新增一項</a>
-              <table class="table" id="detail_table" style="border:3px #cccccc solid;" border='1'>
-                <thead>
-                  <tr class="center">
-                    <th>#</th>
-                    <th>指令名稱</th>
-                    <th>是否啟用</th>
-                    <th>觸發後回應</th>
-                    <th>執行後回應</th>
-                    <th>按鈕編號</th>
-                    <th>動作行為</th>
-                    <th th:if="${funcType eq 'view'}">測試</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="detail,iter:${wf8266?.details}" th:object="${detail}" th:id="|tr_detail_${iter.index}|">
-                    <td>
-                      <a href="javascript:;" th:onclick="|remove_detail(${iter.index})|" >移除</a>
-                      <input type="hidden" size="3" th:name="|detail[${iter.index}].cmd|" value="Relay" />
-                    </td>
-                    <td>
-                      <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].name|" size="10" th:value="${detail.name}" /> 
-                      <input th:if="${ funcType eq 'add' }" th:name="|detail[${iter.index}].name|" size="10"  /> 
-                    </td>
-                    <td>
-                      <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
-                        <label><input type="radio" th:name="|detail[${iter.index}].isUse|" value="true" th:disabled="${funcType eq 'view'}" th:checked="*{isUse}">是</label>
-                        <label><input type="radio" th:name="|detail[${iter.index}].isUse|" value="false" th:disabled="${funcType eq 'view'}" th:checked="!*{isUse}">否</label>
-                      </div>
-                      <div th:if="${ funcType eq 'add' }">
-                        <label><input type="radio" name="isUse" value="true" checked >是</label>
-                        <label><input type="radio" name="isUse" value="false" >否</label>
-                      </div>
-                    </td>
-                    <td> 
-                      <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].reply1|" size="15" th:value="${detail.reply1}" /> 
-                      <input th:if="${ funcType eq 'add' }" th:name="|detail[${iter.index}].reply1|" size="15" th:value="${detail.reply1}" /> 
-                    </td>
-                    <td>
-                      <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].reply2|" size="15" th:value="${detail.reply2}" />
-                      <input th:if="${ funcType eq 'add' }" th:name="|detail[${iter.index}].reply2|" size="15" th:value="${detail.reply2}" /> 
-                    </td>
-                    <td> 
-                     <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].relay|">
-                      <option th:selected="true" >請選擇</option>
-                      <option th:selected="${detail.relay eq 1 }" th:value="1" >1</option>
-                      <option th:selected="${detail.relay eq 2 }" th:value="2" >2</option>
-                      <option th:selected="${detail.relay eq 3 }" th:value="3" >3</option>
-                      <option th:selected="${detail.relay eq 4 }" th:value="4" >4</option>
-                     </select>
-                    </td>
-                    <td> 
-                     <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].value|">
-                      <option th:selected="true" >請選擇</option>
-                      <option th:selected="${detail.value eq 0 }" th:value="0" >開啟</option>
-                      <option th:selected="${detail.value eq 1 }" th:value="1" >關閉</option>
-                      <option th:selected="${detail.value eq 4 }" th:value="4" >按一下</option>
-                     </select>
-                    </td>
-                    <td th:if="${funcType eq 'view'}"> 
-                      <a th:id="|testTriggerUrl[${iter.index}]|" href="javascript:;" th:url="${detail.triggerUrl}">測試觸發</a>
-                    </td>
-                  </tr>
-                </tbody>
+              <table class="table">
+                <tr>
+                  <td>
+		              <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" class="btn btn-primary btn-sm btn-detail" id="add_detail">
+		                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
+		              </a>
+		              <table id="detail_table">
+		                <thead>
+		                  <tr class="center">
+		                    <th th:if="${funcType eq 'edit' || funcType eq 'add'}">#</th>
+		                    <th>指令名稱</th>
+		                    <th>是否啟用</th>
+		                    <th>觸發後回應</th>
+		                    <th>執行後回應</th>
+		                    <th>按鈕編號</th>
+		                    <th>動作行為</th>
+		                    <th th:if="${funcType eq 'view'}">測試</th>
+		                  </tr>
+		                </thead>
+		                <tbody>
+		                  <tr th:each="detail,iter:${wf8266?.details}" th:object="${detail}" th:id="|tr_detail_${iter.index}|">
+		                    <td th:if="${funcType eq 'edit'}">
+		                      <a href="javascript:;" class="btn btn-danger btn-sm" th:onclick="|remove_detail(${iter.index})|" >
+		                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>移除
+		                      </a>
+		                      <input type="hidden" size="3" th:name="|detail[${iter.index}].cmd|" value="Relay" />
+		                    </td>
+		                    <td>
+		                      <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].name|" size="10" class="form-control" th:value="${detail.name}" /> 
+		                      <input th:if="${ funcType eq 'add' }" th:name="|detail[${iter.index}].name|" class="form-control" size="10"  /> 
+		                    </td>
+		                    <td>
+		                      <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
+		                        <label><input type="radio" th:name="|detail[${iter.index}].isUse|" value="true" th:disabled="${funcType eq 'view'}" th:checked="*{isUse}">是</label>
+		                        <label><input type="radio" th:name="|detail[${iter.index}].isUse|" value="false" th:disabled="${funcType eq 'view'}" th:checked="!*{isUse}">否</label>
+		                      </div>
+		                      <div th:if="${ funcType eq 'add' }">
+		                        <label><input type="radio" name="isUse" value="true" checked >是</label>
+		                        <label><input type="radio" name="isUse" value="false" >否</label>
+		                      </div>
+		                    </td>
+		                    <td> 
+		                      <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].reply1|" size="15" class="form-control" th:value="${detail.reply1}" /> 
+		                      <input th:if="${ funcType eq 'add' }" th:name="|detail[${iter.index}].reply1|" size="15" class="form-control" th:value="${detail.reply1}" /> 
+		                    </td>
+		                    <td>
+		                      <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].reply2|" size="15" class="form-control" th:value="${detail.reply2}" />
+		                      <input th:if="${ funcType eq 'add' }" th:name="|detail[${iter.index}].reply2|" size="15" class="form-control" th:value="${detail.reply2}" /> 
+		                    </td>
+		                    <td> 
+		                     <select class="form-control" th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].relay|">
+		                      <option th:selected="true" >請選擇</option>
+		                      <option th:selected="${detail.relay eq 1 }" th:value="1" >1</option>
+		                      <option th:selected="${detail.relay eq 2 }" th:value="2" >2</option>
+		                      <option th:selected="${detail.relay eq 3 }" th:value="3" >3</option>
+		                      <option th:selected="${detail.relay eq 4 }" th:value="4" >4</option>
+		                     </select>
+		                    </td>
+		                    <td> 
+		                     <select class="form-control" th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].value|">
+		                      <option th:selected="true" >請選擇</option>
+		                      <option th:selected="${detail.value eq 0 }" th:value="0" >開啟</option>
+		                      <option th:selected="${detail.value eq 1 }" th:value="1" >關閉</option>
+		                      <option th:selected="${detail.value eq 4 }" th:value="4" >按一下</option>
+		                     </select>
+		                    </td>
+		                    <td th:if="${funcType eq 'view'}"> 
+		                      <a th:id="|testTriggerUrl[${iter.index}]|" href="javascript:;" th:url="${detail.triggerUrl}" class="btn btn-warning btn-sm">
+		                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>測試觸發
+		                      </a>
+		                    </td>
+		                  </tr>
+		                </tbody>
+		              </table>
+                  </td>
+                </tr>
               </table>
             </div>
             
@@ -238,10 +252,13 @@
             </div>
           </div>
 
-          <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="row col justify-content-center">
-            <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
-            </button>
+          <div th:if="${funcType eq 'edit' || funcType eq 'add'}"><div class="line"></div></div>
+          <div class="row justify-content-center">
+            <a th:if="${funcType eq 'edit' || funcType eq 'add'}">
+              <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+              </button>
+            </a>
           </div>
           
         </div>

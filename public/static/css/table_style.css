@@ -79,6 +79,10 @@
 	margin-left:15px;
 }
 
+.card-body table input, .card-body table select{
+	margin-left:0px;
+}
+
 .row .badge{
     font-size:16px;
     line-height:30px;
