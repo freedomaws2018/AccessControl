@@ -170,7 +170,9 @@
     top: 5px;
     padding-left: 15px;
 }	
-
+.img-m{
+ 	margin:20px;
+ }
 
 @media (max-width: 720px) {
 	
