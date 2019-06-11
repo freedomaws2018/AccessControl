@@ -233,6 +233,10 @@
 	
 	}
 	
+	.custom-select{
+		width: 95%;
+	    margin-bottom: 20px;
+    }
 }
 
 .verification_err_msg {
