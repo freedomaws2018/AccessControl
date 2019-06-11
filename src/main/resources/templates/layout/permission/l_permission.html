@@ -36,7 +36,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
       <div class="card">
         <div class="card-header">
-          <span class="glyphicon glyphicon-align-justify"></span>權限 - 列表
+          <span class="glyphicon glyphicon-align-justify"></span>權限
           <a th:href="@{/permission/add}" class="btn btn-primary a-btn-second btn-sm">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
           </a>
@@ -45,7 +45,7 @@
           </a>
         </div>
         <div class="card-body">
-          <table class="table table-hover table-responsive-sm">
+          <table class="table table-hover table-responsive-sm hide-in-phone">
             <thead class="center">
               <tr>
                 <th scope="col">#</th>
@@ -69,8 +69,37 @@
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>
                 </td>
-                <td>[[*{name}]]</td>
-                <td>[[|*{menu.menuName} : *{menu.name}|]]</td>
+                <td data-th="權限名稱：">[[*{name}]]</td>
+                <td data-th="對應選單：">[[|*{menu.menuName} : *{menu.name}|]]</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table-hover table-responsive-sm rwd-table show-on-phone">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">權限名稱</th>
+                <th scope="col">對應選單</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th th:if="${permissions.empty}" colspan="3">沒有資料</th>
+              </tr>
+              <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
+                <td>
+                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-secondary btn-sm">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
+                  </a>
+                  <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+                  </a>
+                  <a th:onclick="|delete_permission(__*{id}__,'__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+                  </a>
+                </td>
+                <td data-th="權限名稱：">[[*{name}]]</td>
+                <td data-th="對應選單：" class="td-m">[[|*{menu.menuName} : *{menu.name}|]]</td>
               </tr>
             </tbody>
           </table>

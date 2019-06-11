@@ -150,6 +150,7 @@
 
 .custom-select{
 	width:200px;
+	margin-bottom:20px;
 }
 
 .select2-container--default .select2-selection--multiple{
@@ -175,7 +176,7 @@
  }
 
 @media (max-width: 720px) {
-	
+
 	.hide-in-phone{
 		display:none;
 	}
@@ -215,6 +216,9 @@
 		margin-bottom:30px;
 	}
 	
+	.td-m{
+		margin-bottom:10px;
+	}
 	.row .badge{
 	    font-size:16px;
 	    line-height:30px;
@@ -234,8 +238,12 @@
 	}
 	
 	.custom-select{
-		width: 95%;
-	    margin-bottom: 20px;
+	width: 95%;
+    margin-bottom: 20px;
+    }
+    
+    .card-body{
+    	margin-right:10px;
     }
 }
 
