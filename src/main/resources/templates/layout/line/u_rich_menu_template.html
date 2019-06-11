@@ -19,7 +19,7 @@
   })
   </script>
   <form id="rich_menu_template_form" th:action="@{/line/rich_menu/template/save}" enctype="Multipart/Form-Data" method="post" >
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4"> <div class="col"> <div class="card">    
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6"> <div class="col"> <div class="card">    
       <div class="card-header">
         <span class="glyphicon glyphicon-align-justify"></span>
         <span th:if="${funcType eq 'add'}">Line@RichMenu樣板 - 新增</span>
@@ -39,14 +39,14 @@
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
             <label class="font-weight-bold"><span class="req-field">*</span>樣板遮設片</label>
             <input type="file" th:if="${funcType eq 'add' || funcType eq 'edit' }" accept="image/png" name="imageFile" FDCV="not-blank"/>
-            <img width="300" th:if="${funcType eq 'view'}" th:src="@{|data:image/jpeg;base64,${rmt.image}|}" />
+            <img width="300" class="img-m" th:if="${funcType eq 'view'}" th:src="@{|data:image/jpeg;base64,${rmt.image}|}" />
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
             <label class="font-weight-bold"><span class="req-field">*</span>樣板格式語法</label>
-            <input type="file" th:if="${funcType eq 'add' || funcType eq 'edit' }" accept=".json" name="jsonFile"  FDCV="not-blank"/>
+            <input type="file" th:if="${funcType eq 'add' || funcType eq 'edit' }" accept=".json" name="jsonFile" FDCV="not-blank"/>
             <div th:if="${funcType eq 'view'}">
-              <textarea id="myTextArea" cols=50 rows=20 th:text="${rmt.getTemplateJson()}" readonly></textarea>
+              <textarea id="myTextArea" cols=50 rows=20 th:text="${rmt.getTemplateJson()}" class="form-control" readonly></textarea>
               <script th:inline="javascript">
                 var ugly = document.getElementById('myTextArea').value;
                 var obj = JSON.parse([[${rmt.getTemplateJson()}]]);

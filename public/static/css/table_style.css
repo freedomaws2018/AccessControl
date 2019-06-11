@@ -79,6 +79,10 @@
 	margin-left:15px;
 }
 
+.card-body table input, .card-body table select{
+	margin-left:0px;
+}
+
 .row .badge{
     font-size:16px;
     line-height:30px;
@@ -146,6 +150,7 @@
 
 .custom-select{
 	width:200px;
+	margin-bottom:20px;
 }
 
 .select2-container--default .select2-selection--multiple{
@@ -166,10 +171,12 @@
     top: 5px;
     padding-left: 15px;
 }	
-
+.img-m{
+ 	margin:20px;
+ }
 
 @media (max-width: 720px) {
-	
+
 	.hide-in-phone{
 		display:none;
 	}
@@ -209,6 +216,9 @@
 		margin-bottom:30px;
 	}
 	
+	.td-m{
+		margin-bottom:10px;
+	}
 	.row .badge{
 	    font-size:16px;
 	    line-height:30px;
@@ -227,6 +237,14 @@
 	
 	}
 	
+	.custom-select{
+	width: 95%;
+    margin-bottom: 20px;
+    }
+    
+    .card-body{
+    	margin-right:10px;
+    }
 }
 
 .verification_err_msg {
