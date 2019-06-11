@@ -55,12 +55,12 @@ public class MemberService {
     memberRepository.deleteById(memberId);
   }
 
-//  public List<Member> getAllLineUserByEffectiveAndUserId() {
-//    return memberRepository.getByIsUseTrueAndEffective();
-//  }
+  public List<Member> getAllEffectiveMember() {
+    return memberRepository.getAllEffectiveMember();
+  }
 
-  public Member getEffectiveUser(String lineUserId) {
-    return memberRepository.getEffectiveUser(lineUserId).orElse(null);
+  public Member getEffectiveMember(String lineUserId) {
+    return memberRepository.getEffectiveMember(lineUserId).orElse(null);
   }
 
   public Member getByUserIdAndIsUseTrue(String lineUserId) {
@@ -68,7 +68,7 @@ public class MemberService {
   }
 
   public Member setRichMneuByUserId(String lineUserId) {
-    Member member = getEffectiveUser(lineUserId);
+    Member member = getEffectiveMember(lineUserId);
     if (member != null) {
       LineUser lineUser = member.getLineUser();
       if (lineUser != null) {

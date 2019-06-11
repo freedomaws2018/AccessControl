@@ -141,7 +141,7 @@ public class LineBotApplication {
         senderId, type, hwid, deviceMessageAsHex);
     if ("enter".equals(type)) {
     // 獲取 LineUser 信息 並判斷是否存在
-      Member member = memberService.getEffectiveUser(lineUserId);
+      Member member = memberService.getEffectiveMember(lineUserId);
       LineUser lineUser = member.getLineUser();
       if (lineUser != null) {
         // 不為管理員

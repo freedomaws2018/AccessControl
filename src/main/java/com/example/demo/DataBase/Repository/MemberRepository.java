@@ -21,15 +21,16 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
   List<Member> getByRichMenuId(String richMenuId);
 
-//  @Query(value = "SELECT * FROM tbl_line_user WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt ; ", nativeQuery = true)
-//  List<Member> getByIsUseTrueAndEffective();
+  @Transactional
+  @Query(value = "SELECT * FROM tbl_member WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt ; ", nativeQuery = true)
+  List<Member> getAllEffectiveMember();
 
 //  @Query(value = "SELECT * FROM tbl_member WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND line_user_id = :lineUserId ; ", nativeQuery = true)
 //  Optional<Member> getByIsUseTrueAndEffectiveAndUserId(@Param("lineUserId") String lineUserId);
 
   @Transactional
   @Query(value = "SELECT * FROM tbl_member WHERE 1 = 1 AND is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND line_user_id = :lineUserId ;", nativeQuery = true)
-  Optional<Member> getEffectiveUser(@Param("lineUserId") String lineUserId);
+  Optional<Member> getEffectiveMember(@Param("lineUserId") String lineUserId);
 
   @Modifying
   @Transactional

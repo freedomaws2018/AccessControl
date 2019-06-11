@@ -138,7 +138,7 @@ public class LineBotService {
     Member member = null;
     // 1. 判斷指令存在
     if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
-      member = memberService.getEffectiveUser(userId);
+      member = memberService.getEffectiveMember(userId);
       // 2. 判斷使用者存在
       if (member == null) {
         return "使用者沒有權限";
