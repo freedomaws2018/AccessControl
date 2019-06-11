@@ -185,7 +185,8 @@
           dataType: 'json',
           success: function(result){
             if(result.status === 'success'){
-              location.reload();
+              alert("修改完成");
+              console.log(result)
             }
           }
   	    })

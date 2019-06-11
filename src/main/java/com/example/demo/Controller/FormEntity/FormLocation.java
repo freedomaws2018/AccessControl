@@ -45,10 +45,7 @@ public class FormLocation {
     return location;
   }
 
-  public Location getLocaitonWithId() {
-    Location location = new Location();
-    location.setId(this.id);
-    location.setName(this.name);
+  public Location getLocaitonByEntity(Location location) {
     location.setAddress(this.address);
     location.setPhone(this.phone);
     location.setWifiSsid(this.wifiSsid);
@@ -58,7 +55,7 @@ public class FormLocation {
   }
 
   public List<LocationDetail> getLocationDetails(Location location) {
-    return detail.stream().map(d -> {
+    return detail.stream().filter(d -> StringUtils.isNotBlank(d.getName())).map(d -> {
       LocationDetail dd = new LocationDetail();
       dd.setName(d.getName());
       dd.setLocationId(location.getId());

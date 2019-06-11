@@ -1,0 +1,77 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head> <meta charset="UTF-8"> <title>LineUser - 列表</title> </head>
+
+<body layout:fragment="content">
+  <script type="text/javascript" th:inline="javascript">
+// 	console.log([[${members}]])
+  var delete_member = function(id,name){
+    showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 嗎?',function(){
+      $.ajax({
+        type: 'DELETE',
+        url: "/member/delete/" + id,
+        dataType: 'json',
+        success: (result) =>{
+          location.reload();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          location.reload();
+        }
+      });
+    });
+  }
+  
+  
+  </script>
+
+  <div class="row"> <div class="col-12"> <div class="card">
+  
+    <div class="card-header">
+      <span class="glyphicon glyphicon-align-justify"></span>客戶 - 列表
+      <div>
+        <a th:href="@{/member/add}" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
+        </a>
+        <a th:href="@{/member/batch}" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>批次匯入
+        </a>
+      </div>
+    </div>
+    
+    <div class="card-body">
+      <table class="table table-hover table-responsive-sm table-striped ">
+        <thead class="center">
+          <tr>
+            <th scope="col">操作</th>
+            <th scope="col">姓名</th>
+            <th scope="col">使用狀態</th>
+          </tr>
+        </thead>
+        <tbody class="center">
+          <tr th:if="${members.empty}">
+            <th colspan="3">沒有資料</th>
+          </tr>
+          <tr th:unless="${members.empty}" th:each="member:${members}" th:object="${member}">
+            <th>
+              <a th:href="@{/member/view/__*{id}__}" class="btn btn-sm btn-secondary">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
+              </a>
+              <a th:href="@{/member/edit/__*{id}__}" class="btn btn-sm btn-success">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+              </a>
+              <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_member(__*{id}__,'__*{fullName}__')|" >
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+              </a>
+            </th>
+            <td>[[*{fullName}]]</td>
+            <td>[[*{isEffective}]]</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div th:if="${members.totalPages gt 1}" >
+        <div th:replace="~{comm/page :: page01(entity=${users})}"></div>
+      </div>
+    </div> 
+  </div> </div> </div>
+</body>
+</html>

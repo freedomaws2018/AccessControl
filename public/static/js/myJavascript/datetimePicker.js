@@ -1,18 +1,43 @@
+datePicker = function(eveId,dateId){
+
+  $('#' + eveId).daterangepicker({
+    autoUpdateInput: false,
+    singleDatePicker : true,
+    showDropdowns : true,
+    maxDate: moment().format('YYYY-MM-DD'),
+    opens : "left",
+    minYear : parseInt(moment().format('YYYY'), 10) - 100,
+    maxYear : parseInt(moment().format('YYYY'), 10),
+    locale : {
+      format : "YYYY-MM-DD",
+      applyLabel : "確定",
+      cancelLabel : "取消",
+      "daysOfWeek" : [ "日", "一", "二", "三", "四", "五", "六" ],
+      "monthNames" : [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
+      "firstDay" : 7
+    }
+  }, function(date){
+    var Dt = date.format('YYYY-MM-DD');
+    $("#" + dateId).val(Dt);
+  });
+
+}
+
 dateTimePicke = function(eveId,begId,endId){
   var startDate,endDate;
-  if($("#" + begId).val()){
+  if( $("#" + begId).val()){
     startDate = $("#" + begId).val();
-  }else{
+  } else{
     startDate = moment().startOf('days');
     $("#" + begId).val(startDate.format('YYYY-MM-DD HH:mm'));
   }
-  if($("#" + endId).val()){
+  if( $("#" + endId).val()){
     endDate = $("#" + endId).val();
-  }else{
+  } else{
     endDate = moment().endOf('days');
     $("#" + endId).val(endDate.format('YYYY-MM-DD HH:mm'));
   }
-  
+
   $('#' + eveId).daterangepicker({
     "startDate" : startDate,
     "endDate" : endDate,

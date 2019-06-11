@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.example.demo.DataBase.Entity.IdClass.LocationDetailId;
 
@@ -53,7 +55,9 @@ public class LocationDetail implements Serializable {
   /** LINE@選單 **/
   @Column(name = "rich_menu_id")
   private String richMenuId;
-  @Transient
+//  @Transient
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "rich_menu_id", referencedColumnName = "rich_menu_id", insertable = false, updatable = false, nullable = true)
   private RichMenu richMenu;
 
 }

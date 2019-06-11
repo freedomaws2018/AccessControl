@@ -1,0 +1,178 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{comm/layout}">
+<head><meta charset="UTF-8"></head>
+
+<body layout:fragment="content">
+  <script th:inline="javascript" type="text/javascript">
+  $().ready(function(){
+  	dateTimePicke("datetimePicker","begDt","endDt");
+  	datePicker("birthday","birthday");
+  	
+  	console.log([[${member}]])
+  	
+  	$("#submit_btn").click(function(){
+      if($("#member_form").form_verification()){
+        return;
+      }
+  	  var jsonData = $("#member_form").toJson();
+//   	  console.log(jsonData)
+      $.ajax({
+        method: 'post',
+        url: '/member/save',
+        data: jsonData,
+        dataType: 'json',
+        success: function(result){
+          console.log(result)
+          if(result.status === 'success'){
+            window.location.replace("/member/view/" + result.data.id);
+          }
+          if(result.status === 'error'){
+            alert(result.err_msg);
+          }
+        }
+      });
+  	});
+  	
+  	$("#lineUser_auto").autocomplete({
+      minLength: 0,
+      source: function(request,response){
+        $.ajax({
+          method: 'POST',
+          url: '/line/user/autocomplete/getByFilter', 
+          data: request,
+          dataType: 'json',
+          success: function(result){
+            var data = [];
+            result.forEach(function(d){ 
+              console.log(d)
+              var showValue = d.userName;
+              data.push({ label: showValue, showValue , obj: d}); 
+            });
+            response(data);
+          }
+        });
+      },
+      select: function(event, ui){
+        $("#lineUserId").val(ui.item.obj.userId);
+      }
+    })
+    .blur(function(){ $(this).autocomplete('enable'); })
+    .focus(function () { $(this).autocomplete('search', ''); });  
+  	
+  });
+  </script>
+  <div class="row">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+  </div>
+  </div>
+
+  <form id="member_form">
+    <div class="row"><div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"><div class="card">
+        <div class="card-header" >
+          <span class="glyphicon glyphicon-align-justify"></span>
+          <span th:if="${funcType eq 'view'}">客戶- 檢視
+            <a th:href="@{/member/edit/{memberId}(memberId=${member.id})}" class="btn btn-success a-btn-second btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+          </span>
+          <span th:if="${funcType eq 'edit'}">客戶 - 修改</span>
+        </div>
+        <div class="card-body" th:object = "${member}">  
+          <input type="hidden" th:if="${funcType eq 'edit' || funcType eq 'view'}" name="id" th:value="*{id}"/>
+          <div class="row">
+                      
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              <label class="font-weight-bold"><span class="req-field">*</span>姓</label><BR>
+              <input th:if="${funcType eq 'add'}" class="form-control" name="firstName" FDCV='not-blank' />
+              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="firstName" th:value="*{firstName}" FDCV='not-blank' />
+            </div>
+            
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              <label class="font-weight-bold"><span class="req-field">*</span>名</label><BR>
+              <input th:if="${funcType eq 'add'}" class="form-control" name="lastName" FDCV='not-blank' />
+              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="lastName" th:value="*{lastName}" FDCV='not-blank' />
+            </div>
+            
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              <label class="font-weight-bold">生日</label><BR>
+              <input th:if="${funcType eq 'add'}" class="form-control" id="birthday" name="birthday" />
+              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="birthday" name="birthday" th:value="*{#temporals.format(birthday, 'yyyy-MM-dd')}"/>
+            </div>
+            
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              <label class="font-weight-bold">身分證字號</label><BR>
+              <input th:if="${funcType eq 'add'}" class="form-control" name="personId" />
+              <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="personId" th:value="*{personId}"/>
+            </div>
+               
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+              <label class="font-weight-bold"><span class="req-field">*</span>是否啟用</label><br>
+              <div th:if="${funcType eq 'add'}">
+                <label><input type="radio" id="isUseTrue" name="isUse" value="true" checked />是</label>
+                <label><input type="radio" id="isUseFalse" name="isUse" value="false" />否</label>
+              </div>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
+                <label><input type="radio" th:disabled="${funcType eq 'view'}" id="isUseTrue" name="isUse" value="true" th:checked="*{isUse}" />是</label>
+                <label><input type="radio" th:disabled="${funcType eq 'view'}" id="isUseFalse" name="isUse" value="false" th:checked="!*{isUse}"/>否</label>
+              </div>
+            </div> 
+            
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+              <label class="font-weight-bold"><span class="req-field">*</span>設為管理員</label><br>
+              <div th:if="${funcType eq 'add'}">
+                <label><input type="radio" id="isAdminTrue" name="isAdmin" value="true" />是</label>
+                <label><input type="radio" id="isAdminFalse" name="isAdmin" value="false" checked />否</label>
+              </div>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
+                <label><input type="radio" th:disabled="${funcType eq 'view'}" id="isAdminTrue" name="isAdmin" value="true" th:checked="*{isAdmin}" />是</label>
+                <label><input type="radio" th:disabled="${funcType eq 'view'}" id="isAdminFalse" name="isAdmin" value="false" th:checked="!*{isAdmin}"/>否</label>
+              </div>
+            </div> 
+            
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              <label class="font-weight-bold"><span class="req-field">*</span>有效時限</label><br>
+              <div th:if="${funcType eq 'add'}">
+                <input type="hidden" id="begDt" name="begDt" />
+                <input type="hidden" id="endDt" name="endDt" />
+                <input class="form-control" id="datetimePicker" />
+              </div>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
+                <input type="hidden" id="begDt" name="begDt" th:value="${#temporals.format(member.begDt, 'yyyy-MM-dd HH:mm')}" />
+                <input type="hidden" id="endDt" name="endDt" th:value="${#temporals.format(member.endDt, 'yyyy-MM-dd HH:mm')}" />
+                <input class="form-control" th:disabled="${funcType eq 'view'}" id="datetimePicker" />
+              </div>
+            </div>
+            
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              <label class="font-weight-bold"><span class="req-field">*</span>Line連動</label><br>
+              <div th:if="${funcType eq 'add'}">
+                <input type="hidden" id="lineUserId" name="lineUserId"/>
+                <input class="form-control" id="lineUser_auto" />
+              </div>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
+                <input type="hidden" id="lineUserId" name="lineUserId" th:value="*{lineUserId}"/>
+                <input class="form-control" th:disabled="${funcType eq 'view'}" id="lineUser_auto" th:value="*{lineUser?.userName}"/>
+              </div>
+            </div>
+      
+          </div>
+  
+          <div class="row badge-margin justify-content-center" th:if="${funcType eq 'edit' || funcType eq 'view'}">
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+              <span th:text="|建立時間：  ${#temporals.format(member.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+            </div>&emsp;
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+              <span th:text="|修改時間：  ${#temporals.format(member.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+            </div>
+          </div>
+          
+          <div th:if="${funcType eq 'edit' || funcType eq 'add'}"><div class="line"></div></div>
+          
+          <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="row justify-content-center">
+            <button type="button" id="submit_btn" class="btn btn-primary btn-sm">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+            </button>
+          </div>
+          
+        </div>
+    </div> </div> </div>
+  </form>
+</body>
+</html>

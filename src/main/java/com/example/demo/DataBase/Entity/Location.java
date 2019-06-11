@@ -71,7 +71,7 @@ public class Location {
   @Column(name = "beacon_key")
   private String beaconKey;
 
-  @JsonIgnore
+//  @JsonIgnore
   @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @OrderBy(value = "name ASC")
   private List<LocationDetail> details = new ArrayList<>();

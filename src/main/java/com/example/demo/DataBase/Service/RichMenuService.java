@@ -22,4 +22,8 @@ public class RichMenuService {
     return richMenuRepository.findAll();
   }
 
+  public RichMenu getByName(String name) {
+    return richMenuRepository.getByName(name).orElse(null);
+  }
+
 }

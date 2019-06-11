@@ -56,15 +56,14 @@ public class LineBotApplication {
       if (lineUser == null) {
         lineUser = new LineUser();
         lineUser.setCreateDate(LocalDateTime.now(ZoneId.of("UTC+8")));
-        lineUser.setUserName(userName);
         lineUser.setUserId(userId);
-        lineUser.setBegDt(LocalDateTime.now());
-        lineUser.setEndDt(LocalDateTime.now());
-        lineUser.setIsUse(false);
-      } else {
-        lineUser.setIsUse(false);
+        lineUser.setUserName(userName);
+//        lineUser.setBegDt(LocalDateTime.now());
+//        lineUser.setEndDt(LocalDateTime.now());
+//        lineUser.setIsUse(false);
+//        lineUser.setIsAdmin(false);
+        lineUserService.save(lineUser);
       }
-      lineUserService.save(lineUser);
       logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
       return new TextMessage(userProfile.getDisplayName() + " - 註冊成功");
     } catch (Exception ex) {
@@ -77,13 +76,13 @@ public class LineBotApplication {
   @EventMapping
   public void handleUnfollowEvent(UnfollowEvent event) {
     String userId = event.getSource().getUserId();
-    LineUser lineUser = lineUserService.getByUserIdAndIsUseTrue(userId);
+//    LineUser lineUser = lineUserService.getByUserIdAndIsUseTrue(userId);
 
-    if (lineUser != null) {
-      lineUser.setIsUse(false);
-      lineUserService.save(lineUser);
-      logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
-    }
+//    if (lineUser != null) {
+//      lineUser.setIsUse(false);
+//      lineUserService.save(lineUser);
+//      logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
+//    }
 
   }
 
@@ -125,23 +124,14 @@ public class LineBotApplication {
     String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", userId,
         senderId, type, hwid, deviceMessageAsHex);
     if ("enter".equals(type)) {
-      // 獲取 LineUser 信息 並判斷是否存在
-      LineUser lineUser = lineUserService.getByIsUseTrueAndEffectiveAndUserId(userId);
-      if (lineUser != null) {
-        // 不為管理員
-        if( !lineUser.getIsAdmin() ) {
-          lineUserService.setRichMneuByUserId(userId);
-        }
-
-//        LocationDetail ld = locationService.getLocationDetailByLocationIdAndLocationDetailName(lineUser.getLocationId(),
-//            lineUser.getLocationDetailName());
-//        if (ld != null) {
-//          com.example.demo.DataBase.Entity.RichMenu richMenu = lineRichMenuService.getByRichMenuId(ld.getRichMenuId());
-//          if (richMenu != null) {
-//            lineUserService.setRichMneuByUserId(userId);
-//          }
+//      // 獲取 LineUser 信息 並判斷是否存在
+//      LineUser lineUser = lineUserService.getByIsUseTrueAndEffectiveAndUserId(userId);
+//      if (lineUser != null) {
+//        // 不為管理員
+//        if( !lineUser.getIsAdmin() ) {
+//          lineUserService.setRichMneuByUserId(userId);
 //        }
-      }
+//      }
     }
     return new TextMessage(textMessage);
   }

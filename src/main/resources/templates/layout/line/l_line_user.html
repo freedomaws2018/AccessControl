@@ -3,132 +3,37 @@
 
 <body layout:fragment="content">
   <script type="text/javascript">
-
-  var delete_user = function(id,name){
-    showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 嗎?',function(){
-      $.ajax({
-        type: 'DELETE',
-        url: "/line/user/delete/" + id,
-        dataType: 'json',
-        success: (result) =>{
-          location.reload();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-          location.reload();
-        }
-      });
-    });
     
-  }
-  
-  $().ready(function(){
-	  $("a[id^='delete_user']").click(function(){
-		  var lineUserId = $(this).attr("lineUserId");
-	  
-	  });
-  });
-  
   </script>
-  <div th:if="|${funcType eq 'view' and info_status ne null}|" class="alert alert-success" role="alert" th:text="${info_status}"></div>
-  <div th:if="|${funcType eq 'view' and error_status ne null}|" class="alert alert-warning" role="alert" th:text="${error_status}"></div>
+  
   <div class="row"> <div class="col-12"> <div class="card">
-    <div class="card-header" toggleId="l-line-user-toggle">
+    <div class="card-header" >
       <span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
     </div>
-    <div class="card-body" toggleId="l-line-user-toggle">
-      <!-- 電腦版 -->
-      <table class="table table-hover table-responsive-sm table-striped hide-in-phone">
+    <div class="card-body" >
+
+      <table class="table table-hover table-responsive-sm table-striped">
         <thead class="center">
           <tr>
-            <th scope="col">操作</th>
+            <th scope="col">編號</th>
             <th scope="col">姓名</th>
-            <th scope="col">使用狀態</th>
           </tr>
         </thead>
         <tbody class="center">
           <tr th:if="${users.empty}">
-            <th colspan="3">沒有資料</th>
+            <th colspan="2">沒有資料</th>
           </tr>
-          <tr th:unless="${users.empty}" th:each="user,itemStar:${users}">
-            <th scope="row">
-              <a class="btn btn-sm btn-secondary" th:href="@{/line/user/view/__${user.userId}__}" >
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
-              </a>
-              <a class="btn btn-success btn-sm" th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" >
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-              </a>
-              <a class="btn btn-danger btn-sm" th:onclick="|delete_user('__${user.userId}__','__${user.userName}__')|" th:lineUserId="${user.userId}" href="javascript:;" >
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
-              </a>
-            </th>
-            <td>[[${user.userName}]]</td>
-            <td>
-              <script th:inline="javascript">
-                var now = Date.now();
-                var begDt = Date.parse([[${user.begDt}]]);
-                var endDt = Date.parse([[${user.endDt}]]);
-                if([[${user.isUse}]]){
-                  if(now >= begDt && endDt >= Date.parse("2099-12-31 23:59") ){
-                    document.write("終身有效");
-                  }else if(now >= begDt && now <= endDt){
-                    document.write("到 " + [[${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}]] + " 止" )
-                  }else{
-                    document.write("禁止使用")
-                  }
-                }else{
-                  document.write("停止使用")
-                }
-              </script>
-            </td>
+          <tr th:unless="${users.empty}" th:each="user,itemStar:${users}" th:object="${user}">
+            <td>[[*{userId}]]</td>
+            <td>[[*{userName}]]</td>
           </tr>
         </tbody>
       </table>
-      <!-- 手機版 -->
-      <table class="table-hover show-on-phone rwd-table">
-        <tbody class="rwd-tbody">
-          <tr th:if="${users.empty}">
-            <td colspan="3">沒有資料</td>
-          </tr>
-          <tr th:unless="${users.empty}" th:each="user,itemStar:${users}">
-            <td class="td-first" scope="row">
-              <a class="btn btn-secondary btn-sm" th:href="@{/line/user/view/__${user.userId}__}" >
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
-              </a>
-              <a class="btn btn-success btn-sm" th:href="@{/line/user/edit/{userId}(userId=${user.userId})}" >
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-              </a>
-              <a class="btn btn-danger btn-sm" th:onclick="|delete_user('__${user.userId}__','__${user.userName}__')|" th:lineUserId="${user.userId}" href="javascript:;" >
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
-              </a>
-            </td>
-          
-            <td data-th="姓名：">
-              <span th:text="${user.userName}"></span>
-            </td>
-            <td data-th="使用狀態：">
-              <script th:inline="javascript">
-                var now = Date.now();
-                var begDt = Date.parse([[${user.begDt}]]);
-                var endDt = Date.parse([[${user.endDt}]]);
-                if([[${user.isUse}]]){
-                  if( now >= begDt && endDt >= Date.parse("2099-12-31 23:59") ){
-                    document.write("終身有效");
-                  }else if( now >= begDt && now <= endDt ){
-                    document.write("到 " + [[${#temporals.format(user.endDt, 'yyyy-MM-dd HH:mm')}]] + " 止" );
-                  }else{
-                    document.write("禁止使用");
-                  }
-                }else{
-                  document.write("停止使用");
-                }
-              </script>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      
       <div th:if="${users.totalPages gt 1}" >
         <div th:replace="~{comm/page :: page01(entity=${users})}"></div>
       </div>
+      
     </div> 
   </div> </div> </div>
 </body>

@@ -16,6 +16,7 @@ import org.hibernate.annotations.TypeDef;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.util.Base64Utils;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.linecorp.bot.model.richmenu.RichMenuResponse;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 @Table(name = "tbl_rich_menu")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class RichMenu {
@@ -49,10 +51,11 @@ public class RichMenu {
   private byte[] image;
 
   public String getImage() {
-    byte[] encodeBase64 = Base64Utils.encode(image);
+//    byte[] encodeBase64 = Base64Utils.encode(image);
     try {
-      return new String(encodeBase64, "UTF-8");
+      return new String(Base64Utils.encode(image), "UTF-8");
     } catch (UnsupportedEncodingException uee) {
+      uee.printStackTrace();
       return null;
     }
   }

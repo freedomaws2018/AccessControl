@@ -33,15 +33,15 @@
         str +="  </td>";
 
         str +="  <td>";
-        str +="    <input type='number' class='form-control' name='detail[" + index + "].rentMonth' FDCV='not-blank,is-positive-integer' />";
+        str +="    <input type='number' class='form-control' name='detail[" + index + "].rentMonth' value='0' FDCV='not-blank,is-positive-integer' />";
         str +="  </td>";
 
         str +="  <td>";
-        str +="    <input type='number' class='form-control' name='detail[" + index + "].taxMonth' FDCV='not-blank,is-positive-integer' />";
+        str +="    <input type='number' class='form-control' name='detail[" + index + "].taxMonth' value='0' FDCV='not-blank,is-positive-integer' />";
         str +="  </td>";
 
         str +="  <td>";
-        str +="    <input type='number' step='0.1' class='form-control' name='detail[" + index + "].electricityFeeDegree' FDCV='not-blank,is-numeric'/>";
+        str +="    <input type='number' step='0.1' class='form-control' name='detail[" + index + "].electricityFeeDegree' value='0' FDCV='not-blank,is-numeric'/>";
         str +="  </td>";
         
         str +="  <td>";
@@ -63,7 +63,7 @@
           return;
         }
         var jsonData = $("#location_form").toJson();
-		console.log(jsonData)
+// 		console.log(jsonData)
         $.ajax({
           method: 'post',
           url: '/location/save',
