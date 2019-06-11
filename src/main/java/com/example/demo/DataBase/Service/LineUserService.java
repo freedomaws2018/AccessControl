@@ -24,7 +24,6 @@ public class LineUserService {
     return lineUserRepository.findAll(pageable);
   }
 
-
   public List<LineUser> getByFilterAll(String term){
     return lineUserRepository.getByFilterAll(term);
   }

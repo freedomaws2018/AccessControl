@@ -88,25 +88,6 @@ public class LineRichMenuService {
     LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
     BotApiResponse botApiResponse = client.deleteRichMenu(richMenuId).get();
 
-//    /** 移除關聯 **/
-//    List<Member> members = memberService.getByRichMenuId(richMenuId);
-//    if (members != null && !members.isEmpty()) {
-//      members = members.stream().map(member -> {
-//        member.setRichMenuId(null);
-//        return member;
-//      }).collect(Collectors.toList());
-//      memberService.saveAll(members);
-//    }
-//
-//    List<LocationDetail> lds = LocationService.getLocationDetailByRichMenuId(richMenuId);
-//    if (lds != null && !lds.isEmpty()) {
-//      lds = lds.stream().map(ld -> {
-//        ld.setRichMenuId(null);
-//        return ld;
-//      }).collect(Collectors.toList());
-//      LocationService.saveLocationDetails(lds);
-//    }
-
     return botApiResponse;
   }
 

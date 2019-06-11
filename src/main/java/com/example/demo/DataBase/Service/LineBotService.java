@@ -41,9 +41,6 @@ public class LineBotService {
   @Autowired
   private Wf8266Service wf8266Service;
 
-//  @Autowired
-//  private MappingLineuserWf8266Repository mappingLineuserWf8266Repository;
-
   @Value("${line.bot.channelToken}")
   private String channelAccessToken;
 

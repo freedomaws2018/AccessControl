@@ -25,9 +25,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   @Query(value = "SELECT * FROM tbl_member WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt ; ", nativeQuery = true)
   List<Member> getAllEffectiveMember();
 
-//  @Query(value = "SELECT * FROM tbl_member WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND line_user_id = :lineUserId ; ", nativeQuery = true)
-//  Optional<Member> getByIsUseTrueAndEffectiveAndUserId(@Param("lineUserId") String lineUserId);
-
   @Transactional
   @Query(value = "SELECT * FROM tbl_member WHERE 1 = 1 AND is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND line_user_id = :lineUserId ;", nativeQuery = true)
   Optional<Member> getEffectiveMember(@Param("lineUserId") String lineUserId);
