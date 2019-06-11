@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Common.HttpUtils;
-import com.example.demo.DataBase.Entity.LineUser;
+import com.example.demo.DataBase.Entity.Member;
 import com.example.demo.DataBase.Entity.RichMenu;
 import com.example.demo.DataBase.Entity.Wf8266Detail;
 import com.linecorp.bot.client.LineMessagingClient;
@@ -25,6 +25,9 @@ import com.linecorp.bot.model.response.BotApiResponse;
 public class LineBotService {
 
   private static Logger logger = LoggerFactory.getLogger(LineBotService.class);
+
+  @Autowired
+  private MemberService memberService;
 
   @Autowired
   private LineUserService lineUserService;
@@ -132,34 +135,30 @@ public class LineBotService {
     System.err.println("triggerTexts3" + triggerTexts3);
 //    return null;
 
-    LineUser lineUser = null;
+    Member member = null;
     // 1. 判斷指令存在
     if (!triggerTexts2.isEmpty() || !triggerTexts3.isEmpty()) {
-//      lineUser = lineUserService.getByIsUseTrueAndEffectiveAndUserId(userId);
+      member = memberService.getEffectiveUser(userId);
       // 2. 判斷使用者存在
-      if (lineUser == null) {
+      if (member == null) {
         return "使用者沒有權限";
       }
     }
 
     if (!triggerTexts2.isEmpty()) {
-//      String UI = lineUser.getUserId();
       String SN = triggerTexts2.get(0).split("_")[0];
       String WDN = triggerTexts2.get(0).split("_")[1];
-//      Integer size = mappingLineuserWf8266Repository.countByLineUserIdAndWf8266SnAndWf8266DetailName(UI, SN, WDN);
-//      if (size >= 0) {
-        Wf8266Detail detail = wf8266Service.getWf8266DetailBySnAndName(SN, WDN);
-        String url = detail.getTriggerUrl();
-        HttpUtils.doGet(url);
-        return detail.getReply2();
-//      }
+      Wf8266Detail detail = wf8266Service.getWf8266DetailBySnAndName(SN, WDN);
+      String url = detail.getTriggerUrl();
+      HttpUtils.doGet(url);
+      return detail.getReply2();
     }
 
     if (!triggerTexts3.isEmpty()) {
       String triggerText = triggerTexts3.get(0);
       RichMenu rm = richMenuService.getByName(triggerText);
       if (null != rm) {
-        String UI = lineUser.getUserId();
+        String UI = member.getLineUserId();
         String RMI = rm.getRichMenuId();
         try {
           lineRichMenuService.linkRichMenuToUser(UI, RMI);
@@ -174,48 +173,5 @@ public class LineBotService {
 
     return null;
   }
-
-//  if (!triggerTexts2.isEmpty()) {
-//    List<Wf8266Detail> wDetails = this.wf8266DetailRepository.getByTriggerTextInAndIsUseTrue(triggerTexts2);
-//
-//    if (wDetails != null && !wDetails.isEmpty()) {
-//      //
-//      List<MappingWf8266DetailAndUser> mappingWdUs = this.mappingWf8266DetailAndUserRepository
-//          .getByIsUseTrueAndUserIdAndTriggerTextIn(userId,
-//              wDetails.stream().map(Wf8266Detail::getTriggerText).collect(Collectors.toList()));
-//
-//      if (wDetails.size() == mappingWdUs.size()) { // 所以指令均有權限
-//        wDetails.stream().map(Wf8266Detail::getTriggerUrl).forEach(HttpUtils::doGet);
-//        List<String> replys = wDetails.stream().map(Wf8266Detail::getReply).collect(Collectors.toList());
-////        System.err.println(lineUser.getUserName() + ":" + String.join("\r\n", replys));
-//
-//        new Thread(() -> {
-//          triggerTexts.forEach(triggerText -> {
-//            this.loggerWf8266Repository.save(new LogWf8266(userId, triggerText));
-//          });
-//        }).start();
-//
-//        logger.info("【指令】 " + lineUser.getUserName() + ":" + String.join("\r\n", replys));
-//        this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage(String.join("\r\n", replys))));
-//      } else {
-//        this.doReplyMessage(new ReplyMessage(replyToken,
-//            new TextMessage(mappingWdUs.isEmpty() ? "權限不足!!" : "部分權限不足!!")));
-//      }
-//    }
-//    return;
-//  }
-
-//  if (!triggerTexts3.isEmpty()) {
-//    String triggerText = triggerTexts3.get(0);
-//    RichMenu rm = this.richMenuRepository.getByName(triggerText).orElse(null);
-//    if (null != rm) {
-//      this.lineRichMenuService.linkRichMenuToUser(userId, rm.getRichMenuId());
-//    } else {
-//      this.doReplyMessage(new ReplyMessage(replyToken, new TextMessage("找不到指定頁面，請洽管理員。")));
-//    }
-//    return;
-//  }
-
-//  }
 
 }

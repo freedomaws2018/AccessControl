@@ -149,8 +149,8 @@
                 <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" id="beaconKey" name="beaconKey" th:value="*{beaconKey}"/>
               </div>     
               
-              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12">
-                <label class="font-weight-bold"><span class="req-field">*</span>負責人</label>
+              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+                <label class="font-weight-bold"><span class="req-field">*</span>負責人</label><BR>
 <!--                 [[${location}]] -->
 <!--                 <sapn th:each="emp:${mappingEmp}" th:value="${emp.value.id}" th:text="|${emp.value.name},${emp.value.isUse}|" ></span> -->
                 <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" id="keepers" name="keepers" class="js-example-basic-multiple js-states form-control" multiple FDCV="not-blank">
@@ -158,6 +158,14 @@
                 </select>
                 <select th:if="${funcType eq 'add'}" id="keepers" name="keepers" class="form-control" size="5" multiple FDCV="not-blank">
                   <option th:each="emp:${mappingEmp}" th:value="${emp.value.id}" th:text="${emp.value.name}" ></option>
+                </select>
+              </div>
+              
+              <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+                <label class="font-weight-bold">Line@管理員選單</label>
+                <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" name="richMenuId" class="form-control">
+                  <option value>--請選擇--</option>
+                  <option th:each="rm:${richMenus}" th:value="${rm.richMenuId}" th:selected="${rm.richMenuId} == *{richMenuId}" >[[${rm.name}]]</option>
                 </select>
               </div>
               

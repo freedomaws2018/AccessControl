@@ -38,10 +38,6 @@ public interface LineUserRepository extends JpaRepository<LineUser, String> {
 //
 //  @Query(value = "SELECT * FROM tbl_line_user WHERE 1 = 1 AND is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND user_id = ?1 ;", nativeQuery = true)
 //  Optional<LineUser> getEffectiveUser(String userId);
-//
-//  @Modifying
-//  @Transactional
-//  @Query(value = "UPDATE tbl_line_user SET rich_menu_link_datetime = now() WHERE user_id = :userId ; ", nativeQuery = true)
-//  void updateRichMenuLinkDatetime(@Param("userId") String userId);
+
 
 }

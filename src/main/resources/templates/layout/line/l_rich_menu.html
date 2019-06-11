@@ -18,7 +18,7 @@
           location.reload();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-          location.reload();
+          alert("該錶使用中");
         }
       });
     });
@@ -69,9 +69,9 @@
           <tr th:unless="${richMenus.empty}" th:each="richMenu,itemStar:${richMenus}" th:object="${richMenu}">
             <th scope="row" th:richMenu="*{richMenuId}">
               <span style="display: none;"  th:text="*{richMenuId}">richMenuId</span>
-              <a class="btn btn-sm btn-secondary" th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" >
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
-              </a>
+<!--               <a class="btn btn-sm btn-secondary" th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" > -->
+<!--                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視 -->
+<!--               </a> -->
 <!--               <a th:href="@{/line/rich_menu/edit/{richMenuId}(richMenuId=*{richMenuId})}" class="btn btn-success btn-sm"> -->
 <!--                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 -->
 <!--               </a> -->

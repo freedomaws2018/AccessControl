@@ -16,9 +16,6 @@ public class LineUserService {
   @Autowired
   private LineUserRepository lineUserRepository;
 
-  @Autowired
-  private LineRichMenuService lineRichMenuService;
-
   public List<LineUser> getAll() {
     return lineUserRepository.findAll();
   }
@@ -32,37 +29,8 @@ public class LineUserService {
     return lineUserRepository.getByFilterAll(term);
   }
 
-//  public List<LineUser> getAllLineUserByEffectiveAndUserId() {
-//    return lineUserRepository.getByIsUseTrueAndEffective();
-//  }
-//
-//  public LineUser getByIsUseTrueAndEffectiveAndUserId(String userId) {
-//    return lineUserRepository.getByIsUseTrueAndEffectiveAndUserId(userId).orElse(null);
-//  }
-//
-//  public LineUser getByUserIdAndIsUseTrue(String userId) {
-//    return lineUserRepository.getByUserIdAndIsUseTrue(userId).orElse(null);
-//  }
-
   public LineUser getByUserId(String userId) {
     return lineUserRepository.getByUserId(userId).orElse(null);
-  }
-
-  public LineUser setRichMneuByUserId(String userId) {
-    LineUser lineuser = lineUserRepository.findById(userId).orElse(null);
-//    if (lineuser != null) {
-//      String lineUserId = lineuser.getUserId();
-//      String richMenuId = lineuser.getRichMenuId();
-//      if (StringUtils.isNotBlank(richMenuId)) {
-//        try {
-//          lineRichMenuService.linkRichMenuToUser(lineUserId, richMenuId);
-//          lineUserRepository.updateRichMenuLinkDatetime(lineUserId);
-//        } catch (InterruptedException | ExecutionException e) {
-//          e.printStackTrace();
-//        }
-//      }
-//    }
-    return lineuser;
   }
 
   public LineUser save(LineUser lineUser) {

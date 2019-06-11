@@ -11,10 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.DataBase.Entity.LineUser;
+import com.example.demo.DataBase.Entity.Member;
 import com.example.demo.DataBase.Service.LineBotService;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.DataBase.Service.LineUserService;
 import com.example.demo.DataBase.Service.LocationService;
+import com.example.demo.DataBase.Service.MemberService;
 import com.linecorp.bot.model.event.BeaconEvent;
 import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.event.MessageEvent;
@@ -39,6 +41,9 @@ public class LineBotApplication {
   private LineUserService lineUserService;
 
   @Autowired
+  private MemberService memberService;
+
+  @Autowired
   private LocationService locationService;
 
   @Autowired
@@ -54,17 +59,24 @@ public class LineBotApplication {
 
       LineUser lineUser = lineUserService.getByUserId(userId);
       if (lineUser == null) {
+
         lineUser = new LineUser();
-        lineUser.setCreateDate(LocalDateTime.now(ZoneId.of("UTC+8")));
         lineUser.setUserId(userId);
         lineUser.setUserName(userName);
-//        lineUser.setBegDt(LocalDateTime.now());
-//        lineUser.setEndDt(LocalDateTime.now());
-//        lineUser.setIsUse(false);
-//        lineUser.setIsAdmin(false);
-        lineUserService.save(lineUser);
+        lineUser.setIsLeave(false);
+        lineUser = lineUserService.save(lineUser);
+
+        Member member = new Member();
+        member.setLineUserId(lineUser.getUserId());
+        member.setBegDt(LocalDateTime.now(ZoneId.of("UTC+8")));
+        member.setEndDt(LocalDateTime.now(ZoneId.of("UTC+8")));
+        member.setIsUse(false);
+        member.setIsAdmin(false);
+        member.setFirstName(userName);
+        member.setLastName(userName);
+        member = memberService.save(member);
+        logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
       }
-      logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
       return new TextMessage(userProfile.getDisplayName() + " - 註冊成功");
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -76,13 +88,17 @@ public class LineBotApplication {
   @EventMapping
   public void handleUnfollowEvent(UnfollowEvent event) {
     String userId = event.getSource().getUserId();
-//    LineUser lineUser = lineUserService.getByUserIdAndIsUseTrue(userId);
+    LineUser lineUser = lineUserService.getByUserId(userId);
 
-//    if (lineUser != null) {
-//      lineUser.setIsUse(false);
-//      lineUserService.save(lineUser);
-//      logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
-//    }
+    if (lineUser != null) {
+      lineUser.setIsLeave(true);
+      lineUser = lineUserService.save(lineUser);
+
+      Member member = lineUser.getMember();
+      member.setIsUse(false);
+      member = memberService.save(member);
+      logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
+    }
 
   }
 
@@ -116,22 +132,23 @@ public class LineBotApplication {
    **/
   @EventMapping
   public TextMessage handleBeaconEvent(BeaconEvent event) throws InterruptedException, ExecutionException {
-    String userId = event.getSource().getUserId();
+    String lineUserId = event.getSource().getUserId();
     String senderId = event.getSource().getSenderId();
     String type = event.getBeacon().getType();
     String hwid = event.getBeacon().getHwid();
     String deviceMessageAsHex = event.getBeacon().getDeviceMessageAsHex();
-    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", userId,
+    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId,
         senderId, type, hwid, deviceMessageAsHex);
     if ("enter".equals(type)) {
-//      // 獲取 LineUser 信息 並判斷是否存在
-//      LineUser lineUser = lineUserService.getByIsUseTrueAndEffectiveAndUserId(userId);
-//      if (lineUser != null) {
-//        // 不為管理員
-//        if( !lineUser.getIsAdmin() ) {
-//          lineUserService.setRichMneuByUserId(userId);
-//        }
-//      }
+    // 獲取 LineUser 信息 並判斷是否存在
+      Member member = memberService.getEffectiveUser(lineUserId);
+      LineUser lineUser = member.getLineUser();
+      if (lineUser != null) {
+        // 不為管理員
+        if( !member.getIsAdmin() ) {
+          memberService.setRichMneuByUserId(lineUserId);
+        }
+      }
     }
     return new TextMessage(textMessage);
   }

@@ -12,7 +12,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -71,8 +73,14 @@ public class Location {
   @Column(name = "beacon_key")
   private String beaconKey;
 
-//  @JsonIgnore
-  @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  /** LINE@ 管理員選單 **/
+  @Column(name = "rich_menu_id")
+  private String richMenuId;
+  @OneToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "rich_menu_id", referencedColumnName = "rich_menu_id", insertable = false, updatable = false, nullable = true)
+  private RichMenu richMenu;
+
+  @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @OrderBy(value = "name ASC")
   private List<LocationDetail> details = new ArrayList<>();
 

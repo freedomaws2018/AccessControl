@@ -48,10 +48,10 @@ public class RichMenu {
 
   @Lob
   @Basic(fetch = FetchType.LAZY)
+  @Column(name = "image")
   private byte[] image;
 
   public String getImage() {
-//    byte[] encodeBase64 = Base64Utils.encode(image);
     try {
       return new String(Base64Utils.encode(image), "UTF-8");
     } catch (UnsupportedEncodingException uee) {

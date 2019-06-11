@@ -55,8 +55,7 @@ public class LocationDetail implements Serializable {
   /** LINE@選單 **/
   @Column(name = "rich_menu_id")
   private String richMenuId;
-//  @Transient
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "rich_menu_id", referencedColumnName = "rich_menu_id", insertable = false, updatable = false, nullable = true)
   private RichMenu richMenu;
 

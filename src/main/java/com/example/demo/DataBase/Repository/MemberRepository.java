@@ -1,37 +1,39 @@
 package com.example.demo.DataBase.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.DataBase.Entity.LineUser;
 import com.example.demo.DataBase.Entity.Member;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-  Optional<LineUser> getById(Long id);
+  Optional<Member> getById(Long id);
 
-//  Optional<LineUser> getByUserIdAndIsUseTrue(Long id);
-//
-//  List<LineUser> getByUserIdIn(List<Long> ids);
+  Optional<Member> getByLineUserIdAndIsUseTrue(String lineUserId);
+
+  List<Member> getByRichMenuId(String richMenuId);
 
 //  @Query(value = "SELECT * FROM tbl_line_user WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt ; ", nativeQuery = true)
-//  List<LineUser> getByIsUseTrueAndEffective();
-//
-//  @Query(value = "SELECT * FROM tbl_line_user WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND user_id = :userId ; ", nativeQuery = true)
-//  Optional<LineUser> getByIsUseTrueAndEffectiveAndUserId(@Param("userId") String userId);
-//
-//  @Query(value = "SELECT * FROM tbl_line_user WHERE 1 = 1 AND user_name LIKE ?1 ;", nativeQuery = true)
-//  List<LineUser> getByUserNameLike(String userName);
-//
-//  @Query(value = "SELECT * FROM tbl_line_user WHERE 1 = 1 AND is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND user_id = ?1 ;", nativeQuery = true)
-//  Optional<LineUser> getEffectiveUser(String userId);
-//
-//  @Modifying
-//  @Transactional
-//  @Query(value = "UPDATE tbl_line_user SET rich_menu_link_datetime = now() WHERE user_id = :userId ; ", nativeQuery = true)
-//  void updateRichMenuLinkDatetime(@Param("userId") String userId);
+//  List<Member> getByIsUseTrueAndEffective();
+
+//  @Query(value = "SELECT * FROM tbl_member WHERE is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND line_user_id = :lineUserId ; ", nativeQuery = true)
+//  Optional<Member> getByIsUseTrueAndEffectiveAndUserId(@Param("lineUserId") String lineUserId);
+
+  @Transactional
+  @Query(value = "SELECT * FROM tbl_member WHERE 1 = 1 AND is_use = true AND NOW() BETWEEN beg_dt AND end_dt AND line_user_id = :lineUserId ;", nativeQuery = true)
+  Optional<Member> getEffectiveUser(@Param("lineUserId") String lineUserId);
+
+  @Modifying
+  @Transactional
+  @Query(value = "UPDATE tbl_member SET rich_menu_link_datetime = now() WHERE line_user_id = :lineUserId ; ", nativeQuery = true)
+  void updateRichMenuLinkDatetime(@Param("lineUserId") String lineUserId);
 
 }

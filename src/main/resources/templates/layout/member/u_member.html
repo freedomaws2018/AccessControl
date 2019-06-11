@@ -6,9 +6,7 @@
   $().ready(function(){
   	dateTimePicke("datetimePicker","begDt","endDt");
   	datePicker("birthday","birthday");
-  	
-  	console.log([[${member}]])
-  	
+  	  	
   	$("#submit_btn").click(function(){
       if($("#member_form").form_verification()){
         return;
@@ -102,7 +100,7 @@
               <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="personId" th:value="*{personId}"/>
             </div>
                
-            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3">
               <label class="font-weight-bold"><span class="req-field">*</span>是否啟用</label><br>
               <div th:if="${funcType eq 'add'}">
                 <label><input type="radio" id="isUseTrue" name="isUse" value="true" checked />是</label>
@@ -114,7 +112,7 @@
               </div>
             </div> 
             
-            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-3">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3">
               <label class="font-weight-bold"><span class="req-field">*</span>設為管理員</label><br>
               <div th:if="${funcType eq 'add'}">
                 <label><input type="radio" id="isAdminTrue" name="isAdmin" value="true" />是</label>
@@ -127,7 +125,7 @@
             </div> 
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
-              <label class="font-weight-bold"><span class="req-field">*</span>有效時限</label><br>
+              <label class="font-weight-bold"><span class="req-field">*</span>有效時限</label><BR>
               <div th:if="${funcType eq 'add'}">
                 <input type="hidden" id="begDt" name="begDt" />
                 <input type="hidden" id="endDt" name="endDt" />
@@ -139,9 +137,15 @@
                 <input class="form-control" th:disabled="${funcType eq 'view'}" id="datetimePicker" />
               </div>
             </div>
-            
+      
+          </div>
+          
+          <div><div class="line"></div></div>
+          
+          <div class="row">
+          
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
-              <label class="font-weight-bold"><span class="req-field">*</span>Line連動</label><br>
+              <label class="font-weight-bold">Line連動</label><BR>
               <div th:if="${funcType eq 'add'}">
                 <input type="hidden" id="lineUserId" name="lineUserId"/>
                 <input class="form-control" id="lineUser_auto" />
@@ -151,18 +155,63 @@
                 <input class="form-control" th:disabled="${funcType eq 'view'}" id="lineUser_auto" th:value="*{lineUser?.userName}"/>
               </div>
             </div>
-      
+          
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
+              <label class="font-weight-bold">使用據點</label><BR>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
+                <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" name="richMenuId" >
+                  <option value="">請選擇</option>
+                  <script th:inline="javascript">
+                    var locs = [[${locations}]];
+                  
+                    $.each(locs , function(index,loc){
+                      var locDet = loc.details;
+                      if(locDet.length > 0){
+                        document.write("<optgroup label='" + loc.name + "'>");
+                        if(loc.richMenuId){ // 管理員
+                          if([[${member.richMenuId}]] == loc.richMenuId){
+                            document.write("<option value='" + loc.richMenuId + "' selected>★" + loc.richMenu.name + "</option>");
+                          }else{
+                            document.write("<option value='" + loc.richMenuId + "'>★" + loc.richMenu.name + "</option>");
+                          }
+                        }
+                        $.each(loc.details,function(index , det){
+                          if(det.richMenuId){
+                            if([[${member.richMenuId}]] == det.richMenuId){
+                              document.write("<option value='" + det.richMenuId + "' selected>" + det.name + "</option>");
+                            }else{
+                              document.write("<option value='" + det.richMenuId + "'>" + det.name + "</option>");
+                            }
+                          }else{
+                            document.write("<option value='" + det.richMenuId + "' disabled>" + det.name + "(沒有Line@選單)</option>");
+                          }
+                        });
+                        document.write("</optgroup>");
+                      }
+                    });
+                  </script>
+                </select>
+              </div>  
+            </div>
+          
+<!--             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6"> -->
+<!--               <label class="font-weight-bold">使用選單</label><BR> -->
+<!--             </div> -->
+            
           </div>
   
+          <div><div class="line"></div></div>
+          
           <div class="row badge-margin justify-content-center" th:if="${funcType eq 'edit' || funcType eq 'view'}">
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
               <span th:text="|建立時間：  ${#temporals.format(member.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
-            </div>&emsp;
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-4">
+            </div>
+            &emsp;
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
               <span th:text="|修改時間：  ${#temporals.format(member.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
             </div>
           </div>
-          
+                    
           <div th:if="${funcType eq 'edit' || funcType eq 'add'}"><div class="line"></div></div>
           
           <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="row justify-content-center">

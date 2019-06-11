@@ -36,6 +36,8 @@ public class FormMember {
 
   private String lineUserId;
 
+  private String richMenuId;
+
   public Member toMember(Member member) {
     if (member == null) {
       member = new Member();
@@ -48,7 +50,8 @@ public class FormMember {
       member.setBirthday(birthday);
       member.setBegDt(begDt);
       member.setEndDt(endDt);
-      member.setLineUserId(StringUtils.isNotBlank(lineUserId)?lineUserId:null);
+      member.setRichMenuId(StringUtils.isNotBlank(richMenuId) ? richMenuId : null);
+      member.setLineUserId(StringUtils.isNotBlank(lineUserId) ? lineUserId : null);
     } else {
       member.setFirstName(firstName);
       member.setLastName(lastName);
@@ -58,7 +61,8 @@ public class FormMember {
       member.setBirthday(birthday);
       member.setBegDt(begDt);
       member.setEndDt(endDt);
-      member.setLineUserId(StringUtils.isNotBlank(lineUserId)?lineUserId:null);
+      member.setRichMenuId(StringUtils.isNotBlank(richMenuId) ? richMenuId : null);
+      member.setLineUserId(StringUtils.isNotBlank(lineUserId) ? lineUserId : null);
     }
     return member;
   }

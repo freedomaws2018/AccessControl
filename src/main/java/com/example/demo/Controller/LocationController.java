@@ -111,6 +111,7 @@ public class LocationController {
       location = locationService.getById(form.getId());
       locationService.updateAllIsUseFalseByLoctionId(location.getId());
       locationService.deleteAlLocationDetailByLocationId(location.getId());
+      location = locationService.getById(form.getId());
       location = locationService.save(form.getLocaitonByEntity(location));
       locationService.saveMappingEL(form.getMappingEL(location));
       locationService.saveLocationDetails(form.getLocationDetails(location));

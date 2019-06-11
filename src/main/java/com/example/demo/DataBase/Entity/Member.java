@@ -18,9 +18,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "tbl_member")
 public class Member {
@@ -32,9 +38,21 @@ public class Member {
 
   @Column(name = "line_user_id")
   private String lineUserId;
-  @OneToOne(fetch = FetchType.LAZY)
+  @JsonBackReference
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "line_user_id", referencedColumnName = "user_id", insertable = false, updatable = false, nullable = true)
   private LineUser lineUser;
+
+  /** RichMenu 最後發送時間 **/
+  @Column(name = "rich_menu_link_datetime")
+  private LocalDateTime richMenuLinkDateTime;
+  /** RichMenu 當前使用頁面 **/
+  @Column(name = "rich_menu_id")
+  private String richMenuId;
+  /** RichMenu關聯 **/
+  @OneToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "rich_menu_id", referencedColumnName = "rich_menu_id", insertable = false, updatable = false, nullable = true)
+  private RichMenu richMenu;
 
   @CreatedDate
   @Column(name = "create_date", nullable = false, updatable = false)
@@ -77,10 +95,24 @@ public class Member {
     return (StringUtils.isNotBlank(firstName) ? firstName : "") + (StringUtils.isNotBlank(lastName) ? lastName : "");
   }
 
-  public Boolean getIsEffective() {
-    return isUse //
-        && Duration.between(LocalDateTime.now(), begDt).toMillis() > 0 //
-        && Duration.between(LocalDateTime.now(), endDt).toMillis() < 0;
+  public Integer getEffectiveCode() {
+    // 啟用
+    if (isUse) {
+      // 使用區間
+      Long nowToBegDt = Duration.between(begDt, LocalDateTime.now()).toMillis();
+      Long nowToEndDt = Duration.between(LocalDateTime.now(), endDt).toMillis();
+      if (nowToBegDt > 0 && nowToEndDt > 0) {
+        if (Duration.between(begDt, endDt).toDays() > 365 * 20) {
+          return 99; // 終身
+        } else {
+          return 1; // 使用至 yyyy-MM-dd HH:mm
+        }
+      } else {
+        return 2; // 失效
+      }
+    } else {
+      return 0; // 停止使用
+    }
   }
 
 }

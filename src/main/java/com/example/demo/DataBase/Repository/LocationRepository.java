@@ -13,7 +13,7 @@ import com.example.demo.DataBase.Entity.Location;
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Long> {
 
-	@Query(value = "SELECT id, address, beacon_key, create_date, modify_date, name, phone, wifi_passwd, wifi_ssid FROM tbl_location WHERE name LIKE :name ORDER BY length(name) , name LIMIT 10 ; " , nativeQuery = true)
+	@Query(value = "SELECT * FROM tbl_location WHERE name LIKE :name ORDER BY length(name) , name LIMIT 10 ; " , nativeQuery = true)
 	List<Location> getByNameLikeOrderByLenNameAndNameLimit10(@Param("name") String name);
 
 	Optional<Location> getByBeaconKey(String beaconKey);

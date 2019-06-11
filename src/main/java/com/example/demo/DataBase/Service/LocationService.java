@@ -29,10 +29,12 @@ public class LocationService {
 
   public void updateAllIsUseFalseByLoctionId(Long locationId) {
     mappingEmployeeLocationRepository.updateAllIsUseFalseByLoctionId(locationId);
+    mappingEmployeeLocationRepository.flush();
   }
 
   public void deleteAlLocationDetailByLocationId(Long locationId) {
     locationDetailRepository.deleteAlLocationDetailByLocationId(locationId);
+    locationDetailRepository.flush();
   }
 
   public List<Location> getAll() {
@@ -51,11 +53,15 @@ public class LocationService {
     return this.locationRepository.findById(id).orElse(null);
   }
 
-  public List<LocationDetail> getLocationDetailByLocationId(Long locationId){
+  public List<LocationDetail> getLocationDetailByRichMenuId(String richMenuId) {
+    return locationDetailRepository.findByRichMenuId(richMenuId);
+  }
+
+  public List<LocationDetail> getLocationDetailByLocationId(Long locationId) {
     return locationDetailRepository.findByLocationId(locationId);
   }
 
-  public LocationDetail getLocationDetailByLocationIdAndLocationDetailName(Long locationId,String locationDetailName) {
+  public LocationDetail getLocationDetailByLocationIdAndLocationDetailName(Long locationId, String locationDetailName) {
     return locationDetailRepository.findByLocationIdAndName(locationId, locationDetailName).orElse(null);
   }
 
@@ -64,7 +70,9 @@ public class LocationService {
   }
 
   public List<LocationDetail> saveLocationDetails(List<LocationDetail> details) {
-    return locationDetailRepository.saveAll(details);
+    details = locationDetailRepository.saveAll(details);
+    locationDetailRepository.flush();
+    return details;
   }
 
   public List<MappingEmployeeLocation> saveMappingEL(List<MappingEmployeeLocation> mappings) {

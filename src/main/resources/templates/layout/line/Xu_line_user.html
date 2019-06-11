@@ -114,9 +114,7 @@
                   <option value="">請選擇</option>
                   <script th:inline="javascript">
                   	var locs = [[${allLocation}]];
-//                   	var RMS = [[${allRichMenu}]];
-//                   	console.log(Loc , RMS);
-//                   	var lastRM;
+
                   	$.each(locs , function(index,loc){
                   	  var locDet = loc.details;
                   	  if(locDet.length > 0){

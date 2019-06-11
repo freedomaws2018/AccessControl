@@ -3,7 +3,6 @@
 
 <body layout:fragment="content">
   <script type="text/javascript" th:inline="javascript">
-// 	console.log([[${members}]])
   var delete_member = function(id,name){
     showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 嗎?',function(){
       $.ajax({
@@ -19,8 +18,6 @@
       });
     });
   }
-  
-  
   </script>
 
   <div class="row"> <div class="col-12"> <div class="card">
@@ -63,7 +60,25 @@
               </a>
             </th>
             <td>[[*{fullName}]]</td>
-            <td>[[*{isEffective}]]</td>
+            <td>
+              <script th:inline="javascript">
+                var code = [[*{effectiveCode}]];
+                switch(code){
+                  case 0:
+                  	document.write("停止使用");
+                    break;
+                  case 1:
+                  	document.write("使用至 " + [[*{#temporals.format(endDt, 'yyyy-MM-dd HH:mm')}]]);
+                    break;
+                  case 2:
+                  	document.write("失效");
+                    break;
+                  case 99:
+                  	document.write("終身使用");
+                    break;
+                }
+              </script>
+            </td>
           </tr>
         </tbody>
       </table>

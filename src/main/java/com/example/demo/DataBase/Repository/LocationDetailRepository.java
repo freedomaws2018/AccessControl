@@ -23,6 +23,8 @@ public interface LocationDetailRepository extends JpaRepository<LocationDetail, 
 
   List<LocationDetail> findByLocationId(Long locationId);
 
+  List<LocationDetail> findByRichMenuId(String richMenuId);
+
   Optional<LocationDetail> findByLocationIdAndName(Long locationId , String name);
 
 }

@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Controller.FormEntity.FormMember;
-import com.example.demo.DataBase.Entity.LineUser;
+import com.example.demo.DataBase.Entity.Location;
 import com.example.demo.DataBase.Entity.Member;
+import com.example.demo.DataBase.Entity.RichMenu;
 import com.example.demo.DataBase.Service.LineUserService;
+import com.example.demo.DataBase.Service.LocationService;
 import com.example.demo.DataBase.Service.MemberService;
+import com.example.demo.DataBase.Service.RichMenuService;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -34,6 +37,12 @@ public class MemberController {
 
   @Autowired
   private LineUserService lineUserService;
+
+  @Autowired
+  private LocationService locationServcie;
+
+  @Autowired
+  private RichMenuService richMenuService;
 
   @GetMapping(value = "/list")
   private ModelAndView list(ModelAndView model,
@@ -48,8 +57,12 @@ public class MemberController {
   public ModelAndView add(ModelAndView model) {
     model = new ModelAndView("layout/member/u_member");
     model.addObject("funcType", "add");
-    List<LineUser> lineUsers = lineUserService.getAll();
-    model.addObject("lineusers", lineUsers);
+//    List<LineUser> lineUsers = lineUserService.getAll();
+//    model.addObject("lineusers", lineUsers);
+    List<Location> locations = locationServcie.getAll();
+    model.addObject("locations", locations);
+    List<RichMenu> richMenus = richMenuService.getAllRichMenu();
+    model.addObject("richMenus", richMenus);
     return model;
   }
 
@@ -59,9 +72,10 @@ public class MemberController {
     model.addObject("funcType", funcType);
     Member member = memberService.getById(memberId);
     model.addObject("member", member);
-    List<LineUser> lineUsers = lineUserService.getAll();
-    model.addObject("lineusers", lineUsers);
-
+//    List<LineUser> lineUsers = lineUserService.getAll();
+//    model.addObject("lineusers", lineUsers);
+    List<Location> locations = locationServcie.getAll();
+    model.addObject("locations", locations);
     return model;
   }
 

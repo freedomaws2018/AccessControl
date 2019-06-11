@@ -29,6 +29,8 @@ public class FormLocation {
 
   private String beaconKey;
 
+  private String richMenuId;
+
   private List<Long> keepers = new ArrayList<>();
 
   private List<FormLocaionDetail> detail = new ArrayList<>();
@@ -42,6 +44,7 @@ public class FormLocation {
     location.setWifiSsid(this.wifiSsid);
     location.setWifiPasswd(this.wifiPasswd);
     location.setBeaconKey(this.beaconKey);
+    location.setRichMenuId(StringUtils.isNotBlank(richMenuId) ? richMenuId : null);
     return location;
   }
 
@@ -51,6 +54,7 @@ public class FormLocation {
     location.setWifiSsid(this.wifiSsid);
     location.setWifiPasswd(this.wifiPasswd);
     location.setBeaconKey(this.beaconKey);
+    location.setRichMenuId(StringUtils.isNotBlank(richMenuId) ? richMenuId : null);
     return location;
   }
 

@@ -4,12 +4,14 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +20,6 @@ import lombok.Setter;
 //public class LineUser extends BaseEntity {
 @Setter
 @Getter
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "tbl_line_user")
 public class LineUser {
@@ -27,6 +28,10 @@ public class LineUser {
   @Id
   @Column(name = "user_id", nullable = false, insertable = false, updatable = false)
   private String userId;
+
+  @JsonManagedReference
+  @OneToOne(mappedBy = "lineUser", fetch = FetchType.LAZY)
+  private Member member;
 
   /** 加入時間 **/
   @CreatedDate
@@ -43,17 +48,5 @@ public class LineUser {
   /** 使用者名稱 LineBotService.getProfileByUserId(userId) **/
   @Column(name = "user_name", nullable = false)
   private String userName;
-
-  /** RichMenu 最後發送時間 **/
-  @Column(name = "rich_menu_link_datetime")
-  private LocalDateTime richMenuLinkDateTime;
-  /** RichMenu 當前使用頁面 **/
-  @Column(name = "rich_menu_id")
-  private String richMenuId;
-//  /** RichMenu關聯 **/
-//  @Lob
-//  @OneToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name = "rich_menu_id", referencedColumnName = "rich_menu_id", insertable = false, updatable = false, nullable = true)
-//  private RichMenu richMenu;
 
 }

@@ -26,6 +26,12 @@ public class LineRichMenuService {
   private String channelAccessToken;
 
   @Autowired
+  private MemberService memberService;
+
+  @Autowired
+  private LocationService LocationService;
+
+  @Autowired
   private RichMenuRepository richMenuRepository;
 
   @Autowired
@@ -40,11 +46,11 @@ public class LineRichMenuService {
     return richMenuRepository.saveAll(richMenus);
   }
 
-  public List<com.example.demo.DataBase.Entity.RichMenu> getAll(){
+  public List<com.example.demo.DataBase.Entity.RichMenu> getAll() {
     return richMenuRepository.findAll();
   }
 
-  public com.example.demo.DataBase.Entity.RichMenu getByRichMenuId(String richMneuId){
+  public com.example.demo.DataBase.Entity.RichMenu getByRichMenuId(String richMneuId) {
     return richMenuRepository.findById(richMneuId).orElse(null);
   }
 
@@ -75,11 +81,32 @@ public class LineRichMenuService {
 //  private final static String deleteRichMenuUrl = "https://api.line.me/v2/bot/richmenu/:richMenuId";
 
   public BotApiResponse deleteRichMenu(String richMenuId) throws InterruptedException, ExecutionException {
+
+    /** 刪除 資料庫 資料 **/
+    richMenuRepository.deleteById(richMenuId);
+
     LineMessagingClient client = LineMessagingClient.builder(channelAccessToken).build();
     BotApiResponse botApiResponse = client.deleteRichMenu(richMenuId).get();
 
-    /** 刪除 資料庫 資料 **/
-    this.richMenuRepository.deleteById(richMenuId);
+//    /** 移除關聯 **/
+//    List<Member> members = memberService.getByRichMenuId(richMenuId);
+//    if (members != null && !members.isEmpty()) {
+//      members = members.stream().map(member -> {
+//        member.setRichMenuId(null);
+//        return member;
+//      }).collect(Collectors.toList());
+//      memberService.saveAll(members);
+//    }
+//
+//    List<LocationDetail> lds = LocationService.getLocationDetailByRichMenuId(richMenuId);
+//    if (lds != null && !lds.isEmpty()) {
+//      lds = lds.stream().map(ld -> {
+//        ld.setRichMenuId(null);
+//        return ld;
+//      }).collect(Collectors.toList());
+//      LocationService.saveLocationDetails(lds);
+//    }
+
     return botApiResponse;
   }
 
