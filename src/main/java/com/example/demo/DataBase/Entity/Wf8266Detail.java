@@ -28,7 +28,7 @@ public class Wf8266Detail {
   @Column(name = "wf8266_sn")
   private String wf8266Sn;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "wf8266_sn", referencedColumnName = "sn", insertable = false, updatable = false, nullable = true)
   private Wf8266 wf8266;
 

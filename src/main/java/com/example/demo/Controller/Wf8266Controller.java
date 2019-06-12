@@ -76,8 +76,13 @@ public class Wf8266Controller {
     Map<String, Object> result = new HashMap<>();
 
     result.put("status", "success");
-    System.err.println(form.getWf8266WithDetail());
-    Wf8266 wf8266 = wf8266Service.save(form.getWf8266WithDetail());
+    String sn = form.getSn();
+    Wf8266 wf8266 = wf8266Service.getBySn(sn);
+    if (wf8266 != null) {
+      wf8266Service.deleteAllDetailBySn(sn);
+    }
+    wf8266 = form.getWf8266WithDetail(wf8266);
+    wf8266 = wf8266Service.save(wf8266);
     result.put("data", wf8266);
 
     return new ResponseEntity<>(result, HttpStatus.OK);
@@ -86,7 +91,8 @@ public class Wf8266Controller {
   /** Autocomplete **/
   @PostMapping(value = "/autocomplete/getAllWf8266DetailWithLocationIdAndName", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> getAllWf8266DetailWithLocationIdAndName(Long locationId, String name) {
-    List<Map<String, Object>> wf8266detail = wf8266Service.getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(locationId, name);
+    List<Map<String, Object>> wf8266detail = wf8266Service
+        .getByLocationIdAndNameLikeOrderBySnAndRelayAscLimit10(locationId, name);
     return new ResponseEntity<>(wf8266detail, HttpStatus.OK);
   }
 

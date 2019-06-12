@@ -56,6 +56,7 @@ public class Wf8266Service {
 
   public void deleteAllDetailBySn(String wf8266Sn) {
     wf8266DetailRepository.deleteDetailByWf8266Sn(wf8266Sn);
+    wf8266DetailRepository.flush();
   }
 
   public Wf8266 save(Wf8266 wf8266) {

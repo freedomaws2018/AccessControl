@@ -21,6 +21,10 @@
 	background-color:#F7F3F7;
 }
 
+.card-header-features{
+  float: right;
+}
+
 .card-header span{
 	top:2px;
 	padding-right:15px;
@@ -55,11 +59,11 @@
 	right:82px;
 }
 
-.a-btn-second {
-	position: absolute;
-	top: 9px;
-	right:9px;
-}
+/* .a-btn-second { */
+/* 	position: absolute; */
+/* 	top: 9px; */
+/* 	right:9px; */
+/* } */
 
 .card-body{
 	padding-bottom:5px;

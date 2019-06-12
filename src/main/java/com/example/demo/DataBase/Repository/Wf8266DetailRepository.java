@@ -15,7 +15,7 @@ public interface Wf8266DetailRepository extends JpaRepository<Wf8266Detail, Wf82
 
   @Modifying
   @Transactional
-  @Query(value = "DELETE FROM tbl_wf8266_detail WHERE wf8266_sn = :wf8266Sn ;", nativeQuery = true)
+  @Query(value = "DELETE FROM tbl_wf8266_detail WHERE wf8266_sn = :wf8266Sn ; ", nativeQuery = true)
   void deleteDetailByWf8266Sn(@Param("wf8266Sn") String wf8266Sn);
 
   Optional<Wf8266Detail> findByWf8266SnAndName(String sn , String name);

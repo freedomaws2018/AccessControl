@@ -7,7 +7,7 @@
 <script>
   submin_form = function(){
     var jsonData = $("#wf8266_form").toJson();
-    // console.log(jsonData);
+//     console.log(jsonData);
     $.ajax({
       method: 'post',
       url: '/wf8266/save',
@@ -29,7 +29,9 @@
     
       /** 新增/修改： 刪除該資料  **/
       remove_detail = function(index){
-        $("#tr_detail_" + index).hide(200);
+        $("#tr_detail_" + index).hide(200,function(){
+          $("#tr_detail_" + index).remove();
+        });
       };
       
       /** 新增/修改：新增一項  **/
@@ -119,7 +121,11 @@
         </div>
         <div th:if="${funcType eq 'view'}" class="card-header">
           <span class="glyphicon glyphicon-align-justify"></span>WF8266 - 檢視
-            <a class="btn btn-success a-btn-second btn-sm" th:href="@{/wf8266/edit/{SN}(SN=${wf8266.sn})}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+          
+          <div class="card-header-features">
+            <a class="btn btn-success a-btn-second btn-sm" th:href="@{/wf8266/edit/{SN}(SN=${wf8266.sn})}">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+          </div>
         </div>
         
         <div class="card-body" th:object="${wf8266}">
@@ -213,7 +219,7 @@
 		                    </td>
 		                    <td> 
 		                     <select class="form-control" th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].relay|">
-		                      <option th:selected="true" >請選擇</option>
+		                      <option th:selected="true" value="" >請選擇</option>
 		                      <option th:selected="${detail.relay eq 1 }" th:value="1" >1</option>
 		                      <option th:selected="${detail.relay eq 2 }" th:value="2" >2</option>
 		                      <option th:selected="${detail.relay eq 3 }" th:value="3" >3</option>
@@ -222,7 +228,7 @@
 		                    </td>
 		                    <td> 
 		                     <select class="form-control" th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" th:name="|detail[${iter.index}].value|">
-		                      <option th:selected="true" >請選擇</option>
+		                      <option th:selected="true" value="" >請選擇</option>
 		                      <option th:selected="${detail.value eq 0 }" th:value="0" >開啟</option>
 		                      <option th:selected="${detail.value eq 1 }" th:value="1" >關閉</option>
 		                      <option th:selected="${detail.value eq 4 }" th:value="4" >按一下</option>

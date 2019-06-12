@@ -42,7 +42,7 @@ public class Wf8266 {
   @Column(name = "location_id")
   private Long locationId;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
   private Location location;
 
