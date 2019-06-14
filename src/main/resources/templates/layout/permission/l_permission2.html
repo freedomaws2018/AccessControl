@@ -4,6 +4,69 @@
 <body layout:fragment="content">
 
   <script type="text/javascript">
+  $(document).ready( function () {
+    var table = $('#myTable').DataTable({
+      "paging":   true, // 分頁
+      "ordering": true, // 排序
+      "info":     true, // 訊息
+      "serverSide": true,
+      "ajax": {
+        "url": "/permission/getAll",
+        "type": "POST"
+      },
+      "columnDefs": [
+        {
+          "targets": 0,
+          "data": null,
+          "searchable": false,
+          "orderable": false,
+          "defaultContent": `
+            <button class="btn btn-secondary btn-sm">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
+            </button>
+            <button class="btn btn-success btn-sm">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+            </button>
+            <button class="btn btn-danger btn-sm ">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+            </button>
+          `
+        },
+        { 
+          "targets": 1,
+          "data": "name" 
+        },
+        { 
+          "targets": 2,
+          "data": "menuName"
+        }
+      ],
+      stateSave: true, // 紀錄狀態 
+      pagingType: 'first_last_numbers',
+      language: {
+        "search": "搜尋:",
+        "lengthMenu": "每頁顯示_MENU_筆",
+        "zeroRecords": "找不到任何資料",
+        "infoEmpty": "",
+        "info": "第_PAGE_頁，共_PAGES_頁，有_TOTAL_筆資料",
+        "infoFiltered": "(從_MAX_筆資料中過濾)",
+        "processing": "資料處理中...",
+        "paginate": {
+          "first":      "第一頁",
+          "last":       "最後一頁",
+          "next":       "下一頁",
+          "previous":   "上一頁"
+        }
+      }
+    });
+    
+    $('#myTable tbody').on( 'click', 'button', function () {
+      var data = table.row($(this).parents('tr')).data();
+      console.log(data);
+    });
+    
+  });
+  
   var delete_permission = function(id,name){
     showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 的權限嗎?',function(){
       $.ajax({
@@ -33,11 +96,12 @@
   }
   </script>
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <div class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>權限 - 列表</div>
-          <div class="card-header-right">
+          <span class="glyphicon glyphicon-align-justify"></span>權限
+          
+          <div class="card-header-features">
             <a th:href="@{/permission/add}" class="btn btn-primary btn-sm">
               <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
             </a>
@@ -47,7 +111,7 @@
           </div>
         </div>
         <div class="card-body">
-          <table id="myTable" class="table table-hover table-responsive-sm"> <!-- hide-in-phone --> 
+          <table id="myTable" class="display compact hide-in-phone">
             <thead class="center">
               <tr>
                 <th scope="col">#</th>
@@ -73,10 +137,11 @@
                 </td>
                 <td data-th="權限名稱：">[[*{name}]]</td>
                 <td data-th="對應選單：">[[|*{menu.menuName} : *{menu.name}|]]</td>
-              </tr>
-            </tbody>
+              </tr> 
+             </tbody> 
           </table>
-          <table class="table-hover table-responsive-sm rwd-table show-on-phone">
+          
+           <table class="table-hover table-responsive-sm rwd-table show-on-phone">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -104,10 +169,12 @@
                 <td data-th="對應選單：">[[|*{menu.menuName} : *{menu.name}|]]</td>
               </tr>
             </tbody>
-          </table>
+          </table> 
+          
           <div th:if="${permissions.totalPages gt 1}" >
             <div th:replace="~{comm/page :: page01(entity=${permissions})}"></div>
           </div>
+          
         </div>
       </div>
     </div>

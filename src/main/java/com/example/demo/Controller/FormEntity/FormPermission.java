@@ -23,21 +23,23 @@ public class FormPermission {
 
   private List<FormPermissionDetail> detail = new ArrayList<>();
 
-  public Permission getPermission() {
-    Permission permission = new Permission();
-    permission.setId(this.id);
-    permission.setName(this.name);
-    permission.setMenuName(StringUtils.isNotBlank(this.menuName) ? this.menuName : null);
-    permission.setDetails(this.getPermissionDetail());
+  public Permission getPermission(Permission permission) {
+    if(permission == null) {
+      permission = new Permission();
+      permission.setName(name);
+      permission.setMenuName(StringUtils.isNotBlank(menuName) ? menuName : null);
+    }else {
+      permission.setName(name);
+      permission.setMenuName(StringUtils.isNotBlank(menuName) ? menuName : null);
+    }
     return permission;
   }
 
-  public List<PermissionDetail> getPermissionDetail() {
-    List<FormPermissionDetail> fpds = detail.stream().filter(d -> Arrays.asList("A", "U").contains(d.getStatus()))
-        .collect(Collectors.toList());
+  public List<PermissionDetail> getPermissionDetail(Permission permission) {
+    List<FormPermissionDetail> fpds = detail.stream().filter(d -> Arrays.asList("A", "U").contains(d.getStatus())).collect(Collectors.toList());
     return fpds.stream().map(fpd -> {
       PermissionDetail detail = new PermissionDetail();
-      detail.setPermissionId(this.id);
+      detail.setPermissionId(permission.getId());
       detail.setType(fpd.getType());
       detail.setName(fpd.getName());
       detail.setRemarks(fpd.getRemarks());

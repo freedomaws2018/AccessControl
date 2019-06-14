@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.example.demo.DataBase.Entity.IdClass.PermissionDetailId;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +30,8 @@ public class PermissionDetail {
   @Column(name = "permission_id")
   private Long permissionId;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @JsonManagedReference
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "permission_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
   private Permission permission;
 

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Permission;
+import com.example.demo.DataBase.Entity.PermissionDetail;
 import com.example.demo.DataBase.Repository.PermissionDetailRepository;
 import com.example.demo.DataBase.Repository.PermissionRepository;
 
@@ -21,7 +22,18 @@ public class PermissionService {
   private PermissionDetailRepository permissionDetailRepository;
 
   public Permission save(Permission permission) {
-    return permissionRepository.save(permission);
+    return permissionRepository.saveAndFlush(permission);
+  }
+
+  public void deleteAllDetailByPId(Long permissionId) {
+    permissionDetailRepository.deleteAllDetailByPId(permissionId);
+    permissionDetailRepository.flush();
+  }
+
+  public List<PermissionDetail> saveAllPermissionDetail(List<PermissionDetail> details) {
+    details = permissionDetailRepository.saveAll(details);
+    permissionDetailRepository.flush();
+    return details;
   }
 
   public List<Permission> getAllPermission() {

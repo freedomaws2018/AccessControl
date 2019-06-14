@@ -25,27 +25,27 @@
   }
   
   /** 同步 Line Server 資料庫 **/ // /line/rich_menu/ajaxGetRichMenuDataOnLineServer
-  var rich_menu_synchronize = function(){
-    showConfirmDialog('確定','確定後，刷新選單',function(){
-      $.ajax({
-        type: 'POST',
-        url: '/line/rich_menu/ajax/getRichMenuDataOnLineServer',
-        dataType: 'json',
-        success: (result) =>{
-          location.reload();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-          location.reload();
-        }
-      });
-    });
-  }
+//   var rich_menu_synchronize = function(){
+//     showConfirmDialog('確定','確定後，刷新選單',function(){
+//       $.ajax({
+//         type: 'POST',
+//         url: '/line/rich_menu/ajax/getRichMenuDataOnLineServer',
+//         dataType: 'json',
+//         success: (result) =>{
+//           location.reload();
+//         },
+//         error: function (XMLHttpRequest, textStatus, errorThrown) {
+//           location.reload();
+//         }
+//       });
+//     });
+//   }
 
 </script>
   <div class="row"> <div class="col-12"> <div class="card">
     <div class="card-header">
-      <span class="glyphicon glyphicon-align-justify"></span>LineRichMenu - 列表
-      <div class="card-header-features">
+      <div class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>Line@選單 - 列表</div>
+      <div class="card-header-right">
         <a th:href="@{/line/rich_menu/add}" class="btn btn-primary btn-sm">
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
         </a>

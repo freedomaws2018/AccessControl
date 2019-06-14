@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.Controller.FormEntity.FormDataTables;
 import com.example.demo.Controller.FormEntity.FormPermission;
 import com.example.demo.DataBase.Entity.Permission;
 import com.example.demo.DataBase.Service.PermissionService;
@@ -38,6 +40,24 @@ public class PermissionController {
     Page<Permission> permissions = this.permissionService.getAllPermission(pageable);
     model.addObject("permissions", permissions);
     return model;
+  }
+
+  @GetMapping(value = "/list2")
+  private ModelAndView list2(ModelAndView model) {
+    model = new ModelAndView("layout/permission/l_permission2");
+    return model;
+  }
+
+  @PostMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  private ResponseEntity<Object> listWithDataTables(FormDataTables form){
+    System.err.println(form);
+    Map<String, Object> result = new HashMap<>();
+    result.put("draw", 0); // 我也不知道這是啥
+    List<Permission> permissions = permissionService.getAllPermission();
+    result.put("recordsTotal", permissions.size()); // 總筆數
+    result.put("recordsFiltered", permissions.size()); // 過濾後筆數
+    result.put("data", permissions); // 數據
+    return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
   @GetMapping(value = "/add")
@@ -67,9 +87,19 @@ public class PermissionController {
   }
 
   @PostMapping(value = "/save")
-  public ResponseEntity<Object> save( FormPermission form) {
+  public ResponseEntity<Object> save(FormPermission form) {
     Map<String, Object> result = new HashMap<>();
-    Permission permission = permissionService.save(form.getPermission());
+    Permission permission;
+    if (form.getId() == null ) {
+      permission = new Permission();
+    } else {
+      permission = permissionService.getPermissionById(form.getId());
+    }
+    permission = permissionService.save(form.getPermission(permission));
+    permissionService.deleteAllDetailByPId(permission.getId());
+    permissionService.saveAllPermissionDetail(form.getPermissionDetail(permission));
+    permission = permissionService.getPermissionById(permission.getId());
+
     result.put("status", "success");
     result.put("data", permission);
     return new ResponseEntity<>(result, HttpStatus.OK);

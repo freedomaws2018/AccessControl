@@ -104,15 +104,32 @@
     
     <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-9"> <div class="col">
       <div class="card">
-        <div th:if="${funcType eq 'add'}" class="card-header" toggleId="u_employee">
-          <span class="glyphicon glyphicon-align-justify"></span>權限 - 新增
-        </div>
-        <div th:if="${funcType eq 'edit'}" class="card-header" toggleId="u_employee">
-          <span class="glyphicon glyphicon-align-justify"></span>權限 - 修改
-        </div>
-        <div th:if="${funcType eq 'view'}" class="card-header" toggleId="u_employee">
-          <span class="glyphicon glyphicon-align-justify"></span>權限 - 檢視
-          <a class="btn btn-success a-btn-second btn-sm" th:href="@{/permission/edit/{id}(id=*{id})}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+        <div class="card-header">
+        
+          <div th:if="${funcType eq 'add'}" class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>權限 - 新增 </div>
+          <div th:if="${funcType eq 'add'}" class="card-header-right">
+            <a class="btn btn-info a-btn-second btn-sm" href="/permission/list">
+              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+            </a>
+          </div>
+          
+          <div th:if="${funcType eq 'edit'}" class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>權限 - 修改 </div>
+          <div th:if="${funcType eq 'edit'}" class="card-header-right">
+            <a class="btn btn-info a-btn-second btn-sm" href="/permission/list">
+              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+            </a>
+          </div>
+          
+          <div th:if="${funcType eq 'view'}" class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>權限 - 檢視 </div>
+          <div th:if="${funcType eq 'view'}" class="card-header-right">
+            <a class="btn btn-success a-btn-second btn-sm" th:href="@{/permission/edit/{id}(id=*{id})}">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+            </a>
+            <a class="btn btn-info a-btn-second btn-sm" href="/permission/list">
+              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+            </a>
+          </div>
+          
         </div> 
         <div class="card-body" toggleId="l-location-toggle">
           <div class="row" >

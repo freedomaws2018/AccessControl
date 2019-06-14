@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Data
@@ -47,12 +49,13 @@ public class Permission {
   /** 權限對應選單 **/
   @Column(name = "menu_name")
   private String menuName;
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "menu_name", referencedColumnName = "menu_name", insertable = false, updatable = false, nullable = true)
   private Menu menu;
 
   /** 權限細節 ( 新刪改查...權限 ) **/
-  @OneToMany(mappedBy = "permissionId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JsonBackReference
+  @OneToMany(mappedBy = "permissionId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @OrderBy(value = "type")
   private List<PermissionDetail> details = new ArrayList<>();
 

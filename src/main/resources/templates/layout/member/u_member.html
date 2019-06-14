@@ -158,6 +158,32 @@
           
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
               <label class="font-weight-bold">使用據點</label><BR>
+              <div th:if="${funcType eq 'add'}" >
+                <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" name="richMenuId" >
+                  <option value="">請選擇</option>
+                  <script th:inline="javascript">
+                    var locs = [[${locations}]];
+                  
+                    $.each(locs , function(index,loc){
+                      var locDet = loc.details;
+                      if(locDet.length > 0){
+                        document.write("<optgroup label='" + loc.name + "'>");
+                        if(loc.richMenuId){ // 管理員
+                          document.write("<option value='" + loc.richMenuId + "'>├★" + loc.richMenu.name + "</option>");
+                        }
+                        $.each(loc.details,function(index , det){
+                          if(det.richMenuId){
+                            document.write("<option value='" + det.richMenuId + "'>├" + det.name + "</option>");
+                          }else{
+                            document.write("<option value='" + det.richMenuId + "' disabled>├" + det.name + "(沒有Line@選單)</option>");
+                          }
+                        });
+                        document.write("</optgroup>");
+                      }
+                    });
+                  </script>
+                </select>
+              </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
                 <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" name="richMenuId" >
                   <option value="">請選擇</option>

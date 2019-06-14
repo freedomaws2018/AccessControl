@@ -114,17 +114,30 @@
     <div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"> <div class="col">
       <div class="card">    
         <div th:if="${funcType eq 'add'}" class="card-header">
-          <span class="glyphicon glyphicon-align-justify"></span>WF8266 - 新增
+          <div class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>IOT晶片 - 新增</div>
+          <div class="card-header-right">
+            <a class="btn btn-info a-btn-second btn-sm" href="/wf8266/list">
+              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+            </a>
+          </div>
         </div>
         <div th:if="${funcType eq 'edit'}" class="card-header">
-          <span class="glyphicon glyphicon-align-justify"></span>WF8266 - 修改
+          <div class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>IOT晶片 - 修改</div>
+          <div class="card-header-right">
+            <a class="btn btn-info a-btn-second btn-sm" href="/wf8266/list">
+              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+            </a>
+          </div>
         </div>
-        <div th:if="${funcType eq 'view'}" class="card-header">
-          <span class="glyphicon glyphicon-align-justify"></span>WF8266 - 檢視
-          
-          <div class="card-header-features">
+        <div th:if="${funcType eq 'view'}" class="card-header">          
+          <div class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>IOT晶片 - 檢視</div>
+          <div class="card-header-right">
             <a class="btn btn-success a-btn-second btn-sm" th:href="@{/wf8266/edit/{SN}(SN=${wf8266.sn})}">
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
+            </a>
+            <a class="btn btn-info a-btn-second btn-sm" href="/wf8266/list">
+              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+            </a>
           </div>
         </div>
         
