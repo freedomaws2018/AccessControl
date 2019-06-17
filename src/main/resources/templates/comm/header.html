@@ -1,49 +1,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head><meta charset="UTF-8"></head>
+
 <header th:fragment="header(headerInfo)" >
   <script th:inline="javascript">
-//   	console.log([[${session}]])
+    console.log([[${session}]])
   </script>
-  <span th:text="${#httpServletRequest.getParameter('employee')}"></span>
-	<nav id="navbar" class="navbar navbar-light">
-		<button class="hamburger-menu" id="sidebarCollapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<div id="navbar_logo">
-			<a th:href="@{/index}"><img th:src="@{/images/icon/logo_full.png}" /></a>
-		</div>
-		<div id="navbar_title"> </div>
-		<div id="navbar_user">
-          <div>
-            <input type="image" style="width:40px;" th:src="@{/images/user.png}" data-toggle="dropdown-menu" id="Test" />
-            <a class="d-none d-sm-block">
-              <h4><span th:text="${session.employee.name}"></span></h4>
-            </a>
-          </div>
-          <div>
-            <div class="dropdown-menu">
-              <!-- <h6 class="dropdown-header text-center">帳戶 Account</h6> -->
-              <!-- <a class="dropdown-item" href="#">Updates <span class="badge badge-info">42</span></a> -->
-              <!-- <a class="dropdown-item" href="#">Messages <span class="badge badge-success">42</span></a> -->
-              <!-- <a class="dropdown-item" href="#">Tasks <span class="badge badge-danger">42</span></a> -->
-              <!-- <a class="dropdown-item" href="#">Comments <span class="badge badge-warning">42</span></a> -->
-              <!-- <h6 class="dropdown-header text-center">設定 Settings</h6> -->
-              <!-- <a class="dropdown-item" href="#">Profile <span class="badge badge-dark">42</span></a> -->
-              <!-- <a class="dropdown-item" href="#">Settings <span class="badge badge-primary">42</span></a> -->
-              <!-- <div class="dropdown-divider"></div> -->
-              <!-- <a class="dropdown-item" href="#">Lock Account</a> -->
-                        
-              <a class="dropdown-item" th:href="@{/employee/changePassword}">修改密碼</a>
-              <a class="dropdown-item" th:href="@{/logout}">登出</a>
-            </div>
-          </div>
-		</div>
-	</nav>
-    <script th:inline="javascript">
-       console.log([[${session}]])
-    </script>
+  
+  <nav id="navbar" class="navbar navbar-light">
+    <button class="hamburger-menu" id="sidebarCollapse">
+      <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+    </button>
+    <div id="navbar_logo">
+      <a th:href="@{/index}"><img th:src="@{/images/icon/logo_full.png}" /></a>
+    </div>
+    <div id="navbar_title"></div>
+    <div id="navbar_user">
+      <div data-toggle="dropdown-menu">
+        <input type="image" width='40px' th:src="@{/images/user.png}" />
+        <a class="d-none d-sm-block">
+          <h4 >[[${session.employee.name}]]</h4>
+        </a>
+      </div>
+      <div>
+        <div class="dropdown-menu">
+<!--         <h6 class="dropdown-header text-center">帳戶 Account</h6> -->
+<!--         <a class="dropdown-item" href="#">Updates <span class="badge badge-info">42</span></a> -->
+<!--         <a class="dropdown-item" href="#">Messages <span class="badge badge-success">42</span></a> -->
+<!--         <a class="dropdown-item" href="#">Tasks <span class="badge badge-danger">42</span></a> -->
+<!--         <a class="dropdown-item" href="#">Comments <span class="badge badge-warning">42</span></a> -->
+<!--         <h6 class="dropdown-header text-center">設定 Settings</h6> -->
+<!--         <a class="dropdown-item" href="#">Profile <span class="badge badge-dark">42</span></a> -->
+<!--         <a class="dropdown-item" href="#">Settings <span class="badge badge-primary">42</span></a> -->
+<!--         <div class="dropdown-divider"></div> -->
+<!--         <a class="dropdown-item" href="#">Lock Account</a> -->
+          <a class="dropdown-item" th:href="@{/employee/changePassword}">修改密碼</a>
+          <a class="dropdown-item" th:href="@{/logout}">登出</a>
+        </div>
+      </div>
+    </div>
+  </nav>
   
 <!-- 	<nav id="navbar_sub" class="navbar_sub navbar-light"> -->
 <!-- 		<ul class="breadcrumb"> -->

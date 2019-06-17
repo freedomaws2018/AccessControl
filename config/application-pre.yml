@@ -2,15 +2,20 @@ server:
   https-port: 443
   http-port: 80
   port: ${server.https-port}
+  
+  user_login_timeout: 1800 # 登入閒置時間
+  max-http-header-size: 4096
+  connection-timeout: 20000
+  
   ssl:
-    key-store: file:config/line.jks
-    key-store-password: 123456
-    key-alias: freedomaws_jks
-  servlet:
-    session:
-      timeout: 60s
+    key-store: file:config/ssl_190613.jks
+    key-store-password: freedomaws86878687
+#    key-alias: freedomaws_jks
+#  servlet:
+#    session:
+#      timeout: 60s
   tomcat:
-    max-threads: 100
+    max-threads: 50
       
 spring:
   jpa:
@@ -44,23 +49,25 @@ spring:
     username: postgres
     password: postgres
 
-logging:
-  file: logs/log_info.txt
-  level:
-    root: warn
-    com.springframework.web: warn
-    com.example: warn
-    com.example.demo: info
-    com.linecorp.bot: warn
+#logging:
+#  file: logs/log_info.txt
+#  level:
+#    root: warn
+#    com.springframework.web: warn
+#    com.example: warn
+#    com.example.demo: info
+#    com.linecorp.bot: warn
     
 line:
   GetProfileUrl: https://api.line.me/v2/bot/profile/{userId}
-  bot:
+  bot: 
     handler:
       path: /linebot
     channelId: 1558375646
     channelSecret: 28d1dadf316026e2c05f849fb4907971
     channelToken: iRg81sAlAOfBnyzBg42APTLFSaJIu9U4X6gIbHgdeAUwvXTcS7ws73iySnYgkimHRHNEgG9hQGIx0gaeqivBfmBZ5yFI5cKpw8iWWq2SRAl9cuuK5QFikbLSP5BRfn1PzXzoxhYIPmFxT2XGUlam3VGUYhWQfeY8sLGRXgo3xvw=
-
+  richMenu:
+    unLinkTime: 600
+    
 wf8266:
   key: xoeExDUjSkPG2GMBDCAqfgPYl8v2

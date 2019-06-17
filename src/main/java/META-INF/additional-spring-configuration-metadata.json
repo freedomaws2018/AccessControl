@@ -1,9 +1,27 @@
-{
-	"properties": [
-		{
-			"name": "line",
-			"type": "java.util.Map",
-			"description": "A description for 'line'"
-		}
-	]
-}
+{"properties": [
+  {
+    "name": "line",
+    "type": "java.util.Map",
+    "description": "A description for 'line'"
+  },
+  {
+    "name": "server.user_login_timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'server.user_login_timeout'"
+  },
+  {
+    "name": "wf8266",
+    "type": "java.lang.Map",
+    "description": "A description for 'wf8266'"
+  },
+  {
+    "name": "server.https-port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'server.https-port'"
+  },
+  {
+    "name": "server.http-port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'server.http-port'"
+  }
+]}
