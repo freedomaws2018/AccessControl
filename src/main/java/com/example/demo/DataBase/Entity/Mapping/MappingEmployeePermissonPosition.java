@@ -10,18 +10,18 @@ import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import com.example.demo.DataBase.Entity.IdClass.MappingEmployeePermissondetailPositionId;
+import com.example.demo.DataBase.Entity.IdClass.MappingEmployeePermissonPositionId;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "mapping_employee_permissiondetail_position")
-@IdClass(MappingEmployeePermissondetailPositionId.class)
+@Table(name = "mapping_employee_permission_position")
+@IdClass(MappingEmployeePermissonPositionId.class)
 /**
  * 對應 Employee 的 PermissionDetail 與 Position 的關係
  */
-public class MappingEmployeePermissondetailPosition {
+public class MappingEmployeePermissonPosition {
 
   @Id
   @Column(name = "employee_id")

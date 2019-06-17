@@ -29,6 +29,16 @@ public class LineUser {
   @Column(name = "user_id", nullable = false, insertable = false, updatable = false)
   private String userId;
 
+  /** 使用者名稱 LineBotService.getProfileByUserId(userId) **/
+  @Column(name = "user_name", nullable = false)
+  private String userName;
+
+  @Column(name="picture_url")
+  private String pictureUrl;
+
+  @Column(name = "status_message")
+  private String statusMessage;
+
   @JsonManagedReference
   @OneToOne(mappedBy = "lineUser", fetch = FetchType.LAZY)
   private Member member;
@@ -45,8 +55,5 @@ public class LineUser {
   @Column(name = "is_leave")
   private Boolean isLeave = new Boolean(false);
 
-  /** 使用者名稱 LineBotService.getProfileByUserId(userId) **/
-  @Column(name = "user_name", nullable = false)
-  private String userName;
 
 }

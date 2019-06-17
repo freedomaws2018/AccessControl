@@ -1,6 +1,7 @@
 package com.example.demo.DataBase.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +16,7 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
   @Transactional
   @Query(value = "SELECT p.* FROM tbl_permission p , tbl_permission_detail pd WHERE p.id = pd.permission_id AND (p.id || ':' || pd.type) IN :permissionIdAndPermissionDetailType ;", nativeQuery = true)
   List<Permission> findByPermissionIdAndTypeIn(List<String> permissionIdAndPermissionDetailType);
+
+  Optional<Permission> findByMenuName(String menuName);
 
 }

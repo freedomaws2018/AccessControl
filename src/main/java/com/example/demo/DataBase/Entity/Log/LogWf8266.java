@@ -26,13 +26,15 @@ public class LogWf8266 {
   @Column(name = "create_date", nullable = false, updatable = false)
   private LocalDateTime createDate = LocalDateTime.now();
 
-  @Column(name = "line_user_id", nullable = false)
-  private String lineUserId;
+  @Column(name = "member_id", nullable = false)
+  private Long member_id;
+
+  @Column(name = "location_id", nullable = false)
+  private Long locationId;
 
   @Column(name = "wf8266_detail_id", nullable = false)
   private String wf8266DetailId;
 
-  @Column(name = "location_id", nullable = false)
-  private Long locationId;
+
 
 }

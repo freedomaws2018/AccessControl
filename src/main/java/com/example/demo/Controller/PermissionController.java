@@ -35,7 +35,7 @@ public class PermissionController {
 
   @GetMapping(value = "/list")
   private ModelAndView list(ModelAndView model,
-      @PageableDefault(page = 0, size = 10, sort = { "id" }, direction = Direction.ASC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 10, sort = { "menuName" }, direction = Direction.ASC) Pageable pageable) {
     model = new ModelAndView("layout/permission/l_permission");
     Page<Permission> permissions = this.permissionService.getAllPermission(pageable);
     model.addObject("permissions", permissions);
@@ -47,10 +47,9 @@ public class PermissionController {
     model = new ModelAndView("layout/permission/l_permission2");
     return model;
   }
-
   @PostMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   private ResponseEntity<Object> listWithDataTables(FormDataTables form){
-    System.err.println(form);
+//    System.err.println(form);
     Map<String, Object> result = new HashMap<>();
     result.put("draw", 0); // 我也不知道這是啥
     List<Permission> permissions = permissionService.getAllPermission();

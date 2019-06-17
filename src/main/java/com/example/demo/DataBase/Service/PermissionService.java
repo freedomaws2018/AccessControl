@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Permission;
@@ -36,8 +38,12 @@ public class PermissionService {
     return details;
   }
 
+  public Permission getByMenuName(String menuName) {
+    return permissionRepository.findByMenuName(menuName).orElse(null);
+  }
+
   public List<Permission> getAllPermission() {
-    return this.permissionRepository.findAll();
+    return permissionRepository.findAll(Sort.by(Order.asc("menuName")));
   }
 
   public Page<Permission> getAllPermission(Pageable pageable) {
@@ -52,7 +58,8 @@ public class PermissionService {
     permissionRepository.deleteById(permissionId);
   }
 
-  public List<Permission> getPermissionByPermissionIdAndPermissionDetailType(List<String> permissionIdAndPermissionDetailTyle) {
+  public List<Permission> getPermissionByPermissionIdAndPermissionDetailType(
+      List<String> permissionIdAndPermissionDetailTyle) {
     return permissionRepository.findByPermissionIdAndTypeIn(permissionIdAndPermissionDetailTyle);
   }
 

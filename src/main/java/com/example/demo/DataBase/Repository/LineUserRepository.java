@@ -18,6 +18,9 @@ public interface LineUserRepository extends JpaRepository<LineUser, String> {
 
   Optional<LineUser> getByUserId(String userId);
 
+  @Transactional
+  List<LineUser> getByIsLeaveFalse();
+
   @Lob
   @Transactional
   @Query(value = "SELECT * FROM tbl_line_user WHERE user_id like :term OR user_name like :term ; ", nativeQuery = true)

@@ -20,11 +20,15 @@ public class LineUserService {
     return lineUserRepository.findAll();
   }
 
+  public List<LineUser> getByIsLeaveFalse() {
+    return lineUserRepository.getByIsLeaveFalse();
+  }
+
   public Page<LineUser> getAll(Pageable pageable) {
     return lineUserRepository.findAll(pageable);
   }
 
-  public List<LineUser> getByFilterAll(String term){
+  public List<LineUser> getByFilterAll(String term) {
     return lineUserRepository.getByFilterAll(term);
   }
 
@@ -34,6 +38,10 @@ public class LineUserService {
 
   public LineUser save(LineUser lineUser) {
     return lineUserRepository.saveAndFlush(lineUser);
+  }
+
+  public List<LineUser> saveAll(List<LineUser> lineUsers) {
+    return lineUserRepository.saveAll(lineUsers);
   }
 
 }

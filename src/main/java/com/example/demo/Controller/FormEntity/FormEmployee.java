@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.demo.DataBase.Entity.Employee;
-import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissondetailPosition;
+import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissonPosition;
 
 import lombok.Data;
 
@@ -47,9 +47,9 @@ public class FormEmployee {
     return employee;
   }
 
-  public List<MappingEmployeePermissondetailPosition> getMappingEPP(Employee employee) {
+  public List<MappingEmployeePermissonPosition> getMappingEPP(Employee employee) {
     return permissionDetailType.stream().map(mepp -> {
-      MappingEmployeePermissondetailPosition meppt = new MappingEmployeePermissondetailPosition();
+      MappingEmployeePermissonPosition meppt = new MappingEmployeePermissonPosition();
       meppt.setEmployeeId(employee.getId());
       meppt.setPositionId(employee.getPositionId());
       meppt.setPermissionId(Long.parseLong(mepp.split(":")[0]));

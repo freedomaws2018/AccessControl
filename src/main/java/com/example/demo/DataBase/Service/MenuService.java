@@ -45,6 +45,10 @@ public class MenuService {
     menuRepository.deleteById(menuName);
   }
 
+  public Menu getOneByUrl(String url) {
+    return menuRepository.findByUrl(url).orElse(null);
+  }
+
   public List<Menu> getAllWithChild() {
     List<Menu> menus = menuRepository.findAll();
     List<Menu> mv1s = menus.stream().filter(menu -> menu.getLevel() == 1).sorted(Comparator.comparing(Menu::getSort))

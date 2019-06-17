@@ -8,13 +8,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Employee;
+import com.example.demo.DataBase.Entity.Permission;
+import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissonPosition;
 import com.example.demo.DataBase.Repository.EmployeeRepository;
+import com.example.demo.DataBase.Repository.MappingEmployeePermissonPositionRepository;
 
 @Service
 public class EmployeeService {
 
   @Autowired
   private EmployeeRepository employeeRepository;
+
+  @Autowired
+  private MappingEmployeePermissonPositionRepository mappingEPPRepository;
 
   public List<Employee> getAll() {
     return employeeRepository.findAll();
@@ -46,6 +52,16 @@ public class EmployeeService {
       return employee;
     } else {
       return null;
+    }
+  }
+
+  public List<MappingEmployeePermissonPosition> getMappingEPPByEmployeeAndPermission(Employee employee,
+      Permission permission) {
+    if ("admin".equals(employee.getAccount())) {
+      return null;
+    }else {
+      return mappingEPPRepository.findByEmployeeIdAndPositionIdAndPermissionIdAndIsUseTrue(employee.getId(),
+          employee.getPositionId(), permission.getId());
     }
   }
 

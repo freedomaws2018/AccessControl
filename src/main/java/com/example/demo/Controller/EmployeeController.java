@@ -32,7 +32,7 @@ import com.example.demo.DataBase.Entity.Position;
 import com.example.demo.DataBase.Entity.Mapping.MappingEmployeeMenu;
 import com.example.demo.DataBase.Entity.Mapping.MappingPositionPermissionPermissiondetail;
 import com.example.demo.DataBase.Repository.MappingEmployeeMenuRepository;
-import com.example.demo.DataBase.Repository.MappingEmployeePermissondetailPositionRepository;
+import com.example.demo.DataBase.Repository.MappingEmployeePermissonPositionRepository;
 import com.example.demo.DataBase.Service.EmployeeService;
 import com.example.demo.DataBase.Service.PermissionService;
 import com.example.demo.DataBase.Service.PositionService;
@@ -52,7 +52,7 @@ public class EmployeeController {
   private PermissionService permissionService;
 
   @Autowired
-  private MappingEmployeePermissondetailPositionRepository mappingEmployeePermissondetailPositionRepository;
+  private MappingEmployeePermissonPositionRepository mappingEmployeePermissonPositionRepository;
 
   @Autowired
   private MappingEmployeeMenuRepository mappingEmployeeMenuRepository;
@@ -90,7 +90,7 @@ public class EmployeeController {
     model.addObject("positions", positions);
     List<Permission> permissions = permissionService.getAllPermission();
     model.addObject("permissions", permissions);
-    List<String> mappingPermissions = mappingEmployeePermissondetailPositionRepository
+    List<String> mappingPermissions = mappingEmployeePermissonPositionRepository
         .findByEmployeeIdAndPositionIdAndIsUseTrue(employee.getId(), employee.getPositionId()).stream()
         .map(m -> m.getPermissionId() + ":" + m.getPermissionDetailType()).collect(Collectors.toList());
     model.addObject("mappingPermissions", mappingPermissions);
@@ -104,8 +104,8 @@ public class EmployeeController {
       Employee employee = employeeService.save(form.getEmployee());
 
       // 權限設定
-      mappingEmployeePermissondetailPositionRepository.updateAllIsUseFalseWithEmployeeId(employee.getId());
-      mappingEmployeePermissondetailPositionRepository.saveAll(form.getMappingEPP(employee));
+      mappingEmployeePermissonPositionRepository.updateAllIsUseFalseWithEmployeeId(employee.getId());
+      mappingEmployeePermissonPositionRepository.saveAll(form.getMappingEPP(employee));
 
       // 選單設定
       mappingEmployeeMenuRepository.updateAllIsUseFalseByEmployeeId(employee.getId());

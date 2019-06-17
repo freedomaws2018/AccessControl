@@ -3,12 +3,37 @@
 
 <body layout:fragment="content">
   <script type="text/javascript">
+  reload_line_user_information = function(){
     
+   $.ajax({
+     type: 'POST',
+     url: '/line/user/reloadLineUserInformation',
+     dataType: 'json',
+     success: (result) =>{
+       if(result.status == 'success'){
+         location.reload();
+       }else{
+         alert("更新失敗");
+       }
+     },
+     error: function (XMLHttpRequest, textStatus, errorThrown) {
+       alert("更新失敗");
+     }
+   });
+   
+  }
   </script>
   
   <div class="row"> <div class="col-12"> <div class="card">
     <div class="card-header" >
-      <span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
+      <div class="card-header-left">
+        <span class="glyphicon glyphicon-align-justify"></span>LineUser - 列表
+      </div>
+      <div class="card-header-right">
+        <a href="javascript:;" class="btn btn-warning btn-sm" onclick="reload_line_user_information()" >
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
+        </a>
+      </div>
     </div>
     <div class="card-body" >
 
@@ -16,7 +41,9 @@
         <thead class="center">
           <tr>
             <th scope="col">編號</th>
+            <th scope="col">照片</th>
             <th scope="col">姓名</th>
+            <th scope="col">狀態消息</th>
           </tr>
         </thead>
         <tbody class="center">
@@ -25,7 +52,9 @@
           </tr>
           <tr th:unless="${users.empty}" th:each="user,itemStar:${users}" th:object="${user}">
             <td>[[*{userId}]]</td>
+            <td><img width="100px" th:src="*{pictureUrl}"></img></td>
             <td>[[*{userName}]]</td>
+            <td>[[*{statusMessage}]]</td>
           </tr>
         </tbody>
       </table>

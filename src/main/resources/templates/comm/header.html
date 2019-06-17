@@ -41,13 +41,17 @@
           </div>
 		</div>
 	</nav>
-	<nav id="navbar_sub" class="navbar_sub navbar-light">
-		<ul class="breadcrumb">
-		  <li><a href="#">首頁</a></li>
-		  <li><a href="#">Line應用管理</a></li>
-		  <li class="active">LineRichMenu管理</li>
-		</ul>
-	</nav> 
+    <script th:inline="javascript">
+       console.log([[${session}]])
+    </script>
+  
+<!-- 	<nav id="navbar_sub" class="navbar_sub navbar-light"> -->
+<!-- 		<ul class="breadcrumb"> -->
+<!-- 		  <li><a href="/">首頁</a></li> -->
+<!-- 		  <li><a href="#">Line應用管理</a></li> -->
+<!-- 		  <li class="active">LineRichMenu管理</li> -->
+<!-- 		</ul> -->
+<!-- 	</nav>  -->
 </header>
 
 </html>

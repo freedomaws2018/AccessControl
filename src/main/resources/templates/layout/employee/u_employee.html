@@ -3,6 +3,27 @@
 
 <body layout:fragment="content">
   <script th:inline="javascript">
+  	$(function(){
+  	  $("#reset_position").click(function(){
+        var positionId = $("select[name='positionId']").find(":selected").val();
+        $.post("/position/getPositionById",{positionId:positionId},function(data){
+          var mappings = data.mappings;
+          $.each(mappings , function(index,mapping){
+            $("label[key='" + mapping.permissionId + ":" + mapping.permissionDetailType + "']").css({"font-weight":"600"})
+          });
+        });
+      });
+  	  $("#reset_position").dblclick(function(){
+        var positionId = $("select[name='positionId']").find(":selected").val();
+        $.post("/position/getPositionById",{positionId:positionId},function(data){
+          var mappings = data.mappings;
+          $.each(mappings , function(index,mapping){
+            var checkbox_vaule = mapping.permissionId + ":" + mapping.permissionDetailType;
+            $("input[type='checkbox'][name='permissionDetailType'][value='" + checkbox_vaule +"']").prop("checked",true);
+          });
+        });
+      });
+  	});
 
 	var reset_password = function(id,account){
 	  showConfirmDialog('確認刪除','確定要重置 ' + account + ' 的密碼嗎？<BR>重置後帳號與密碼相同。',function(){
@@ -45,16 +66,6 @@
         }
       });
     }
-	
-	var reload_position = function(){
-	  var positionId = $("select[name='positionId']").find(":selected").val();
-	  $.post("/position/getPositionById",{positionId:positionId},function(data){
-	    var mappings = data.mappings;
-	    $.each(mappings , function(index,mapping){
-	      $("label[key='" + mapping.permissionId + ":" + mapping.permissionDetailType + "']").css({"font-weight":"600"})
-	    });
-	  });
-	}
 	
 	var change_position = function(){
       var positionId = $("select[name='positionId']").find(":selected").val();
@@ -115,7 +126,7 @@
             <label class="font-weight-bold"><span class="req-field">*</span>登入帳號</label>
             <input th:if="${funcType eq 'add'}" type="text" class="form-control" name="account" FDCV="not-blank" />
             <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reset_password(__*{id}__,'__*{account}__')|" value="重置密碼" />
-            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="account" th:value="*{account}" FDCV="not-blank" />
+            <input th:if="${funcType eq 'edit' || funcType eq 'view'}" readonly type="text" class="form-control" name="account" th:value="*{account}" FDCV="not-blank" />
           </div>
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
@@ -132,7 +143,7 @@
           
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
             <label class="font-weight-bold"><span class="req-field">*</span>職稱</label>
-            <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" th:onclick="|reload_position()|" value="重置權限" />
+            <input th:if="${funcType eq 'edit'}" type="button" class="btn btn-sm btn-outline-danger" id="reset_position" th:dbclick value="重置權限" />
             <div>
               <select th:if="${funcType eq 'add'}" class="form-control" name="positionId" onchange="change_position()" FDCV="not-blank">
                 <option value="">請選擇職稱</option>
@@ -175,12 +186,14 @@
             <table class="table table-responsive-sm">
               <thead>
                 <tr class="center">
+                  <th>權限名稱</th>
                   <th>選單名稱</th>
                   <th>權限分置</th>
                 </tr>
               </thead>
               <tr th:each="permission,iter1:${permissions}" th:object="${permission}">
-                <th nowrap class="center" th:text="*{menu.name}"></th>
+                <th nowrap class="center">[[*{name}]]</th>
+                <th nowrap class="center">[[*{menu.name}]]</th>
                 <td>
                   <label th:if="${ funcType eq 'edit' || funcType eq 'view' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.id+':'+detail.type}" >
                     <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" th:disabled="${funcType eq 'view'}"  
