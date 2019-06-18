@@ -37,6 +37,10 @@ public class LocationService {
     locationDetailRepository.flush();
   }
 
+  public Location getByBeaconKey(String beaconKey) {
+    return locationRepository.getByBeaconKey(beaconKey).orElse(null);
+  }
+
   public List<Location> getAll() {
     return this.locationRepository.findAll();
   }

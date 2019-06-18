@@ -57,6 +57,17 @@
     .focus(function () { $(this).autocomplete('search', ''); });  
   	
   });
+  
+  change_location = function(event){
+    var selected = $($(event).find(":selected")[0]);
+    var locationId = selected.attr("locationId");
+    var locationDetailName = selected.attr("locationDetailName");
+    var richMenuId = selected.attr("richMenuId");
+    console.log(locationId,locationDetailName,richMenuId)
+    $("#locationId").val(locationId);
+    $("#locationDetailName").val(locationDetailName);
+    $("#richMenuId").val(richMenuId);
+  }
   </script>
   <div class="row">
   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
@@ -65,13 +76,23 @@
 
   <form id="member_form">
     <div class="row"><div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"><div class="card">
+    
         <div class="card-header" >
           <span class="glyphicon glyphicon-align-justify"></span>
-          <span th:if="${funcType eq 'view'}">客戶- 檢視
-            <a th:href="@{/member/edit/{memberId}(memberId=${member.id})}" class="btn btn-success a-btn-second btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
-          </span>
-          <span th:if="${funcType eq 'edit'}">客戶 - 修改</span>
+          <div th:if="${funcType eq 'add'}" class="card-header-left">客戶 - 新增</div>
+          <div th:if="${funcType eq 'edit'}" class="card-header-left">客戶 - 修改</div>
+          <div th:if="${funcType eq 'view'}" class="card-header-left">客戶- 檢視</div>
+          <div class="card-header-right">
+            <a th:if="${funcType eq 'view'}" th:href="@{/member/edit/{memberId}(memberId=${member.id})}" class="btn btn-success a-btn-second btn-sm">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
+            </a>
+            <a class="btn btn-info a-btn-second btn-sm" href="/member/list">
+              <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+            </a>
+          </div>
+          
         </div>
+        
         <div class="card-body" th:object = "${member}">  
           <input type="hidden" th:if="${funcType eq 'edit' || funcType eq 'view'}" name="id" th:value="*{id}"/>
           <div class="row">
@@ -159,7 +180,10 @@
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6">
               <label class="font-weight-bold">使用據點</label><BR>
               <div th:if="${funcType eq 'add'}" >
-                <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" name="richMenuId" >
+                <input type="hidden" id="locationId" name="locationId" />
+                <input type="hidden" id="locationDetailName" name="locationDetailName" />
+                <input type="hidden" id="richMenuId" name="richMenuId" />
+                <select th:disabled="${funcType eq 'view'}" class="form-control select-sm"  onchange="change_location(this)" >
                   <option value="">請選擇</option>
                   <script th:inline="javascript">
                     var locs = [[${locations}]];
@@ -169,13 +193,13 @@
                       if(locDet.length > 0){
                         document.write("<optgroup label='" + loc.name + "'>");
                         if(loc.richMenuId){ // 管理員
-                          document.write("<option value='" + loc.richMenuId + "'>├★" + loc.richMenu.name + "</option>");
+                          document.write("<option richMenuId='" + loc.richMenuId + "' >├★" + loc.richMenu.name + "</option>");
                         }
                         $.each(loc.details,function(index , det){
                           if(det.richMenuId){
-                            document.write("<option value='" + det.richMenuId + "'>├" + det.name + "</option>");
+                            document.write("<option locationId='" + loc.id + "' locationDetailName='" + det.name + "' richMenuId='" + det.richMenuId + "'>├" + det.name + "</option>");
                           }else{
-                            document.write("<option value='" + det.richMenuId + "' disabled>├" + det.name + "(沒有Line@選單)</option>");
+                            document.write("<option locationId='" + loc.id + "' locationDetailName='" + det.name + "' richMenuId='" + det.richMenuId + "' disabled>├" + det.name + "(沒有Line@選單)</option>");
                           }
                         });
                         document.write("</optgroup>");
@@ -185,31 +209,34 @@
                 </select>
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
-                <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" name="richMenuId" >
+                <input type="hidden" id="locationId" name="locationId" th:value="*{locationId}"/>
+                <input type="hidden" id="locationDetailName" name="locationDetailName" th:value="*{locationDetailName}"/>
+                <input type="hidden" id="richMenuId" name="richMenuId" th:value="*{richMenuId}"/>
+                <select th:disabled="${funcType eq 'view'}" class="form-control select-sm" onchange="change_location(this)">
                   <option value="">請選擇</option>
                   <script th:inline="javascript">
                     var locs = [[${locations}]];
-                  
+                  	console.log(locs)
                     $.each(locs , function(index,loc){
                       var locDet = loc.details;
                       if(locDet.length > 0){
                         document.write("<optgroup label='" + loc.name + "'>");
                         if(loc.richMenuId){ // 管理員
                           if([[${member.richMenuId}]] == loc.richMenuId){
-                            document.write("<option value='" + loc.richMenuId + "' selected>★" + loc.richMenu.name + "</option>");
+                            document.write("<option richMenuId='" + loc.richMenuId + "' selected>★" + loc.richMenu.name + "</option>");
                           }else{
-                            document.write("<option value='" + loc.richMenuId + "'>★" + loc.richMenu.name + "</option>");
+                            document.write("<option richMenuId='" + loc.richMenuId + "'>★" + loc.richMenu.name + "</option>");
                           }
                         }
                         $.each(loc.details,function(index , det){
                           if(det.richMenuId){
                             if([[${member.richMenuId}]] == det.richMenuId){
-                              document.write("<option value='" + det.richMenuId + "' selected>" + det.name + "</option>");
+                              document.write("<option locationId='" + loc.id + "' locationDetailName='" + det.name + "' richMenuId='" + det.richMenuId + "' selected>" + det.name + "</option>");
                             }else{
-                              document.write("<option value='" + det.richMenuId + "'>" + det.name + "</option>");
+                              document.write("<option locationId='" + loc.id + "' locationDetailName='" + det.name + "' richMenuId='" + det.richMenuId + "'>" + det.name + "</option>");
                             }
                           }else{
-                            document.write("<option value='" + det.richMenuId + "' disabled>" + det.name + "(沒有Line@選單)</option>");
+                            document.write("<option locationId='" + loc.id + "' locationDetailName='" + det.name + "' richMenuId='" + det.richMenuId + "' disabled>" + det.name + "(沒有Line@選單)</option>");
                           }
                         });
                         document.write("</optgroup>");

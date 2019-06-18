@@ -21,7 +21,7 @@ public interface MappingEmployeePermissonPositionRepository
   List<MappingEmployeePermissonPosition> findByEmployeeIdAndPositionIdAndPermissionIdAndIsUseTrue(Long employeeId,
       Long positionId, Long permissionId);
 
-  @Modifying
+  @Modifying(flushAutomatically = true)
   @Transactional
   @Query(value = "UPDATE mapping_employee_permission_position SET is_use = false WHERE employee_id = :employeeId ;", nativeQuery = true)
   void updateAllIsUseFalseWithEmployeeId(@Param("employeeId") Long employeeId);

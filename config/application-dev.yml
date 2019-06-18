@@ -50,14 +50,14 @@ spring:
     username: UAT
     password: freedomcloud86878687
   
-#logging:
-#  file: logs/log_info.txt
-#  level:  
-#    root: info
-#    com.springframework.web: warn
-#    com.example: debug
-#    com.linecorp.bot: info
-#    com.linecorp.bot.client.wire: debug
+logging:
+  file: logs/log_info.txt
+  level:  
+    root: info
+    com.springframework.web: warn
+    com.example: debug
+    com.linecorp.bot: info
+    com.linecorp.bot.client.wire: off # line bot post log
 
 line:
   GetProfileUrl: https://api.line.me/v2/bot/profile/{userId}
@@ -68,7 +68,7 @@ line:
     channelSecret: da9fb3c5b0f6d9808033ac7396276eea
     channelToken: 0uqkLIerH9caCCAglj0sXGd0rXnKOwUHUL6/Mz1qifKgxVAE0VY+mPJMwUCoWM8pR8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMEucsZErlcL28qj0fil1qQedR6lGL3+HDjh/3pRxvkV7AdB04t89/1O/w1cDnyilFU=
   richMenu:
-    unLinkTime: 600
+    unLinkTime: 300
     
 wf8266:
   key: xoeExDUjSkPG2GMBDCAqfgPYl8v2

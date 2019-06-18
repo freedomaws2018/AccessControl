@@ -15,7 +15,7 @@ public interface MappingEmployeeMenuRepository extends JpaRepository<MappingEmpl
 
   List<MappingEmployeeMenu> findByEmployeeIdAndIsUseTrue(Long employeeId);
 
-  @Modifying
+  @Modifying(flushAutomatically = true)
   @Transactional
   @Query(value = "UPDATE mapping_employee_menu SET is_use = false WHERE employee_id = :employeeId ;", nativeQuery = true)
   void updateAllIsUseFalseByEmployeeId(@Param("employeeId") Long employeeId);

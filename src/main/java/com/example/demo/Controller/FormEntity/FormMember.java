@@ -34,6 +34,10 @@ public class FormMember {
   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
   private LocalDateTime endDt;
 
+  private Long locationId;
+
+  private String locationDetailName;
+
   private String lineUserId;
 
   private String richMenuId;
@@ -50,6 +54,8 @@ public class FormMember {
       member.setBirthday(birthday);
       member.setBegDt(begDt);
       member.setEndDt(endDt);
+      member.setLocationId(locationId);
+      member.setLocationDetailName(StringUtils.isNotBlank(locationDetailName) ? locationDetailName : null);
       member.setRichMenuId(StringUtils.isNotBlank(richMenuId) ? richMenuId : null);
       member.setLineUserId(StringUtils.isNotBlank(lineUserId) ? lineUserId : null);
     } else {
@@ -61,6 +67,8 @@ public class FormMember {
       member.setBirthday(birthday);
       member.setBegDt(begDt);
       member.setEndDt(endDt);
+      member.setLocationId(locationId);
+      member.setLocationDetailName(StringUtils.isNotBlank(locationDetailName) ? locationDetailName : null);
       member.setRichMenuId(StringUtils.isNotBlank(richMenuId) ? richMenuId : null);
       member.setLineUserId(StringUtils.isNotBlank(lineUserId) ? lineUserId : null);
     }

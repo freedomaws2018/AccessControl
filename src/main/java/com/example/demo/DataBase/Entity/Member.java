@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -50,9 +52,25 @@ public class Member {
   @Column(name = "rich_menu_id")
   private String richMenuId;
   /** RichMenu關聯 **/
-  @OneToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "rich_menu_id", referencedColumnName = "rich_menu_id", insertable = false, updatable = false, nullable = true)
   private RichMenu richMenu;
+
+  /** 據點 **/
+  @Column(name = "location_id")
+  private Long locationId;
+  @Column(name = "location_detail_name")
+  private String locationDetailName;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
+  private Location location;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumns({
+    @JoinColumn(name = "location_id", referencedColumnName = "location_id", insertable = false, updatable = false, nullable = true),
+    @JoinColumn(name = "location_detail_name", referencedColumnName = "name", insertable = false, updatable = false, nullable = true)
+  })
+  private LocationDetail locationDetail;
+
 
   @CreatedDate
   @Column(name = "create_date", nullable = false, updatable = false)
@@ -75,7 +93,7 @@ public class Member {
   private LocalDate birthday;
 
   /** 身分證字號 **/
-  @Column(name = "person_id", unique = true)
+  @Column(name = "person_id")
   private String personId;
 
   /** 是否啟用 **/

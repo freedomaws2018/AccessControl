@@ -27,7 +27,7 @@ public class LineUserTask {
   @Value("${line.richMenu.unLinkTime}")
   private Integer unLinkTime;
 
-  @Scheduled(cron = "0 */5 * * * *")
+  @Scheduled(cron = "0 */10 * * * *")
 //  @Scheduled(cron = "*/30 * * * * *")
   public void taskUnlinkRichMenu() {
     List<Member> members = memberService.getAllEffectiveMember();
@@ -38,9 +38,13 @@ public class LineUserTask {
       if (StringUtils.isNotBlank(richMenuId) && !isAdmin) {
         try {
           LocalDateTime richMenuLinkDatetime = member.getRichMenuLinkDateTime();
-          Duration duration = Duration.between(richMenuLinkDatetime, LocalDateTime.now());
-          if (duration.getSeconds() > unLinkTime) {
+          if (richMenuLinkDatetime == null) {
             lineRichMenuService.unlinkRichMenuToUser(lineUserId);
+          } else {
+            Duration duration = Duration.between(richMenuLinkDatetime, LocalDateTime.now());
+            if (duration.getSeconds() > unLinkTime) {
+              lineRichMenuService.unlinkRichMenuToUser(lineUserId);
+            }
           }
         } catch (InterruptedException | ExecutionException e) {
           e.printStackTrace();

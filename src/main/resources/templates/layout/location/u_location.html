@@ -103,7 +103,9 @@
             <span class="glyphicon glyphicon-align-justify"></span>
               <span th:if="${funcType eq 'edit'}">據點修改</span>
               <span th:if="${funcType eq 'view'}">據點檢視
-              	<a class="btn btn-success a-btn-second btn-sm" th:href="@{/location/edit/{id}(id=*{id})}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+              	<a class="btn btn-success a-btn-second btn-sm" th:href="@{/location/edit/{id}(id=*{id})}">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
+                </a>
               </span>
             </div>
             <div class="card-body" style="padding-right: 2rem;">

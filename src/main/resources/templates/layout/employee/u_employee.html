@@ -33,10 +33,10 @@
           data: {id:id,account:account},
           dataType: 'json',
           success: (result) => {
-            console.log(result);
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-          
+            if(result.status == 'success'){
+              alert("重設成功，重設後密碼與帳號相同。");
+              window.location.reload();
+            }
           }
         });
 	  });
@@ -48,7 +48,7 @@
 	  }
 	  
       var data = $("#employee_form").toJson();
-      // console.log(data);
+//       console.log(data);
       $.ajax({
         method: 'post',
         url: '/employee/save',
@@ -57,12 +57,7 @@
         success: function(result){
           if(result.status === 'success'){
             window.location.replace("/employee/view/" + result.data.id);
-          }else{
-            console.log(result);
           }
-        },
-        error: function(error){
-          console.log(a,b,c)
         }
       });
     }
@@ -70,24 +65,18 @@
 	var change_position = function(){
       var positionId = $("select[name='positionId']").find(":selected").val();
 
-      $("input[type='checkbox'][name='permissionDetailType']").each(function(index,data){
-        $(data).prop("checked", false);
-      });
       if(positionId){
-        console.log(positionId);
         $.ajax({
           method: 'post',
           url: '/employee/getMappingPPPWithPositionId',
           data: { positionId : positionId },
           dataType: 'json',
-          success: function(result){
+          success: function(result){console.log(result)
             if(result.status === 'success'){
               $.each(result.data,function(index,data){
                 var checkbox_vaule = data.permissionId + ":" + data.permissionDetailType;
                 $("input[type='checkbox'][name='permissionDetailType'][value='" + checkbox_vaule +"']").prop("checked",true);
               });
-            }else{
-              console.log(result);
             }
           }
         });
@@ -96,23 +85,26 @@
   
   	$(function(){
   	  // 首次觸發
-  	  change_position();
+  	  // change_position();
   	});
   </script>
   <div class="row"> <div class="col-12"> <div class="card">
   
-    <div th:if="${funcType eq 'add'}" class="card-header" toggleId="u_employee">
-      <span class="glyphicon glyphicon-align-justify"></span>員工管理 - 新增
-    </div>
-    <div th:if="${funcType eq 'edit'}" class="card-header" toggleId="u_employee">
-      <span class="glyphicon glyphicon-align-justify"></span>員工管理 - 修改
-    </div>
-    <div th:if="${funcType eq 'view'}" class="card-header" toggleId="u_employee">
-      <span class="glyphicon glyphicon-align-justify"></span>員工管理 - 檢視
-      <a class="btn btn-success a-btn-second btn-sm" th:href="@{/employee/edit/{id}(id=${employee.id})}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 </a>
+    <div class="card-header">
+      <div th:if="${funcType eq 'add'}" class="card-header-left"><span class="glyphicon glyphicon-align-justify"></span>員工管理 - 新增</div>
+      <div th:if="${funcType eq 'edit'}" class="card-header-left"><span class="glyphicon glyphicon-align-justify"></span>員工管理 - 修改</div>
+      <div th:if="${funcType eq 'view'}" class="card-header-left"><span class="glyphicon glyphicon-align-justify"></span>員工管理 - 檢視</div>
+      <div class="card-header-right">
+        <a th:if="${funcType eq 'view'}" class="btn btn-success a-btn-second btn-sm" th:href="@{/employee/edit/{id}(id=${employee.id})}">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+        </a>
+        <a class="btn btn-info a-btn-second btn-sm" href="/employee/list">
+          <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>返回列表
+        </a>
+      </div>
     </div>
     
-    <div class="card-body" toggleId="u_employee">
+    <div class="card-body">
       <form id="employee_form" >
         <div class="row col-12" th:object="${employee}">
         
@@ -191,15 +183,17 @@
                   <th>權限分置</th>
                 </tr>
               </thead>
-              <tr th:each="permission,iter1:${permissions}" th:object="${permission}">
+              <tr th:each="permission,iter1:${permissions}" th:object="${permission}" th:if="${#lists.size(permission.details) > 0}">
                 <th nowrap class="center">[[*{name}]]</th>
                 <th nowrap class="center">[[*{menu.name}]]</th>
                 <td>
+                
                   <label th:if="${ funcType eq 'edit' || funcType eq 'view' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.id+':'+detail.type}" >
                     <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" th:disabled="${funcType eq 'view'}"  
-                      th:checked="${#lists.contains(mappingPermissions,permission.id+':'+detail.type)}"/>
+                      th:checked="${#lists.contains(mappingPermissions,permission.id+':'+detail.type)}" /> 
                       <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                   </label>
+                  
                   <label th:if="${ funcType eq 'add' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.id+':'+detail.type}" >
                     <input type="checkbox" th:value="|${permission.id}:*{type}|" name="permissionDetailType" />
                       <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>

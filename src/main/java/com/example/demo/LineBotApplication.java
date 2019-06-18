@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.DataBase.Entity.LineUser;
+import com.example.demo.DataBase.Entity.Location;
+import com.example.demo.DataBase.Entity.LocationDetail;
 import com.example.demo.DataBase.Entity.Member;
+import com.example.demo.DataBase.Entity.RichMenu;
 import com.example.demo.DataBase.Service.LineBotService;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.DataBase.Service.LineUserService;
@@ -140,14 +143,33 @@ public class LineBotApplication {
     String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId,
         senderId, type, hwid, deviceMessageAsHex);
     if ("enter".equals(type)) {
-    // 獲取 LineUser 信息 並判斷是否存在
+      // 獲取 LineUser 信息 並判斷是否存在
       Member member = memberService.getEffectiveMember(lineUserId);
       LineUser lineUser = member.getLineUser();
-      if (lineUser != null) {
-        // 不為管理員
-        if( !member.getIsAdmin() ) {
-          memberService.setRichMneuByUserId(lineUserId);
-        }
+      Location location = member.getLocation();
+      LocationDetail locationDetail = member.getLocationDetail();
+      RichMenu richMenu = member.getRichMenu();
+
+      // 登入者為管理員
+      if (member != null && lineUser != null && member.getIsAdmin()) {
+        Location locAdmin = locationService.getByBeaconKey(deviceMessageAsHex);
+        lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), locAdmin.getRichMenuId());
+        member.setRichMenuLinkDateTime(LocalDateTime.now());
+        memberService.save(member);
+      }
+
+      // 判斷有會員 以及 有選單
+      if (member != null && lineUser != null && location != null && locationDetail != null && richMenu != null) {
+        lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), richMenu.getRichMenuId());
+        member.setRichMenuLinkDateTime(LocalDateTime.now());
+        memberService.save(member);
+      }
+
+    } else if ("leave".equals(type)) {
+      Member member = memberService.getEffectiveMember(lineUserId);
+      LineUser lineUser = member.getLineUser();
+      if (member != null && lineUser != null && !member.getIsAdmin()) {
+        lineRichMenuService.unlinkRichMenuToUser(lineUser.getUserId());
       }
     }
     return new TextMessage(textMessage);
