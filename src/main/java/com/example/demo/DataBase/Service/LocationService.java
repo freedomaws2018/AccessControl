@@ -57,6 +57,10 @@ public class LocationService {
     return this.locationRepository.findById(id).orElse(null);
   }
 
+  public List<Location> getByIds(List<Long> ids) {
+    return locationRepository.findAllById(ids);
+  }
+
   public List<LocationDetail> getLocationDetailByRichMenuId(String richMenuId) {
     return locationDetailRepository.findByRichMenuId(richMenuId);
   }

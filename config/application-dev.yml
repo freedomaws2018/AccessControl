@@ -46,8 +46,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     name: UAT
-    url: jdbc:postgresql://59.127.199.145:25178/${spring.datasource.name}
-    username: UAT
+    url: jdbc:postgresql://34.80.133.100:10020/${spring.datasource.name}
+    username: freedomcloud
     password: freedomcloud86878687
   
 logging:

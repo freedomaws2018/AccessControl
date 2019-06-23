@@ -40,7 +40,7 @@ public class LineUser {
   private String statusMessage;
 
   @JsonManagedReference
-  @OneToOne(mappedBy = "lineUser", fetch = FetchType.LAZY)
+  @OneToOne(mappedBy = "lineUser", fetch = FetchType.EAGER)
   private Member member;
 
   /** 加入時間 **/

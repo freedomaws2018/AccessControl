@@ -15,8 +15,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "log_wf8266")
-public class LogWf8266 {
+@Table(name = "log_iot")
+public class LogIot {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,14 +27,25 @@ public class LogWf8266 {
   private LocalDateTime createDate = LocalDateTime.now();
 
   @Column(name = "member_id", nullable = false)
-  private Long member_id;
+  private Long memberId;
+
 
   @Column(name = "location_id", nullable = false)
   private Long locationId;
 
-  @Column(name = "wf8266_detail_id", nullable = false)
-  private String wf8266DetailId;
+  @Column(name = "wf8266_sn")
+  private String wf8266Sn;
 
+  @Column(name = "wf8266_detail_name", nullable = false)
+  private String wf8266DetailName;
 
+  public LogIot() {}
+
+  public LogIot(Long memberId , Long locationId , String wf8266Sn , String wf8266DetailName) {
+    this.memberId = memberId;
+    this.locationId = locationId;
+    this.wf8266Sn = wf8266Sn;
+    this.wf8266DetailName = wf8266DetailName;
+  }
 
 }

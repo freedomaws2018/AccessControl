@@ -16,6 +16,7 @@ import com.example.demo.DataBase.Entity.LineUser;
 @Repository
 public interface LineUserRepository extends JpaRepository<LineUser, String> {
 
+  @Transactional
   Optional<LineUser> getByUserId(String userId);
 
   @Transactional

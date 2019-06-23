@@ -1,40 +1,53 @@
 package com.example.demo.Controller;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.Controller.FormEntity.FromLogWf8266;
-import com.example.demo.DataBase.Entity.Log.LogWf8266;
-import com.example.demo.DataBase.Service.LogWf8266Service;
+import com.example.demo.DataBase.Entity.Location;
+import com.example.demo.DataBase.Entity.Member;
+import com.example.demo.DataBase.Entity.Log.LogIot;
+import com.example.demo.DataBase.Repository.LogIotRepository;
+import com.example.demo.DataBase.Service.LocationService;
+import com.example.demo.DataBase.Service.MemberService;
 
 @Controller
 @RequestMapping(value = "/line/log")
 public class LineLogController {
 
-	@Autowired
-	private LogWf8266Service logWf8266Service;
+  @Autowired
+  private LogIotRepository logIotRepository;
 
+  @Autowired
+  private MemberService memberService;
 
-	@GetMapping(value = "/list")
-	public ModelAndView list(FromLogWf8266 form ,ModelAndView model,
-			@PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.DESC) Pageable pageable) {
-		model = new ModelAndView("layout/line/l_line_log");
-		System.err.println(form);
-		Page<LogWf8266> logWf8266s = this.logWf8266Service.findAll(pageable);
+  @Autowired
+  private LocationService locationService;
 
-		if(!logWf8266s.isEmpty()) {
-			logWf8266s = this.logWf8266Service.getLineUserAndWf8266Detail(logWf8266s);
-		}
+  @GetMapping(value = "/list")
+  public ModelAndView list(ModelAndView model) {
+    model = new ModelAndView("layout/line/l_line_log");
+    List<LogIot> logIots = logIotRepository.findAllInThreeMonth();
+    model.addObject("logIots", logIots);
 
-		model.addObject("logWf8266s", logWf8266s);
-		return model;
-	}
+    List<Long> memberIds = logIots.stream().map(LogIot::getMemberId).distinct().collect(Collectors.toList());
+    Map<Long, Member> mapMember = memberService.getByIds(memberIds).stream()
+        .collect(Collectors.toMap(Member::getId, Function.identity()));
+    model.addObject("mapMember", mapMember);
+
+    List<Long> locationIds = logIots.stream().map(LogIot::getLocationId).distinct().collect(Collectors.toList());
+    Map<Long, Location> mapLocation = locationService.getByIds(locationIds).stream()
+        .collect(Collectors.toMap(Location::getId, Function.identity()));
+    model.addObject("mapLocation", mapLocation);
+
+    return model;
+  }
 
 }

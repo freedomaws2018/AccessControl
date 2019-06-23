@@ -14,6 +14,8 @@ import com.example.demo.Common.HttpUtils;
 import com.example.demo.DataBase.Entity.Member;
 import com.example.demo.DataBase.Entity.RichMenu;
 import com.example.demo.DataBase.Entity.Wf8266Detail;
+import com.example.demo.DataBase.Entity.Log.LogIot;
+import com.example.demo.DataBase.Repository.LogIotRepository;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
@@ -30,7 +32,7 @@ public class LineBotService {
   private MemberService memberService;
 
   @Autowired
-  private LineUserService lineUserService;
+  private LogIotRepository logIotRepository;
 
   @Autowired
   private LineRichMenuService lineRichMenuService;
@@ -43,9 +45,6 @@ public class LineBotService {
 
   @Value("${line.bot.channelToken}")
   private String channelAccessToken;
-
-  @Value("${line.GetProfileUrl}")
-  private String getProfileUrl;
 
   /** 取得用戶資料 By UserId **/
   public UserProfileResponse getProfileByUserId(String userId) {
@@ -110,7 +109,7 @@ public class LineBotService {
 
   /** Wf8266 所有指令處理區 **/
   public String wf8266Handle(String userId, List<String> triggerTexts) {
-    System.err.println("triggerTexts1" + triggerTexts);
+//    System.err.println("triggerTexts1" + triggerTexts);
     // 指令開頭過濾，指令開頭均為 #
     List<String> triggerTexts1 = triggerTexts.stream() //
         .filter(triggerText -> triggerText.matches("^#.*")) // 單個#號開頭
@@ -128,8 +127,8 @@ public class LineBotService {
     // 換頁指令 ( #>開頭 )
     List<String> triggerTexts3 = triggerTexts1.stream().filter(triggerText -> triggerText.matches("^>.*"))
         .map(triggerText -> triggerText.substring(1)).collect(Collectors.toList());
-    System.err.println("triggerTexts2" + triggerTexts2);
-    System.err.println("triggerTexts3" + triggerTexts3);
+//    System.err.println("triggerTexts2" + triggerTexts2);
+//    System.err.println("triggerTexts3" + triggerTexts3);
 //    return null;
 
     Member member = null;
@@ -148,6 +147,11 @@ public class LineBotService {
       Wf8266Detail detail = wf8266Service.getWf8266DetailBySnAndName(SN, WDN);
       String url = detail.getTriggerUrl();
       HttpUtils.doGet(url);
+
+      // TODO : save Log
+      LogIot log = new LogIot(member.getId(), detail.getWf8266().getLocationId(), SN, WDN);
+      logIotRepository.saveAndFlush(log);
+
       return detail.getReply2();
     }
 

@@ -37,6 +37,10 @@ public class MemberService {
     return memberRepository.findById(memberId).orElse(null);
   }
 
+  public List<Member> getByIds(List<Long> memberIds) {
+    return memberRepository.findAllById(memberIds);
+  }
+
   public List<Member> getByRichMenuId(String richMenuId) {
     return memberRepository.getByRichMenuId(richMenuId);
   }

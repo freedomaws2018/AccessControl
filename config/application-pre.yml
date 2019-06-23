@@ -20,7 +20,7 @@ server:
 spring:
   jpa:
     open-in-view: true
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
       
@@ -43,20 +43,27 @@ spring:
   resources:
     static-locations: file:public/static/
 
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://54.238.212.55:5432/PROD
+#    username: postgres
+#    password: postgres
+
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://54.238.212.55:5432/PROD
-    username: postgres
-    password: postgres
+    name: PROD
+    url: jdbc:postgresql://59.127.199.145:25178/${spring.datasource.name}
+    username: UAT
+    password: freedomcloud86878687
 
 #logging:
 #  file: logs/log_info.txt
-#  level:
-#    root: warn
+#  level:  
+#    root: info
 #    com.springframework.web: warn
-#    com.example: warn
-#    com.example.demo: info
-#    com.linecorp.bot: warn
+#    com.example: debug
+#    com.linecorp.bot: info
+#    com.linecorp.bot.client.wire: off # line bot post log
     
 line:
   GetProfileUrl: https://api.line.me/v2/bot/profile/{userId}

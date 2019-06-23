@@ -97,8 +97,11 @@ public class LineBotApplication {
       lineUser.setIsLeave(true);
       lineUser = lineUserService.save(lineUser);
 
-      Member member = lineUser.getMember();
+      Member member = memberService.getByUserIdAndIsUseTrue(lineUser.getUserId());
       member.setIsUse(false);
+      member.setRichMenuId(null);
+      member.setLocationId(null);
+      member.setLocationDetailName(null);
       member = memberService.save(member);
       logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
     }
@@ -140,8 +143,7 @@ public class LineBotApplication {
     String type = event.getBeacon().getType();
     String hwid = event.getBeacon().getHwid();
     String deviceMessageAsHex = event.getBeacon().getDeviceMessageAsHex();
-    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId,
-        senderId, type, hwid, deviceMessageAsHex);
+    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId, senderId, type, hwid, deviceMessageAsHex);
     if ("enter".equals(type)) {
       // 獲取 LineUser 信息 並判斷是否存在
       Member member = memberService.getEffectiveMember(lineUserId);

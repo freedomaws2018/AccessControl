@@ -15,10 +15,13 @@ import com.example.demo.DataBase.Entity.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
+  @Transactional
   Optional<Member> getById(Long id);
 
+  @Transactional
   Optional<Member> getByLineUserIdAndIsUseTrue(String lineUserId);
 
+  @Transactional
   List<Member> getByRichMenuId(String richMenuId);
 
   @Transactional

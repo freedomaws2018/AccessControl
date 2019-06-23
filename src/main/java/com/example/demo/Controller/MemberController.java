@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,7 @@ import com.example.demo.Controller.FormEntity.FormMember;
 import com.example.demo.DataBase.Entity.Location;
 import com.example.demo.DataBase.Entity.Member;
 import com.example.demo.DataBase.Entity.RichMenu;
+import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.DataBase.Service.LineUserService;
 import com.example.demo.DataBase.Service.LocationService;
 import com.example.demo.DataBase.Service.MemberService;
@@ -43,6 +45,9 @@ public class MemberController {
 
   @Autowired
   private RichMenuService richMenuService;
+
+  @Autowired
+  private LineRichMenuService lineRichMenuService;
 
   @GetMapping(value = "/list")
   private ModelAndView list(ModelAndView model,
@@ -86,6 +91,17 @@ public class MemberController {
     Member member = memberService.getById(form.getId());
     member = form.toMember(member);
     member = memberService.save(member);
+
+    // 如果是管理員 直接發送選單 並且不會因為時間而移除
+    if (member.getIsAdmin()) {
+      if (StringUtils.isNotBlank(member.getLineUserId()) && StringUtils.isNotBlank(member.getRichMenuId())) {
+        try {
+          lineRichMenuService.linkRichMenuToUser(member.getLineUserId(), member.getRichMenuId());
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    }
 
     result.put("status", "success");
     result.put("data", member);

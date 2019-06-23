@@ -78,10 +78,10 @@
     <div class="row"><div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"><div class="card">
     
         <div class="card-header" >
-          <span class="glyphicon glyphicon-align-justify"></span>
-          <div th:if="${funcType eq 'add'}" class="card-header-left">客戶 - 新增</div>
-          <div th:if="${funcType eq 'edit'}" class="card-header-left">客戶 - 修改</div>
-          <div th:if="${funcType eq 'view'}" class="card-header-left">客戶- 檢視</div>
+          
+          <div th:if="${funcType eq 'add'}" class="card-header-left"><span class="glyphicon glyphicon-align-justify"></span>客戶 - 新增</div>
+          <div th:if="${funcType eq 'edit'}" class="card-header-left"><span class="glyphicon glyphicon-align-justify"></span>客戶 - 修改</div>
+          <div th:if="${funcType eq 'view'}" class="card-header-left"><span class="glyphicon glyphicon-align-justify"></span>客戶- 檢視</div>
           <div class="card-header-right">
             <a th:if="${funcType eq 'view'}" th:href="@{/member/edit/{memberId}(memberId=${member.id})}" class="btn btn-success a-btn-second btn-sm">
               <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 

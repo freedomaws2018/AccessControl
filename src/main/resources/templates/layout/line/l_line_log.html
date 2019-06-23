@@ -8,208 +8,54 @@
   <script type="text/javascript">
   $().ready(function(){
 
-  	dateTimePicke("datetimePicker","begDt","endDt");
-  	
-  	isSelectShowOrHide = function(){
-    	if($("#locationId").val()){
-          $("#lineUserSelect").show();
-          $("#triggerTextSelect").show();
-    	}else{
-          $("#lineUserSelect").hide();
-          $("#triggerTextSelect").hide();
-          $("#lineUserId").val("");
-          $("#auto_line_user").val("");
-          $("#auto_trigger").val("");
-          $("#triggerText").val("");
-    	} 
-  	}
-  	isSelectShowOrHide();
-  	
-  	$("#auto_location").autocomplete({
-      minLength: 0,
-      source: function(request,response){
-        $.ajax({
-          method: 'post',
-          url: '/location/autocomplete/getAll',
-          data: request,
-          dataType: 'json',
-          success: function(result){
-            var data = [];
-          result.forEach((d) => {
-              data.push({ label: d.name + ":" + d.address, value: d.name + ":" + d.address, object: d });
-          });
-            response(data);
-          }
-        });
-      },
-      select: function(event,ui){
-        var obj = ui.item.object;
-        $("#locationId").val(obj.id);
-        isSelectShowOrHide();
+    $('#log_table').DataTable({
+      "paging":   true, // 分頁
+      "ordering": true, // 排序
+      "info":     true, // 訊息
+      stateSave: true, // 紀錄狀態 
+      pagingType: 'first_last_numbers',
+      language: {
+        "search": "搜尋:",
+        "lengthMenu": "每頁顯示_MENU_筆",
+        "zeroRecords": "找不到任何資料",
+        "infoEmpty": "",
+        "info": "第_PAGE_頁，共_PAGES_頁，有_TOTAL_筆資料",
+        "infoFiltered": "(從_MAX_筆資料中過濾)",
+        "processing": "資料處理中...",
+        "paginate": {
+          "first":      "第一頁",
+          "last":       "最後一頁",
+          "next":       "下一頁",
+          "previous":   "上一頁"
+        }
       }
-    })
-    .blur(function(){
-      $(this).autocomplete('enable');
-    })
-    .focus(function () {
-      $(this).autocomplete('search', '');
-      $(this).val("");
-      $("#locationId").val("");
-      isSelectShowOrHide();
     });
-  	
-  	$("#auto_line_user").autocomplete({
-      minLength: 0,
-      source: function(request,response){
-        $.ajax({
-          method: 'post',
-          url: '/line/user/autocomplete/getAll',
-          data: request,
-          dataType: 'json',
-          success: function(result){
-            var data = [];
-          result.forEach((d) => {
-              data.push({ label: d.userName, value: d.userName , object: d });
-          });
-            response(data);
-          }
-        });
-      },
-      select: function(event,ui){
-        var obj = ui.item.object;
-        $("#lineUserId").val(obj.userId);
-      }
-    })
-    .blur(function(){
-      $(this).autocomplete('enable');
-    })
-    .focus(function () {
-      $(this).autocomplete('search', '');
-    });
-  	
-  	$("#auto_trigger").autocomplete({
-      minLength: 0,
-      source: function(request,response){
-        var locationId = $("#locationId").val();
-        $.ajax({
-          method: 'post',
-          url: '/wf8266/autocomplete/getAllWf8266DetailWithLocationIdAndName',
-          data: { locationId:locationId  , name:request.term },
-          dataType: 'json',
-          success: function(result){
-            var data = [];
-            console.log(result)
-            if(result.length == 0){
-              data.push({ value: '找不到資料' });
-            }
-            result.forEach((d) => {
-                data.push({ label: d.name, value: d.name, object: d });
-            });
-            response(data);
-          }
-        });
-      },
-      select: function(event,ui){
-        var obj = ui.item.object;
-        $("#triggerText").val(obj.triggertext);
-      }
-    })
-    .blur(function(){
-      $(this).autocomplete('enable');
-    })
-    .focus(function () {
-      $(this).autocomplete('search', '');
-    });
-  	
   });
   </script>
   
-  <form th:action="@{/line/log/list}" method="get">
-    <div class="row"> <div class="col-12"> <div class="card">
-      <div class="card-header" >
-        <span class="glyphicon glyphicon-align-justify"></span>查詢
-      </div>
-      
-      <div class="card-body"  >
-        <table class="table table-hover table-responsive-sm col-11">
-          <tbody>
-            <tr>
-              <th>時間區間</th>
-              <td>
-                <input type="hidden" id="begDt" name="begDt" th:value="${param.begDt}" />
-                <input type="hidden" id="endDt" name="endDt" th:value="${param.endDt}" />
-                <input id="datetimePicker" class="form-control" readonly />
-              </td>
-            </tr>
-            <tr>
-              <th>Location</th>
-              <td>
-                <input type="hidden" id="locationId" name="locationId" th:value="${param.locationId}" />
-                <input type="text" class="form-control" id="auto_location" name="auto_location" th:value="${param.auto_location}" />
-              </td>
-            </tr>
-            <tr id="lineUserSelect" style="display: none;">
-              <th>LineUser</th>
-              <td>
-                <input type="hidden" id="lineUserId" name="lineUserId" th:value="${param.lineUserId}" />
-                <input type="text" class="form-control" id="auto_line_user" name="auto_line_user" th:value="${param.auto_line_user}" />
-              </td>
-            </tr>
-            <tr id="triggerTextSelect" style="display: none;">
-              <th>TriggerText</th>
-              <td>
-                <input type="hidden" id="triggerText" name="triggerText" th:value="${param.triggerText}" />
-                <input type="text" class="form-control" id="auto_trigger" name="auto_trigger" th:value="${param.auto_trigger}" />
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4" class="center">
-                <button type="submit" class="btn btn-primary btn-sm btn-submit">
-            	  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
-            	</button>
-            	<a href="javascript:;" class="btn btn-secondary btn-sm btn-download">
-                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>下載(X)
-                </a>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div> </div> </div>
-  </form>
-  
   <div class="row"> <div class="col-12"> <div class="card">
-    <div class="card-header" toggleId='b'>
+    <div class="card-header">
       <span class="glyphicon glyphicon-align-justify"></span>列表
     </div>
-    <div class="card-body" toggleId='b'>
-      <table class="table table-hover">
+    <div class="card-body">
+      <table id="log_table" class="table table-hover">
         <thead class="center">
           <tr>
             <th scope="col">時間</th>
-            <th scope="col">姓名</th>
             <th scope="col">行為</th>
           </tr>
         </thead>
         <tbody class="center">
-<!--           <tr th:each="log:${logWf8266s}"> -->
-<!--             <th> -->
-<!--               <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss.SSS')}"></span> -->
-<!--             </th> -->
-<!--             <td> -->
-<!--               <span th:text="${log.lineUser?.userName}"></span> -->
-<!--             </td> -->
-<!--             <td> -->
-<!--               <span  th:text="${log.wf8266Detail?.name}"></span> -->
-<!--             </td> -->
-<!--           </tr> -->
+          <tr th:each="log:${logIots}">
+            <th>
+              <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
+            </th>
+            <td>
+              [[${mapMember[log.memberId].fullName}]] 執行 [[${mapLocation[log.locationId].name}]] - [[${log.wf8266DetailName}]]
+            </td>
+          </tr>
         </tbody>
       </table>
-<!--       <div th:if="${logWf8266s.totalPages gt 1}" > -->
-<!--         <div th:replace="~{comm/page :: page01(entity=${logWf8266s})}"></div> -->
-<!--       </div> -->
     </div>
   </div> </div> </div>
 	
