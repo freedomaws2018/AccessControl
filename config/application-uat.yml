@@ -1,0 +1,75 @@
+server:
+  https-port: 443
+  http-port: 80
+  port: ${server.https-port}
+  
+  user_login_timeout: 1800 # 登入閒置時間
+  max-http-header-size: 4096
+  connection-timeout: 20000
+  
+  ssl:
+    key-store: file:config/ssl_190613.jks
+    key-store-password: freedomaws86878687
+#    key-alias: freedomaws86878687
+#  servlet:
+#    session:
+#      timeout: 20m
+  tomcat:
+    max-threads: 50
+
+spring:
+  jpa:
+    open-in-view: true
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+  
+  thymeleaf:
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    check-template-location: true
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+
+  resources:
+    static-locations: file:public/static/
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    name: UAT
+    url: jdbc:postgresql://34.80.133.100:10020/${spring.datasource.name}
+    username: freedomcloud
+    password: freedomcloud86878687
+  
+logging:
+  file: logs/log_info.txt
+  level:  
+    root: warn
+    com.springframework.web: warn
+    com.example: warn
+    com.linecorp.bot: warn
+    com.linecorp.bot.client.wire: off # line bot post log
+
+line:
+  GetProfileUrl: https://api.line.me/v2/bot/profile/{userId}
+  bot: 
+    handler:
+      path: /linebot
+    channelId: 1560051090
+    channelSecret: da9fb3c5b0f6d9808033ac7396276eea
+    channelToken: 0uqkLIerH9caCCAglj0sXGd0rXnKOwUHUL6/Mz1qifKgxVAE0VY+mPJMwUCoWM8pR8h9I9lKrcd3ytvvMEMce/j9e8fs4VQ8NFB1kGoFLMEucsZErlcL28qj0fil1qQedR6lGL3+HDjh/3pRxvkV7AdB04t89/1O/w1cDnyilFU=
+  richMenu:
+    unLinkTime: 600
+    
+wf8266:
+  key: xoeExDUjSkPG2GMBDCAqfgPYl8v2
+  

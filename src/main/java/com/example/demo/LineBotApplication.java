@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,7 +144,8 @@ public class LineBotApplication {
     String type = event.getBeacon().getType();
     String hwid = event.getBeacon().getHwid();
     String deviceMessageAsHex = event.getBeacon().getDeviceMessageAsHex();
-    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId, senderId, type, hwid, deviceMessageAsHex);
+    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId,
+        senderId, type, hwid, deviceMessageAsHex);
     if ("enter".equals(type)) {
       // 獲取 LineUser 信息 並判斷是否存在
       Member member = memberService.getEffectiveMember(lineUserId);
@@ -152,22 +154,29 @@ public class LineBotApplication {
       LocationDetail locationDetail = member.getLocationDetail();
       RichMenu richMenu = member.getRichMenu();
 
-      // 登入者為管理員
+      // 為管理員
       if (member != null && lineUser != null && member.getIsAdmin()) {
         Location locAdmin = locationService.getByBeaconKey(deviceMessageAsHex);
-        lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), locAdmin.getRichMenuId());
-        member.setRichMenuLinkDateTime(LocalDateTime.now());
-        memberService.save(member);
+        if (StringUtils.isNotBlank(lineUser.getUserId()) && StringUtils.isNotBlank(locAdmin.getRichMenuId())) {
+          lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), locAdmin.getRichMenuId());
+          member.setRichMenuLinkDateTime(LocalDateTime.now());
+          memberService.save(member);
+        }
       }
 
       // 判斷有會員 以及 有選單
       if (member != null && lineUser != null && location != null && locationDetail != null && richMenu != null) {
-        lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), richMenu.getRichMenuId());
-        member.setRichMenuLinkDateTime(LocalDateTime.now());
-        memberService.save(member);
+        if (StringUtils.isNotBlank(lineUser.getUserId()) && StringUtils.isNotBlank(richMenu.getRichMenuId())) {
+          lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), richMenu.getRichMenuId());
+          member.setRichMenuLinkDateTime(LocalDateTime.now());
+          memberService.save(member);
+        }
       }
 
-    } else if ("leave".equals(type)) {
+    }
+    if ("leave".equals(type))
+
+    {
       Member member = memberService.getEffectiveMember(lineUserId);
       LineUser lineUser = member.getLineUser();
       if (member != null && lineUser != null && !member.getIsAdmin()) {
