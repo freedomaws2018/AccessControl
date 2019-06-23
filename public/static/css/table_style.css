@@ -214,6 +214,10 @@
   .td-last {
     margin-bottom: 30px;
   }
+  .td-mobile{
+    margin-bottom:5px;
+  }
+  
   .td-m {
     margin-bottom: 10px;
   }
@@ -228,6 +232,7 @@
   .td-first .btn {
     padding-bottom: 7px;
     padding-right: 4px;
+    margin-bottom:5px;
   }
   .rwd-tbody {
     

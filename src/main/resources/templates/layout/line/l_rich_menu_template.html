@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="card-body">
-      <table class="table table-hover table-responsive-sm">
+      <table class="table table-hover table-responsive-sm hide-in-phone">
         <thead class="center">
           <tr>
             <th scope="col">操作</th>
@@ -59,6 +59,32 @@
            	    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
             </th>
+            <td th:text="*{name}">姓名</td>
+            <td><img width="150px" th:src="@{|data:image/jpeg;base64,*{image}|}" /></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-hover table-responsive-sm show-on-phone">
+        <thead class="center">
+          <tr>
+            <th scope="col">操作</th>
+            <th scope="col">樣板名稱</th>
+            <th scope="col">樣板圖片</th>
+          </tr>
+        </thead>
+        <tbody class="center">
+          <tr th:each="template:${templateList}" th:object="${template}">
+            <td class="td-first">
+              <a th:href="@{/line/rich_menu/template/view/{id}(id=*{id})}" class="btn btn-secondary btn-sm">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              </a>
+<!--               <a th:href="@{/line/rich_menu/template/edit/{id}(id=*{id})}" class="btn btn-success btn-sm"> -->
+<!--                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 -->
+<!--               </a> -->
+              <a href="javascript:;" th:onclick="|delete_template(__*{id}__,'__*{name}__')|" class="btn btn-danger btn-sm">
+           	    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </a>
+            </td>
             <td th:text="*{name}">姓名</td>
             <td><img width="150px" th:src="@{|data:image/jpeg;base64,*{image}|}" /></td>
           </tr>

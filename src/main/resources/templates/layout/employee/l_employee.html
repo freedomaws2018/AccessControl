@@ -64,6 +64,40 @@
           </tr>
         </tbody>
       </table>
+      <table class="table table-hover table-responsive-sm show-on-phone">
+        <thead class="center">
+          <tr>
+            <th scope="col">操作</th>
+            <th scope="col">姓名</th>
+            <th scope="col">職位</th>
+            <th scope="col">在職狀態</th>
+          </tr>
+        </thead>
+        <tbody class="center">
+          <tr th:each="emp:${employees}" th:object="${emp}">
+            <td class="td-first">
+              <a class="btn btn-sm btn-secondary" th:href="@{/employee/view/__*{id}__}" >
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              </a><br>
+              <a class="btn btn-success btn-sm" th:href="@{/employee/edit/{empId}(empId=*{id})}" >
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              </a><br>
+              <a class="btn btn-danger btn-sm" th:onclick="|delete_employee(__*{id}__,'__*{name}__')|" href="javascript:;" >
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </a>
+            </td>
+            <td>
+              <span th:text="*{name}" ></span>
+            </td>
+            <td>
+              <span th:if="!${#strings.isEmpty(emp.positionId)}" th:text="${mPosition[emp.positionId].name}" ></span>
+            </td>
+            <td>
+              <span th:text="*{positionStatusTw}" ></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div></div></div>
 </body>
