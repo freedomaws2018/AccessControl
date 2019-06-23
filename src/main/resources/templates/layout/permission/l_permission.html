@@ -89,15 +89,15 @@
                 <th th:if="${permissions.empty}" colspan="3">沒有資料</th>
               </tr>
               <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
-                <td>
+                <td class="td-first">
                   <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-secondary btn-sm">
-                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                   </a>
                   <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                   </a>
                   <a th:onclick="|delete_permission(__*{id}__,'__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                   </a>
                 </td>
                 <td data-th="權限名稱：">[[*{name}]]</td>
