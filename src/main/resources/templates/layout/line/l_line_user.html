@@ -37,7 +37,7 @@
     </div>
     <div class="card-body" >
 
-      <table class="table table-hover table-responsive-sm table-striped">
+      <table class="table table-hover table-responsive-sm table-striped hide-in-phone">
         <thead class="center">
           <tr>
             <th scope="col">編號</th>
@@ -58,7 +58,37 @@
           </tr>
         </tbody>
       </table>
-      
+
+      <table class="table-hover rwd-table show-on-phone">
+        <thead>
+          <tr>
+            <th>編號</th>
+            <th>照片</th>
+            <th>姓名</th>
+            <th>狀態消息</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:if="${users.empty}">
+            <th colspan="2">沒有資料</th>
+          </tr>
+          <tr th:unless="${users.empty}" th:each="user,itemStar:${users}" th:object="${user}">
+            <td data-th="編號：" class="td-first">
+              <span th:text="*{userId}"></span>
+            </td>
+            <td data-th="照片：">
+              <img width="100px" th:src="*{pictureUrl}"></img>
+            </td>
+            <td data-th="姓名：">
+              <span th:text="*{userName}"></span>
+            </td>
+            <td data-th="狀態消息：" class="td-last">
+              <span th:text="*{statusMessage}"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+         
       <div th:if="${users.totalPages gt 1}" >
         <div th:replace="~{comm/page :: page01(entity=${users})}"></div>
       </div>

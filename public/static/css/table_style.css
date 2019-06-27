@@ -161,10 +161,9 @@
 }
 
 .select2-container--default .select2-selection--multiple {
-  margin-top: -20px;
-  margin-left: 0px;
   border: 1px solid #ced4da !important;
-  padding: 5px 5px 10px 5px;
+  padding: 0px 0px 5px 0px;
+  margin: -25px 5% 0px 15px;
 }
 
 .btn-detail {
@@ -215,6 +214,10 @@
   .td-last {
     margin-bottom: 30px;
   }
+  .td-mobile{
+    margin-bottom:5px;
+  }
+  
   .td-m {
     margin-bottom: 10px;
   }
@@ -229,6 +232,7 @@
   .td-first .btn {
     padding-bottom: 7px;
     padding-right: 4px;
+    margin-bottom:5px;
   }
   .rwd-tbody {
     

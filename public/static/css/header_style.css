@@ -190,6 +190,10 @@
 }
 
 @media (max-width: 768px) {
+	.navbar{
+		position:absolute;
+	}
+	
 	.navbar_sub.active {
 		top:52px;
 		left:-1px;
