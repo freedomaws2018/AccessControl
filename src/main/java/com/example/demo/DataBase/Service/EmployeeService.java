@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Permission;
-import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissonPosition;
 import com.example.demo.DataBase.Repository.EmployeeRepository;
 import com.example.demo.DataBase.Repository.MappingEmployeePermissonPositionRepository;
 
@@ -42,6 +41,10 @@ public class EmployeeService {
     return employeeRepository.findByAccount(account).orElse(null);
   }
 
+  public Boolean hasAccount(String account) {
+    return employeeRepository.findByAccount(account).orElse(null) != null;
+  }
+
   public void delete(Long id) {
     employeeRepository.deleteById(id);
   }
@@ -55,13 +58,12 @@ public class EmployeeService {
     }
   }
 
-  public List<MappingEmployeePermissonPosition> getMappingEPPByEmployeeAndPermission(Employee employee,
+  public List<String> getMappingEPPByEmployeeAndPermission(Employee employee,
       Permission permission) {
     if ("admin".equals(employee.getAccount())) {
       return null;
-    }else {
-      return mappingEPPRepository.findByEmployeeIdAndPositionIdAndPermissionIdAndIsUseTrue(employee.getId(),
-          employee.getPositionId(), permission.getId());
+    } else {
+      return mappingEPPRepository.getEmployeeEPPs(employee.getId(), employee.getPositionId());
     }
   }
 

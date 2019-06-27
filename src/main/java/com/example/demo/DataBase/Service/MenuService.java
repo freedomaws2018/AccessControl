@@ -168,4 +168,8 @@ public class MenuService {
     return menu;
   }
 
+  public void removeAllMenuTemporary() {
+    menuTemporaryRepository.deleteAll();
+  }
+
 }

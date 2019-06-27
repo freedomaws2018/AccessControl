@@ -28,8 +28,8 @@ public class MappingEmployeePermissonPosition {
   private Long employeeId;
 
   @Id
-  @Column(name = "permission_id")
-  private Long permissionId;
+  @Column(name = "permission_key")
+  private String permissionKey;
 
   @Id
   @Column(name = "permission_detail_type")

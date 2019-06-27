@@ -23,7 +23,6 @@ public class IndexController {
   @GetMapping(value = "/index")
   public ModelAndView index(ModelAndView model) {
     model = new ModelAndView("comm/index");
-    System.err.println("=================== index =================== ");
     return model;
   }
 

@@ -92,15 +92,20 @@ public class EmployeeController {
     model.addObject("permissions", permissions);
     List<String> mappingPermissions = mappingEmployeePermissonPositionRepository
         .findByEmployeeIdAndPositionIdAndIsUseTrue(employee.getId(), employee.getPositionId()).stream()
-        .map(m -> m.getPermissionId() + ":" + m.getPermissionDetailType()).collect(Collectors.toList());
+        .map(m -> m.getPermissionKey() + ":" + m.getPermissionDetailType()).collect(Collectors.toList());
     model.addObject("mappingPermissions", mappingPermissions);
     return model;
   }
 
   @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> save(FormEmployee form) {
+    String funcType = form.getFuncType();
     Map<String, Object> map = new HashMap<>();
     try {
+      if ("add".equals(funcType) && employeeService.hasAccount(form.getAccount())) {
+        throw new RuntimeException("帳號存在");
+      }
+
       Employee employee = employeeService.save(form.getEmployee());
 
       // 權限設定
@@ -122,17 +127,15 @@ public class EmployeeController {
         }).collect(Collectors.toList());
         mappingEmployeeMenuRepository.saveAll(mems);
       }
-
       map.put("status", "success");
       map.put("data", employee);
-      return new ResponseEntity<>(map, HttpStatus.OK);
     } catch (Exception ex) {
       map.put("status", "error");
       map.put("msg", ex.getMessage());
       map.put("stackTrace", ex.getStackTrace());
-      ex.printStackTrace();
-      return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+      // ex.printStackTrace();
     }
+    return new ResponseEntity<>(map, HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/delete/{id}")
@@ -186,10 +189,11 @@ public class EmployeeController {
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
-  @PostMapping(value="/getMappingPPPWithPositionId", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @PostMapping(value = "/getMappingPPPWithPositionId", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Object> getMappingPPPWithPersitionId(@RequestParam Long positionId) {
     Map<String, Object> result = new HashMap<>();
-    List<MappingPositionPermissionPermissiondetail> mappingPPPs = positionService.getMappingPPPWithPersitionId(positionId);
+    List<MappingPositionPermissionPermissiondetail> mappingPPPs = positionService
+        .getMappingPPPWithPersitionId(positionId);
     if (mappingPPPs != null && !mappingPPPs.isEmpty()) {
       result.put("status", "success");
       result.put("data", mappingPPPs);

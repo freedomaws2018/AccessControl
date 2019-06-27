@@ -50,7 +50,7 @@ public class Employee {
   private String lastName;
 
   /** 帳號 **/
-  @Column(name = "account", nullable = false, updatable = false)
+  @Column(name = "account", nullable = false, updatable = false , unique = true)
   private String account;
 
   /** 密碼 SHA256([FDCe&9WY@EzVp^D99m]-[account]-[password]) **/

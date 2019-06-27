@@ -4,11 +4,11 @@
 <body layout:fragment="content">
 
   <script type="text/javascript">
-  var delete_permission = function(id,name){
+  var delete_permission = function(key,name){
     showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 的權限嗎?',function(){
       $.ajax({
         type: 'DELETE',
-        url: "/permission/delete/" + id,
+        url: "/permission/delete/" + key,
         dataType: 'json',
         success: function(result){
           location.reload();
@@ -61,18 +61,18 @@
               </tr>
               <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
                 <td>
-                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-secondary btn-sm">
+                  <a th:href="@{/permission/view/{permissionKey}(permissionKey=*{key})}" class="btn btn-secondary btn-sm">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
                   </a>
-                  <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm">
+                  <a th:href="@{/permission/edit/{permissionKey}(permissionKey=*{key})}" class="btn btn-success btn-sm">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
                   </a>
-                  <a th:onclick="|delete_permission(__*{id}__,'__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
+                  <a th:onclick="|delete_permission('__*{key}__','__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>
                 </td>
                 <td data-th="權限名稱：">[[*{name}]]</td>
-                <td data-th="對應選單：">[[|*{menu.menuName} : *{menu.name}|]]</td>
+                <td data-th="對應選單：">[[*{menu?.menuName}]] : [[*{menu?.name}]]</td>
               </tr>
             </tbody>
           </table>
@@ -90,18 +90,18 @@
               </tr>
               <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
                 <td>
-                  <a th:href="@{/permission/view/{permissionId}(permissionId=*{id})}" class="btn btn-secondary btn-sm">
+                  <a th:href="@{/permission/view/{permissionKey}(permissionKey=*{key})}" class="btn btn-secondary btn-sm">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
                   </a>
-                  <a th:href="@{/permission/edit/{permissionId}(permissionId=*{id})}" class="btn btn-success btn-sm">
+                  <a th:href="@{/permission/edit/{permissionKey}(permissionKey=*{key})}" class="btn btn-success btn-sm">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
                   </a>
-                  <a th:onclick="|delete_permission(__*{id}__,'__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
+                  <a th:onclick="|delete_permission('__*{key}__','__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>
                 </td>
                 <td data-th="權限名稱：">[[*{name}]]</td>
-                <td data-th="對應選單：">[[|*{menu.menuName} : *{menu.name}|]]</td>
+                <td data-th="對應選單：">[[*{menu?.menuName}]] : [[*{menu?.name}]]</td>
               </tr>
             </tbody>
           </table>

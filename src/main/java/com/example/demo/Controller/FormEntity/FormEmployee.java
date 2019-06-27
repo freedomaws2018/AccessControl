@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class FormEmployee {
 
+  private String funcType;
+
   private Long id;
 
   private String account;
@@ -52,7 +54,7 @@ public class FormEmployee {
       MappingEmployeePermissonPosition meppt = new MappingEmployeePermissonPosition();
       meppt.setEmployeeId(employee.getId());
       meppt.setPositionId(employee.getPositionId());
-      meppt.setPermissionId(Long.parseLong(mepp.split(":")[0]));
+      meppt.setPermissionKey(mepp.split(":")[0]);
       meppt.setPermissionDetailType(mepp.split(":")[1]);
       meppt.setIsUse(true);
       return meppt;

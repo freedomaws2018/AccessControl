@@ -14,7 +14,7 @@ public class MappingPositionPermissionPermissiondetailId implements Serializable
 
   private Long positionId;
 
-  private Long permissionId;
+  private String permissionKey;
 
   private String permissionDetailType;
 

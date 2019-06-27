@@ -27,8 +27,8 @@ public class PermissionService {
     return permissionRepository.saveAndFlush(permission);
   }
 
-  public void deleteAllDetailByPId(Long permissionId) {
-    permissionDetailRepository.deleteAllDetailByPId(permissionId);
+  public void deleteAllDetailByPKey(String permissionKey) {
+    permissionDetailRepository.deleteAllDetailByPKey(permissionKey);
     permissionDetailRepository.flush();
   }
 
@@ -50,12 +50,12 @@ public class PermissionService {
     return this.permissionRepository.findAll(pageable);
   }
 
-  public Permission getPermissionById(Long id) {
-    return permissionRepository.findById(id).orElse(null);
+  public Permission getPermissionByKey(String key) {
+    return permissionRepository.findById(key).orElse(null);
   }
 
-  public void delete(Long permissionId) {
-    permissionRepository.deleteById(permissionId);
+  public void delete(String permissionKey) {
+    permissionRepository.deleteById(permissionKey);
   }
 
   public List<Permission> getPermissionByPermissionIdAndPermissionDetailType(

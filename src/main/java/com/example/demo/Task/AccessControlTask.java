@@ -14,12 +14,16 @@ import org.springframework.stereotype.Component;
 import com.example.demo.DataBase.Entity.Member;
 import com.example.demo.DataBase.Service.LineRichMenuService;
 import com.example.demo.DataBase.Service.MemberService;
+import com.example.demo.DataBase.Service.MenuService;
 
 @Component
-public class LineUserTask {
+public class AccessControlTask {
 
   @Autowired
   private MemberService memberService;
+
+  @Autowired
+  private MenuService menuService;
 
   @Autowired
   private LineRichMenuService lineRichMenuService;
@@ -27,9 +31,11 @@ public class LineUserTask {
   @Value("${line.richMenu.unLinkTime}")
   private Integer unLinkTime;
 
-  @Scheduled(cron = "0 */10 * * * *")
-//  @Scheduled(cron = "*/30 * * * * *")
-  public void taskUnlinkRichMenu() {
+  /**
+   * 每分鐘 清除 非管理員 LINE@ RichMenu 選單
+   **/
+  @Scheduled(cron = "0 */1 * * * *")
+  public void unlinkRichMenuTask() {
     List<Member> members = memberService.getAllEffectiveMember();
     members.stream().forEach(member -> {
       String lineUserId = member.getLineUserId();
@@ -51,6 +57,15 @@ public class LineUserTask {
         }
       }
     });
+  }
+
+  /**
+   * 每天凌晨三點 清除 選單暫存 <BR>
+   * 登入後重新產生
+   */
+  @Scheduled(cron = "0 0 3 * * *")
+  public void reloadMenuTask() {
+    menuService.removeAllMenuTemporary();
   }
 
 }

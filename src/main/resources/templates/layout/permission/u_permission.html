@@ -16,7 +16,6 @@
       str +="    <a herf='javascript:;' class='btn btn-danger btn-sm' onClick='delete_detail(this,\"detail_" + index + "\","+index+")' >"
       str +="      <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>刪除";
       str +="    </a>";
-      str +="    <input type='hidden' id='detail_" + index + "' name='detail[" + index + "].status' value='A' />";
       str +="  </td>";
       str +="  <td>";
       str +="    <input type='text' class='form-control' name='detail[" + index + "].type' FDCV='not-blank' />";
@@ -62,7 +61,11 @@
   });
   	
   	delete_detail = function(btnEvent, statusId , index){
-      var statusEvnet = $("#" + statusId);
+      // var statusEvnet = $("#" + statusId);
+      $("#tr_detail_" + index).hide(500,function(){
+        $(this).remove();
+      });
+      /*
       switch(statusEvnet.val()){
         case "A":
           $("#tr_detail_" + index).hide(500,function(){
@@ -78,6 +81,7 @@
           statusEvnet.val("U");
           break;
       }
+      */
     }
   
   	submin_form = function(){
@@ -92,7 +96,7 @@
         dataType: 'json',
         success: (result) => {
           if(result.status == 'success'){
-            window.location.replace("/permission/view/" + result.data.id);
+            window.location.replace("/permission/view/" + result.data.key);
           }else{
             alert(result.msg);
           }
@@ -122,7 +126,7 @@
           
           <div th:if="${funcType eq 'view'}" class="card-header-left"> <span class="glyphicon glyphicon-align-justify"></span>權限 - 檢視 </div>
           <div th:if="${funcType eq 'view'}" class="card-header-right">
-            <a class="btn btn-success a-btn-second btn-sm" th:href="@{/permission/edit/{id}(id=*{id})}">
+            <a class="btn btn-success a-btn-second btn-sm" th:href="@{/permission/edit/{key}(key=*{key})}">
               <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
             </a>
             <a class="btn btn-info a-btn-second btn-sm" href="/permission/list">
@@ -131,20 +135,27 @@
           </div>
           
         </div> 
-        <div class="card-body" toggleId="l-location-toggle">
+        <div class="card-body" >
           <div class="row" >
+            
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
+              <label class="font-weight-bold">權限代號</label>
+              <div th:if="${funcType eq 'add'}">
+                <input type="text" class="form-control" name="key" />
+              </div>
+              <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
+                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="key" th:value="*{key}" placeholder="請輸入權限代碼" FDCV="not-blank" />
+              </div>
+            </div>
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
               <label class="font-weight-bold">權限名稱</label>
               <div th:if="${funcType eq 'add'}">
-                <input type="hidden" name="id" />
                 <input type="text" class="form-control" name="name" />
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}" >
-                <input type="hidden" th:value="*{id}" name="id" />
                 <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" name="name" th:value="*{name}" placeholder="請輸入權限名稱" FDCV="not-blank" />
               </div>
-              
             </div>
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-6" >
@@ -155,7 +166,7 @@
               </div>
               <div th:if="${funcType eq 'edit' || funcType eq 'view'}">
                 <input type="hidden" class="form-control" id="menuName" name="menuName" th:value="*{menuName}" />
-                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="|*{menuName} : *{menu.name}|" FDCV="not-blank" />
+                <input th:disabled="${funcType eq 'view'}" type="text" class="form-control" id="menuName_auto" th:value="|*{menuName} : *{menu?.name}|" FDCV="not-blank" />
               </div>
               
             </div>
@@ -185,7 +196,6 @@
                           <a href="javascript:;" class="btn btn-danger btn-sm" th:onclick="|delete_detail(this,'detail_${iter.index}',${iter.index})|" >
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除 
                           </a>
-                          <input type="hidden" th:id="|detail_${iter.index}|" th:name="|detail[${iter.index}].status|" value="U" />
                         </td>
                         
                         <td>

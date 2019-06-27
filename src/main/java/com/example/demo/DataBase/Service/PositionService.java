@@ -40,7 +40,7 @@ public class PositionService {
     return positionRepository.countByName(name) > 0 ? true : false;
   }
 
-  public List<MappingPositionPermissionPermissiondetail> getMappingPPPWithPersitionId(Long persitionId){
+  public List<MappingPositionPermissionPermissiondetail> getMappingPPPWithPersitionId(Long persitionId) {
     return mappingPositionPermissionPermissiondetailRepository.findByPositionIdAndIsUseTrue(persitionId);
   }
 
@@ -55,7 +55,7 @@ public class PositionService {
   public List<String> findMappingPPPByPositionIdAndIsUseTrue(Long positionId) {
     List<MappingPositionPermissionPermissiondetail> mappingPPPs = mappingPositionPermissionPermissiondetailRepository
         .findByPositionIdAndIsUseTrue(positionId);
-    return mappingPPPs.stream().map(m -> m.getPermissionId() + m.getPermissionDetailType())
+    return mappingPPPs.stream().map(m -> m.getPermissionKey() + m.getPermissionDetailType())
         .collect(Collectors.toList());
   }
 

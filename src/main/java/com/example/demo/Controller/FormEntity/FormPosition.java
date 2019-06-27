@@ -33,7 +33,7 @@ public class FormPosition {
       MappingPositionPermissionPermissiondetail mapping = new MappingPositionPermissionPermissiondetail();
       mapping.setIsUse(true);
       mapping.setPositionId(positionId);
-      mapping.setPermissionId(p.getPermissionId());
+      mapping.setPermissionKey(p.getPermissionKey());
       mapping.setPermissionDetailType(p.getPermissionDetailType());
       return mapping;
     }).collect(Collectors.toList());
@@ -44,7 +44,7 @@ public class FormPosition {
 @Data
 class FormPositionDetail {
 
-  private Long permissionId;
+  private String permissionKey;
 
   private String permissionDetailType;
 

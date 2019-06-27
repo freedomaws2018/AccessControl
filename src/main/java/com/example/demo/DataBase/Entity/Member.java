@@ -38,6 +38,7 @@ public class Member {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  /** 連動 LINE@ 好友 **/
   @Column(name = "line_user_id")
   private String lineUserId;
   @JsonBackReference

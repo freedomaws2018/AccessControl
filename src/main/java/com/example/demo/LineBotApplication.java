@@ -99,11 +99,13 @@ public class LineBotApplication {
       lineUser = lineUserService.save(lineUser);
 
       Member member = memberService.getByUserIdAndIsUseTrue(lineUser.getUserId());
-      member.setIsUse(false);
-      member.setRichMenuId(null);
-      member.setLocationId(null);
-      member.setLocationDetailName(null);
-      member = memberService.save(member);
+      if (member != null) {
+        member.setIsUse(false);
+        member.setRichMenuId(null);
+        member.setLocationId(null);
+        member.setLocationDetailName(null);
+        member = memberService.save(member);
+      }
       logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
     }
 

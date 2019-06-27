@@ -8,8 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -30,9 +28,8 @@ import lombok.Data;
 public class Permission {
 
   @Id
-  @Column(name = "id", nullable = false, insertable = false, updatable = false)
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  @Column(name = "key", nullable = false, updatable = false)
+  private String key;
 
   @CreatedDate
   @Column(name = "create_date", nullable = false, updatable = false)
@@ -55,7 +52,7 @@ public class Permission {
 
   /** 權限細節 ( 新刪改查...權限 ) **/
   @JsonBackReference
-  @OneToMany(mappedBy = "permissionId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "permissionKey", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @OrderBy(value = "type")
   private List<PermissionDetail> details = new ArrayList<>();
 

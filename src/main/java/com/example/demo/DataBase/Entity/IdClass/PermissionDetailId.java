@@ -12,7 +12,7 @@ public class PermissionDetailId implements Serializable {
 
   private static final long serialVersionUID = -2552677826675926528L;
 
-  private Long permissionId;
+  private String permissionKey;
 
   private String type;
 

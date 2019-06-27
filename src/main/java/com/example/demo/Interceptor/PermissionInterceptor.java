@@ -14,7 +14,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.example.demo.DataBase.Entity.Employee;
 import com.example.demo.DataBase.Entity.Menu;
 import com.example.demo.DataBase.Entity.Permission;
-import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissonPosition;
 import com.example.demo.DataBase.Service.EmployeeService;
 import com.example.demo.DataBase.Service.MenuService;
 import com.example.demo.DataBase.Service.PermissionService;
@@ -38,7 +37,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
     Employee employee = (Employee) request.getSession().getAttribute("employee");
     if (employee != null && "admin".equals(employee.getAccount())) {
       request.getSession().setAttribute("isAdmin", true);
-    }else {
+    } else {
       request.getSession().setAttribute("isAdmin", false);
     }
     String vPassword = (String) request.getSession().getAttribute("password");
@@ -53,8 +52,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         request.getSession().setAttribute("currentMenu", menu);
         request.getSession().setAttribute("URI", uri);
         Permission permission = permissionService.getByMenuName(menu.getMenuName());
-        List<MappingEmployeePermissonPosition> currentPermissions = employeeService
-            .getMappingEPPByEmployeeAndPermission(employee, permission);
+        List<String> currentPermissions = employeeService.getMappingEPPByEmployeeAndPermission(employee, permission);
         request.getSession().setAttribute("currentPermissions", currentPermissions);
       }
 

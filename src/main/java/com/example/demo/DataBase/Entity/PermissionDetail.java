@@ -27,12 +27,12 @@ public class PermissionDetail {
   private String type;
 
   @Id
-  @Column(name = "permission_id")
-  private Long permissionId;
+  @Column(name = "permission_key")
+  private String permissionKey;
 
   @JsonManagedReference
   @OneToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "permission_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = true)
+  @JoinColumn(name = "permission_key", referencedColumnName = "key", insertable = false, updatable = false, nullable = true)
   private Permission permission;
 
   @Column(name = "name")

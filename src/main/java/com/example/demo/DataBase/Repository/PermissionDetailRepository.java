@@ -1,7 +1,5 @@
 package com.example.demo.DataBase.Repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,10 +15,7 @@ public interface PermissionDetailRepository extends JpaRepository<PermissionDeta
 
   @Modifying(clearAutomatically = true)
   @Transactional
-  @Query(value = "DELETE FROM tbl_permission_detail WHERE permission_id = :PId ; ", nativeQuery = true)
-  void deleteAllDetailByPId(@Param("PId") Long permissionId);
-
-
-  List<PermissionDetail> findByPermissionId(Long id);
+  @Query(value = "DELETE FROM tbl_permission_detail WHERE permission_key = :PKey ; ", nativeQuery = true)
+  void deleteAllDetailByPKey(@Param("PKey") String permissionKey);
 
 }

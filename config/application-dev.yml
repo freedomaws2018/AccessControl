@@ -8,7 +8,7 @@ server:
   connection-timeout: 20000
   
   ssl:
-    key-store: file:config/ssl_190613.jks
+    key-store: file:config/ssl.jks
     key-store-password: freedomaws86878687
 #    key-alias: freedomaws86878687
 #  servlet:

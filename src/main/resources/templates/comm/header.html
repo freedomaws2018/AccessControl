@@ -7,18 +7,22 @@
   </script>
   
   <nav id="navbar" class="navbar navbar-light">
+  
     <button class="hamburger-menu" id="sidebarCollapse">
       <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
     </button>
+    
     <div id="navbar_logo">
       <a th:href="@{/index}"><img th:src="@{/images/icon/logo_full.png}" /></a>
     </div>
+    
     <div id="navbar_title"></div>
+    
     <div id="navbar_user">
       <div data-toggle="dropdown-menu">
         <input type="image" width='40px' th:src="@{/images/user.png}" />
         <a class="d-none d-sm-block">
-          <h4 >[[${session.employee.name}]]</h4>
+          <h4>[[${session.employee.name}]]</h4>
         </a>
       </div>
       <div>
@@ -38,6 +42,7 @@
         </div>
       </div>
     </div>
+    
   </nav>
   
 <!-- 	<nav id="navbar_sub" class="navbar_sub navbar-light"> -->
@@ -47,6 +52,7 @@
 <!-- 		  <li class="active">LineRichMenu管理</li> -->
 <!-- 		</ul> -->
 <!-- 	</nav>  -->
+
 </header>
 
 </html>

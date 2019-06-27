@@ -16,10 +16,13 @@ import com.example.demo.DataBase.Entity.Mapping.MappingEmployeePermissonPosition
 public interface MappingEmployeePermissonPositionRepository
     extends JpaRepository<MappingEmployeePermissonPosition, MappingEmployeePermissonPositionId> {
 
+  @Query(value = "SELECT (permission_key || ':' || permission_detail_type)\\:\\:character varying(255) FROM mapping_employee_permission_position WHERE is_use = true AND employee_id = :employeeId AND position_id = :positionId ; ", nativeQuery = true)
+  List<String> getEmployeeEPPs(@Param("employeeId") Long employeeId, @Param("positionId") Long positionId);
+
   List<MappingEmployeePermissonPosition> findByEmployeeIdAndPositionIdAndIsUseTrue(Long employeeId, Long positionId);
 
-  List<MappingEmployeePermissonPosition> findByEmployeeIdAndPositionIdAndPermissionIdAndIsUseTrue(Long employeeId,
-      Long positionId, Long permissionId);
+  List<MappingEmployeePermissonPosition> findByEmployeeIdAndPositionIdAndPermissionKeyAndIsUseTrue(Long employeeId,
+      Long positionId, String permissionKey);
 
   @Modifying(flushAutomatically = true)
   @Transactional

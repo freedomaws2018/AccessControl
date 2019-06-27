@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,8 +48,9 @@ public class PermissionController {
     model = new ModelAndView("layout/permission/l_permission2");
     return model;
   }
+
   @PostMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  private ResponseEntity<Object> listWithDataTables(FormDataTables form){
+  private ResponseEntity<Object> listWithDataTables(FormDataTables form) {
 //    System.err.println(form);
     Map<String, Object> result = new HashMap<>();
     result.put("draw", 0); // 我也不知道這是啥
@@ -67,20 +69,20 @@ public class PermissionController {
     return model;
   }
 
-  @GetMapping(value = "/{funcType:view|edit}/{permissionId}")
+  @GetMapping(value = "/{funcType:view|edit}/{permissionKey}")
   public ModelAndView viewAndEdit(ModelAndView model, RedirectAttributes attr, @PathVariable String funcType,
-      @PathVariable Long permissionId) {
+      @PathVariable String permissionKey) {
     model = new ModelAndView("layout/permission/u_permission");
     model.addObject("funcType", funcType);
-    Permission permission = this.permissionService.getPermissionById(permissionId);
+    Permission permission = this.permissionService.getPermissionByKey(permissionKey);
     model.addObject("permission", permission);
     return model;
   }
 
-  @DeleteMapping(value = "/delete/{permissionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  public ResponseEntity<Object> delete(@PathVariable Long permissionId) {
+  @DeleteMapping(value = "/delete/{permissionKey}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  public ResponseEntity<Object> delete(@PathVariable String permissionKey) {
     Map<String, Object> result = new HashMap<>();
-    permissionService.delete(permissionId);
+    permissionService.delete(permissionKey);
     result.put("status", "success");
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
@@ -89,15 +91,15 @@ public class PermissionController {
   public ResponseEntity<Object> save(FormPermission form) {
     Map<String, Object> result = new HashMap<>();
     Permission permission;
-    if (form.getId() == null ) {
+    if (StringUtils.isBlank(form.getKey())) {
       permission = new Permission();
     } else {
-      permission = permissionService.getPermissionById(form.getId());
+      permission = permissionService.getPermissionByKey(form.getKey());
     }
     permission = permissionService.save(form.getPermission(permission));
-    permissionService.deleteAllDetailByPId(permission.getId());
+    permissionService.deleteAllDetailByPKey(permission.getKey());
     permissionService.saveAllPermissionDetail(form.getPermissionDetail(permission));
-    permission = permissionService.getPermissionById(permission.getId());
+    permission = permissionService.getPermissionByKey(permission.getKey());
 
     result.put("status", "success");
     result.put("data", permission);
