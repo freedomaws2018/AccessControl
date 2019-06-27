@@ -62,22 +62,22 @@
       <table class="table-hover rwd-table show-on-phone">
         <thead>
           <tr>
-            <th>編號</th>
             <th>照片</th>
+            <th>編號</th>
             <th>姓名</th>
             <th>狀態消息</th>
           </tr>
         </thead>
         <tbody>
           <tr th:if="${users.empty}">
-            <th colspan="2">沒有資料</th>
+            <th colspan="4">沒有資料</th>
           </tr>
           <tr th:unless="${users.empty}" th:each="user,itemStar:${users}" th:object="${user}">
-            <td data-th="編號：" class="td-first">
-              <span th:text="*{userId}"></span>
-            </td>
-            <td data-th="照片：">
+            <td class="td-first">
               <img width="100px" th:src="*{pictureUrl}"></img>
+            </td>
+            <td data-th="編號：" >
+              <span th:text="*{userId}"></span>
             </td>
             <td data-th="姓名：">
               <span th:text="*{userName}"></span>

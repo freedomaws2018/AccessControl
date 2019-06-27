@@ -67,58 +67,53 @@
                 <td>
                   <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
                 </td>
-                    <th> 
+                <th> 
                   <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
                   <div class="row">
-                  <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-warning btn-sm">
-                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
-                  </a>
-                  <!-- <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> 到時候再重畫按鈕 -->
-                  <div th:id="|status_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
-                  <script th:inline="javascript">
-                        reload_[[${iterStat.index}]]();
-                        function reload_[[${iterStat.index}]](){
-                          var url = $("#url" + '_' + [[${iterStat.index}]]).val() ;
-                          var status = $("#status_" + [[${iterStat.index}]] );
-                          status.html('');
-                          $.ajax({
-                              type: 'GET',
-                              timeout: 2000,
-                              url: url,
-                              async: true,
-                              dataType: "json",
-                              success: (result) => {
-                                if(result.code === 1){
-                                  let datas = result.data.Data;
-                                  let ip = result.data.LocalIp;
-                                  let uuid = result.data.UUID;
-//                                   status.html(`<span style="color:green;">連線中 </span> ( ${ip} / ${uuid} ) `);
-                                  status.html(`<span style="color:green;">連線中 </span> ( ${ip} ) `);
-                                }else{
-                                  status.html(`<span style="color:red;">失去連線</span> (${result.code} / ${result.data}) `);
-                                }
-                              },
-                              error: function (XMLHttpRequest, textStatus, errorThrown) {
-                              	status.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
-                              }
-                          });
+                    <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-warning btn-sm">
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
+                    </a>
+                    <!-- <input type="button" th:onclick="|reload_${iterStat.index}()|" th:value="重新讀取" style="line-height:30px;"/> 到時候再重畫按鈕 -->
+                    <div th:id="|status_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
+                    <script th:inline="javascript">
+                    reload_[[${iterStat.index}]]();
+                    function reload_[[${iterStat.index}]](){
+                      var url = $("#url" + '_' + [[${iterStat.index}]]).val() ;
+                      var status = $("#status_" + [[${iterStat.index}]] );
+                      var status_phone = $("#status_phone_" + [[${iterStat.index}]] );
+                      status.html('');
+                      $.ajax({
+                        type: 'GET',
+                        timeout: 2000,
+                        url: url,
+                        async: true,
+                        dataType: "json",
+                        success: (result) => {
+                          if(result.code === 1){
+                            let datas = result.data.Data;
+                            let ip = result.data.LocalIp;
+                            let uuid = result.data.UUID;
+                            status.html(`<span style="color:green;">連線中 </span> ( ${ip} ) `);
+                            status_phone.html(`<span style="color:green;">連線中 </span> ( ${ip} ) `);
+                          }else{
+                            status.html(`<span style="color:red;">失去連線</span> (${result.code} / ${result.data}) `);
+                            status_phone.html(`<span style="color:red;">失去連線</span> (${result.code} / ${result.data}) `);
+                          }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        	status.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
+                        	status_phone.html(`<span style="color:red;">失去連線</span> (${textStatus}) `);
                         }
-                      </script>
+                      });
+                    }
+                    </script>
                   </div>
                 </th>
               </tr>
             </tbody>
           </table>
+          
           <table class="table-hover show-on-phone rwd-table">
-            <thead>
-              <tr>
-                <th>操作</th>
-                <th>據點</th>
-                <th>晶片號碼</th>
-                <th>是否啟用</th>
-                <th>狀態</th>
-              </tr>
-            </thead>
             <tbody>
               <tr th:if="${wf8266s.empty}">
                 <th colspan="5">沒有資料</th>
@@ -131,7 +126,10 @@
                   <a th:href="@{/wf8266/edit/{wf8266_sn}(wf8266_sn=${wf8266.sn})}" class="btn btn-success btn-sm">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                   </a>
-                  <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-warning btn-sm">
+                  <a href="javascript:;" class="btn btn-danger btn-sm" th:onclick="|delete_wf8266('__${wf8266.sn}__','__${wf8266.sn}__')|">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                  </a>
+                  <a href="javascript:;" class="btn btn-warning btn-sm" th:onclick="|reload_${iterStat.index}()|" >
                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                   </a>
                 </td>
@@ -145,12 +143,11 @@
                   <span th:text="${wf8266.isUse}"></span> <!-- 改成樣式 V / X or Using / Useless -->
                 </td>
                 <td data-th="狀態：">
-                  <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
                   <div>
-                  <div th:id="|status_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
-                  <script th:inline="javascript"><!-- 手機版的狀態顯示不出來，待修正 -->
-                    reload_[[${iterStat.index}]]();
-                  </script>
+                    <div th:id="|status_phone_${iterStat.index}|" style="margin-top:5px;"></div> <!-- 需要一個讀取中的樣式 -->
+                    <script th:inline="javascript">
+                        reload_[[${iterStat.index}]]();
+                    </script>
                   </div>
                 </td>
               </tr>
