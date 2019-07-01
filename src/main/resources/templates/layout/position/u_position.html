@@ -8,7 +8,6 @@
       return;
     }
     var jsonData = $("#position_form").toJson();
-    console.log(jsonData)
     $.ajax({
       type: 'POST',
       url: "/position/save",
@@ -75,15 +74,15 @@
                   <th nowrap class="center" >[[*{menu.name}]]</th>
                   <td th:if="${funcType eq 'add'}">
                     <label th:each="detail:*{details}" th:object="${detail}">
-                      <input type="checkbox" th:value='|{"permissionId":${permission.id},"permissionDetailType":"*{type}"}|' 
+                      <input type="checkbox" th:value='|{"permissionKey":"${permission.key}","permissionDetailType":"*{type}"}|' 
                         JsonValue="true" name="permission" />
                         <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                     </label>
                   </td>
                   <td th:if="${funcType eq 'edit' || funcType eq 'view'}">
                     <label th:each="detail:*{details}" th:object="${detail}">
-                      <input type="checkbox" th:value='|{"permissionId":${permission.id},"permissionDetailType":"*{type}"}|' 
-                        th:disabled="${funcType eq 'view'}" th:checked="${#lists.contains(mappingDetail,permission.id + detail.type)}"
+                      <input type="checkbox" th:value='|{"permissionKey":"${permission.key}","permissionDetailType":"*{type}"}|' 
+                        th:disabled="${funcType eq 'view'}" th:checked="${#lists.contains(mappingDetail,permission.key + detail.type)}"
                         JsonValue="true" name="permission" />
                         <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                     </label>

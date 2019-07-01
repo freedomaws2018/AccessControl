@@ -199,6 +199,7 @@ public class EmployeeController {
       result.put("data", mappingPPPs);
     } else {
       result.put("status", "error");
+      result.put("data", null);
     }
     return new ResponseEntity<>(result, HttpStatus.OK);
   }

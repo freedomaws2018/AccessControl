@@ -27,7 +27,7 @@ public class MappingPositionPermissionPermissiondetail {
   private Long positionId;
 
   @Id
-  @Column(name = "permission_Key")
+  @Column(name = "permission_key")
   private String permissionKey;
 
   @Id

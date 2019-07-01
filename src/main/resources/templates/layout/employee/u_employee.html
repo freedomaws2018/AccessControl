@@ -48,7 +48,7 @@
 	  }
 	  
       var data = $("#employee_form").toJson();
-//       console.log(data);
+      console.log(data);
       $.ajax({
         method: 'post',
         url: '/employee/save',
@@ -147,7 +147,7 @@
               </select>
               <select th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" name="positionId" FDCV="not-blank">
                 <option value="">請選擇職稱</option>
-                <option th:each="pos:${positions}" th:value="${pos.id}" th:text="${pos.name}" th:selected="|${pos.id} == *{positionId}|"></option>
+                <option th:each="pos:${positions}" th:value="${pos.id}" th:text="${pos.name}" th:selected="${pos.id} == *{positionId}"></option>
               </select>
             </div>
           </div>

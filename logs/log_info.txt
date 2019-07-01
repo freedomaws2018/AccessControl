@@ -1,250 +1,47 @@
-2019-06-27 11:58:49.583  INFO 16900 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 16900 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
-2019-06-27 11:58:49.584 DEBUG 16900 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-06-27 11:58:49.584  INFO 16900 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-06-27 11:58:50.695  INFO 16900 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2019-06-27 11:58:50.765  INFO 16900 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66ms. Found 19 repository interfaces.
-2019-06-27 11:58:50.995  INFO 16900 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fdc344cd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-06-27 11:58:51.228 DEBUG 16900 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 11:58:51.228 DEBUG 16900 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 11:58:51.228 DEBUG 16900 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
-2019-06-27 11:58:51.251  INFO 16900 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
-2019-06-27 11:58:51.283  INFO 16900 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-06-27 11:58:51.283  INFO 16900 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
-2019-06-27 11:58:51.285  INFO 16900 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
-2019-06-27 11:58:51.459  INFO 16900 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-06-27 11:58:51.459  INFO 16900 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1626 ms
-2019-06-27 11:58:51.569  INFO 16900 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
-2019-06-27 11:58:51.686  INFO 16900 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
-2019-06-27 11:58:51.726  INFO 16900 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+2019-07-01 10:51:46.876  INFO 9844 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 9844 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-07-01 10:51:46.879 DEBUG 9844 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-07-01 10:51:46.879  INFO 9844 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-07-01 10:51:48.105  INFO 9844 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-01 10:51:48.178  INFO 9844 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68ms. Found 19 repository interfaces.
+2019-07-01 10:51:48.395  INFO 9844 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fc907670] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-01 10:51:48.603 DEBUG 9844 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-07-01 10:51:48.603 DEBUG 9844 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-07-01 10:51:48.603 DEBUG 9844 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-07-01 10:51:48.624  INFO 9844 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
+2019-07-01 10:51:48.657  INFO 9844 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-01 10:51:48.657  INFO 9844 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-07-01 10:51:48.659  INFO 9844 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
+2019-07-01 10:51:48.733  INFO 9844 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-01 10:51:48.734  INFO 9844 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1658 ms
+2019-07-01 10:51:48.888  INFO 9844 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
+2019-07-01 10:51:48.995  INFO 9844 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
+2019-07-01 10:51:49.041  INFO 9844 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
 	name: default
 	...]
-2019-06-27 11:58:51.762  INFO 16900 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
-2019-06-27 11:58:51.763  INFO 16900 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2019-06-27 11:58:51.849  INFO 16900 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2019-06-27 11:58:51.947  INFO 16900 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2019-06-27 11:58:51.956  INFO 16900 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
-2019-06-27 11:58:51.960  INFO 16900 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@4aa11206
-2019-06-27 11:58:53.534  INFO 16900 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 11:58:53.871  INFO 16900 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
-2019-06-27 11:58:54.156  INFO 16900 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-06-27 11:58:54.862  INFO 16900 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2019-06-27 11:58:54.895  INFO 16900 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
-2019-06-27 11:58:54.895  INFO 16900 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
-2019-06-27 11:58:54.895  INFO 16900 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-06-27 11:58:54.895  INFO 16900 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-06-27 11:58:54.895  INFO 16900 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException
-2019-06-27 11:58:54.895  INFO 16900 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-06-27 11:58:54.938  INFO 16900 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
-2019-06-27 11:58:54.939  INFO 16900 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 5.75 seconds (JVM running for 6.41)
-2019-06-27 11:58:56.785  INFO 16900 --- [https-jsse-nio-443-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-06-27 11:58:56.786  INFO 16900 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-06-27 11:58:56.791  INFO 16900 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2019-06-27 12:23:09.200  INFO 16900 --- [RMI TCP Connection(34)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2019-06-27 12:23:09.233  INFO 16900 --- [RMI TCP Connection(34)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2019-06-27 12:23:09.234  INFO 16900 --- [RMI TCP Connection(34)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2019-06-27 12:23:09.240  INFO 16900 --- [RMI TCP Connection(34)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 12:23:09.252  INFO 16900 --- [RMI TCP Connection(34)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown initiated...
-2019-06-27 12:23:09.258  INFO 16900 --- [RMI TCP Connection(34)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown completed.
-2019-06-27 12:26:29.336  INFO 4932 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 4932 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
-2019-06-27 12:26:29.337 DEBUG 4932 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-06-27 12:26:29.338  INFO 4932 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-06-27 12:26:29.823  INFO 4932 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2019-06-27 12:26:29.893  INFO 4932 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66ms. Found 19 repository interfaces.
-2019-06-27 12:26:30.102  INFO 4932 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ce7c6be6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-06-27 12:26:30.287 DEBUG 4932 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 12:26:30.287 DEBUG 4932 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 12:26:30.287 DEBUG 4932 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
-2019-06-27 12:26:30.303  INFO 4932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
-2019-06-27 12:26:30.327  INFO 4932 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-06-27 12:26:30.327  INFO 4932 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
-2019-06-27 12:26:30.329  INFO 4932 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
-2019-06-27 12:26:30.438  INFO 4932 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-06-27 12:26:30.438  INFO 4932 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 952 ms
-2019-06-27 12:26:30.527  INFO 4932 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
-2019-06-27 12:26:30.629  INFO 4932 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
-2019-06-27 12:26:30.663  INFO 4932 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
-	name: default
-	...]
-2019-06-27 12:26:30.698  INFO 4932 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
-2019-06-27 12:26:30.699  INFO 4932 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2019-06-27 12:26:30.769  INFO 4932 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2019-06-27 12:26:30.853  INFO 4932 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2019-06-27 12:26:30.863  INFO 4932 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
-2019-06-27 12:26:30.866  INFO 4932 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@5f631ca0
-2019-06-27 12:26:32.316  INFO 4932 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 12:26:32.641  INFO 4932 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
-2019-06-27 12:26:32.897  INFO 4932 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-06-27 12:26:33.603  INFO 4932 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2019-06-27 12:26:33.636  INFO 4932 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
-2019-06-27 12:26:33.636  INFO 4932 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
-2019-06-27 12:26:33.636  INFO 4932 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-06-27 12:26:33.636  INFO 4932 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-06-27 12:26:33.637  INFO 4932 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-06-27 12:26:33.637  INFO 4932 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException
-2019-06-27 12:26:33.675  INFO 4932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
-2019-06-27 12:26:33.676  INFO 4932 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 4.579 seconds (JVM running for 5.082)
-2019-06-27 12:27:00.663  INFO 4932 --- [https-jsse-nio-443-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-06-27 12:27:00.664  INFO 4932 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-06-27 12:27:00.670  INFO 4932 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
-2019-06-27 12:55:04.364  INFO 4932 --- [RMI TCP Connection(39)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2019-06-27 12:55:04.380  INFO 4932 --- [RMI TCP Connection(39)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2019-06-27 12:55:04.381  INFO 4932 --- [RMI TCP Connection(39)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2019-06-27 12:55:04.385  INFO 4932 --- [RMI TCP Connection(39)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 12:55:04.394  INFO 4932 --- [RMI TCP Connection(39)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown initiated...
-2019-06-27 12:55:04.397  INFO 4932 --- [RMI TCP Connection(39)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown completed.
-2019-06-27 16:53:20.646  INFO 13688 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 13688 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
-2019-06-27 16:53:20.648 DEBUG 13688 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-06-27 16:53:20.648  INFO 13688 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-06-27 16:53:21.812  INFO 13688 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2019-06-27 16:53:21.887  INFO 13688 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70ms. Found 19 repository interfaces.
-2019-06-27 16:53:22.091  INFO 13688 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$467a6d03] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-06-27 16:53:22.312 DEBUG 13688 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 16:53:22.313 DEBUG 13688 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 16:53:22.313 DEBUG 13688 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
-2019-06-27 16:53:22.335  INFO 13688 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
-2019-06-27 16:53:22.369  INFO 13688 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-06-27 16:53:22.369  INFO 13688 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
-2019-06-27 16:53:22.372  INFO 13688 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
-2019-06-27 16:53:22.437  INFO 13688 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-06-27 16:53:22.438  INFO 13688 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1603 ms
-2019-06-27 16:53:22.581  INFO 13688 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
-2019-06-27 16:53:22.686  INFO 13688 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
-2019-06-27 16:53:22.727  INFO 13688 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
-	name: default
-	...]
-2019-06-27 16:53:22.778  INFO 13688 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
-2019-06-27 16:53:22.779  INFO 13688 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2019-06-27 16:53:22.899  INFO 13688 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2019-06-27 16:53:23.013  INFO 13688 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2019-06-27 16:53:23.026  INFO 13688 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
-2019-06-27 16:53:23.032  INFO 13688 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1a8b81e8
-2019-06-27 16:53:24.402  INFO 13688 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 16:53:24.749  INFO 13688 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
-2019-06-27 16:53:25.051  INFO 13688 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-06-27 16:53:25.848  INFO 13688 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2019-06-27 16:53:25.883  INFO 13688 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
-2019-06-27 16:53:25.883  INFO 13688 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
-2019-06-27 16:53:25.883  INFO 13688 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent)
-2019-06-27 16:53:25.883  INFO 13688 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-06-27 16:53:25.883  INFO 13688 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-06-27 16:53:25.883  INFO 13688 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-06-27 16:53:25.923  INFO 13688 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
-2019-06-27 16:53:25.924  INFO 13688 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 5.581 seconds (JVM running for 6.187)
-2019-06-27 16:54:40.985  INFO 13688 --- [https-jsse-nio-443-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-06-27 16:54:40.985  INFO 13688 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-06-27 16:54:40.990  INFO 13688 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2019-06-27 17:11:47.331  INFO 13688 --- [http-nio-80-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+2019-07-01 10:51:49.092  INFO 9844 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-07-01 10:51:49.093  INFO 9844 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-07-01 10:51:49.207  INFO 9844 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-07-01 10:51:49.326  INFO 9844 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-07-01 10:51:49.338  INFO 9844 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2019-07-01 10:51:49.343  INFO 9844 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@4bcaa195
+2019-07-01 10:51:50.765  INFO 9844 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-07-01 10:51:51.202  INFO 9844 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-07-01 10:51:51.493  INFO 9844 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-01 10:51:52.361  INFO 9844 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-07-01 10:51:52.396  INFO 9844 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
+2019-07-01 10:51:52.397  INFO 9844 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
+2019-07-01 10:51:52.397  INFO 9844 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
+2019-07-01 10:51:52.397  INFO 9844 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
+2019-07-01 10:51:52.397  INFO 9844 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
+2019-07-01 10:51:52.397  INFO 9844 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent)
+2019-07-01 10:51:52.438  INFO 9844 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
+2019-07-01 10:51:52.439  INFO 9844 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 5.948 seconds (JVM running for 7.029)
+2019-07-01 10:51:54.493  INFO 9844 --- [https-jsse-nio-443-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-01 10:51:54.494  INFO 9844 --- [https-jsse-nio-443-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-07-01 10:51:54.499  INFO 9844 --- [https-jsse-nio-443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-07-01 10:52:02.352 ERROR 9844 --- [https-jsse-nio-443-exec-3] org.thymeleaf.TemplateEngine             : [THYMELEAF][https-jsse-nio-443-exec-3] Exception processing template "layout/position/u_position": An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")
 
-java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:467) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:294) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_201]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
-	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
-
-2019-06-27 17:24:36.464  INFO 13688 --- [RMI TCP Connection(40)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2019-06-27 17:24:36.490  INFO 13688 --- [RMI TCP Connection(40)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2019-06-27 17:24:36.493  INFO 13688 --- [RMI TCP Connection(40)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2019-06-27 17:24:36.499  INFO 13688 --- [RMI TCP Connection(40)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 17:24:36.515  INFO 13688 --- [RMI TCP Connection(40)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown initiated...
-2019-06-27 17:24:36.519  INFO 13688 --- [RMI TCP Connection(40)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown completed.
-2019-06-27 17:24:54.140  INFO 14240 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 14240 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
-2019-06-27 17:24:54.142 DEBUG 14240 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-06-27 17:24:54.142  INFO 14240 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-06-27 17:24:55.206  INFO 14240 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2019-06-27 17:24:55.278  INFO 14240 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68ms. Found 19 repository interfaces.
-2019-06-27 17:24:55.485  INFO 14240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6ed9d531] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-06-27 17:24:55.684 DEBUG 14240 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 17:24:55.684 DEBUG 14240 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 17:24:55.684 DEBUG 14240 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
-2019-06-27 17:24:55.705  INFO 14240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
-2019-06-27 17:24:55.739  INFO 14240 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-06-27 17:24:55.739  INFO 14240 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
-2019-06-27 17:24:55.741  INFO 14240 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
-2019-06-27 17:24:55.806  INFO 14240 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-06-27 17:24:55.807  INFO 14240 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1478 ms
-2019-06-27 17:24:55.946  INFO 14240 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
-2019-06-27 17:24:56.038  INFO 14240 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
-2019-06-27 17:24:56.078  INFO 14240 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
-	name: default
-	...]
-2019-06-27 17:24:56.129  INFO 14240 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
-2019-06-27 17:24:56.130  INFO 14240 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2019-06-27 17:24:56.248  INFO 14240 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2019-06-27 17:24:56.355  INFO 14240 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2019-06-27 17:24:56.369  INFO 14240 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
-2019-06-27 17:24:56.373  INFO 14240 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2f74900b
-2019-06-27 17:24:57.787  INFO 14240 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 17:24:58.139  INFO 14240 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
-2019-06-27 17:24:58.414  INFO 14240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-06-27 17:24:59.161  INFO 14240 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2019-06-27 17:24:59.197  INFO 14240 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
-2019-06-27 17:24:59.197  INFO 14240 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
-2019-06-27 17:24:59.197  INFO 14240 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent)
-2019-06-27 17:24:59.197  INFO 14240 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-06-27 17:24:59.197  INFO 14240 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-06-27 17:24:59.197  INFO 14240 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-06-27 17:24:59.237  INFO 14240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
-2019-06-27 17:24:59.239  INFO 14240 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 5.363 seconds (JVM running for 5.957)
-2019-06-27 17:25:00.756  INFO 14240 --- [https-jsse-nio-443-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-06-27 17:25:00.757  INFO 14240 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-06-27 17:25:00.762  INFO 14240 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2019-06-27 18:11:04.205  INFO 14240 --- [RMI TCP Connection(54)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2019-06-27 18:11:04.249  INFO 14240 --- [RMI TCP Connection(54)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2019-06-27 18:11:04.250  INFO 14240 --- [RMI TCP Connection(54)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2019-06-27 18:11:04.257  INFO 14240 --- [RMI TCP Connection(54)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 18:11:04.276  INFO 14240 --- [RMI TCP Connection(54)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown initiated...
-2019-06-27 18:11:04.283  INFO 14240 --- [RMI TCP Connection(54)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown completed.
-2019-06-27 18:11:21.871  INFO 13568 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 13568 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
-2019-06-27 18:11:21.873 DEBUG 13568 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-06-27 18:11:21.873  INFO 13568 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-06-27 18:11:22.989  INFO 13568 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2019-06-27 18:11:23.078  INFO 13568 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83ms. Found 19 repository interfaces.
-2019-06-27 18:11:23.272  INFO 13568 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ec434066] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-06-27 18:11:23.499 DEBUG 13568 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 18:11:23.499 DEBUG 13568 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 18:11:23.500 DEBUG 13568 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
-2019-06-27 18:11:23.524  INFO 13568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
-2019-06-27 18:11:23.563  INFO 13568 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-06-27 18:11:23.563  INFO 13568 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
-2019-06-27 18:11:23.566  INFO 13568 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
-2019-06-27 18:11:23.648  INFO 13568 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-06-27 18:11:23.648  INFO 13568 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1599 ms
-2019-06-27 18:11:23.798  INFO 13568 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
-2019-06-27 18:11:23.908  INFO 13568 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
-2019-06-27 18:11:23.949  INFO 13568 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
-	name: default
-	...]
-2019-06-27 18:11:24.000  INFO 13568 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
-2019-06-27 18:11:24.001  INFO 13568 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2019-06-27 18:11:24.126  INFO 13568 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2019-06-27 18:11:24.237  INFO 13568 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2019-06-27 18:11:24.249  INFO 13568 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
-2019-06-27 18:11:24.255  INFO 13568 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@7cfb4736
-2019-06-27 18:11:25.777  INFO 13568 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 18:11:26.148  INFO 13568 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
-2019-06-27 18:11:26.471  INFO 13568 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-06-27 18:11:27.231  INFO 13568 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2019-06-27 18:11:27.266  INFO 13568 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
-2019-06-27 18:11:27.266  INFO 13568 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
-2019-06-27 18:11:27.266  INFO 13568 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent)
-2019-06-27 18:11:27.267  INFO 13568 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-06-27 18:11:27.267  INFO 13568 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-06-27 18:11:27.267  INFO 13568 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-06-27 18:11:27.312  INFO 13568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
-2019-06-27 18:11:27.313  INFO 13568 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 5.738 seconds (JVM running for 6.364)
-2019-06-27 18:11:29.944  INFO 13568 --- [https-jsse-nio-443-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-06-27 18:11:29.944  INFO 13568 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-06-27 18:11:29.949  INFO 13568 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2019-06-27 18:14:29.756 ERROR 13568 --- [https-jsse-nio-443-exec-7] org.thymeleaf.TemplateEngine             : [THYMELEAF][https-jsse-nio-443-exec-7] Exception processing template "comm/index": An error happened during template parsing (template: "class path resource [templates/comm/index.html]")
-
-org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/comm/index.html]")
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -298,23 +95,47 @@ org.thymeleaf.exceptions.TemplateInputException: An error happened during templa
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
-Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "session.employee.name" (template: "comm/header" - line 40, col 17)
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "permission.id" (template: "layout/position/u_position" - line 78, col 46)
 	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	... 52 common frames omitted
-Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "session.employee.name" (template: "comm/header" - line 40, col 17)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "permission.id" (template: "layout/position/u_position" - line 78, col 46)
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -336,8 +157,8 @@ Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evalu
 	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	... 54 common frames omitted
-Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'name' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'id' cannot be found on object of type 'com.example.demo.DataBase.Entity.Permission' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:217) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
@@ -345,12 +166,12 @@ Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1007E:
 	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:109) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:328) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	... 84 common frames omitted
+	... 108 common frames omitted
 
-2019-06-27 18:14:29.759 ERROR 13568 --- [https-jsse-nio-443-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/comm/index.html]")] with root cause
+2019-07-01 10:52:02.355 ERROR 9844 --- [https-jsse-nio-443-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")] with root cause
 
-org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'name' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'id' cannot be found on object of type 'com.example.demo.DataBase.Entity.Permission' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:217) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
@@ -361,13 +182,37 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -443,9 +288,10 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
 
-2019-06-27 18:17:22.577 ERROR 13568 --- [https-jsse-nio-443-exec-5] org.thymeleaf.TemplateEngine             : [THYMELEAF][https-jsse-nio-443-exec-5] Exception processing template "comm/index": An error happened during template parsing (template: "class path resource [templates/comm/index.html]")
+2019-07-01 10:52:02.387 ERROR 9844 --- [https-jsse-nio-443-exec-3] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/position/add] and exception [An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")] as the response has already been committed. As a result, the response may have the wrong status code.
+2019-07-01 10:55:15.780 ERROR 9844 --- [https-jsse-nio-443-exec-5] org.thymeleaf.TemplateEngine             : [THYMELEAF][https-jsse-nio-443-exec-5] Exception processing template "layout/position/u_position": An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")
 
-org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/comm/index.html]")
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -499,12 +345,12 @@ org.thymeleaf.exceptions.TemplateInputException: An error happened during templa
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
-Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "session.employee.name" (template: "comm/header" - line 40, col 17)
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "#lists.contains(mappingDetail,permission.id + detail.type)" (template: "layout/position/u_position" - line 85, col 61)
 	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	... 52 common frames omitted
-Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "session.employee.name" (template: "comm/header" - line 40, col 17)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "#lists.contains(mappingDetail,permission.id + detail.type)" (template: "layout/position/u_position" - line 85, col 61)
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -514,8 +360,20 @@ Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evalu
 	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -537,25 +395,35 @@ Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evalu
 	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	... 54 common frames omitted
-Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'name' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'id' cannot be found on object of type 'com.example.demo.DataBase.Entity.Permission' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:217) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:90) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.OpPlus.getValueInternal(OpPlus.java:83) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getArguments(MethodReference.java:163) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueRef(MethodReference.java:80) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueRef(CompoundExpression.java:68) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:89) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:109) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:328) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	... 84 common frames omitted
+	... 96 common frames omitted
 
-2019-06-27 18:17:22.578 ERROR 13568 --- [https-jsse-nio-443-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/comm/index.html]")] with root cause
+2019-07-01 10:55:15.783 ERROR 9844 --- [https-jsse-nio-443-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")] with root cause
 
-org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'name' cannot be found on null
-	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'id' cannot be found on object of type 'com.example.demo.DataBase.Entity.Permission' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:217) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:90) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.OpPlus.getValueInternal(OpPlus.java:83) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getArguments(MethodReference.java:163) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueRef(MethodReference.java:80) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueRef(CompoundExpression.java:68) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:89) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:109) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:328) ~[spring-expression-5.1.5.RELEASE.jar:5.1.5.RELEASE]
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -567,8 +435,20 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
-	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
 	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
@@ -644,56 +524,106 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
 
-2019-06-27 18:18:51.892  INFO 13568 --- [RMI TCP Connection(17)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2019-06-27 18:18:51.897  INFO 13568 --- [RMI TCP Connection(17)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2019-06-27 18:18:51.897  INFO 13568 --- [RMI TCP Connection(17)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2019-06-27 18:18:51.899  INFO 13568 --- [RMI TCP Connection(17)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 18:18:51.903  INFO 13568 --- [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown initiated...
-2019-06-27 18:18:51.904  INFO 13568 --- [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown completed.
-2019-06-27 18:19:04.171  INFO 15820 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 15820 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
-2019-06-27 18:19:04.173 DEBUG 15820 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
-2019-06-27 18:19:04.173  INFO 15820 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
-2019-06-27 18:19:04.648  INFO 15820 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2019-06-27 18:19:04.717  INFO 15820 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65ms. Found 19 repository interfaces.
-2019-06-27 18:19:04.930  INFO 15820 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$767911a3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-06-27 18:19:05.104 DEBUG 15820 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 18:19:05.104 DEBUG 15820 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
-2019-06-27 18:19:05.105 DEBUG 15820 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
-2019-06-27 18:19:05.121  INFO 15820 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
-2019-06-27 18:19:05.145  INFO 15820 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-06-27 18:19:05.145  INFO 15820 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
-2019-06-27 18:19:05.147  INFO 15820 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
-2019-06-27 18:19:05.251  INFO 15820 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-06-27 18:19:05.251  INFO 15820 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 937 ms
-2019-06-27 18:19:05.339  INFO 15820 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
-2019-06-27 18:19:05.429  INFO 15820 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
-2019-06-27 18:19:05.460  INFO 15820 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
-	name: default
-	...]
-2019-06-27 18:19:05.495  INFO 15820 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
-2019-06-27 18:19:05.496  INFO 15820 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2019-06-27 18:19:05.569  INFO 15820 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2019-06-27 18:19:05.655  INFO 15820 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2019-06-27 18:19:05.664  INFO 15820 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
-2019-06-27 18:19:05.668  INFO 15820 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@421def93
-2019-06-27 18:19:06.958  INFO 15820 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 18:19:07.292  INFO 15820 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
-2019-06-27 18:19:07.554  INFO 15820 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-06-27 18:19:08.268  INFO 15820 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2019-06-27 18:19:08.301  INFO 15820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
-2019-06-27 18:19:08.301  INFO 15820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
-2019-06-27 18:19:08.301  INFO 15820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
-2019-06-27 18:19:08.301  INFO 15820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
-2019-06-27 18:19:08.301  INFO 15820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent)
-2019-06-27 18:19:08.301  INFO 15820 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
-2019-06-27 18:19:08.331  INFO 15820 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
-2019-06-27 18:19:08.332  INFO 15820 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 4.395 seconds (JVM running for 4.902)
-2019-06-27 18:53:37.745  INFO 15820 --- [http-nio-80-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+2019-07-01 10:55:15.805 ERROR 9844 --- [https-jsse-nio-443-exec-5] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/position/edit/8] and exception [An error happened during template parsing (template: "class path resource [templates/layout/position/u_position.html]")] as the response has already been committed. As a result, the response may have the wrong status code.
+2019-07-01 10:55:50.968  WARN 9844 --- [https-jsse-nio-443-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23502
+2019-07-01 10:55:50.968 ERROR 9844 --- [https-jsse-nio-443-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: null value in column "permission_id" violates not-null constraint
+  詳細：Failing row contains (VIEW, null, 8, 2019-07-01 10:55:50.915, t, null).
+2019-07-01 10:55:50.973 ERROR 9844 --- [https-jsse-nio-443-exec-1] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2019-07-01 10:55:50.995 ERROR 9844 --- [https-jsse-nio-443-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [permission_id]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
 
-java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:467) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:294) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+org.postgresql.util.PSQLException: ERROR: null value in column "permission_id" violates not-null constraint
+  詳細：Failing row contains (VIEW, null, 8, 2019-07-01 10:55:50.915, t, null).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2183) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:308) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:143) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:120) ~[postgresql-42.2.5.jar:42.2.5]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-3.2.0.jar:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3171) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3686) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:90) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:478) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:356) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1454) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:511) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3283) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2479) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:473) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:178) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:39) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:271) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:98) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:532) ~[spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:746) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:714) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:533) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:304) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at com.sun.proxy.$Proxy125.saveAll(Unknown Source) ~[na:na]
+	at com.example.demo.DataBase.Service.PositionService.saveAllMappingPPP(PositionService.java:69) ~[classes/:na]
+	at com.example.demo.Controller.PositionController.save(PositionController.java:81) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:607) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.16.jar:9.0.16]
@@ -703,9 +633,266 @@ java.lang.IllegalArgumentException: Invalid character found in the request targe
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
 
-2019-06-27 19:05:05.694  INFO 15820 --- [RMI TCP Connection(55)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2019-06-27 19:05:05.717  INFO 15820 --- [RMI TCP Connection(55)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2019-06-27 19:05:05.718  INFO 15820 --- [RMI TCP Connection(55)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2019-06-27 19:05:05.723  INFO 15820 --- [RMI TCP Connection(55)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2019-06-27 19:05:05.732  INFO 15820 --- [RMI TCP Connection(55)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown initiated...
-2019-06-27 19:05:05.736  INFO 15820 --- [RMI TCP Connection(55)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown completed.
+2019-07-01 10:56:50.280  WARN 9844 --- [https-jsse-nio-443-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23502
+2019-07-01 10:56:50.289 ERROR 9844 --- [https-jsse-nio-443-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: null value in column "permission_id" violates not-null constraint
+  詳細：Failing row contains (VIEW, null, 8, 2019-07-01 10:56:50.241, t, POSITION).
+2019-07-01 10:56:50.289 ERROR 9844 --- [https-jsse-nio-443-exec-8] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2019-07-01 10:56:50.301 ERROR 9844 --- [https-jsse-nio-443-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [permission_id]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
+
+org.postgresql.util.PSQLException: ERROR: null value in column "permission_id" violates not-null constraint
+  詳細：Failing row contains (VIEW, null, 8, 2019-07-01 10:56:50.241, t, POSITION).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2183) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:308) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:143) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:120) ~[postgresql-42.2.5.jar:42.2.5]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-3.2.0.jar:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3171) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3686) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:90) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:478) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:356) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1454) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:511) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3283) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2479) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:473) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:178) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:39) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:271) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:98) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:532) ~[spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:746) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:714) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:533) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:304) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at com.sun.proxy.$Proxy125.saveAll(Unknown Source) ~[na:na]
+	at com.example.demo.DataBase.Service.PositionService.saveAllMappingPPP(PositionService.java:69) ~[classes/:na]
+	at com.example.demo.Controller.PositionController.save(PositionController.java:81) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:607) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_201]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
+
+2019-07-01 10:56:54.834  WARN 9844 --- [https-jsse-nio-443-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23502
+2019-07-01 10:56:54.834 ERROR 9844 --- [https-jsse-nio-443-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: null value in column "permission_id" violates not-null constraint
+  詳細：Failing row contains (VIEW, null, 8, 2019-07-01 10:56:54.802, t, POSITION).
+2019-07-01 10:56:54.834 ERROR 9844 --- [https-jsse-nio-443-exec-3] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2019-07-01 10:56:54.840 ERROR 9844 --- [https-jsse-nio-443-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [permission_id]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
+
+org.postgresql.util.PSQLException: ERROR: null value in column "permission_id" violates not-null constraint
+  詳細：Failing row contains (VIEW, null, 8, 2019-07-01 10:56:54.802, t, POSITION).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2183) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:308) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:441) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:365) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:143) ~[postgresql-42.2.5.jar:42.2.5]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:120) ~[postgresql-42.2.5.jar:42.2.5]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-3.2.0.jar:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3171) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3686) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:90) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:478) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:356) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1454) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:511) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3283) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2479) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:473) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:178) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:39) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:271) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:98) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:532) ~[spring-orm-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:746) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:714) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:533) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:304) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.5.RELEASE.jar:2.1.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at com.sun.proxy.$Proxy125.saveAll(Unknown Source) ~[na:na]
+	at com.example.demo.DataBase.Service.PositionService.saveAllMappingPPP(PositionService.java:69) ~[classes/:na]
+	at com.example.demo.Controller.PositionController.save(PositionController.java:81) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_201]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_201]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.5.RELEASE.jar:5.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:607) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_201]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_201]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_201]
+
+2019-07-01 10:57:47.905  INFO 9844 --- [RMI TCP Connection(14)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-07-01 10:57:47.912  INFO 9844 --- [RMI TCP Connection(14)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-07-01 10:57:47.913  INFO 9844 --- [RMI TCP Connection(14)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-01 10:57:47.917  INFO 9844 --- [RMI TCP Connection(14)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-07-01 10:57:47.928  INFO 9844 --- [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown initiated...
+2019-07-01 10:57:47.931  INFO 9844 --- [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : UAT - Shutdown completed.
+2019-07-01 10:58:04.858  INFO 10620 --- [main] c.example.demo.AccessControlApplication  : Starting AccessControlApplication on DESKTOP-DDIE66Q with PID 10620 (D:\GitHub\AccessControl\target\classes started by Shan in D:\GitHub\AccessControl)
+2019-07-01 10:58:04.860 DEBUG 10620 --- [main] c.example.demo.AccessControlApplication  : Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-07-01 10:58:04.860  INFO 10620 --- [main] c.example.demo.AccessControlApplication  : The following profiles are active: dev
+2019-07-01 10:58:05.410  INFO 10620 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-07-01 10:58:05.495  INFO 10620 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80ms. Found 19 repository interfaces.
+2019-07-01 10:58:05.732  INFO 10620 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8f957530] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-07-01 10:58:05.933 DEBUG 10620 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-07-01 10:58:05.933 DEBUG 10620 --- [main] c.e.demo.AccessControlApplication$1      : Code archive: C:\Users\Shan\.m2\repository\org\springframework\boot\spring-boot\2.1.3.RELEASE\spring-boot-2.1.3.RELEASE.jar
+2019-07-01 10:58:05.934 DEBUG 10620 --- [main] c.e.demo.AccessControlApplication$1      : Document root: D:\GitHub\AccessControl\public
+2019-07-01 10:58:05.955  INFO 10620 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
+2019-07-01 10:58:05.998  INFO 10620 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-01 10:58:05.998  INFO 10620 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-07-01 10:58:06.001  INFO 10620 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_201\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Java\jdk1.8.0_201\jre\bin;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\Shan\AppData\Local\Microsoft\WindowsApps;C:\Users\Shan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shan\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Users\Shan\AppData\Local\GitHubDesktop\bin;D:\sts-4.2.0.RELEASE;;.]
+2019-07-01 10:58:06.074  INFO 10620 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-01 10:58:06.074  INFO 10620 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1047 ms
+2019-07-01 10:58:06.218  INFO 10620 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Starting...
+2019-07-01 10:58:06.321  INFO 10620 --- [main] com.zaxxer.hikari.HikariDataSource       : UAT - Start completed.
+2019-07-01 10:58:06.363  INFO 10620 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-07-01 10:58:06.414  INFO 10620 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-07-01 10:58:06.415  INFO 10620 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-07-01 10:58:06.508  INFO 10620 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-07-01 10:58:06.617  INFO 10620 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-07-01 10:58:06.631  INFO 10620 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2019-07-01 10:58:06.638  INFO 10620 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@7606bd03
+2019-07-01 10:58:08.231  INFO 10620 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-07-01 10:58:08.668  INFO 10620 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-07-01 10:58:09.034  INFO 10620 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-01 10:58:09.818  INFO 10620 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-07-01 10:58:09.856  INFO 10620 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Registered LINE Messaging API event handler: count = 5
+2019-07-01 10:58:09.857  INFO 10620 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[MessageEvent<MessageContent>]" onto public void com.example.demo.LineBotApplication.handleMessageEvent(com.linecorp.bot.model.event.MessageEvent<com.linecorp.bot.model.event.message.MessageContent>)
+2019-07-01 10:58:09.857  INFO 10620 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[BeaconEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleBeaconEvent(com.linecorp.bot.model.event.BeaconEvent)
+2019-07-01 10:58:09.857  INFO 10620 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[FollowEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handleFollowEvent(com.linecorp.bot.model.event.FollowEvent)
+2019-07-01 10:58:09.857  INFO 10620 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[UnfollowEvent]" onto public void com.example.demo.LineBotApplication.handleUnfollowEvent(com.linecorp.bot.model.event.UnfollowEvent)
+2019-07-01 10:58:09.857  INFO 10620 --- [main] c.l.b.s.b.s.LineMessageHandlerSupport    : Mapped "[PostbackEvent]" onto public com.linecorp.bot.model.message.TextMessage com.example.demo.LineBotApplication.handlePostbackEvent(com.linecorp.bot.model.event.PostbackEvent)
+2019-07-01 10:58:09.899  INFO 10620 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
+2019-07-01 10:58:09.901  INFO 10620 --- [main] c.example.demo.AccessControlApplication  : Started AccessControlApplication in 5.329 seconds (JVM running for 6.103)
+2019-07-01 10:59:58.356  INFO 10620 --- [https-jsse-nio-443-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-07-01 10:59:58.357  INFO 10620 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-07-01 10:59:58.365  INFO 10620 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
