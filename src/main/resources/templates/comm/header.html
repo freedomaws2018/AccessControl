@@ -4,6 +4,21 @@
 <header th:fragment="header(headerInfo)" >
   <script th:inline="javascript">
     console.log([[${session}]])
+    myrefresh();
+    function myrefresh() {
+      if([[${session.lastAccessedTime}]])
+      {
+      	var LAT = [[${session.lastAccessedTime}]];
+      	var NOW = new Date().getTime();
+//       	console.log(LAT,NOW,(NOW-LAT)/1000);
+//       	console.log(((NOW-LAT)/1000) > [[${session.maxInactiveInterval}]])
+      	if(((NOW-LAT)/1000) > [[${session.maxInactiveInterval}]]){
+      	  $.get("/logout");
+          window.location.reload();
+      	}
+      }
+	  setTimeout('myrefresh()',5000); //指定5秒掃描一次
+    }
   </script>
   
   <nav id="navbar" class="navbar navbar-light">

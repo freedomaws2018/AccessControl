@@ -4,7 +4,7 @@
 <body layout:fragment="content">
   <script>
   delete_wf8266 = function(sn,name){
-    console.log(sn)
+    // console.log(sn)
     showConfirmDialog('確認刪除','確定要刪除 ' + name + ' 的IoT晶片嗎?',function(){
       $.ajax({
         type: 'DELETE',
@@ -42,7 +42,7 @@
                 <th scope="col">狀態</th>
               </tr>
             </thead>
-            <tbody class="center">
+            <tbody class="center" style="width:100%">
               <tr th:if="${wf8266s.empty}">
                 <th colspan="5">沒有資料</th>
               </tr>

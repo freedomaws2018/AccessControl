@@ -1,16 +1,16 @@
 .navbar {
 	position:fixed;
 	z-index:1;
-    padding: 5px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„ç¸®æ’*/
-	min-height: 55px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
-	max-height: 55px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
+    padding: 5px;	/*¼vÅT¤W¤è¦CªºÁY±Æ*/
+	min-height: 55px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
+	max-height: 55px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
 	width:100%;
 	background-color: #FFFFFF;
     border: none;
     border-radius: 0;
-	margin-left: 0px;		/*ä¸Šæ–¹åˆ—è·Ÿå·¦é‚Šé¸å–®ä¸­é–“çš„æ®µè½*/
-    margin-bottom: 0px;	/*ä¸Šæ–¹åˆ—è·Ÿä¸»é å…§å®¹ä¸­é–“çš„æ®µè½*/
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);	/*ä¸Šæ–¹åˆ—é™°å½±è¨­å®š*/
+	margin-left: 0px;		/*¤W¤è¦C¸ò¥ªÃä¿ï³æ¤¤¶¡ªº¬q¸¨*/
+    margin-bottom: 0px;	/*¤W¤è¦C¸ò¥D­¶¤º®e¤¤¶¡ªº¬q¸¨*/
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);	/*¤W¤è¦C³±¼v³]©w*/
 }
 
 .navbar_sub {
@@ -18,16 +18,16 @@
 	left:244px;
 	position:relative;
 	z-index:0;
-    padding: 5px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„ç¸®æ’*/
-	min-height: 53px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
-	max-height: 53px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
+    padding: 5px;	/*¼vÅT¤W¤è¦CªºÁY±Æ*/
+	min-height: 53px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
+	max-height: 53px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
 	width:101%;
 	background-color: #FFFFFF;
     border: none;
     border-radius: 0;
-	margin-left: 0px;		/*ä¸Šæ–¹åˆ—è·Ÿå·¦é‚Šé¸å–®ä¸­é–“çš„æ®µè½*/
-    margin-bottom: 0px;	/*ä¸Šæ–¹åˆ—è·Ÿä¸»é å…§å®¹ä¸­é–“çš„æ®µè½*/
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*ä¸Šæ–¹åˆ—é™°å½±è¨­å®š*/
+	margin-left: 0px;		/*¤W¤è¦C¸ò¥ªÃä¿ï³æ¤¤¶¡ªº¬q¸¨*/
+    margin-bottom: 0px;	/*¤W¤è¦C¸ò¥D­¶¤º®e¤¤¶¡ªº¬q¸¨*/
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*¤W¤è¦C³±¼v³]©w*/
     transition: all 0.3s;
 
 }
@@ -37,16 +37,16 @@
 	left:-6px;
 	position:relative;
 	z-index:0;
-    padding: 5px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„ç¸®æ’*/
-	min-height: 53px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
-	max-height: 53px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
+    padding: 5px;	/*¼vÅT¤W¤è¦CªºÁY±Æ*/
+	min-height: 53px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
+	max-height: 53px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
 	width:101%;
 	background-color: #FFFFFF;
     border: none;
     border-radius: 0;
-	margin-left: 0px;		/*ä¸Šæ–¹åˆ—è·Ÿå·¦é‚Šé¸å–®ä¸­é–“çš„æ®µè½*/
-    margin-bottom: 0px;	/*ä¸Šæ–¹åˆ—è·Ÿä¸»é å…§å®¹ä¸­é–“çš„æ®µè½*/
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*ä¸Šæ–¹åˆ—é™°å½±è¨­å®š*/
+	margin-left: 0px;		/*¤W¤è¦C¸ò¥ªÃä¿ï³æ¤¤¶¡ªº¬q¸¨*/
+    margin-bottom: 0px;	/*¤W¤è¦C¸ò¥D­¶¤º®e¤¤¶¡ªº¬q¸¨*/
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*¤W¤è¦C³±¼v³]©w*/
     transition: all 0.3s;
 }
 
@@ -97,7 +97,7 @@
 	line-height:26px;
 }
 
-/* ä»£è¾¦äº‹é …ï¼ä½¿ç”¨è€…ä¸‹æ‹‰å¼é¸å–®ï¼šé»æ“Šæ·¡å…¥èˆ‡æ·¡å‡º(ç›®å‰åªæœ‰å®Œæˆmobileç‰ˆæœ¬çš„) */
+/* ¥N¿ì¨Æ¶µ¡Ö¨Ï¥ÎªÌ¤U©Ô¦¡¿ï³æ¡GÂIÀ»²H¤J»P²H¥X(¥Ø«e¥u¦³§¹¦¨mobileª©¥»ªº) */
 .dropdown-menu.active{
 	padding:0px;
 	margin:0px;
@@ -144,28 +144,28 @@
 	background: none;
 	border:none;
 	display:inline-block;
-	border-radius: 3px;	/*æ¼¢å ¡é¸å–®æŒ‰éˆ• åœ“è§’çŸ©å½¢*/
+	border-radius: 3px;	/*º~³ù¿ï³æ«ö¶s ¶ê¨¤¯x§Î*/
 }
 
 .hamburger-menu .icon-bar{
-	background-color: #A9A9A9;	/*æ¼¢å ¡é¸å–® ç·šæ¢é¡è‰²*/
+	background-color: #A9A9A9;	/*º~³ù¿ï³æ ½u±øÃC¦â*/
 	display: block;
-	height: 3px;			/*æ¼¢å ¡é¸å–®æŒ‰éˆ• ç·šæ¢é«˜åº¦*/
-	margin: 4px 1px 4px;	/*æ¼¢å ¡é¸å–®æŒ‰éˆ• ç·šæ¢ç¸®æ’èª¿æ•´ ä¸Š/å·¦å³/ä¸‹*/
+	height: 3px;			/*º~³ù¿ï³æ«ö¶s ½u±ø°ª«×*/
+	margin: 4px 1px 4px;	/*º~³ù¿ï³æ«ö¶s ½u±øÁY±Æ½Õ¾ã ¤W/¥ª¥k/¤U*/
 	width: 25px;
 
 }
 
-#sidebarCollapse {	/*é»æ“Šé¸å–®éˆ•ä¹‹å‰(å±•é–‹ç‹€æ…‹)*/
+#sidebarCollapse {	/*ÂIÀ»¿ï³æ¶s¤§«e(®i¶}ª¬ºA)*/
 	position: relative;
 	left: 205px;
 	top: 0px;
 	transition: all 0.3s;
-	background: #FFFFFF;	/*æ¼¢å ¡é¸å–® æŒ‰éˆ•é¡è‰²*/
+	background: #FFFFFF;	/*º~³ù¿ï³æ «ö¶sÃC¦â*/
 
 }
 
-#sidebarCollapse:hover {	/*å±•é–‹ç‹€æ…‹æ»‘é¼ ç§»éé¸å–®éˆ•*/
+#sidebarCollapse:hover {	/*®i¶}ª¬ºA·Æ¹«²¾¹L¿ï³æ¶s*/
 	position: relative;
 	left: 205px;
 	top: 0px;
@@ -173,7 +173,7 @@
 	background: #F5F5F5;
 }
 
-#sidebarCollapse.active { /*é»æ“Šé¸å–®éˆ•ä¹‹å¾Œ(æ”¶åˆç‹€æ…‹)*/
+#sidebarCollapse.active { /*ÂIÀ»¿ï³æ¶s¤§«á(¦¬¦Xª¬ºA)*/
 	position: relative;
 	left: 205px;
 	top: 0px;
@@ -181,7 +181,7 @@
 	background: #FFFFFF;
 }
 
-#sidebarCollapse.active:hover {	/*æ”¶åˆç‹€æ…‹æ»‘é¼ ç§»éé¸å–®éˆ•*/
+#sidebarCollapse.active:hover {	/*¦¬¦Xª¬ºA·Æ¹«²¾¹L¿ï³æ¶s*/
 	position: relative;
 	left: 205px;
 	top: 0px;
@@ -192,6 +192,18 @@
 @media (max-width: 768px) {
 	.navbar{
 		position:absolute;
+		z-index:1;
+		padding: 5px;	/*¼vÅT¤W¤è¦CªºÁY±Æ*/
+		min-height: 55px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
+		max-height: 55px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
+		top:0px;
+		width:100%;
+		background-color: #FFFFFF;
+		border: none;
+		border-radius: 0;
+		margin-left: 0px;		/*¤W¤è¦C¸ò¥ªÃä¿ï³æ¤¤¶¡ªº¬q¸¨*/
+		margin-bottom: 0px;	/*¤W¤è¦C¸ò¥D­¶¤º®e¤¤¶¡ªº¬q¸¨*/
+		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);	/*¤W¤è¦C³±¼v³]©w*/	
 	}
 	
 	.navbar_sub.active {
@@ -199,17 +211,17 @@
 		left:-1px;
 		position:relative;
 		z-index:0;
-		padding: 0px 0px 0px 0px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„ç¸®æ’*/
-		min-height: 45px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
-		max-height: 45px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
+		padding: 0px 0px 0px 0px;	/*¼vÅT¤W¤è¦CªºÁY±Æ*/
+		min-height: 45px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
+		max-height: 45px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
 		width:101%;
 		font-size:14px;
 		background-color: #FFFFFF;
 		border: none;
 		border-radius: 0;
-		margin-left: 0px;		/*ä¸Šæ–¹åˆ—è·Ÿå·¦é‚Šé¸å–®ä¸­é–“çš„æ®µè½*/
-		margin-bottom: 0px;	/*ä¸Šæ–¹åˆ—è·Ÿä¸»é å…§å®¹ä¸­é–“çš„æ®µè½*/
-		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*ä¸Šæ–¹åˆ—é™°å½±è¨­å®š*/
+		margin-left: 0px;		/*¤W¤è¦C¸ò¥ªÃä¿ï³æ¤¤¶¡ªº¬q¸¨*/
+		margin-bottom: 0px;	/*¤W¤è¦C¸ò¥D­¶¤º®e¤¤¶¡ªº¬q¸¨*/
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*¤W¤è¦C³±¼v³]©w*/
 		transition: all 0.3s;
 
 }
@@ -219,17 +231,17 @@
 		left:-1px;
 		position:relative;
 		z-index:0;
-		padding: 0px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„ç¸®æ’*/
-		min-height: 45px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
-		max-height: 45px;	/*å½±éŸ¿ä¸Šæ–¹åˆ—çš„é«˜åº¦*/
+		padding: 0px;	/*¼vÅT¤W¤è¦CªºÁY±Æ*/
+		min-height: 45px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
+		max-height: 45px;	/*¼vÅT¤W¤è¦Cªº°ª«×*/
 		width:101%;
 		font-size:14px;
 		background-color: #FFFFFF;
 		border: none;
 		border-radius: 0;
-		margin-left: 0px;		/*ä¸Šæ–¹åˆ—è·Ÿå·¦é‚Šé¸å–®ä¸­é–“çš„æ®µè½*/
-		margin-bottom: 0px;	/*ä¸Šæ–¹åˆ—è·Ÿä¸»é å…§å®¹ä¸­é–“çš„æ®µè½*/
-		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*ä¸Šæ–¹åˆ—é™°å½±è¨­å®š*/
+		margin-left: 0px;		/*¤W¤è¦C¸ò¥ªÃä¿ï³æ¤¤¶¡ªº¬q¸¨*/
+		margin-bottom: 0px;	/*¤W¤è¦C¸ò¥D­¶¤º®e¤¤¶¡ªº¬q¸¨*/
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);	/*¤W¤è¦C³±¼v³]©w*/
 		transition: all 0.3s;
 	}
 	
@@ -255,7 +267,7 @@
 	.dropdown-menu{
 		padding:0px;
 		margin:0px;
-		display:block;
+		display:none;
 		position: absolute;
 		width:220px;
 		top: 45px;
@@ -273,16 +285,16 @@
 		left:-171px;
 		transition: all 0.3s;
 	}
-	#sidebarCollapse {	/*é»æ“Šé¸å–®éˆ•ä¹‹å‰(å±•é–‹ç‹€æ…‹)*/
+	#sidebarCollapse {	/*ÂIÀ»¿ï³æ¶s¤§«e(®i¶}ª¬ºA)*/
 		position: relative;
 		left: 5px;
 		top: 0px;
 		transition: all 0.3s;
-		background: #FFFFFF;	/*æ¼¢å ¡é¸å–® æŒ‰éˆ•é¡è‰²*/
+		background: #FFFFFF;	/*º~³ù¿ï³æ «ö¶sÃC¦â*/
 	
 	}
 	
-	#sidebarCollapse:hover {	/*å±•é–‹ç‹€æ…‹æ»‘é¼ ç§»éé¸å–®éˆ•*/
+	#sidebarCollapse:hover {	/*®i¶}ª¬ºA·Æ¹«²¾¹L¿ï³æ¶s*/
 		position: relative;
 		left: 5px;
 		top: 0px;
@@ -290,7 +302,7 @@
 		background: #F5F5F5;
 	}
 	
-	#sidebarCollapse.active { /*é»æ“Šé¸å–®éˆ•ä¹‹å¾Œ(æ”¶åˆç‹€æ…‹)*/
+	#sidebarCollapse.active { /*ÂIÀ»¿ï³æ¶s¤§«á(¦¬¦Xª¬ºA)*/
 		position: relative;
 		left: 5px;
 		top: 0px;
@@ -298,7 +310,7 @@
 		background: #FFFFFF;
 	}
 	
-	#sidebarCollapse.active:hover {	/*æ”¶åˆç‹€æ…‹æ»‘é¼ ç§»éé¸å–®éˆ•*/
+	#sidebarCollapse.active:hover {	/*¦¬¦Xª¬ºA·Æ¹«²¾¹L¿ï³æ¶s*/
 		position: relative;
 		left: 5px;
 		top: 0px;

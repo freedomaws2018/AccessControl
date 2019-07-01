@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -70,15 +69,15 @@ public class LineBotApplication {
         lineUser.setIsLeave(false);
         lineUser = lineUserService.save(lineUser);
 
-        Member member = new Member();
-        member.setLineUserId(lineUser.getUserId());
-        member.setBegDt(LocalDateTime.now(ZoneId.of("UTC+8")));
-        member.setEndDt(LocalDateTime.now(ZoneId.of("UTC+8")));
-        member.setIsUse(false);
-        member.setIsAdmin(false);
-        member.setFirstName(userName);
-        member.setLastName(userName);
-        member = memberService.save(member);
+//        Member member = new Member();
+//        member.setLineUserId(lineUser.getUserId());
+//        member.setBegDt(LocalDateTime.now(ZoneId.of("UTC+8")));
+//        member.setEndDt(LocalDateTime.now(ZoneId.of("UTC+8")));
+//        member.setIsUse(false);
+//        member.setIsAdmin(false);
+//        member.setFirstName(userName);
+//        member.setLastName(userName);
+//        member = memberService.save(member);
         logger.info("【註冊】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
       }
       return new TextMessage(userProfile.getDisplayName() + " - 註冊成功");
@@ -91,22 +90,29 @@ public class LineBotApplication {
   /** 移除/封鎖 時 **/
   @EventMapping
   public void handleUnfollowEvent(UnfollowEvent event) {
-    String userId = event.getSource().getUserId();
-    LineUser lineUser = lineUserService.getByUserId(userId);
+    try {
+      String userId = event.getSource().getUserId();
+      LineUser lineUser = lineUserService.getByUserId(userId);
 
-    if (lineUser != null) {
-      lineUser.setIsLeave(true);
-      lineUser = lineUserService.save(lineUser);
+      if (lineUser != null) {
+        lineUser.setIsLeave(true);
+        lineUser = lineUserService.save(lineUser);
 
-      Member member = memberService.getByUserIdAndIsUseTrue(lineUser.getUserId());
-      if (member != null) {
-        member.setIsUse(false);
-        member.setRichMenuId(null);
-        member.setLocationId(null);
-        member.setLocationDetailName(null);
-        member = memberService.save(member);
+        Member member = memberService.getByUserIdAndIsUseTrue(lineUser.getUserId());
+        if (member != null) {
+          member.setIsUse(false);
+          member.setRichMenuId(null);
+          member.setLocationId(null);
+          member.setLocationDetailName(null);
+          member = memberService.save(member);
+          if (StringUtils.isNotBlank(member.getLineUserId())) {
+            lineRichMenuService.unlinkRichMenuToUser(member.getLineUserId());
+          }
+        }
+        logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
       }
-      logger.info("【封鎖】\t" + lineUser.getUserId() + "\t" + lineUser.getUserName());
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
 
   }
@@ -128,7 +134,7 @@ public class LineBotApplication {
         return new TextMessage(replyStr);
       }
     } catch (Exception ex) {
-      logger.error(ex.getMessage());
+      ex.printStackTrace();
     }
     return null;
   }
@@ -140,52 +146,56 @@ public class LineBotApplication {
    * @throws InterruptedException
    **/
   @EventMapping
-  public TextMessage handleBeaconEvent(BeaconEvent event) throws InterruptedException, ExecutionException {
-    String lineUserId = event.getSource().getUserId();
-    String senderId = event.getSource().getSenderId();
-    String type = event.getBeacon().getType();
-    String hwid = event.getBeacon().getHwid();
-    String deviceMessageAsHex = event.getBeacon().getDeviceMessageAsHex();
-    String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId,
-        senderId, type, hwid, deviceMessageAsHex);
-    if ("enter".equals(type)) {
-      // 獲取 LineUser 信息 並判斷是否存在
-      Member member = memberService.getEffectiveMember(lineUserId);
-      LineUser lineUser = member.getLineUser();
-      Location location = member.getLocation();
-      LocationDetail locationDetail = member.getLocationDetail();
-      RichMenu richMenu = member.getRichMenu();
+  public TextMessage handleBeaconEvent(BeaconEvent event) {
+    try {
+      String lineUserId = event.getSource().getUserId();
+      String senderId = event.getSource().getSenderId();
+      String type = event.getBeacon().getType();
+      String hwid = event.getBeacon().getHwid();
+      String deviceMessageAsHex = event.getBeacon().getDeviceMessageAsHex();
+      String textMessage = String.format("UserId: %s \nSendId: %s \nType: %s\nHWID: %s\nDeviceMessage: %s", lineUserId,
+          senderId, type, hwid, deviceMessageAsHex);
+      if ("enter".equals(type)) {
+        // 獲取 LineUser 信息 並判斷是否存在
+        Member member = memberService.getEffectiveMember(lineUserId);
+        LineUser lineUser = member.getLineUser();
+        Location location = member.getLocation();
+        LocationDetail locationDetail = member.getLocationDetail();
+        RichMenu richMenu = member.getRichMenu();
 
-      // 為管理員
-      if (member != null && lineUser != null && member.getIsAdmin()) {
-        Location locAdmin = locationService.getByBeaconKey(deviceMessageAsHex);
-        if (StringUtils.isNotBlank(lineUser.getUserId()) && StringUtils.isNotBlank(locAdmin.getRichMenuId())) {
-          lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), locAdmin.getRichMenuId());
-          member.setRichMenuLinkDateTime(LocalDateTime.now());
-          memberService.save(member);
+        // 為管理員
+        if (member != null && lineUser != null && member.getIsAdmin()) {
+          Location locAdmin = locationService.getByBeaconKey(deviceMessageAsHex);
+          if (StringUtils.isNotBlank(lineUser.getUserId()) && StringUtils.isNotBlank(locAdmin.getRichMenuId())) {
+            lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), locAdmin.getRichMenuId());
+            member.setRichMenuLinkDateTime(LocalDateTime.now());
+            memberService.save(member);
+          }
+        }
+
+        // 判斷有會員 以及 有選單
+        if (member != null && lineUser != null && location != null && locationDetail != null && richMenu != null) {
+          if (StringUtils.isNotBlank(lineUser.getUserId()) && StringUtils.isNotBlank(richMenu.getRichMenuId())) {
+            lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), richMenu.getRichMenuId());
+            member.setRichMenuLinkDateTime(LocalDateTime.now());
+            memberService.save(member);
+          }
+        }
+
+      }
+      if ("leave".equals(type)) {
+        Member member = memberService.getEffectiveMember(lineUserId);
+        LineUser lineUser = member.getLineUser();
+        if (member != null && lineUser != null && !member.getIsAdmin()) {
+          lineRichMenuService.unlinkRichMenuToUser(lineUser.getUserId());
         }
       }
+      return new TextMessage(textMessage);
 
-      // 判斷有會員 以及 有選單
-      if (member != null && lineUser != null && location != null && locationDetail != null && richMenu != null) {
-        if (StringUtils.isNotBlank(lineUser.getUserId()) && StringUtils.isNotBlank(richMenu.getRichMenuId())) {
-          lineRichMenuService.linkRichMenuToUser(lineUser.getUserId(), richMenu.getRichMenuId());
-          member.setRichMenuLinkDateTime(LocalDateTime.now());
-          memberService.save(member);
-        }
-      }
-
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      return null;
     }
-    if ("leave".equals(type))
-
-    {
-      Member member = memberService.getEffectiveMember(lineUserId);
-      LineUser lineUser = member.getLineUser();
-      if (member != null && lineUser != null && !member.getIsAdmin()) {
-        lineRichMenuService.unlinkRichMenuToUser(lineUser.getUserId());
-      }
-    }
-    return new TextMessage(textMessage);
   }
 
 }
