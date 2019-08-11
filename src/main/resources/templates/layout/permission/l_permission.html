@@ -47,12 +47,12 @@
           </div>
         </div>
         <div class="card-body">
-          <table id="myTable" class="table table-hover table-responsive-sm hide-in-phone"> <!-- hide-in-phone --> 
+          <table id="myTable" class="table table-hover table-responsive-sm">
             <thead class="center">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">權限名稱</th>
-                <th scope="col">對應選單</th>
+                <th scope="col" class="text-nowrap">#</th>
+                <th scope="col" class="text-nowrap">權限名稱</th>
+                <th scope="col" class="text-nowrap">對應選單</th>
               </tr>
             </thead>
             <tbody class="center">
@@ -60,7 +60,7 @@
                 <th colspan="3">沒有資料</th>
               </tr>
               <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
-                <td>
+                <td class="text-nowrap">
                   <a th:href="@{/permission/view/{permissionKey}(permissionKey=*{key})}" class="btn btn-secondary btn-sm">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
                   </a>
@@ -71,40 +71,12 @@
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
                   </a>
                 </td>
-                <td data-th="權限名稱：">[[*{name}]]</td>
-                <td data-th="對應選單：">[[*{menu?.menuName}]] : [[*{menu?.name}]]</td>
+                <td class="text-nowrap">[[*{name}]]</td>
+                <td class="text-nowrap">[[*{menu?.menuName}]] : [[*{menu?.name}]]</td>
               </tr>
             </tbody>
           </table>
-          <table class="table-hover table-responsive-sm rwd-table show-on-phone">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">權限名稱</th>
-                <th scope="col">對應選單</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th th:if="${permissions.empty}" colspan="3">沒有資料</th>
-              </tr>
-              <tr th:unless="${permissions.empty}" th:each="per,iterStar:${permissions}" th:object="${per}">
-                <td>
-                  <a th:href="@{/permission/view/{permissionKey}(permissionKey=*{key})}" class="btn btn-secondary btn-sm">
-                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
-                  </a>
-                  <a th:href="@{/permission/edit/{permissionKey}(permissionKey=*{key})}" class="btn btn-success btn-sm">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改
-                  </a>
-                  <a th:onclick="|delete_permission('__*{key}__','__*{name}__')|" href="javascript:;" class="btn btn-danger btn-sm ">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
-                  </a>
-                </td>
-                <td data-th="權限名稱：">[[*{name}]]</td>
-                <td data-th="對應選單：">[[*{menu?.menuName}]] : [[*{menu?.name}]]</td>
-              </tr>
-            </tbody>
-          </table>
+          
           <div th:if="${permissions.totalPages gt 1}" >
             <div th:replace="~{comm/page :: page01(entity=${permissions})}"></div>
           </div>

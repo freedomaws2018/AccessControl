@@ -35,12 +35,12 @@
     </div>
     
     <div class="card-body">
-      <table class="table table-hover table-responsive-sm table-striped hide-in-phone">
+      <table class="table table-hover table-responsive-sm table-striped">
         <thead class="center">
           <tr>
-            <th scope="col">操作</th>
-            <th scope="col">姓名</th>
-            <th scope="col">使用狀態</th>
+            <th scope="col" class="text-nowrap">操作</th>
+            <th scope="col" class="text-nowrap">姓名</th>
+            <th scope="col" class="text-nowrap">使用狀態</th>
           </tr>
         </thead>
         <tbody class="center">
@@ -48,7 +48,7 @@
             <th colspan="3">沒有資料</th>
           </tr>
           <tr th:unless="${members.empty}" th:each="member:${members}" th:object="${member}">
-            <th>
+            <th class="text-nowrap">
               <a th:href="@{/member/view/__*{id}__}" class="btn btn-sm btn-secondary">
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
               </a>
@@ -59,8 +59,8 @@
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
             </th>
-            <td>[[*{fullName}]]</td>
-            <td>
+            <td class="text-nowrap">[[*{fullName}]]</td>
+            <td class="text-nowrap">
               <script th:inline="javascript">
                 var code = [[*{effectiveCode}]];
                 switch(code){
@@ -82,54 +82,6 @@
           </tr>
         </tbody>
       </table>
-      <table class="table table-hover table-responsive-sm table-striped show-on-phone">
-        <thead class="center">
-          <tr>
-            <th scope="col">操作</th>
-            <th scope="col">姓名</th>
-            <th scope="col">使用狀態</th>
-          </tr>
-        </thead>
-        <tbody class="center">
-          <tr th:if="${members.empty}">
-            <th colspan="3">沒有資料</th>
-          </tr>
-          <tr th:unless="${members.empty}" th:each="member:${members}" th:object="${member}">
-            <th class="td-first">
-              <a th:href="@{/member/view/__*{id}__}" class="btn btn-sm btn-secondary">
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              </a>
-              <a th:href="@{/member/edit/__*{id}__}" class="btn btn-sm btn-success">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              </a>
-              <a class="btn btn-sm btn-danger" href="javascript:;" th:onclick="|delete_member(__*{id}__,'__*{fullName}__')|" >
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </a>
-            </th>
-            <td>[[*{fullName}]]</td>
-            <td>
-              <script th:inline="javascript">
-                var code = [[*{effectiveCode}]];
-                switch(code){
-                  case 0:
-                  	document.write("停止使用");
-                    break;
-                  case 1:
-                  	document.write("使用至 " + [[*{#temporals.format(endDt, 'yyyy-MM-dd HH:mm')}]]);
-                    break;
-                  case 2:
-                  	document.write("失效");
-                    break;
-                  case 99:
-                  	document.write("終身使用");
-                    break;
-                }
-              </script>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
       <div th:if="${members.totalPages gt 1}" >
         <div th:replace="~{comm/page :: page01(entity=${users})}"></div>
       </div>

@@ -182,9 +182,9 @@
             <table class="table table-responsive-sm">
               <thead>
                 <tr class="center">
-                  <th>權限名稱</th>
-                  <th>選單名稱</th>
-                  <th>權限分置</th>
+                  <th class="text-nowrap">權限名稱</th>
+                  <th class="text-nowrap">選單名稱</th>
+                  <th class="text-nowrap">權限分置</th>
                 </tr>
               </thead>
               <tr th:each="permission,iter1:${permissions}" th:object="${permission}" th:if="${#lists.size(permission.details) > 0}">
@@ -195,12 +195,12 @@
                   <label th:if="${ funcType eq 'edit' || funcType eq 'view' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.key+':'+detail.type}" >
                     <input type="checkbox" th:value="|${permission.key}:*{type}|" name="permissionDetailType" th:disabled="${funcType eq 'view'}"  
                       th:checked="${#lists.contains(mappingPermissions,permission.key+':'+detail.type)}" /> 
-                      <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
+                      <span th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                   </label>
                   
                   <label th:if="${ funcType eq 'add' }" th:each="detail,iter2:*{details}" th:object="${detail}" th:key="${permission.key+':'+detail.type}" >
                     <input type="checkbox" th:value="|${permission.key}:*{type}|" name="permissionDetailType" />
-                      <span  th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
+                      <span th:style="*{isSuperAdmin}?'color: red;':''" >[[*{name}]]</span>
                   </label>
                 </td>
               </tr>
@@ -209,14 +209,16 @@
             
         </div>
       </form>
-      <div th:if="${funcType eq 'edit' || funcType eq 'view'}" class="row col justify-content-center">
-        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-          <span th:text="|建立時間：  ${#temporals.format(employee.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
-        </div>&emsp;
-        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
-          <span th:text="|修改時間：  ${#temporals.format(employee.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+      <div th:if="${funcType eq 'edit' || funcType eq 'view'}" class="row badge-margin justify-content-center">
+        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5 mobile-edit">
+          <span th:text="|建立時間： ${#temporals.format(employee.createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
+        </div>
+        &emsp;
+        <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5 mobile-end">
+          <span th:text="|修改時間： ${#temporals.format(employee.modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
         </div>
       </div>
+          
       <div th:if="${funcType eq 'edit' || funcType eq 'add'}"><div class="line"></div></div>
       <div th:if="${funcType eq 'edit' || funcType eq 'add'}" class="row col justify-content-center">
         <button type="button" onclick="submin_form()" class="btn btn-primary btn-sm">

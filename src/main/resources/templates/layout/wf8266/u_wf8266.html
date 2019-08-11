@@ -39,7 +39,7 @@
         var index = $("#detail_table").find("tr").length - 1;
         $("#detail_table").append(`
           <tr id="tr_detail_${index}">
-            <td>
+            <td class="text-nowrap">
               <a href="javascript:;" class="btn btn-danger btn-sm" onClick="javascript:remove_detail(${index});" >
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>移除
               </a>
@@ -181,28 +181,28 @@
             
             <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
               <label class="font-weight-bold">細項</label>
-              <table class="table">
+              <table class="table table-hover table-responsive-sm">
                 <tr>
                   <td>
 		              <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" class="btn btn-primary btn-sm btn-detail" id="add_detail">
 		                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增
 		              </a>
-		              <table id="detail_table">
+		              <table id="detail_table" class="table">
 		                <thead>
 		                  <tr class="center">
 		                    <th th:if="${funcType eq 'edit' || funcType eq 'add'}">#</th>
-		                    <th>指令名稱</th>
-		                    <th>是否啟用</th>
-		                    <th>觸發後回應</th>
-		                    <th>執行後回應</th>
-		                    <th>按鈕編號</th>
-		                    <th>動作行為</th>
-		                    <th th:if="${funcType eq 'view'}">測試</th>
+		                    <th class="text-nowrap">指令名稱</th>
+		                    <th class="text-nowrap">是否啟用</th>
+		                    <th class="text-nowrap">觸發後回應</th>
+		                    <th class="text-nowrap">執行後回應</th>
+		                    <th class="text-nowrap">按鈕編號</th>
+		                    <th class="text-nowrap">動作行為</th>
+		                    <th th:if="${funcType eq 'view'}" class="text-nowrap">測試</th>
 		                  </tr>
 		                </thead>
 		                <tbody>
 		                  <tr th:each="detail,iter:${wf8266?.details}" th:object="${detail}" th:id="|tr_detail_${iter.index}|">
-		                    <td th:if="${funcType eq 'edit'}">
+		                    <td th:if="${funcType eq 'edit'}" class="text-nowrap">
 		                      <a href="javascript:;" class="btn btn-danger btn-sm" th:onclick="|remove_detail(${iter.index})|" >
 		                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>移除
 		                      </a>
@@ -247,7 +247,7 @@
 		                      <option th:selected="${detail.value eq 4 }" th:value="4" >按一下</option>
 		                     </select>
 		                    </td>
-		                    <td th:if="${funcType eq 'view'}"> 
+		                    <td th:if="${funcType eq 'view'}" class="text-nowrap"> 
 		                      <a th:id="|testTriggerUrl[${iter.index}]|" href="javascript:;" th:url="${detail.triggerUrl}" class="btn btn-warning btn-sm">
 		                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>測試觸發
 		                      </a>
@@ -262,11 +262,11 @@
             
           </div>
           
-          <div th:if="${funcType eq 'edit' || funcType eq 'view'}" class="row col justify-content-center">
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+          <div th:if="${funcType eq 'edit' || funcType eq 'view'}" class="row badge-margin justify-content-center">
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5 mobile-edit">
               <span th:text="|建立時間：  *{#temporals.format(createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
             </div>&emsp;
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5 mobile-end">
               <span th:text="|修改時間： *{#temporals.format(modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
             </div>
           </div>

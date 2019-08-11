@@ -58,6 +58,8 @@
           
         </div>
         
+          <div th:if="${funcType eq 'add'}"><div class="line"></div></div>
+          
         <div class="row justify-content-center">
           <a th:if="${funcType eq 'edit' || funcType eq 'add'}">
             <button type="button" id="submit_form" class="btn btn-primary btn-sm">

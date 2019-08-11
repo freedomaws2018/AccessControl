@@ -63,11 +63,6 @@
   right: 82px;
 }
 
-/* .a-btn-second { */
-/* 	position: absolute; */
-/* 	top: 9px; */
-/* 	right:9px; */
-/* } */
 .card-body {
   padding-bottom: 5px;
   margin-right: 15px;
@@ -82,8 +77,12 @@
   margin-top: 10px;
 }
 
-.card-body input, .card-body select {
+.card-body input{
   margin-left: 15px;
+}
+
+.card-body select {
+  margin-left: 10px;
 }
 
 .card-body table input, .card-body table select {
@@ -104,6 +103,12 @@
 
 .btn-submit {
   margin-bottom: 10px;
+}
+
+.glyphicon-trash{
+  margin-right: -2px;
+  margin-top: 2px;
+  margin-bottom: 5px;	
 }
 
 .row .select-sm {
@@ -137,10 +142,6 @@
 .card-text {
   line-height: 40px;
   padding-bottom: 15px;
-}
-
-.show-on-phone {
-  display: none;
 }
 
 .req-field {
@@ -182,32 +183,6 @@
 }
 
 @media ( max-width : 720px) {
-  .hide-in-phone {
-    display: none;
-  }
-  .show-on-phone {
-    display: block;
-  }
-  .rwd-table {
-    width: 100%;
-  }
-  .rwd-table tr {
-    border: 1px solid #DCDCDC;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .rwd-table th {
-    display: none;
-  }
-  .rwd-table td {
-    display: block;
-    border: none;
-    position: relative;
-  }
-  .rwd-table td:before {
-    content: attr(data-th) "";
-    font-weight: bold;
-  }
   .td-first {
     margin-top: 10px;
   }
@@ -227,23 +202,38 @@
     margin-top: 15px;
     margin-bottom: 10px;
     position: relative;
-    left: 15px;
   }
   .td-first .btn {
     padding-bottom: 7px;
     padding-right: 4px;
     margin-bottom:5px;
   }
-  .rwd-tbody {
-    
-  }
   .custom-select {
     width: 95%;
     margin-bottom: 20px;
   }
   .card-body {
-    margin-right: 10px;
+    margin-right: 0px;
   }
+  .card-body table input, .card-body table select{
+    width:auto;
+    overflow-x: auto;
+  }
+  .mobile-edit{
+    left:13px;
+    margin-right:10px;
+  }
+  .mobile-end{
+    left:5px;
+    margin-right:10px;
+  }
+  .btn-info{
+    margin-right:-10px;
+  }
+  .img-m{
+    width:100%;
+  }
+  
 }
 
 .verification_err_msg {

@@ -29,13 +29,13 @@
       <table class="table table-hover table-responsive-sm hide-in-phone">
         <thead class="center">
           <tr>
-            <th scope="col">操作</th>
-            <th scope="col">職稱</th>
+            <th scope="col" class="text-nowrap">操作</th>
+            <th scope="col" class="text-nowrap">職稱</th>
           </tr>
         </thead>
         <tbody class="center">
           <tr th:each="position:${positions}" th:object="${position}">
-            <td>
+            <td class="text-nowrap">
               <a class="btn btn-sm btn-secondary" th:href="@{/position/view/__*{id}__}" >
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>檢視
               </a>
@@ -46,33 +46,7 @@
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除
               </a>
             </td>
-            <td>
-              <span th:text="*{name}" ></span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table table-hover table-responsive-sm show-on-phone">
-        <thead class="center">
-          <tr>
-            <th scope="col">操作</th>
-            <th scope="col">職稱</th>
-          </tr>
-        </thead>
-        <tbody class="center">
-          <tr th:each="position:${positions}" th:object="${position}">
-            <td class="td-first">
-              <a class="btn btn-sm btn-secondary" th:href="@{/position/view/__*{id}__}" >
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              </a>
-              <a class="btn btn-success btn-sm" th:href="@{/position/edit/{empId}(empId=*{id})}" >
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              </a>
-              <a class="btn btn-danger btn-sm" th:onclick="|delete_position(__*{id}__,'__*{name}__')|" href="javascript:;" >
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </a>
-            </td>
-            <td>
+            <td class="text-nowrap">
               <span th:text="*{name}" ></span>
             </td>
           </tr>

@@ -37,13 +37,13 @@
     </div>
     <div class="card-body" >
 
-      <table class="table table-hover table-responsive-sm table-striped hide-in-phone">
+      <table class="table table-hover table-responsive-sm">
         <thead class="center">
           <tr>
-            <th scope="col">編號</th>
-            <th scope="col">照片</th>
-            <th scope="col">姓名</th>
-            <th scope="col">狀態消息</th>
+            <th scope="col" class="text-nowrap">編號</th>
+            <th scope="col" class="text-nowrap">照片</th>
+            <th scope="col" class="text-nowrap">姓名</th>
+            <th scope="col" class="text-nowrap">狀態消息</th>
           </tr>
         </thead>
         <tbody class="center">
@@ -51,44 +51,13 @@
             <th colspan="2">沒有資料</th>
           </tr>
           <tr th:unless="${users.empty}" th:each="user,itemStar:${users}" th:object="${user}">
-            <td>[[*{userId}]]</td>
+            <td class="text-nowrap">[[*{userId}]]</td>
             <td><img width="100px" th:src="*{pictureUrl}"></img></td>
-            <td>[[*{userName}]]</td>
-            <td>[[*{statusMessage}]]</td>
+            <td class="text-nowrap">[[*{userName}]]</td>
+            <td class="text-nowrap">[[*{statusMessage}]]</td>
           </tr>
         </tbody>
       </table>
-
-      <table class="table-hover rwd-table show-on-phone">
-        <thead>
-          <tr>
-            <th>照片</th>
-            <th>編號</th>
-            <th>姓名</th>
-            <th>狀態消息</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:if="${users.empty}">
-            <th colspan="4">沒有資料</th>
-          </tr>
-          <tr th:unless="${users.empty}" th:each="user,itemStar:${users}" th:object="${user}">
-            <td class="td-first">
-              <img width="100px" th:src="*{pictureUrl}"></img>
-            </td>
-            <td data-th="編號：" >
-              <span th:text="*{userId}"></span>
-            </td>
-            <td data-th="姓名：">
-              <span th:text="*{userName}"></span>
-            </td>
-            <td data-th="狀態消息：" class="td-last">
-              <span th:text="*{statusMessage}"></span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-         
       <div th:if="${users.totalPages gt 1}" >
         <div th:replace="~{comm/page :: page01(entity=${users})}"></div>
       </div>

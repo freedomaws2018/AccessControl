@@ -50,21 +50,21 @@
       areas.forEach(function(area , index){
         $("#richMenuActionTable tbody").append(`
           <tr>
-            <td  class="center">
+            <td class="center text-nowrap">
               <input type="hidden" size="4" name="bounds[${index}].x" value="${area.bounds.x}" />
               <input type="hidden" size="4" name="bounds[${index}].y" value="${area.bounds.y}" />
               <input type="hidden" size="4" name="bounds[${index}].width" value="${area.bounds.width}" />
               <input type="hidden" size="4" name="bounds[${index}].height" value="${area.bounds.height}" />
               ${index + 1} 
             </td>
-            <td  class="center">
+            <td class="center text-nowrap">
               <select class="form-control" name="actions[${index}].type" onchange="change_action_detail(this,${index})">
                 <option value="">請選擇</option>
                 <option value="change_view">切換頁面</option>
                 <option value="trigger_iot">觸發Iot</option>
               </select>
             </td>
-            <td id="detail_${index}"></td>
+            <td id="detail_${index}" class="text-nowrap"></td>
           </tr>
         `);
       })
@@ -78,7 +78,7 @@
     switch(event.value){
     case 'change_view':
       var change_view_str = `至
-      <input type="text" id="action_${index}" name="actions[${index}].data" FDCV="not-blank"/>
+      <input type="text" class="form-control" id="action_${index}" name="actions[${index}].data" FDCV="not-blank"/>
       
       `;
       detail.html(change_view_str);
@@ -102,15 +102,13 @@
       break;
     case 'trigger_iot':
      var trigger_iot_str = `
-       <div class="row">
-         <div class="col-5">觸發
+         <div>觸發
         	<input type="hidden" id="locationId_${index}" />
          	<input type="text" class="form-control" id="location_${index}" />
          </div>
-         <div class="col-5">的
+         <div>的
          	<input type="text" class="form-control" id="action_${index}" FDCV="not-blank" />
          </div>
-       </div>
        <input type="hidden" id="action_data_${index}" name="actions[${index}].data" />
        <input type="hidden" id="action_text_${index}" name="actions[${index}].text" />
      `;
@@ -283,12 +281,12 @@
 		    <div class="card-body">
               <input type="hidden" id="menuSizeWidth" name="size.width" />
               <input type="hidden" id="menuSizeHeight" name="size.height" />
-			  <table id="richMenuActionTable"  class="table table-bordered">
+			  <table id="richMenuActionTable"  class="table table-bordered table-responsive-sm">
 		        <thead class="thead-light">
-		          <tr class="center">
-		            <th width="100px">序號</th>
-		            <th width="200px">動作</th>
-		            <th>行為</th>
+		          <tr>
+		            <th class="text-nowrap">序號</th>
+		            <th class="text-nowrap">動作</th>
+		            <th class="text-nowrap">行為</th>
 		          </tr>
 		        </thead>
 		        <tbody>
@@ -299,9 +297,13 @@
 		</div>
 	  </div>
 	</div>
-	<button type="button" id="rich_menu_submit" class="btn btn-primary btn-sm">
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
-    </button>
+	<div class="row justify-content-center">
+	  <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-5">
+	    <button type="button" id="rich_menu_submit" class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>送出
+        </button>
+      </div>
+    </div>
   </form>
 
 </body>

@@ -12,9 +12,9 @@
     $("#add_permission_detail").click(function(){
       var str = '';
       str +="<tr id='tr_detail_" + index + "'>";
-      str +="  <td>";
+      str +="  <td class='text-nowrap" + "'>";
       str +="    <a herf='javascript:;' class='btn btn-danger btn-sm' onClick='delete_detail(this,\"detail_" + index + "\","+index+")' >"
-      str +="      <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>刪除";
+      str +="      <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>移除";
       str +="    </a>";
       str +="  </td>";
       str +="  <td>";
@@ -173,48 +173,42 @@
             
             <div class="col-12" >
               <label class="font-weight-bold">細項</label>
-              <table class="table" >
+              <table class="table table-hover table-responsive-sm" >
                <tr>
                 <td>
                   <a th:if="${funcType eq 'edit' || funcType eq 'add'}" href="javascript:;" class="btn btn-primary btn-sm btn-detail" id="add_permission_detail" >
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>新增 
                   </a>
-                  <table id="detail_table">
-                    <thead>
+                  <table id="detail_table" class="table">
+                  <thead>
                       <tr class="center">
                         <th th:if="${funcType eq 'edit' || funcType eq 'add'}">#</th>
-                        <th>代號</th>
-                        <th>名稱</th>
-                        <th>備註</th>
-                        <th>超級使用者</th>
+                        <th class="text-nowrap">代號</th>
+                        <th class="text-nowrap">名稱</th>
+                        <th class="text-nowrap">備註</th>
+                        <th class="text-nowrap">超級使用者</th>
                       </tr>
                     </thead>
                     <tbody th:if="${funcType ne 'add'}">
-                      <tr  th:each="detail,iter:*{details}" th:object="${detail}" th:id="|tr_detail_${iter.index}|">
-                      
-                        <td th:if="${funcType eq 'edit'}">
+                      <tr th:each="detail,iter:*{details}" th:object="${detail}" th:id="|tr_detail_${iter.index}|">
+                        <td th:if="${funcType eq 'edit'}" class="text-nowrap">
                           <a href="javascript:;" class="btn btn-danger btn-sm" th:onclick="|delete_detail(this,'detail_${iter.index}',${iter.index})|" >
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>刪除 
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>移除
                           </a>
                         </td>
-                        
                         <td>
                           <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{type}" th:name="|detail[${iter.index}].type|" readonly />
                         </td>
-                        
                         <td>
                           <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{name}" th:name="|detail[${iter.index}].name|" FDCV="not-blank" />
                         </td>
-                        
                         <td>
                           <input th:if="${funcType eq 'edit' || funcType eq 'view'}" th:disabled="${funcType eq 'view'}" class="form-control" th:value="*{remarks}" th:name="|detail[${iter.index}].remarks|"  />
                         </td>
-                        
                         <td th:if="${funcType eq 'edit' || funcType eq 'view'}">
                           <label><input type='radio' value='true' th:disabled="${funcType eq 'view'}" th:name='|detail[${iter.index}].isSuperAdmin|' th:checked="*{isSuperAdmin}" />是</label>
                           <label><input type='radio' value='false' th:disabled="${funcType eq 'view'}" th:name='|detail[${iter.index}].isSuperAdmin|' th:checked="*{not isSuperAdmin}" />否</label>
                         </td>
-                        
                       </tr>
                     </tbody>
                   </table>
@@ -224,10 +218,10 @@
             </div>
           </div>
           <div th:if="${ funcType eq 'edit' || funcType eq 'view'}" class="row badge-margin justify-content-center">
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5 mobile-edit">
               <span th:text="|建立時間：  *{#temporals.format(createDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
             </div>&emsp;
-            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5">
+            <div class="badge badge-info text-wrap col-11 col-sm-11 col-md-11 col-lg-11 col-xl-5 mobile-end">
               <span th:text="|修改時間：  *{#temporals.format(modifyDate, 'yyyy/MM/dd HH:mm:ss')}|"></span>
             </div>
           </div>
