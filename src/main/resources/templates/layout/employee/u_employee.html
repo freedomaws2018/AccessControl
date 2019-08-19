@@ -3,8 +3,8 @@
 
 <body layout:fragment="content">
   <script th:inline="javascript">
-  	$(function(){
-  	  $("#reset_position").click(function(){
+	$(function(){
+	  $("#reset_position").click(function(){
         var positionId = $("select[name='positionId']").find(":selected").val();
         $.post("/position/getPositionById",{positionId:positionId},function(data){
           var mappings = data.mappings;
@@ -13,7 +13,7 @@
           });
         });
       });
-  	  $("#reset_position").dblclick(function(){
+	  $("#reset_position").dblclick(function(){
         var positionId = $("select[name='positionId']").find(":selected").val();
         $.post("/position/getPositionById",{positionId:positionId},function(data){
           var mappings = data.mappings;
@@ -23,7 +23,7 @@
           });
         });
       });
-  	});
+	});
 
 	var reset_password = function(id,account){
 	  showConfirmDialog('確認刪除','確定要重置 ' + account + ' 的密碼嗎？<BR>重置後帳號與密碼相同。',function(){

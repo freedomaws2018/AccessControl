@@ -24,19 +24,19 @@
 
 
 	<dependencies>
-	
-	    <!-- 授權認證 security -->
-<!-- 		<dependency> -->
-<!--             <groupId>org.springframework.boot</groupId> -->
-<!--             <artifactId>spring-boot-starter-security</artifactId> -->
-<!--         </dependency> -->
+
+		<!-- 授權認證 security -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter-security</artifactId> -->
+		<!-- </dependency> -->
 
 		<!-- 圖片處理 Opencv -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openpnp</groupId> -->
-<!-- 			<artifactId>opencv</artifactId> -->
-<!-- 			<version>3.4.2-1</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.openpnp</groupId> -->
+		<!-- <artifactId>opencv</artifactId> -->
+		<!-- <version>3.4.2-1</version> -->
+		<!-- </dependency> -->
 
 		<!-- <dependency> -->
 		<!-- <groupId>nu.pattern</groupId> -->
@@ -104,6 +104,7 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- JSONB TYPE -->
 		<dependency>
 			<groupId>com.vladmihalcea</groupId>
 			<artifactId>hibernate-types-52</artifactId>
