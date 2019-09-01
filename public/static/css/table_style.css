@@ -183,7 +183,7 @@
 }
 
 @media ( max-width : 720px) {
-  .card {
+  .card-body{
     overflow-x: auto;
   }
   .td-first {
