@@ -189,7 +189,7 @@
 	background: #F5F5F5;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 	.navbar{
 		position:fixed;
 		z-index:1;

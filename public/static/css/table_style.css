@@ -182,7 +182,7 @@
   margin: 20px;
 }
 
-@media ( max-width : 720px) {
+@media ( max-width : 900px) {
   .card-body{
     overflow-x: auto;
   }
