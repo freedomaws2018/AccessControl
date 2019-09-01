@@ -31,6 +31,27 @@
       });
     });
   }
+  
+  $(document).ready(function(){ 
+	  var mm = window.matchMedia("(max-width: 1024px)");
+	  mm.addListener(resizeWidth);
+	  resizeWidth(mm);
+
+	  function resizeWidth(pMatchMedia){
+	    if (pMatchMedia.matches) {
+	      //小於720時執行的js
+	      $(".container-auto").removeClass("container");
+	      $(".container-auto").addClass("container-fluid");
+	      $(".container-auto").addClass("td-first");
+	    }else{
+	      //大於720時執行的js
+	      $(".container-auto").removeClass("container-fluid");
+	      $(".container-auto").removeClass("td-first");
+	      $(".container-auto").addClass("container");
+	    }
+	  } 
+  }); 
+
   </script>
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
@@ -46,7 +67,7 @@
             </a>
           </div>
         </div>
-        <div class="card-body">
+        <div class="container-auto card-body">
           <table id="myTable" class="table table-hover table-responsive-sm">
             <thead class="center">
               <tr>
