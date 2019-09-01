@@ -45,7 +45,7 @@ public class LineUserController {
       @PageableDefault(page = 0, size = 10, sort = { "createDate" }, direction = Direction.DESC) Pageable pageable) {
     model = new ModelAndView("layout/line/l_line_user");
     Page<LineUser> users = lineUserService.getAll(pageable);
-    model.addObject("users", users);
+    model.addObject("users", users.stream().filter(u->!u.getIsLeave()).collect(Collectors.toList()));
     model.addObject("allRichMenu", lineRichMenuService.getAll());
     return model;
   }

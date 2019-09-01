@@ -1,0 +1,71 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 1686
+  },
+  "selected": false,
+  "name": "229-A(無伺服器)",
+  "chatBarText": "229-A(無伺服器)",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1250,
+        "height": 843
+      },
+      "action": {
+        "type": "uri",
+        "uri":"https://service.wf8266.com/api/mqtt/15738184/Relay3/xoeExDUjSkPG2GMBDCAqfgPYl8v2/4"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1250,
+        "y": 0,
+        "width": 1250,
+        "height": 843
+      },
+      "action": {
+        "type": "uri",
+        "uri":"https://service.wf8266.com/api/mqtt/15738184/Relay2/xoeExDUjSkPG2GMBDCAqfgPYl8v2/4"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "uri",
+        "uri":"https://service.wf8266.com/api/mqtt/15738184/Relay4/xoeExDUjSkPG2GMBDCAqfgPYl8v2/4"
+      }
+    },
+    {
+      "bounds": {
+        "x": 833,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "uri",
+        "uri":"https://service.wf8266.com/api/mqtt/15738184/Relay1/xoeExDUjSkPG2GMBDCAqfgPYl8v2/0"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1666,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "uri",
+        "uri":"https://service.wf8266.com/api/mqtt/15738184/Relay1/xoeExDUjSkPG2GMBDCAqfgPYl8v2/1"
+      }
+    }
+  ]
+}

@@ -69,7 +69,7 @@
                 </td>
                 <th class="text-nowrap"> 
                   <input type="hidden" th:id="|url_${iterStat.index}|" th:value="${wf8266.statusUrl}" />
-                  <div class="row">
+                  <div class="row" th:if="${wf8266.isUse}">
                     <a th:onclick="|reload_${iterStat.index}()|" class="btn btn-warning btn-sm">
                       <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重新讀取
                     </a>
@@ -108,6 +108,7 @@
                     }
                     </script>
                   </div>
+                  <div th:unless="${wf8266.isUse}" class="text-danger" >停用</div>
                 </th>
               </tr>
             </tbody>

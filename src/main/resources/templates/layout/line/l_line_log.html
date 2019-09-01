@@ -9,9 +9,9 @@
   $().ready(function(){
 
     $('#log_table').DataTable({
-      "paging":   true, // 分頁
-      "ordering": true, // 排序
-      "info":     true, // 訊息
+      paging:   true, // 分頁
+      ordering: true, // 排序
+      info:     true, // 訊息
       stateSave: true, // 紀錄狀態 
       pagingType: 'first_last_numbers',
       language: {
@@ -51,7 +51,7 @@
               <span th:text="${#temporals.format(log.createDate, 'yyyy/MM/dd HH:mm:ss')}"></span>
             </th>
             <td>
-              [[${mapMember[log.memberId].fullName}]] 執行 [[${mapLocation[log.locationId].name}]] - [[${log.wf8266DetailName}]]
+              [[${mapMember[log.memberId]?.fullName}]] 執行 [[${mapLocation[log.locationId]?.name}]] - [[${log?.wf8266DetailName}]]
             </td>
           </tr>
         </tbody>
