@@ -1,0 +1,16 @@
+﻿INSERT INTO public.tbl_wf8266( sn, create_date, modify_date, is_use, key, location_id)
+	VALUES 
+('15738184','2019-05-13 22:27:12.064','2019-05-14 10:15:28.309',true,'xoeExDUjSkPG2GMBDCAqfgPYl8v2','9'),
+('3213790','2019-05-13 21:53:42.611','2019-05-21 21:53:33.404',true,'xoeExDUjSkPG2GMBDCAqfgPYl8v2','5');
+
+SELECT * FROM tbl_wf8266;
+
+INSERT INTO public.tbl_wf8266_detail( name, wf8266_sn, cmd, is_use,  relay, reply1, reply2, value ) VALUES 
+('開啟大門' , '3213790'  , 'Relay' , true , 1 , '#開門' , '已開啟'         ,4),
+('一樓大門' , '15738184' , 'Relay' , true , 3 , '#開門' , '一樓大門已開啟' ,4),
+('二樓大門' , '15738184' , 'Relay' , true , 2 , '#開門' , '二樓大門已開啟' ,4),
+('A室大門'  , '15738184' , 'Relay' , true , 4 , '#開門' , 'A室門已開啟'    ,4),
+('A室開燈'  , '15738184' , 'Relay' , true , 1 , '#開燈' , 'A室燈已開啟'    ,0),
+('A室關燈'  , '15738184' , 'Relay' , true , 1 , '#關燈' , 'A室燈已關閉'    ,1);
+
+SELECT * FROM tbl_wf8266_detail;

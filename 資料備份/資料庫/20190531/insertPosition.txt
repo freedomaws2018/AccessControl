@@ -1,4 +1,0 @@
-INSERT INTO public.tbl_position(id, create_date, is_default, is_use, name, remarks) VALUES 
-(1,now(),false,true,'工程師',''),
-(2,now(),false,true,'董事長',''),
-(3,now(),true,true,'職員','');

@@ -1,6 +1,6 @@
 server:
-  https-port: 443
-  http-port: 80
+  https-port: 5001
+  http-port: 5000
   port: ${server.https-port}
   
   user_login_timeout: 1800 # 登入閒置時間
@@ -46,7 +46,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     name: UAT
-    url: jdbc:postgresql://34.80.133.100:10020/${spring.datasource.name}
+    url: jdbc:postgresql://104.199.201.182:10020/${spring.datasource.name}
     username: freedomcloud
     password: freedomcloud86878687
   
